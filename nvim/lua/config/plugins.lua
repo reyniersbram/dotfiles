@@ -59,6 +59,30 @@ return packer.startup(function(use)
     -- TODO not working yet
     use("lewis6991/gitsigns.nvim")
 
+    -- CMP (completion) plugins
+    use("hrsh7th/nvim-cmp") -- The completion plugin 
+    use("hrsh7th/cmp-buffer") -- buffer completions
+    use("hrsh7th/cmp-path") -- path completions
+    use("hrsh7th/cmp-cmdline") -- cmdline completions
+    use("saadparwaiz1/cmp_luasnip") -- snippet completions
+    use("hrsh7th/cmp-nvim-lsp")
+    use("hrsh7th/cmp-nvim-lua")
+    use("hrsh7th/cmp-emoji")
+    use("f3fora/cmp-spell")
+
+    -- snippet plugins
+    use("L3MON4D3/LuaSnip") --snippet engine
+    use("rafamadriz/friendly-snippets") -- a bunch of snippets to use
+
+    -- LSP
+    use("neovim/nvim-lspconfig")
+    use("williamboman/mason.nvim")
+    use("williamboman/mason-lspconfig.nvim")
+    use "SmiteshP/nvim-navic"
+    use "ray-x/lsp_signature.nvim"
+    use "RRethy/vim-illuminate"
+    use "lvimuser/lsp-inlayhints.nvim"
+
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
     if PACKER_BOOTSTRAP then
