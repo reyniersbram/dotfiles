@@ -41,3 +41,11 @@ user-dirs.dirs
 user-dirs.locale
 xdg-terminals.list
 yay/
+fragments/
+gnome-control-center/
+gthumb/
+libreoffice/
+libvirt/
+onlyoffice/
+simple-scan/
+yelp/
