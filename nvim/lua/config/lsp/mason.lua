@@ -1,22 +1,20 @@
 local status_ok, mason = pcall(require, "mason")
 if not status_ok then
-	vim.notify("mason not found!!")
+	vim.notify("mason not found!")
   return
 end
 
 local status_ok_1, mason_lspconfig = pcall(require, "mason-lspconfig")
 if not status_ok_1 then
-  vim.notify("mason not found!!")
+  vim.notify("mason not found!")
   return
 end
 
 local servers = {
   "sumneko_lua",
-  "pyright",
-  "tsserver",
-  "rnix",
+  -- "pyright",
   "hls",
-  "clangd",
+  -- "clangd",
 }
 
 
@@ -35,10 +33,10 @@ local settings = {
 }
 
 mason.setup(settings)
---[[ mason_lspconfig.setup { ]]
-  --[[ ensure_installed = servers, ]]
-  --[[ automatic_installation = true, ]]
---[[ } ]]
+mason_lspconfig.setup {
+    ensure_installed = servers,
+    automatic_installation = true,
+}
 
 local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
 if not lspconfig_status_ok then
@@ -56,26 +54,26 @@ for _, server in pairs(servers) do
 
   server = vim.split(server, "@")[1]
 
-  if server == "sumneko_lua" then
-		local sumneko_opts = require("config.lsp.settings.sumneko_lua")
-		opts = vim.tbl_deep_extend("force", sumneko_opts, opts)
-  end
+  -- if server == "sumneko_lua" then
+  -- 	local sumneko_opts = require("config.lsp.settings.sumneko_lua")
+-- 		opts = vim.tbl_deep_extend("force", sumneko_opts, opts)
+  -- end
 
 
-  if server == "pyright" then
-    local pyright_opts = require "config.lsp.settings.pyright"
-    opts = vim.tbl_deep_extend("force", pyright_opts, opts)
-  end
+  -- if server == "pyright" then
+  --  local pyright_opts = require "config.lsp.settings.pyright"
+  --   opts = vim.tbl_deep_extend("force", pyright_opts, opts)
+  -- end
 
-  if server == "ccls" then
-    local ccsl = require "config.lsp.settings.ccls"
-    opts = vim.tbl_deep_extend("force", ccsl, opts)
-  end
+  -- if server == "ccls" then
+  --  local ccsl = require "config.lsp.settings.ccls"
+  --  opts = vim.tbl_deep_extend("force", ccsl, opts)
+  -- end
 
-  if server == "hls" then
-    local ccsl = require "config.lsp.settings.hls"
-    opts = vim.tbl_deep_extend("force", ccsl, opts)
-  end
+-- if server == "hls" then
+--     local ccsl = require "config.lsp.settings.hls"
+--     opts = vim.tbl_deep_extend("force", ccsl, opts)
+-- end
 
   lspconfig[server].setup(opts)
 end
