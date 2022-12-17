@@ -4,4 +4,5 @@ require "config.plugins"
 require "config.colorscheme"
 require "config.cmp"
 require "config.lsp"
+require "config.discord"
 

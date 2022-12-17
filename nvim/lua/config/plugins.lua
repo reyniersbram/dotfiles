@@ -83,6 +83,9 @@ return packer.startup(function(use)
     use "RRethy/vim-illuminate"
     use "lvimuser/lsp-inlayhints.nvim"
 
+    -- Discord Rich Presence
+    use("andweeb/presence.nvim")
+
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
     if PACKER_BOOTSTRAP then
