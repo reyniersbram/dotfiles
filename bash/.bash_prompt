@@ -1,0 +1,51 @@
+#! /bin/bash
+
+colors_clear="\e[0m"
+colors_commands="$colors_clear"
+colors_main="$colors_clear\e[32;1m"
+colors_secondary="$colors_clear\e[34;1m"
+colors_ternary="$colors_clear\e[35;3m"
+
+user="\u"
+host="\H"
+directory="\W"
+
+inRepo() {
+    git branch &>/dev/null
+    status=$(echo $?)
+    return $status
+}
+
+getBranch ()
+{
+    inRepo
+    status=$(echo $?)
+    if [[ $status -gt 0 ]] ; then
+        echo ""
+        return 0
+    fi
+    currentBranch=$(git branch 2>/dev/null | grep -e '\* ' | sed "s/^..\(.*\)/\1/" )
+    echo "$currentBranch"
+}
+
+printOpenBr () {
+    inRepo
+    status=$(echo $?)
+    if [[ $status -gt 0 ]] ; then
+        echo ""
+        return 0
+    fi
+    echo "["
+}
+
+printCloseBr () {
+    inRepo
+    status=$(echo $?)
+    if [[ $status -gt 0 ]] ; then
+        echo ""
+        return 0
+    fi
+    echo "] "
+}
+
+export PS1="$colors_main$user@$host $colors_secondary$directory $colors_main\$(printOpenBr)$colors_ternary\$(getBranch)$colors_main\$(printCloseBr)\$$colors_clear "

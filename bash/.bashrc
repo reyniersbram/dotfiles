@@ -138,9 +138,12 @@ ex ()
 
 # source alias definitions
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
-if [ -f ~/dotfiles/.bash_aliases ]; then
-    source ~/dotfiles/.bash_aliases
+if [ -f ~/dotfiles/bash/.bash_aliases ]; then
+    source ~/dotfiles/bash/.bash_aliases
 fi
+
+# source prompt configuration
+[ -f ~/dotfiles/bash/.bash_prompt ] && source ~/dotfiles/bash/.bash_prompt
 
 # Edit PATH variable
 export PATH="$PATH:/opt"
