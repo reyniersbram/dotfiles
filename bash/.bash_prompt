@@ -1,10 +1,10 @@
 #! /bin/bash
 
-colors_clear="\e[0m"
+colors_clear="\[\e[0m\]"
 colors_commands="$colors_clear"
-colors_main="$colors_clear\e[32;1m"
-colors_secondary="$colors_clear\e[34;1m"
-colors_ternary="$colors_clear\e[35;3m"
+colors_main="$colors_clear\[\e[32;1m\]"
+colors_secondary="$colors_clear\[\e[34;1m\]"
+colors_ternary="$colors_clear\[\e[35;3m\]"
 
 user="\u"
 host="\H"
@@ -26,6 +26,7 @@ getBranch ()
     fi
     currentBranch=$(git branch 2>/dev/null | grep -e '\* ' | sed "s/^..\(.*\)/\1/" )
     echo "$currentBranch"
+    return 0
 }
 
 printOpenBr () {
@@ -36,6 +37,7 @@ printOpenBr () {
         return 0
     fi
     echo "["
+    return 0
 }
 
 printCloseBr () {
@@ -46,6 +48,7 @@ printCloseBr () {
         return 0
     fi
     echo "] "
+    return 0
 }
 
-export PS1="$colors_main$user@$host $colors_secondary$directory $colors_main\$(printOpenBr)$colors_ternary\$(getBranch)$colors_main\$(printCloseBr)\$$colors_clear "
+export PS1="$colors_main$user@$host: $colors_secondary$directory $colors_main\$(printOpenBr)$colors_ternary\$(getBranch)$colors_main\$(printCloseBr)\$$colors_clear "

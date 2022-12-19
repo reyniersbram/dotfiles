@@ -147,6 +147,7 @@ fi
 
 # Edit PATH variable
 export PATH="$PATH:/opt"
+export PATH="$PATH:/opt/passw-gen"
 
 # set nvim as default editor
 export EDITOR=nvim
