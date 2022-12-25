@@ -63,8 +63,8 @@ return packer.startup(function(use)
     use("hrsh7th/cmp-path") -- path completions
     use("hrsh7th/cmp-cmdline") -- cmdline completions
     use("saadparwaiz1/cmp_luasnip") -- snippet completions
-    use("hrsh7th/cmp-nvim-lsp")
-    use("hrsh7th/cmp-nvim-lua")
+    use("hrsh7th/cmp-nvim-lsp") -- integration with lsp
+    use("hrsh7th/cmp-nvim-lua") -- extra lua completion
 --     use("hrsh7th/cmp-emoji")
 --     use("f3fora/cmp-spell")
 
@@ -84,6 +84,10 @@ return packer.startup(function(use)
 
     -- Discord Rich Presence
     use("andweeb/presence.nvim")
+
+    -- Telescope
+    use("nvim-telescope/telescope.nvim")
+    use("nvim-telescope/telescope-media-files.nvim")
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
