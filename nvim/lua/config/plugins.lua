@@ -39,15 +39,14 @@ packer.init({
 
 -- Install your plugins here
 return packer.startup(function(use)
-    -- My plugins here
     use("wbthomason/packer.nvim") -- Have packer manage itself
     use("nvim-lua/popup.nvim") -- An implementation of the Popup API from vim in Neovim
     use("nvim-lua/plenary.nvim") -- Useful lua functions used by lots of plugins
 
-    -- Colorscheme
+    -- Colorschemes
     use("ellisonleao/gruvbox.nvim")
 
-    -- Markdown preview
+    -- Markdown preview plugin
     use {
         "iamcco/markdown-preview.nvim",
         run = "cd app && npm install",
@@ -58,7 +57,7 @@ return packer.startup(function(use)
     -- TODO not working yet
     use("lewis6991/gitsigns.nvim")
 
-    -- CMP (completion) plugins
+    -- CMP plugins
     use("hrsh7th/nvim-cmp") -- The completion plugin 
     use("hrsh7th/cmp-buffer") -- buffer completions
     use("hrsh7th/cmp-path") -- path completions
@@ -66,8 +65,8 @@ return packer.startup(function(use)
     use("saadparwaiz1/cmp_luasnip") -- snippet completions
     use("hrsh7th/cmp-nvim-lsp")
     use("hrsh7th/cmp-nvim-lua")
-    use("hrsh7th/cmp-emoji")
-    use("f3fora/cmp-spell")
+--     use("hrsh7th/cmp-emoji")
+--     use("f3fora/cmp-spell")
 
     -- snippet plugins
     use("L3MON4D3/LuaSnip") --snippet engine
@@ -75,12 +74,13 @@ return packer.startup(function(use)
 
     -- LSP
     use("neovim/nvim-lspconfig")
+--  use("williamboman/nvim-lsp-installer")
     use("williamboman/mason.nvim")
     use("williamboman/mason-lspconfig.nvim")
-    use "SmiteshP/nvim-navic"
-    use "ray-x/lsp_signature.nvim"
-    use "RRethy/vim-illuminate"
-    use "lvimuser/lsp-inlayhints.nvim"
+--    use "SmiteshP/nvim-navic"
+--    use "ray-x/lsp_signature.nvim"
+--    use "RRethy/vim-illuminate"
+--    use "lvimuser/lsp-inlayhints.nvim"
 
     -- Discord Rich Presence
     use("andweeb/presence.nvim")
@@ -88,7 +88,7 @@ return packer.startup(function(use)
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
     if PACKER_BOOTSTRAP then
-    require("packer").sync()
+        require("packer").sync()
     end
 end)
 

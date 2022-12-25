@@ -125,7 +125,7 @@ cmp.setup({
         end,
     },
     sources = {
---         { name = "nvim_lsp",
+        { name = "nvim_lsp",
 --         entry_filter = function(entry, ctx)
 --             local kind = require("cmp.types.lsp").CompletionItemKind[entry:get_kind()]
 --             --[[ if kind == "Snippet" and ctx.prev_context.filetype == "java" then ]]
@@ -136,12 +136,11 @@ cmp.setup({
 --             end
 --             return true
 --         end,
---         group_index = 2,
---     },
---         { name = "nvim_lua", group_index = 2 },
-        { name = "luasnip", group_index = 2 },
+        },
+        { name = "nvim_lua", group_index = 2 },
+        { name = "luasnip", },
 --         { name = "calc" , group_index = 2 },
-        { name = "buffer", group_index = 2,
+        { name = "buffer",
 --         entry_filter = function(entry, ctx)
 --             if not contains(buffer_fts, ctx.prev_context.filetype) then
 --                 return false
@@ -149,7 +148,7 @@ cmp.setup({
 --             return true
 --         end,
         },
-        { name = "path", group_index = 2 },
+        { name = "path", },
 --         { name = "emoji" , group_index = 2 },
 --         { name = "spell", group_index = 2 },
     },

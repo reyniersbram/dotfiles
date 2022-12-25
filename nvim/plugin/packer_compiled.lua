@@ -89,11 +89,6 @@ _G.packer_plugins = {
     path = "/home/reyniersbram/.local/share/nvim/site/pack/packer/start/cmp-cmdline",
     url = "https://github.com/hrsh7th/cmp-cmdline"
   },
-  ["cmp-emoji"] = {
-    loaded = true,
-    path = "/home/reyniersbram/.local/share/nvim/site/pack/packer/start/cmp-emoji",
-    url = "https://github.com/hrsh7th/cmp-emoji"
-  },
   ["cmp-nvim-lsp"] = {
     loaded = true,
     path = "/home/reyniersbram/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
@@ -108,11 +103,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/reyniersbram/.local/share/nvim/site/pack/packer/start/cmp-path",
     url = "https://github.com/hrsh7th/cmp-path"
-  },
-  ["cmp-spell"] = {
-    loaded = true,
-    path = "/home/reyniersbram/.local/share/nvim/site/pack/packer/start/cmp-spell",
-    url = "https://github.com/f3fora/cmp-spell"
   },
   cmp_luasnip = {
     loaded = true,
@@ -133,16 +123,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/reyniersbram/.local/share/nvim/site/pack/packer/start/gruvbox.nvim",
     url = "https://github.com/ellisonleao/gruvbox.nvim"
-  },
-  ["lsp-inlayhints.nvim"] = {
-    loaded = true,
-    path = "/home/reyniersbram/.local/share/nvim/site/pack/packer/start/lsp-inlayhints.nvim",
-    url = "https://github.com/lvimuser/lsp-inlayhints.nvim"
-  },
-  ["lsp_signature.nvim"] = {
-    loaded = true,
-    path = "/home/reyniersbram/.local/share/nvim/site/pack/packer/start/lsp_signature.nvim",
-    url = "https://github.com/ray-x/lsp_signature.nvim"
   },
   ["markdown-preview.nvim"] = {
     loaded = false,
@@ -171,11 +151,6 @@ _G.packer_plugins = {
     path = "/home/reyniersbram/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
   },
-  ["nvim-navic"] = {
-    loaded = true,
-    path = "/home/reyniersbram/.local/share/nvim/site/pack/packer/start/nvim-navic",
-    url = "https://github.com/SmiteshP/nvim-navic"
-  },
   ["packer.nvim"] = {
     loaded = true,
     path = "/home/reyniersbram/.local/share/nvim/site/pack/packer/start/packer.nvim",
@@ -195,11 +170,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/reyniersbram/.local/share/nvim/site/pack/packer/start/presence.nvim",
     url = "https://github.com/andweeb/presence.nvim"
-  },
-  ["vim-illuminate"] = {
-    loaded = true,
-    path = "/home/reyniersbram/.local/share/nvim/site/pack/packer/start/vim-illuminate",
-    url = "https://github.com/RRethy/vim-illuminate"
   }
 }
 
