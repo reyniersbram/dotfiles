@@ -10,23 +10,23 @@ if not snip_status_ok then
 	return
 end
 
-local buffer_fts = {
-    "markdown",
-    "toml",
-    "yaml",
-    "json",
-}
+-- local buffer_fts = {
+--     "markdown",
+--     "toml",
+--     "yaml",
+--     "json",
+-- }
 
-local function contains(t, value)
-    for _, v in pairs(t) do
-       if v == value then
-            return true
-        end
-    end
-    return false
-end
+-- local function contains(t, value)
+--     for _, v in pairs(t) do
+--        if v == value then
+--             return true
+--         end
+--     end
+--    return false
+-- end
 
-local compare = require "cmp.config.compare"
+-- local compare = require "cmp.config.compare"
 
 require("luasnip/loaders/from_vscode").lazy_load()
 
@@ -36,22 +36,22 @@ local check_backspace = function()
 end
 
 
-local icons = require "config.icons"
+local icons = require("config.icons")
 local kind_icons = icons.kind
 
-vim.g.cmp_active = true
+-- vim.g.cmp_active = true
 
 cmp.setup({
-    enabled = function()
-        local buftype = vim.api.nvim_buf_get_option(0, "buftype")
-        if buftype == "prompt" then
-            return false
-        end
-        return vim.g.cmp_active
-    end,
+--     enabled = function()
+--         local buftype = vim.api.nvim_buf_get_option(0, "buftype")
+--         if buftype == "prompt" then
+--             return false
+--         end
+--         return vim.g.cmp_active
+--     end,
 
-    preselect = cmp.PreselectMode.None,
-    
+--     preselect = cmp.PreselectMode.None,
+
     snippet = {
         expand = function(args)
             luasnip.lsp_expand(args.body) -- For `luasnip` users.
@@ -106,81 +106,81 @@ cmp.setup({
             -- Kind icons
             vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
 
-            if entry.source.name == "emoji" then
-                vim_item.kind = icons.misc.Smiley
-                vim_item.kind_hl_group = "CmpItemKindEmoji"
-            end
+--             if entry.source.name == "emoji" then
+--                 vim_item.kind = icons.misc.Smiley
+--                 vim_item.kind_hl_group = "CmpItemKindEmoji"
+--             end
             -- NOTE: order matters
             vim_item.menu = ({
-                luasnip = "",
-                nvim_lsp = "",
-                nvim_lua = "",
-                buffer = "",
-                path = "",
-                spell = "",
-                calc = "",
-                emoji = "",
+                luasnip = "[Snippet]",
+                buffer = "[Buffer]",
+                path = "[Path]",
+                nvim_lsp = "[LSP]",
+                nvim_lua = "[Lua]",
+                spell = "[Spell]",
+                calc = "[Calc]",
+                emoji = "[Emoji]",
             })[entry.source.name]
             return vim_item
         end,
     },
-    sources = { 
-        { name = "nvim_lsp",
-        entry_filter = function(entry, ctx)
-            local kind = require("cmp.types.lsp").CompletionItemKind[entry:get_kind()]
-            --[[ if kind == "Snippet" and ctx.prev_context.filetype == "java" then ]]
-            ----[[   return false ]]
-            ----[[ end ]]
-            if kind == "Text" then
-                return false
-            end
-            return true
-        end,
-        group_index = 2,
-    },
-    { name = "nvim_lua", group_index = 2 },
-    { name = "luasnip", group_index = 2 },	
-    { name = "calc" , group_index = 2},
-    { name = "buffer",
-        group_index = 2,
-        entry_filter = function(entry, ctx)
-            if not contains(buffer_fts, ctx.prev_context.filetype) then
-                return false
-            end
-            return true
-        end,},
-        { name = "path", group_index = 2 },
-        { name = "emoji" , group_index = 2},
-        { name = "spell", group_index = 2},
-    },
-    sorting = {
-        priority_weight = 2,
-        comparators = {
-            -- require("copilot_cmp.comparators").prioritize,
-            -- -- require("copilot_cmp.comparators").score,
-            compare.offset,
-            compare.exact,
-            -- compare.scopes,
-            compare.score,
-            compare.recently_used,
-            compare.locality,
-            -- compare.kind,
-            compare.sort_text,
-            compare.length,
-            compare.order,
-            -- require("copilot_cmp.comparators").prioritize,
-            -- require("copilot_cmp.comparators").score,
-            },
+    sources = {
+--         { name = "nvim_lsp",
+--         entry_filter = function(entry, ctx)
+--             local kind = require("cmp.types.lsp").CompletionItemKind[entry:get_kind()]
+--             --[[ if kind == "Snippet" and ctx.prev_context.filetype == "java" then ]]
+--             ----[[   return false ]]
+--             ----[[ end ]]
+--             if kind == "Text" then
+--                 return false
+--             end
+--             return true
+--         end,
+--         group_index = 2,
+--     },
+--         { name = "nvim_lua", group_index = 2 },
+        { name = "luasnip", group_index = 2 },
+--         { name = "calc" , group_index = 2 },
+        { name = "buffer", group_index = 2,
+--         entry_filter = function(entry, ctx)
+--             if not contains(buffer_fts, ctx.prev_context.filetype) then
+--                 return false
+--             end
+--             return true
+--         end,
         },
-        confirm_opts = {
+        { name = "path", group_index = 2 },
+--         { name = "emoji" , group_index = 2 },
+--         { name = "spell", group_index = 2 },
+    },
+--     sorting = {
+--         priority_weight = 2,
+--         comparators = {
+--             -- require("copilot_cmp.comparators").prioritize,
+--             -- require("copilot_cmp.comparators").score,
+--             compare.offset,
+--             compare.exact,
+--             -- compare.scopes,
+--             compare.score,
+--             compare.recently_used,
+--             compare.locality,
+--             -- compare.kind,
+--             compare.sort_text,
+--             compare.length,
+--             compare.order,
+--             -- require("copilot_cmp.comparators").prioritize,
+--             -- require("copilot_cmp.comparators").score,
+--         },
+--     },
+    confirm_opts = {
             behavior = cmp.ConfirmBehavior.Replace,
             select = false,
-        },
-        -- documentation = {
-        --     border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-        -- },
-        experimental = {
-            ghost_text = true,
-            native_menu = false,
-        },
-    })
+    },
+    window = {
+        documentation = cmp.config.window.bordered(),
+    },
+    experimental = {
+        ghost_text = true,
+        native_menu = false,
+    },
+})

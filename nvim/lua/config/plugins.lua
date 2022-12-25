@@ -48,7 +48,6 @@ return packer.startup(function(use)
     use("ellisonleao/gruvbox.nvim")
 
     -- Markdown preview
-    -- TODO not working yet
     use {
         "iamcco/markdown-preview.nvim",
         run = "cd app && npm install",
