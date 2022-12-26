@@ -11,4 +11,5 @@ require "config.treesitter"
 require "config.autopairs"
 require "config.comment"
 require "config.gitsigns"
+require "config.nvim-tree"
 
