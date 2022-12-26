@@ -117,9 +117,9 @@ cmp.setup({
                 path = "[Path]",
                 nvim_lsp = "[LSP]",
                 nvim_lua = "[Lua]",
-                spell = "[Spell]",
-                calc = "[Calc]",
-                emoji = "[Emoji]",
+                --[[ spell = "[Spell]", ]]
+                --[[ calc = "[Calc]", ]]
+                --[[ emoji = "[Emoji]", ]]
             })[entry.source.name]
             return vim_item
         end,
