@@ -96,12 +96,15 @@ return packer.startup(function(use)
         run = ":TSUpdate",
     }
     use("p00f/nvim-ts-rainbow")
+    use("JoosepAlviste/nvim-ts-context-commentstring")
 
     -- Autopairs
     use("windwp/nvim-autopairs")
 
+    -- Commenting
+    use("numToStr/Comment.nvim")
+
     -- Git
-    -- TODO not working yet
     use("lewis6991/gitsigns.nvim")
 
     -- Automatically set up your configuration after cloning packer.nvim
