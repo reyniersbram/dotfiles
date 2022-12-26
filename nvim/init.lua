@@ -6,5 +6,7 @@ require "config.cmp"
 require "config.lsp"
 require "config.presence"
 require "config.telescope"
-require "config.colorizer"
+-- require "config.colorizer"
+require "config.treesitter"
+require "config.autopairs"
 
