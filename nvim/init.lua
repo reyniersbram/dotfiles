@@ -16,5 +16,6 @@ require "config.gitsigns"
 require "config.telescope"
 require "config.presence"
 require "config.comment"
+require "config.bufferline"
 -- require "config.colorizer"
 
