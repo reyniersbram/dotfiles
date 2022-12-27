@@ -76,10 +76,11 @@ return packer.startup(function(use)
 --  use("williamboman/nvim-lsp-installer") -- deprecated, use mason
     use("williamboman/mason.nvim")
     use("williamboman/mason-lspconfig.nvim")
---    use "SmiteshP/nvim-navic"
---    use "ray-x/lsp_signature.nvim"
---    use "RRethy/vim-illuminate"
---    use "lvimuser/lsp-inlayhints.nvim"
+--     use("jose-elias-alvarez/null-ls.nvim")
+--     use "SmiteshP/nvim-navic"
+--     use "ray-x/lsp_signature.nvim"
+--     use "RRethy/vim-illuminate"
+--     use "lvimuser/lsp-inlayhints.nvim"
 
     -- Discord Rich Presence
     use("andweeb/presence.nvim")
