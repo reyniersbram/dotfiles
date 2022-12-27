@@ -1,15 +1,20 @@
+-- Standard Configs
 require "config.options"
 require "config.keymaps"
 require "config.plugins"
 require "config.colorscheme"
+
+-- Coding Configs
 require "config.cmp"
 require "config.lsp"
-require "config.presence"
-require "config.telescope"
--- require "config.colorizer"
 require "config.treesitter"
 require "config.autopairs"
-require "config.comment"
-require "config.gitsigns"
+
+-- Other Configs
 require "config.nvim-tree"
+require "config.gitsigns"
+require "config.telescope"
+require "config.presence"
+require "config.comment"
+-- require "config.colorizer"
 
