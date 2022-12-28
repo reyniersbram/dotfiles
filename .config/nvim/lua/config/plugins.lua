@@ -87,7 +87,11 @@ return packer.startup(function(use)
 
     -- Telescope
     use("nvim-telescope/telescope.nvim")
-    use("nvim-telescope/telescope-media-files.nvim")
+    -- use("nvim-telescope/telescope-media-files.nvim")
+    use{
+        "nvim-telescope/telescope-fzf-native.nvim", -- Better telescope sorting
+        run = "make"
+    }
 
     -- Color Highlighting
     use("norcalli/nvim-colorizer.lua")
