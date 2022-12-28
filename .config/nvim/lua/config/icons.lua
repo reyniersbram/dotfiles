@@ -81,11 +81,11 @@ return {
         CloudDownload = " ",
     },
     diagnostics = {
-        Error = "E ",
-        Warning = "W ",
-        Information = "I ",
-        Question = "Q ",
-        Hint = "H ",
+        Error = " ",
+        Warning = " ",
+        Information = " ",
+        Question = " ",
+        Hint = " ",
     },
     misc = {
         Robot = " ",
