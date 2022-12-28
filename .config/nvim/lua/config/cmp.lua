@@ -119,7 +119,7 @@ cmp.setup({
                 nvim_lua = "[Lua]",
                 --[[ spell = "[Spell]", ]]
                 --[[ calc = "[Calc]", ]]
-                --[[ emoji = "[Emoji]", ]]
+                emoji = "[Emoji]",
             })[entry.source.name]
             return vim_item
         end,
@@ -149,7 +149,7 @@ cmp.setup({
 --         end,
         },
         { name = "path", },
---         { name = "emoji" , group_index = 2 },
+        { name = "emoji" , group_index = 2 },
 --         { name = "spell", group_index = 2 },
     },
 --     sorting = {

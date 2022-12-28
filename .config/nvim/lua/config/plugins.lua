@@ -64,7 +64,7 @@ return packer.startup(function(use)
     use("saadparwaiz1/cmp_luasnip") -- snippet completions
     use("hrsh7th/cmp-nvim-lsp") -- integration with lsp
     use("hrsh7th/cmp-nvim-lua") -- extra lua completion
---     use("hrsh7th/cmp-emoji")
+    use("hrsh7th/cmp-emoji")
 --     use("f3fora/cmp-spell")
 
     -- snippet plugins
