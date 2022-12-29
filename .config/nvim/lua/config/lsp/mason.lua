@@ -11,9 +11,10 @@ if not status_ok_1 then
 end
 
 local servers = {
-  "sumneko_lua",
+    "sumneko_lua",
+    "hls",
+    "bashls",
   -- "pyright",
-  "hls",
   -- "clangd",
 }
 

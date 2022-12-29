@@ -1,0 +1,15 @@
+# Files stow should ignore
+
+# Git files
+\.git
+.gitignore
+
+# Setup files
+setup.sh
+/setup
+
+# Other
+LICENSE
+README.md
+.stow-local-ignore
+
