@@ -1,0 +1,8 @@
+#! /bin/bash
+
+prev_status=$(cat /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode)
+
+sudo sh -c "echo $((!prev_status)) > /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode"
+
+echo Conservation mode toggled to $((!prev_status))
+

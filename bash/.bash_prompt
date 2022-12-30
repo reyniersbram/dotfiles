@@ -25,7 +25,7 @@ getBranch ()
         return 0
     fi
     currentBranch=$(git branch 2>/dev/null | grep -e '\* ' | sed "s/^..\(.*\)/\1/" )
-    echo "$currentBranch"
+    echo " $currentBranch"
     return 0
 }
 
