@@ -17,13 +17,12 @@ toggleterm.setup({
 	direction = "float",
 	close_on_exit = true,
 	shell = vim.o.shell,
+    highlights = {
+        NormalFloat = { link = "Terminal" },
+    },
 	float_opts = {
-		border = "curved",
-		winblend = 6,
-		highlights = {
-			border = "Normal",
-			background = "Normal",
-		},
+		border = "none",
+		winblend = 9,
 	},
 })
 

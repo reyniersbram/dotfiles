@@ -12,4 +12,5 @@ setup.sh
 LICENSE
 README.md
 .stow-local-ignore
+/scripts
 

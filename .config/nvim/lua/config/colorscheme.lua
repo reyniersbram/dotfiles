@@ -39,5 +39,5 @@ if defined_colors == 16 then
     end
 end
 
--- Make nvim background black
-vim.cmd("highlight Normal guibg='#0c0c0c' guifg='#eeeeec'")
+-- Create terminal highlight group
+vim.cmd("highlight Terminal guibg='#0c0c0c' guifg='#eeeeec'")
