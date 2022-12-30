@@ -30,7 +30,7 @@ end
 
 require("luasnip/loaders/from_vscode").lazy_load()
 
-local check_backspace = function()
+local function check_backspace ()
 	local col = vim.fn.col(".") - 1
 	return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
 end
@@ -41,7 +41,7 @@ local kind_icons = icons.kind
 
 -- vim.g.cmp_active = true
 
-cmp.setup({
+cmp.setup{
 --     enabled = function()
 --         local buftype = vim.api.nvim_buf_get_option(0, "buftype")
 --         if buftype == "prompt" then
@@ -53,9 +53,10 @@ cmp.setup({
 --     preselect = cmp.PreselectMode.None,
 
     snippet = {
-        expand = function(args)
-            luasnip.lsp_expand(args.body) -- For `luasnip` users.
-        end,
+        expand =
+            function(args)
+                luasnip.lsp_expand(args.body) -- For `luasnip` users.
+            end,
     },
 	mapping = {
         ["<C-k>"] = cmp.mapping.select_prev_item(),
@@ -71,58 +72,59 @@ cmp.setup({
 		-- Accept currently selected item. If none selected, `select` first item.
 		-- Set `select` to `false` to only confirm explicitly selected items.
 		["<CR>"] = cmp.mapping.confirm({ select = true }),
-		["<Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-				cmp.select_next_item()
-			elseif luasnip.expandable() then
-				luasnip.expand()
-			elseif luasnip.expand_or_jumpable() then
-				luasnip.expand_or_jump()
-			elseif check_backspace() then
-				fallback()
-			else
-				fallback()
-			end
-        end, {
-			"i",
-			"s",
-		}),
-		["<S-Tab>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.select_prev_item()
-			elseif luasnip.jumpable(-1) then
-				luasnip.jump(-1)
-			else
-				fallback()
-			end
-        end, {
-			"i",
-			"s",
-		}),
+		["<Tab>"] = cmp.mapping(
+            function(fallback)
+                if cmp.visible() then
+                    cmp.select_next_item()
+                elseif luasnip.expandable() then
+                    luasnip.expand()
+                elseif luasnip.expand_or_jumpable() then
+                    luasnip.expand_or_jump()
+                elseif check_backspace() then
+                    fallback()
+                else
+                    fallback()
+                end
+            end,
+            {"i", "s"}
+        ),
+		["<S-Tab>"] = cmp.mapping(
+            function(fallback)
+                if cmp.visible() then
+                    cmp.select_prev_item()
+                elseif luasnip.jumpable(-1) then
+                    luasnip.jump(-1)
+                else
+                    fallback()
+                end
+            end,
+            {"i", "s"}
+        ),
     },
     formatting = {
         fields = { "kind", "abbr", "menu" },
-        format = function(entry, vim_item)
-            -- Kind icons
-            vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
+        format =
+            function(entry, vim_item)
+                -- Kind icons
+                vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
 
---             if entry.source.name == "emoji" then
---                 vim_item.kind = icons.misc.Smiley
---                 vim_item.kind_hl_group = "CmpItemKindEmoji"
---             end
-            -- NOTE: order matters
-            vim_item.menu = ({
-                luasnip = "[Snippet]",
-                buffer = "[Buffer]",
-                path = "[Path]",
-                nvim_lsp = "[LSP]",
-                nvim_lua = "[Lua]",
-                --[[ spell = "[Spell]", ]]
-                --[[ calc = "[Calc]", ]]
-                emoji = "[Emoji]",
-            })[entry.source.name]
-            return vim_item
-        end,
+                --[[ if entry.source.name == "emoji" then ]]
+                --[[     vim_item.kind = icons.misc.Smiley ]]
+                --[[     vim_item.kind_hl_group = "CmpItemKindEmoji" ]]
+                --[[ end ]]
+                -- NOTE: order matters
+                vim_item.menu = ({
+                    luasnip = "[Snippet]",
+                    buffer = "[Buffer]",
+                    path = "[Path]",
+                    nvim_lsp = "[LSP]",
+                    nvim_lua = "[Lua]",
+                    --[[ spell = "[Spell]", ]]
+                    --[[ calc = "[Calc]", ]]
+                    emoji = "[Emoji]",
+                })[entry.source.name]
+                return vim_item
+            end,
     },
     sources = {
         { name = "nvim_lsp",
@@ -182,4 +184,4 @@ cmp.setup({
         ghost_text = true,
         native_menu = false,
     },
-})
+}

@@ -1,3 +1,89 @@
+local plugins = {
+    "wbthomason/packer.nvim", -- Have packer manage itself
+    "nvim-lua/popup.nvim", -- An implementation of the Popup API from vim in Neovim
+    "nvim-lua/plenary.nvim", -- Useful lua functions used by lots of plugins
+    "kyazdani42/nvim-web-devicons", -- Use web-devicons, used by some plugins
+
+    -- Colorschemes
+    "ellisonleao/gruvbox.nvim",
+
+    -- Markdown preview plugin
+    {
+        "iamcco/markdown-preview.nvim",
+        run = "cd app && npm install",
+        ft = "markdown",
+    },
+
+    -- CMP plugins
+	"hrsh7th/nvim-cmp", -- The completion plugin 
+	"hrsh7th/cmp-buffer", -- buffer completions
+	"hrsh7th/cmp-path", -- path completions
+	"hrsh7th/cmp-cmdline", -- cmdline completions
+	"saadparwaiz1/cmp_luasnip", -- snippet completions
+	"hrsh7th/cmp-nvim-lsp", -- integration with lsp
+	"hrsh7th/cmp-nvim-lua", -- extra lua completion
+	"hrsh7th/cmp-emoji",
+    --[[ "f3fora/cmp-spell", ]]
+
+    -- snippet plugins
+    "L3MON4D3/LuaSnip", --snippet engine
+    "rafamadriz/friendly-snippets", -- a bunch of snippets to use
+
+    -- LSP
+    "neovim/nvim-lspconfig",
+--  "williamboman/nvim-lsp-installer", -- deprecated, use mason
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
+--     "jose-elias-alvarez/null-ls.nvim",
+--     "SmiteshP/nvim-navic"
+--     "ray-x/lsp_signature.nvim"
+--     "RRethy/vim-illuminate"
+--     "lvimuser/lsp-inlayhints.nvim"
+
+    -- Discord Rich Presence
+    "andweeb/presence.nvim",
+
+    -- Telescope
+    "nvim-telescope/telescope.nvim",
+    -- "nvim-telescope/telescope-media-files.nvim",
+    {
+        "nvim-telescope/telescope-fzf-native.nvim", -- Better telescope sorting
+        run = "make"
+    },
+
+    -- Color Highlighting
+    "norcalli/nvim-colorizer.lua",
+
+    -- Treesitter
+    {
+        "nvim-treesitter/nvim-treesitter",
+        run = ":TSUpdate",
+    },
+    "p00f/nvim-ts-rainbow",
+    "JoosepAlviste/nvim-ts-context-commentstring",
+
+    -- Autopairs
+    "windwp/nvim-autopairs",
+
+    -- Commenting
+    "numToStr/Comment.nvim",
+
+    -- Git
+    "lewis6991/gitsigns.nvim",
+
+    -- NVim Tree
+    "kyazdani42/nvim-tree.lua",
+
+    -- Bufferline
+    "akinsho/bufferline.nvim",
+    "moll/vim-bbye",
+
+    -- ToggleTerm
+    "akinsho/toggleterm.nvim",
+
+}
+
+
 local fn = vim.fn
 
 -- Automatically install packer
@@ -41,87 +127,9 @@ packer.init({
 
 -- Install your plugins here
 return packer.startup(function(use)
-    use("wbthomason/packer.nvim") -- Have packer manage itself
-    use("nvim-lua/popup.nvim") -- An implementation of the Popup API from vim in Neovim
-    use("nvim-lua/plenary.nvim") -- Useful lua functions used by lots of plugins
-    use("kyazdani42/nvim-web-devicons")
-
-    -- Colorschemes
-    use("ellisonleao/gruvbox.nvim")
-
-    -- Markdown preview plugin
-    use {
-        "iamcco/markdown-preview.nvim",
-        run = "cd app && npm install",
-        ft = "markdown",
-    }
-
-    -- CMP plugins
-    use("hrsh7th/nvim-cmp") -- The completion plugin 
-    use("hrsh7th/cmp-buffer") -- buffer completions
-    use("hrsh7th/cmp-path") -- path completions
-    use("hrsh7th/cmp-cmdline") -- cmdline completions
-    use("saadparwaiz1/cmp_luasnip") -- snippet completions
-    use("hrsh7th/cmp-nvim-lsp") -- integration with lsp
-    use("hrsh7th/cmp-nvim-lua") -- extra lua completion
-    use("hrsh7th/cmp-emoji")
---     use("f3fora/cmp-spell")
-
-    -- snippet plugins
-    use("L3MON4D3/LuaSnip") --snippet engine
-    use("rafamadriz/friendly-snippets") -- a bunch of snippets to use
-
-    -- LSP
-    use("neovim/nvim-lspconfig")
---  use("williamboman/nvim-lsp-installer") -- deprecated, use mason
-    use("williamboman/mason.nvim")
-    use("williamboman/mason-lspconfig.nvim")
---     use("jose-elias-alvarez/null-ls.nvim")
---     use "SmiteshP/nvim-navic"
---     use "ray-x/lsp_signature.nvim"
---     use "RRethy/vim-illuminate"
---     use "lvimuser/lsp-inlayhints.nvim"
-
-    -- Discord Rich Presence
-    use("andweeb/presence.nvim")
-
-    -- Telescope
-    use("nvim-telescope/telescope.nvim")
-    -- use("nvim-telescope/telescope-media-files.nvim")
-    use{
-        "nvim-telescope/telescope-fzf-native.nvim", -- Better telescope sorting
-        run = "make"
-    }
-
-    -- Color Highlighting
-    use("norcalli/nvim-colorizer.lua")
-
-    -- Treesitter
-    use{
-        "nvim-treesitter/nvim-treesitter",
-        run = ":TSUpdate",
-    }
-    use("p00f/nvim-ts-rainbow")
-    use("JoosepAlviste/nvim-ts-context-commentstring")
-
-    -- Autopairs
-    use("windwp/nvim-autopairs")
-
-    -- Commenting
-    use("numToStr/Comment.nvim")
-
-    -- Git
-    use("lewis6991/gitsigns.nvim")
-
-    -- NVim Tree
-    use("kyazdani42/nvim-tree.lua")
-
-    -- Bufferline
-    use("akinsho/bufferline.nvim")
-    use ("moll/vim-bbye")
-
-    -- ToggleTerm
-    use("akinsho/toggleterm.nvim")
+    for _, plugin in ipairs(plugins) do
+        use(plugin)
+    end
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins

@@ -4,7 +4,7 @@ if not status_ok then
     return
 end
 
-configs.setup({
+configs.setup{
 	ensure_installed = "all",
 	sync_install = false,
 	ignore_install = { "" }, -- List of parsers to ignore installing
@@ -31,5 +31,11 @@ configs.setup({
     context_commentstring = {
 		enable = true,
 		enable_autocmd = false,
+        config = {
+            lua = {
+                __default = "-- %s",
+                __multiline = "--[[\n%s\n]]"
+            },
+        },
 	},
-})
+}
