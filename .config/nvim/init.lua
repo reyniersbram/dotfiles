@@ -17,5 +17,6 @@ require "config.telescope"
 require "config.presence"
 require "config.comment"
 require "config.bufferline"
+require "config.toggleterm"
 -- require "config.colorizer"
 
