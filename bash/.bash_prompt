@@ -10,15 +10,15 @@ user="\u"
 host="\H"
 directory="\W"
 
-inRepo() {
+function _inRepo() {
     git branch &>/dev/null
     status=$(echo $?)
     return $status
 }
 
-getBranch ()
+function _printBranch ()
 {
-    inRepo
+    _inRepo
     status=$(echo $?)
     if [[ $status -gt 0 ]] ; then
         echo ""
@@ -29,8 +29,8 @@ getBranch ()
     return 0
 }
 
-printOpenBr () {
-    inRepo
+function _printOpenBr () {
+    _inRepo
     status=$(echo $?)
     if [[ $status -gt 0 ]] ; then
         echo ""
@@ -40,8 +40,8 @@ printOpenBr () {
     return 0
 }
 
-printCloseBr () {
-    inRepo
+function _printCloseBr () {
+    _inRepo
     status=$(echo $?)
     if [[ $status -gt 0 ]] ; then
         echo ""
@@ -51,4 +51,5 @@ printCloseBr () {
     return 0
 }
 
-export PS1="$colors_main$user@$host: $colors_secondary$directory $colors_main\$(printOpenBr)$colors_ternary\$(getBranch)$colors_main\$(printCloseBr)\$$colors_clear "
+export PS1="$colors_main$user@$host: $colors_secondary$directory $colors_main\$(_printOpenBr)$colors_ternary\$(_printBranch)$colors_main\$(_printCloseBr)\$$colors_clear "
+
