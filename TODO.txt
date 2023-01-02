@@ -1,0 +1,8 @@
+TODO:
+- color scheming
+
+NVim Plugins to try:
+- abecodes/tabout.nvim
+- folke/todo-comments.nvim
+- goolord/alpha-nvim
+- ahmedkhalf/project.nvim
