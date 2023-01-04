@@ -1,9 +1,9 @@
 # Enable aliases
 shopt -s expand_aliases
 
-alias ls='ls --color=auto -h'
-alias la='ls -alF'
-alias ll='ls -lF'
+alias ls='ls --color=auto -hF'
+alias ll='ls -l'
+alias la='ll -A'
 
 alias grep='grep --colour=auto'
 alias egrep='egrep --colour=auto'

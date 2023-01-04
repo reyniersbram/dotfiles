@@ -101,6 +101,7 @@ shopt -s checkwinsize
 
 # Enable history appending instead of overwriting.  #139609
 shopt -s histappend
+export HISTCONTROL=ignoreboth
 
 #
 # # ex - archive extractor
