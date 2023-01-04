@@ -130,10 +130,10 @@ ex ()
 
 # source alias definitions
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
-[ -f ~/bash/.bash_aliases ] && source ~/bash/.bash_aliases
+[ -f ~/.config/bash/.bash_aliases ] && source ~/.config/bash/.bash_aliases
 
 # source prompt configuration
-[ -f ~/bash/.bash_prompt ] && source ~/bash/.bash_prompt
+[ -f ~/.config/bash/.bash_prompt ] && source ~/.config/bash/.bash_prompt
 
 # Add opt binaries to path
 export PATH="$PATH:/opt/bin"
