@@ -189,6 +189,7 @@ draw_bold_text_with_bright_colors: false
 # Color schemes
 #
 # TODO: These themes are mostly incomplete, see #Colors for options yet to configure
+# I got these from https://github.com/alacritty/alacritty/wiki/Color-schemes
 schemes:
   campbell: &campbell
     # Default colors
