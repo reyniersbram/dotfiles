@@ -1,10 +1,21 @@
-local colorscheme = "gruvbox"
+local colorscheme = "onedark"
 
-local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
+--[[ local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
+if not status_ok then
+    vim.notify("Colorscheme " .. colorscheme .. " not found!")
+    return
+end ]]
+
+local status_ok, scheme = pcall(require, colorscheme)
 if not status_ok then
     vim.notify("Colorscheme " .. colorscheme .. " not found!")
     return
 end
+scheme.setup{
+    style = "warmer",
+}
+scheme.load()
+
 
 -- Customized colors for in-app terminal
 local terminal_colors = {

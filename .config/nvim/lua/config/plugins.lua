@@ -6,6 +6,11 @@ local plugins = {
 
     -- Colorschemes
     "ellisonleao/gruvbox.nvim",
+    --[[ {
+        "monsonjeremy/onedark.nvim",
+        branch = "treesitter",
+    }, ]]
+    "navarasu/onedark.nvim",
 
     -- Markdown preview plugin
     {
