@@ -7,4 +7,5 @@ NVim Plugins to try:
 - goolord/alpha-nvim
 - ahmedkhalf/project.nvim
 - SmiteshP/nvim-navic
+- artempyanykh/marksman
 
