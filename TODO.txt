@@ -6,3 +6,7 @@ NVim Plugins to try:
 - folke/todo-comments.nvim
 - goolord/alpha-nvim
 - ahmedkhalf/project.nvim
+- SmiteshP/nvim-navic
+- hrsh7th/cmp-emoji
+- f3fora/cmp-spell
+
