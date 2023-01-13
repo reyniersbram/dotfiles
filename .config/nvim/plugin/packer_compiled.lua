@@ -99,6 +99,11 @@ _G.packer_plugins = {
     path = "/home/reyniersbram/.local/share/nvim/site/pack/packer/start/cmp-cmdline",
     url = "https://github.com/hrsh7th/cmp-cmdline"
   },
+  ["cmp-emoji"] = {
+    loaded = true,
+    path = "/home/reyniersbram/.local/share/nvim/site/pack/packer/start/cmp-emoji",
+    url = "https://github.com/hrsh7th/cmp-emoji"
+  },
   ["cmp-nvim-lsp"] = {
     loaded = true,
     path = "/home/reyniersbram/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",

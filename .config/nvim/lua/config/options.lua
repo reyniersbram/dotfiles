@@ -36,7 +36,7 @@ local options = {
     sidescrolloff = 8,
 	guifont = "monospace:h17", -- the font used in graphical neovim applications
     spelllang = {"en"},
-    spell = true,
+    spell = false, -- enable/disable spellcheck by default
 }
 
 for k, v in pairs(options) do
