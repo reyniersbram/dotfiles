@@ -36,6 +36,7 @@ local options = {
     sidescrolloff = 8,
 	guifont = "monospace:h17", -- the font used in graphical neovim applications
     spelllang = {"en"},
+    spell = true,
 }
 
 for k, v in pairs(options) do
@@ -44,8 +45,8 @@ end
 
 vim.opt.shortmess:append("c")
 
-vim.cmd("set whichwrap+=<,>,[,],h,l")
-vim.cmd([[set iskeyword+=-]])
+-- vim.cmd("set whichwrap+=<,>,[,],h,l")
+-- vim.cmd([[set iskeyword+=-]])
 -- vim.cmd([[set formatoptions-=cro]]) -- TODO: this doesn't seem to work
 -- vim.cmd([[imap <silent><script><expr> <C-S> copilot#Accept("\<CR>")]])
 -- vim.cmd([[let g:copilot_no_tab_map = v:true]])

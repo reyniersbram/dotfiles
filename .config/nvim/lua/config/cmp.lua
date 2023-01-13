@@ -119,9 +119,9 @@ cmp.setup{
                     path = "[Path]",
                     nvim_lsp = "[LSP]",
                     nvim_lua = "[Lua]",
-                    --[[ spell = "[Spell]", ]]
-                    --[[ calc = "[Calc]", ]]
-                    emoji = "[Emoji]",
+                    spell = "[Spell]",
+                    -- calc = "[Calc]",
+                    -- emoji = "[Emoji]",
                 })[entry.source.name]
                 return vim_item
             end,
@@ -151,8 +151,8 @@ cmp.setup{
 --         end,
         },
         { name = "path", },
-        { name = "emoji" , group_index = 2 },
---         { name = "spell", group_index = 2 },
+        -- { name = "emoji" , group_index = 2 },
+        { name = "spell", group_index = 2 },
     },
 --     sorting = {
 --         priority_weight = 2,

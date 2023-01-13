@@ -99,11 +99,6 @@ _G.packer_plugins = {
     path = "/home/reyniersbram/.local/share/nvim/site/pack/packer/start/cmp-cmdline",
     url = "https://github.com/hrsh7th/cmp-cmdline"
   },
-  ["cmp-emoji"] = {
-    loaded = true,
-    path = "/home/reyniersbram/.local/share/nvim/site/pack/packer/start/cmp-emoji",
-    url = "https://github.com/hrsh7th/cmp-emoji"
-  },
   ["cmp-nvim-lsp"] = {
     loaded = true,
     path = "/home/reyniersbram/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
@@ -118,6 +113,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/reyniersbram/.local/share/nvim/site/pack/packer/start/cmp-path",
     url = "https://github.com/hrsh7th/cmp-path"
+  },
+  ["cmp-spell"] = {
+    loaded = true,
+    path = "/home/reyniersbram/.local/share/nvim/site/pack/packer/start/cmp-spell",
+    url = "https://github.com/f3fora/cmp-spell"
   },
   cmp_luasnip = {
     loaded = true,

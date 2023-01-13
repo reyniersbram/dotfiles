@@ -27,8 +27,8 @@ local plugins = {
 	"saadparwaiz1/cmp_luasnip", -- snippet completions
 	"hrsh7th/cmp-nvim-lsp", -- integration with lsp
 	"hrsh7th/cmp-nvim-lua", -- extra lua completion
-	"hrsh7th/cmp-emoji",
-    --[[ "f3fora/cmp-spell", ]]
+	-- "hrsh7th/cmp-emoji",
+    "f3fora/cmp-spell", -- spell checker
 
     -- snippet plugins
     "L3MON4D3/LuaSnip", --snippet engine
