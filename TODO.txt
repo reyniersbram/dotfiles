@@ -1,5 +1,6 @@
 TODO:
 - color scheming
+- desktop files
 
 NVim Plugins to try:
 - abecodes/tabout.nvim

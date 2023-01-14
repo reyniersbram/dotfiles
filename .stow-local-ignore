@@ -1,7 +1,7 @@
 # Files stow should ignore
 
 # Git files
-\.git
+/.git
 .gitignore
 
 # Setup files
