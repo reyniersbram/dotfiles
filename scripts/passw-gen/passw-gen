@@ -1,0 +1,4 @@
+#! /bin/bash
+
+python /opt/passw-gen/password-generator.py $@
+

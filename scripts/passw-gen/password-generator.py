@@ -1,0 +1,43 @@
+import getopt
+import random
+import sys
+
+help_text = "passw-gen [-h] [-l length] [-c count]\n" \
+            "Options:\n" \
+            "\t-h: show this help text\n" \
+            "\t-l: specify the length of the password, default 8\n" \
+            "\t-c: specify how many passwords should be generated, default 5"
+
+
+def random_char() -> str:
+    return chr(random.randrange(33, 127))
+
+
+def random_str(length: int) -> str:
+    return ''.join(random_char() for _ in range(length))
+
+
+def generate_password(length: int) -> str:
+    return random_str(length)
+
+
+if __name__ == '__main__':
+    password_length: int = 8
+    password_count: int = 5
+    try:
+        opts, args = getopt.getopt(sys.argv[1::], "hl:c:")
+        for opt, arg in opts:
+            if opt == "-h":
+                print(help_text)
+                exit(0)
+            if opt == "-l":
+                password_length = int(arg)
+            if opt == "-c":
+                password_count = int(arg)
+    except getopt.GetoptError as e:
+        print(f'Syntax Error', file=sys.stderr)
+        print(help_text)
+        exit(1)
+    for _ in range(password_count):
+        print(generate_password(password_length))
+
