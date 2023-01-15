@@ -36,7 +36,7 @@ keymap("n", "<A-h>", ":bprevious<CR>", opts)
 keymap("n", "<C-w>", ":Bdelete<CR>", opts)
 
 -- Toggle Telescope
-keymap("n", "<C-f>", ":Telescope find_files hidden=true<CR>", opts)
+keymap("n", "<leader>ff", ":Telescope find_files hidden=true<CR>", opts)
 
 -- Insert --
 -- Press jk fast to enter

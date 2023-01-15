@@ -9,4 +9,7 @@ NVim Plugins to try:
 - ahmedkhalf/project.nvim
 - SmiteshP/nvim-navic
 - artempyanykh/marksman
+- Telescope:
+    - BurntSushi/ripgrep
+    - sharkdp/fd
 

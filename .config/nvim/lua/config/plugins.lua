@@ -49,7 +49,11 @@ local plugins = {
     "andweeb/presence.nvim",
 
     -- Telescope
-    "nvim-telescope/telescope.nvim",
+    {
+        "nvim-telescope/telescope.nvim",
+        tag = '0.1.0',
+        requires = "nvim-lua/plenary.nvim"
+    },
     -- "nvim-telescope/telescope-media-files.nvim",
     {
         "nvim-telescope/telescope-fzf-native.nvim", -- Better telescope sorting
