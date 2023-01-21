@@ -1,0 +1,1 @@
+for ip in $ips; do echo; echo -e "\e[33;1m$ip\e[0m"; sudo nmap -O $ip; done
