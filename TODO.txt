@@ -1,6 +1,8 @@
 TODO:
 - color scheming
 - desktop files
+- OneDrive
+    rclone --vfs-cache-mode writes mount onedrive: ~/OneDrive
 
 NVim Plugins to try:
 - abecodes/tabout.nvim
