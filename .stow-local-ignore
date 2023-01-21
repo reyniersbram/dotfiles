@@ -5,8 +5,8 @@
 .gitignore
 
 # Setup files
-setup.sh
-/setup
+setup
+/setup-scripts
 
 # Other
 LICENSE
