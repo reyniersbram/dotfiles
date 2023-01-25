@@ -16,6 +16,7 @@ local servers = {
     "bashls",
     "r_language_server",
     "pyright",
+    "tsserver",
   -- "clangd",
 }
 
