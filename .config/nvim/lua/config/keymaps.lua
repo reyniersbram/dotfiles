@@ -38,6 +38,9 @@ keymap("n", "<C-w>", ":Bdelete<CR>", opts)
 -- Toggle Telescope
 keymap("n", "<leader>ff", ":Telescope find_files hidden=true<CR>", opts)
 
+-- Enter Command mode
+keymap("n", "<leader><CR>", ":", opts)
+
 -- Insert --
 -- Press jk fast to enter
 keymap("i", "jk", "<ESC>", opts)
