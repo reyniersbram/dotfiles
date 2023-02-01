@@ -90,6 +90,8 @@ local plugins = {
     -- ToggleTerm
     "akinsho/toggleterm.nvim",
 
+    -- Wakatime
+    "wakatime/vim-wakatime",
 }
 
 
