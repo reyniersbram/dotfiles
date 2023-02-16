@@ -12,8 +12,21 @@ set incsearch
 " Don't use Ex mode, use Q for formatting.
 map Q gq
 
-inoremap jk <Esc>
+"""""""""""""""
+""" KEYMAPS """
+"""""""""""""""
 
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+nnoremap <C-Up> :resize +2<CR>
+nnoremap <C-Down> :resize -2<CR>
+nnoremap <C-Left> :vertical resize -2<CR>
+nnoremap <C-Right> :vertical resize +2<CR>
+
+inoremap jk <Esc>
 
 "" -- Map IDE actions to IdeaVim -- https://jb.gg/abva4t
 "" Map \r to the Reformat Code action
