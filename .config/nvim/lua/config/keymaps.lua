@@ -22,6 +22,7 @@ keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 
+-- Toggle NvimTree
 keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
 
 -- Resize with arrows
@@ -34,6 +35,8 @@ keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 keymap("n", "<A-l>", ":bnext<CR>", opts)
 keymap("n", "<A-h>", ":bprevious<CR>", opts)
 keymap("n", "<C-w>", ":Bdelete<CR>", opts)
+keymap("n", "<leader>w", ":w<CR>", opts)
+keymap("n", "<leader>q", ":wqa<CR>", opts)
 
 -- Toggle Telescope
 keymap("n", "<leader>ff", ":Telescope find_files hidden=true<CR>", opts)
