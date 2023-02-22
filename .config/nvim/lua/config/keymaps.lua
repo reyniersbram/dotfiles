@@ -36,7 +36,11 @@ keymap("n", "<A-l>", ":bnext<CR>", opts)
 keymap("n", "<A-h>", ":bprevious<CR>", opts)
 keymap("n", "<C-w>", ":Bdelete<CR>", opts)
 keymap("n", "<leader>w", ":w<CR>", opts)
-keymap("n", "<leader>q", ":wqa<CR>", opts)
+keymap("n", "<leader>q", ":wq<CR>", opts)
+keymap("n", "<leader>Q", ":wqa<CR>", opts)
+
+-- Copy Whole buffer
+keymap("n", "<leader>y", ":%y+<CR>", opts)
 
 -- Toggle Telescope
 keymap("n", "<leader>ff", ":Telescope find_files hidden=true<CR>", opts)
