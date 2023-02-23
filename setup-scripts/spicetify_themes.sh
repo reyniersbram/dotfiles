@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 test -d "$HOME/.config/spicetify/Themes/"
 themes_exist=$((!$?))
