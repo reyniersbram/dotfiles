@@ -6,6 +6,16 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# Set default directories according to XDG Base Directory specification (23rd Februari 2023)
+# https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
+# https://wiki.archlinux.org/title/XDG_Base_Directory
+export XDG_CONFIG_HOME=$HOME/.config/
+export XDG_CACHE_HOME=$HOME/.cache/
+export XDG_DATA_HOME=$HOME/.local/share/
+export XDG_STATE_HOME=$HOME/.local/state/
+export XDG_DATA_DIRS="/usr/local/share/:/usr/share/"
+export XDG_CONFIG_DIRS="/ets/xdg/"
+
 # Print usable colors for text markup in terminal.
 colors() {
 	local fgc bgc vals seq0
@@ -34,7 +44,7 @@ colors() {
 	done
 }
 
-[ -r /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
+[ -r /usr/share/bash-completion/bash_completion ] && . "/usr/share/bash-completion/bash_completion"
 # source git autocompletion
 [ -f /usr/share/bash-completion/completions/git ] && source "/usr/share/bash-completion/completions/git"
 
