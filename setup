@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 
 # The directory of this repository
 CDIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
@@ -7,9 +7,16 @@ mkdir -p $HOME/.config/
 # Download themes for Spicetify
 $CDIR/setup-scripts/spicetify_themes.sh
 
-echo
+echo "Symlinking configurations with stow..."
 
-echo "Symlinking configurations with stow:"
+which stow &> /dev/null
+stow_installed=$?
+if [[ 0 -ne $stow_installed ]]; then
+    echo "stow not installed"
+    echo "Installing stow..."
+    sudo pacman -S stow --noconfirm
+fi
+
 # stow the correct files into the home directory
-stow -v --dir $CDIR --target $HOME .
+stow --verbose=2 --dir $CDIR --target $HOME .
 
