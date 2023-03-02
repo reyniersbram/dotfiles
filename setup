@@ -7,16 +7,6 @@ mkdir -p $HOME/.config/
 # Download themes for Spicetify
 $CDIR/setup-scripts/spicetify_themes.sh
 
-echo "Symlinking configurations with stow..."
-
-which stow &> /dev/null
-stow_installed=$?
-if [[ 0 -ne $stow_installed ]]; then
-    echo "stow not installed"
-    echo "Installing stow..."
-    sudo pacman -S stow --noconfirm
-fi
-
-# stow the correct files into the home directory
-stow --verbose=2 --dir $CDIR --target $HOME .
+# Symlink files
+$CDIR/setup-scripts/stow.sh $CDIR
 
