@@ -4,7 +4,7 @@ CDIR=$1
 
 # Symlink .local/bin to scripts.
 # Has to be done now, because absolute path differs from user to user
-ln -s $CDIR/scripts $CDIR/.local/bin
+ln -sf $CDIR/scripts $CDIR/.local/bin
 
 echo "Symlinking configurations with stow..."
 which stow &> /dev/null

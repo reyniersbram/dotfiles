@@ -4,6 +4,9 @@
 CDIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 mkdir -p $HOME/.config/
 
+# Download paru (https://aur.archlinux.org/packages/paru) so packages from the AUR can be installed.
+$CDIR/setup-scripts/paru.sh
+
 # Download themes for Spicetify
 $CDIR/setup-scripts/spicetify_themes.sh
 
