@@ -14,7 +14,7 @@ export XDG_CACHE_HOME=$HOME/.cache/
 export XDG_DATA_HOME=$HOME/.local/share/
 export XDG_STATE_HOME=$HOME/.local/state/
 export XDG_DATA_DIRS="/usr/local/share/:/usr/share/"
-export XDG_CONFIG_DIRS="/ets/xdg/"
+export XDG_CONFIG_DIRS="/etc/xdg/"
 
 # Print usable colors for text markup in terminal.
 colors() {
