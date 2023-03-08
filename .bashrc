@@ -112,6 +112,8 @@ export HISTCONTROL=ignoreboth
 
 # Add opt binaries to path
 export PATH="$PATH:/opt/bin"
+# Add local/bin/scripts to path
+export PATH="$PATH:$HOME/.local/bin/scripts"
 
 # set nvim as default editor
 export EDITOR=nvim
