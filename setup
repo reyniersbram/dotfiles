@@ -13,3 +13,6 @@ $CDIR/setup-scripts/spicetify_themes.sh
 # Symlink files
 $CDIR/setup-scripts/stow.sh $CDIR
 
+sudo ln -sf $CDIR/etc/unlock-conservation-mode.service /etc/systemd/system/
+systemctl enable unlock-conservation-mode
+

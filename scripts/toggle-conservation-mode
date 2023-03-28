@@ -3,7 +3,8 @@
 path=/sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode
 prev_status=$(cat $path)
 
-sudo sh -c "echo $((!prev_status)) > $path"
+# sudo sh -c "echo $((!prev_status)) > $path"
+echo $((!prev_status)) > $path
 
 failed=$?
 
