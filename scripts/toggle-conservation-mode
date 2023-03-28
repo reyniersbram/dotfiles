@@ -5,5 +5,11 @@ prev_status=$(cat $path)
 
 sudo sh -c "echo $((!prev_status)) > $path"
 
+failed=$?
+
+if [[ 0 -ne $failed ]]; then
+    exit
+fi
+
 echo Conservation mode toggled to $((!prev_status))
 
