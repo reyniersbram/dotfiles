@@ -2,7 +2,7 @@
 Description=Give write access to conservation-mode file.
 
 [Service]
-Type=simple
+Type=oneshot
 ExecStart=chmod 666 /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode
 
 [Install]

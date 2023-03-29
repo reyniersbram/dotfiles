@@ -14,5 +14,5 @@ $CDIR/setup-scripts/spicetify_themes.sh
 $CDIR/setup-scripts/stow.sh $CDIR
 
 sudo ln -sf $CDIR/etc/unlock-conservation-mode.service /etc/systemd/system/
-systemctl enable unlock-conservation-mode
+sudo systemctl enable unlock-conservation-mode
 
