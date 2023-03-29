@@ -2,10 +2,6 @@
 
 CDIR=$1
 
-# Symlink .local/bin to scripts.
-# Has to be done now, because absolute path differs from user to user
-ln -sf $CDIR/scripts $CDIR/.local/bin/scripts
-
 echo "Symlinking configurations with stow..."
 which stow &> /dev/null
 stow_installed=$?
