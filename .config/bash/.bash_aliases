@@ -1,6 +1,10 @@
-# Enable aliases
-shopt -s expand_aliases
+#     _    _     ___    _    ____  _____ ____
+#    / \  | |   |_ _|  / \  / ___|| ____/ ___|
+#   / _ \ | |    | |  / _ \ \___ \|  _| \___ \
+#  / ___ \| |___ | | / ___ \ ___) | |___ ___) |
+# /_/   \_\_____|___/_/   \_\____/|_____|____/
 
+# Simple aliases
 alias ls='ls --color=auto -hF'
 alias ll='ls -l'
 alias la='ll -A'

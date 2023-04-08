@@ -1,6 +1,8 @@
-#
-# ~/.bashrc
-#
+#    ____    _    ____  _   _ ____   ____
+#   | __ )  / \  / ___|| | | |  _ \ / ___|
+#   |  _ \ / _ \ \___ \| |_| | |_) | |
+#  _| |_) / ___ \ ___) |  _  |  _ <| |___
+# (_)____/_/   \_\____/|_| |_|_| \_\\____|
 #
 # https://shreevatsa.wordpress.com/2008/03/30/zshbash-startup-files-loading-order-bashrc-zshrc-etc/
 
