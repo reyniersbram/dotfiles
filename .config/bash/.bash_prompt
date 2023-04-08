@@ -1,55 +1,63 @@
 #! /bin/bash
+#
+# Tools:
+# - https://www.gnu.org/software/bash/manual/html_node/Controlling-the-Prompt.html
+# - https://en.wikipedia.org/wiki/ANSI_escape_code#3-bit_and_4-bit
+# - https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit
+# - https://bashrcgenerator.com/
 
-colors_clear="\[\e[0m\]"
-colors_commands="$colors_clear"
-colors_main="$colors_clear\[\e[32;1m\]"
-colors_secondary="$colors_clear\[\e[34;1m\]"
-colors_ternary="$colors_clear\[\e[35;3m\]"
+# Colors
+_clearAll="\[\e[0m\]"
+_purple="$_clearAll\e[0;35m"
+_brightGreen="$_clearAll\e[1;32m"
+_brightBlue="$_clearAll\e[1;34m"
 
-user="\u"
-host="\H"
-directory="\W"
+# Markup
+_italic="\e[3m"
+_bold="\e[1m"
 
-function _inRepo() {
-    git branch &>/dev/null
-    status=$(echo $?)
-    return $status
-}
+# Used Markup Values
+_defaultColor="$_clearAll"
+_mainPromptColor="$_brightGreen"
+_directoryColor="$_brightBlue"
+_branchColor="$_purple$_italic"
 
-function _printBranch ()
-{
-    _inRepo
-    status=$(echo $?)
-    if [[ $status -gt 0 ]] ; then
-        echo ""
-        return 0
-    fi
-    currentBranch=$(git branch 2>/dev/null | grep -e '\* ' | sed "s/^..\(.*\)/\1/" )
-    echo " $currentBranch"
-    return 0
-}
+# Possible escape sequences
+_bell="\a"
+_date="/d"          # Weekday Month day
+_dateFormat="\D{%d-%m-%Y}"
+_escape="\e"
+_hostShort="\h"
+_hostLong="\H"
+_jobs="\j"
+_termDevBasename="\l"
+_newline="\n"
+_carriageReturn="\r"
+_shell="\s"
+_time24secs="\t"    # HH:MM:SS  24-hour
+_time12="\t"        # HH:MM:SS  12-hour
+_timeAmPm="\@"      # HH:MM     12-hour am/pm
+_time24="\A"        # HH:MM     24-hour
+_user="\u"
+_bashVersion="\v"
+_bashRelease="\V"
+_path="\w"
+_directory="\W"
+_historyNumber="\!"
+_commandNumber="\#"
+_prompt="\$"
+__ascii="\nnn"      # Character with ASCII code as octal value nnn
+_backslash="\\"
+_nonPrintBegin="\["
+_nonPrintEnd="\]"
 
-function _printOpenBr () {
-    _inRepo
-    status=$(echo $?)
-    if [[ $status -gt 0 ]] ; then
-        echo ""
-        return 0
-    fi
-    echo "["
-    return 0
-}
+_gitBranch="\$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/$_mainPromptColor[$_branchColor \1$_mainPromptColor] /')"
 
-function _printCloseBr () {
-    _inRepo
-    status=$(echo $?)
-    if [[ $status -gt 0 ]] ; then
-        echo ""
-        return 0
-    fi
-    echo "] "
-    return 0
-}
-
-export PS1="$colors_main$user@$host: $colors_secondary$directory $colors_main\$(_printOpenBr)$colors_ternary\$(_printBranch)$colors_main\$(_printCloseBr)\$$colors_clear "
+export PS1="\
+$_mainPromptColor$_user@$_hostLong: \
+$_directoryColor$_directory \
+$_gitBranch\
+$_mainPromptColor$_prompt \
+$_defaultColor\
+"
 
