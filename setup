@@ -3,6 +3,9 @@
 # The directory of this repository
 CDIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
+# Make sure some directories exist before symlinking
+$CDIR/setup-scripts/ensure-dirs.sh
+
 # Download paru (https://aur.archlinux.org/packages/paru) so packages from the AUR can be installed.
 $CDIR/setup-scripts/paru.sh
 
