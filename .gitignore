@@ -1,2 +1,5 @@
+# Font files
 **/.uuid
+
+# Compliled nvim plugins
 .config/nvim/plugin/
