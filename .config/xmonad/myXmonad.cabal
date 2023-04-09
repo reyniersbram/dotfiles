@@ -1,0 +1,11 @@
+cabal-version:      2.4
+name:               myXmonad
+version:            0.1.0.0
+build-type:         Simple
+
+executable xmonad-bck
+    main-is:          xmonad.hs
+    hs-source-dirs:   .
+    ghc-options:      -Wall -rtsopts -threaded -with-rtsopts=-N
+    build-depends:    base ^>=4.16.4.0, xmonad, xmonad-contrib
+    default-language: Haskell2010
