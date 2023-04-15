@@ -4,24 +4,48 @@
 #  / ___ \| |___ | | / ___ \ ___) | |___ ___) |
 # /_/   \_\_____|___/_/   \_\____/|_____|____/
 
-# Simple aliases
+### Simple aliases
+
+# ls
 alias ls='ls --color=auto -hF'
 alias ll='ls -l'
 alias la='ll -A'
 
+# cd
 alias cdd='cd ..'
 
+# grep
 alias grep='grep --colour=auto'
 alias egrep='egrep --colour=auto'
 alias fgrep='fgrep --colour=auto'
 
-alias cp='cp -i'        # confirm before overwriting something
-alias mv='mv -i'        # confirm before overwriting something
+# pacman
+alias pacupdate='sudo pacman -Syu'
+alias pacrefresh='sudo pacman -Syyu'
+alias pacinstall='sudo pacman -S'
+alias pacsearch='pacman -Ss'
+alias pacuninstall='sudo pacman -Rns'
 
-alias df='df -h'        # human-readable sizes
-alias free='free -m'    # show sizes in MB
+# paru
+alias parupdate='paru -Sua'
+alias parinstall='paru -S'
+alias parsearch='paru -Ss'
+alias paruninstall='paru -Rns'
+
+# confirm overwrite
+alias cp='cp -i'
+alias mv='mv -i'
+
+# Human-readable sizes
+alias df='df -h'
+alias free='free -m'
+
+# use less instead of more
+# More information:
+# https://unix.stackexchange.com/questions/81129/what-are-the-differences-between-most-more-and-less
 alias more=less
 
+# Use neovim instead of vim
 alias vim='nvim'
 
 # Print $PATH entries on newlines

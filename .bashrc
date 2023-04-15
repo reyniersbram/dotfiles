@@ -14,7 +14,6 @@ export VISUAL=nvim
 export MANPAGER="sh -c 'col -bx | bat -l man -p'" # Use `bat` as manpager
 
 ### XDG Base Directory Specification
-# Set default directories according to XDG Base Directory specification (23rd Februari 2023)
 # https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
 # https://wiki.archlinux.org/title/XDG_Base_Directory
 export XDG_CONFIG_HOME=$HOME/.config/
