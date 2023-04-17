@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 
 # The directory of this repository
 CDIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
@@ -10,6 +10,7 @@ $CDIR/setup-scripts/ensure-dirs.sh
 $CDIR/setup-scripts/paru.sh
 
 # Download themes for Spicetify
+# TODO: add as submodule
 $CDIR/setup-scripts/spicetify_themes.sh
 
 # Symlink files

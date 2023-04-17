@@ -2,7 +2,6 @@
 
 CDIR=$1
 
-
 which paru &> /dev/null
 paru_installed=$?
 if [[ 0 -ne $paru_installed ]]; then
