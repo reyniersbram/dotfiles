@@ -20,6 +20,7 @@ export XDG_CONFIG_HOME=$HOME/.config/
 export XDG_CACHE_HOME=$HOME/.cache/
 export XDG_DATA_HOME=$HOME/.local/share/
 export XDG_STATE_HOME=$HOME/.local/state/
+# list of directories separated by `:`
 export XDG_DATA_DIRS="/usr/local/share/:/usr/share/"
 export XDG_CONFIG_DIRS="/etc/xdg/"
 
@@ -27,7 +28,20 @@ export XDG_CONFIG_DIRS="/etc/xdg/"
 [[ $- != *i* ]] && return
 
 ### PATH
-[ -d "$HOME/.local/bin/" ] && export PATH=$PATH:"$HOME/.local/bin/"
+
+append_to_path() {
+    case ":$PATH:" in
+        *:$1:*)
+            ;;
+        *)
+            PATH="${PATH:+${PATH}:}$1"
+    esac
+}
+
+[ -d "$HOME/.local/bin/" ] && append_to_path $HOME/.local/bin
+
+export PATH
+unset -f append_to_path
 
 ### CHANGE TITLE OF TERMINALS
 case ${TERM} in
