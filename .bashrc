@@ -16,10 +16,10 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'" # Use `bat` as manpager
 ### XDG Base Directory Specification
 # https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
 # https://wiki.archlinux.org/title/XDG_Base_Directory
-export XDG_CONFIG_HOME=$HOME/.config/
-export XDG_CACHE_HOME=$HOME/.cache/
-export XDG_DATA_HOME=$HOME/.local/share/
-export XDG_STATE_HOME=$HOME/.local/state/
+export XDG_CONFIG_HOME="${HOME}/.config/"
+export XDG_CACHE_HOME="${HOME}/.cache/"
+export XDG_DATA_HOME="${HOME}/.local/share/"
+export XDG_STATE_HOME="${HOME}/.local/state/"
 # list of directories separated by `:`
 export XDG_DATA_DIRS="/usr/local/share/:/usr/share/"
 export XDG_CONFIG_DIRS="/etc/xdg/"
@@ -30,7 +30,7 @@ export XDG_CONFIG_DIRS="/etc/xdg/"
 ### PATH
 
 append_to_path() {
-    case ":$PATH:" in
+    case ":${PATH}:" in
         *:$1:*)
             ;;
         *)
@@ -38,19 +38,23 @@ append_to_path() {
     esac
 }
 
-[ -d "$HOME/.local/bin/" ] && append_to_path $HOME/.local/bin
+append_to_path "${HOME}/.local/bin"
+append_to_path "${HOME}/.ghcup/bin"
+append_to_path "${HOME}/.cabal/bin"
 
 export PATH
 unset -f append_to_path
 
 ### CHANGE TITLE OF TERMINALS
 case ${TERM} in
-  xterm*|rxvt*|Eterm*|aterm|kterm|gnome*|alacritty|st|konsole*)
-    PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\007"'
+    xterm*|rxvt*|Eterm*|aterm|kterm|gnome*|alacritty|st|konsole*)
+        PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\007"'
         ;;
-  screen*)
-    PROMPT_COMMAND='echo -ne "\033_${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\033\\"'
-    ;;
+    screen*)
+        PROMPT_COMMAND='echo -ne "\033_${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\033\\"'
+        ;;
+    *)
+        ;;
 esac
 
 ### SHOPT
@@ -68,13 +72,10 @@ shopt -s no_empty_cmd_completion
 bind "set completion-ignore-case on"
 
 ### source alias definitions
-[ -f ~/.config/bash/.bash_aliases ] && source ~/.config/bash/.bash_aliases
+[ -f ${XDG_CONFIG_HOME}/bash/.bash_aliases ] && source ${XDG_CONFIG_HOME}/bash/.bash_aliases 
 
 ### source prompt configuration
-[ -f ~/.config/bash/.bash_prompt ] && source ~/.config/bash/.bash_prompt
-
-### add ghcup and cabal to path
-[ -f "/home/reyniersbram/.ghcup/env" ] && source "/home/reyniersbram/.ghcup/env"
+[ -f ${XDG_CONFIG_HOME}/bash/.bash_prompt ] && source ${XDG_CONFIG_HOME}/bash/.bash_prompt 
 
 # TODO: figure out what this does
 xhost +local:root > /dev/null 2>&1
