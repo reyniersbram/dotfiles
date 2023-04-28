@@ -20,17 +20,17 @@ alias egrep='egrep --colour=auto'
 alias fgrep='fgrep --colour=auto'
 
 # pacman
-alias pacupdate='sudo pacman -Syu'
-alias pacrefresh='sudo pacman -Syyu'
-alias pacinstall='sudo pacman -S'
-alias pacsearch='pacman -Ss'
-alias pacuninstall='sudo pacman -Rns'
+alias pacsyu='sudo pacman -Syu'
+alias pacsyyu='sudo pacman -Syyu'
+alias pacs='sudo pacman -S'
+alias pacss='pacman -Ss'
+alias pacrns='sudo pacman -Rns'
 
 # paru
-alias parupdate='paru -Sua'
-alias parinstall='paru -S'
-alias parsearch='paru -Ss'
-alias paruninstall='paru -Rns'
+alias parusua='paru -Sua'
+alias parus='paru -S'
+alias paruss='paru -Ss'
+alias parurns='paru -Rns'
 
 # confirm overwrite
 alias cp='cp -i'
