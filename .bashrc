@@ -16,13 +16,13 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'" # Use `bat` as manpager
 ### XDG Base Directory Specification
 # https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
 # https://wiki.archlinux.org/title/XDG_Base_Directory
-export XDG_CONFIG_HOME="${HOME}/.config/"
-export XDG_CACHE_HOME="${HOME}/.cache/"
-export XDG_DATA_HOME="${HOME}/.local/share/"
-export XDG_STATE_HOME="${HOME}/.local/state/"
+export XDG_CONFIG_HOME="${HOME}/.config"
+export XDG_CACHE_HOME="${HOME}/.cache"
+export XDG_DATA_HOME="${HOME}/.local/share"
+export XDG_STATE_HOME="${HOME}/.local/state"
 # list of directories separated by `:`
-export XDG_DATA_DIRS="/usr/local/share/:/usr/share/"
-export XDG_CONFIG_DIRS="/etc/xdg/"
+export XDG_DATA_DIRS="/usr/local/share:/usr/share"
+export XDG_CONFIG_DIRS="/etc/xdg"
 
 ### If not running interactively, don't do anything
 [[ $- != *i* ]] && return
