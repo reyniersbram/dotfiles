@@ -46,7 +46,7 @@ local plugins = {
 --     "lvimuser/lsp-inlayhints.nvim"
 
     -- Discord Rich Presence
-    "andweeb/presence.nvim",
+    -- "andweeb/presence.nvim",
 
     -- Telescope
     {
@@ -84,8 +84,10 @@ local plugins = {
     "kyazdani42/nvim-tree.lua",
 
     -- Bufferline
-    "akinsho/bufferline.nvim",
-    "moll/vim-bbye",
+    {
+        "akinsho/bufferline.nvim",
+        requires = "moll/vim-bbye",
+    },
 
     -- ToggleTerm
     "akinsho/toggleterm.nvim",

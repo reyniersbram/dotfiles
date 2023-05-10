@@ -16,7 +16,7 @@ vim.g.maplocalleader = " "
 --   command_mode = "c",
 
 -- Normal --
--- Better window navigation
+-- Window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
@@ -31,12 +31,27 @@ keymap("n", "<C-Down>", ":resize -2<CR>", opts)
 keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
--- Navigate buffers
-keymap("n", "<A-l>", ":bnext<CR>", opts)
-keymap("n", "<A-h>", ":bprevious<CR>", opts)
+-- Buffer Navigation
+-- requires akinsho/bufferline.nvim
+keymap("n", "<A-h>", ":BufferLineMovePrev<CR>", opts)
+keymap("n", "<A-j>", ":BufferLineCyclePrev<CR>", opts)
+keymap("n", "<A-k>", ":BufferLineCycleNext<CR>", opts)
+keymap("n", "<A-l>", ":BufferLineMoveNext<CR>", opts)
+keymap("n", "<A-1>", ":BufferLineGoToBuffer 1<CR>", opts)
+keymap("n", "<A-2>", ":BufferLineGoToBuffer 2<CR>", opts)
+keymap("n", "<A-3>", ":BufferLineGoToBuffer 3<CR>", opts)
+keymap("n", "<A-4>", ":BufferLineGoToBuffer 4<CR>", opts)
+keymap("n", "<A-5>", ":BufferLineGoToBuffer 5<CR>", opts)
+keymap("n", "<A-6>", ":BufferLineGoToBuffer 6<CR>", opts)
+keymap("n", "<A-7>", ":BufferLineGoToBuffer 7<CR>", opts)
+keymap("n", "<A-8>", ":BufferLineGoToBuffer 8<CR>", opts)
+keymap("n", "<A-9>", ":BufferLineGoToBuffer 9<CR>", opts)
+keymap("n", "<A-0>", ":BufferLineGoToBuffer -1<CR>", opts)
+
+-- requires moll/vim-bbye
 keymap("n", "<C-w>", ":Bdelete<CR>", opts)
 keymap("n", "<leader>w", ":w<CR>", opts)
-keymap("n", "<leader>q", ":wq<CR>", opts)
+keymap("n", "<leader>q", ":q<CR>", opts)
 keymap("n", "<leader>Q", ":wqa<CR>", opts)
 
 -- Copy Whole buffer
