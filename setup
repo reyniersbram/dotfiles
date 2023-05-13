@@ -4,6 +4,7 @@
 current_directory=$(CDPATH= cd -- "$( dirname -- "$0")" && pwd)
 
 # Do a full system upgrade before starting the install script
+echo "Doing a full system upgrade before starting the installation..."
 sudo pacman -Syyu
 
 # Install packages required to run this script
