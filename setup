@@ -1,21 +1,27 @@
-#!/bin/bash
+#!/usr/bin/env sh
 
 # The directory of this repository
-CDIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+current_directory=$(CDPATH= cd -- "$( dirname -- "$0")" && pwd)
+
+# Install packages required to run this script
+required_packages="$CDIR/etc/packages.txt"
+if [ -s "$required_packages" ]; then
+    sudo pacman -S --needed - < "$required_packages"
+fi
 
 # Make sure some directories exist before symlinking
-$CDIR/setup-scripts/ensure-dirs.sh
+# $current_directory/setup-scripts/ensure-dirs.sh
 
 # Download paru (https://aur.archlinux.org/packages/paru) so packages from the AUR can be installed.
-$CDIR/setup-scripts/paru.sh
+# $current_directory/setup-scripts/paru.sh
 
 # Download themes for Spicetify
 # TODO: add as submodule
-$CDIR/setup-scripts/spicetify_themes.sh
+# $current_directory/setup-scripts/spicetify_themes.sh
 
 # Symlink files
-$CDIR/setup-scripts/stow.sh $CDIR
+# $current_directory/setup-scripts/stow.sh $current_directory
 
-sudo ln -sf $CDIR/etc/unlock-conservation-mode.service /etc/systemd/system/
-sudo systemctl enable unlock-conservation-mode
+# sudo ln -sf $current_directory/etc/unlock-conservation-mode.service /etc/systemd/system/
+# sudo systemctl enable unlock-conservation-mode
 
