@@ -20,11 +20,13 @@ XDG_DATA_HOME="${HOME}/.local/share"
 XDG_STATE_HOME="${HOME}/.local/state"
 
 # Create important directories
+echo "Creating directories according to the XDG Base Directory Specification"
 mkdir -vp "${XDG_CONFIG_HOME}"
 mkdir -vp "${XDG_CACHE_HOME}"
 mkdir -vp "${XDG_DATA_HOME}"
 mkdir -vp "${XDG_STATE_HOME}"
 
+echo "Creating directories necessary for the installation"
 mkdir -vp "${HOME}/.local/bin"
 
 # Symlink files to their respective location under $HOME
@@ -35,10 +37,6 @@ stow --verbose=2 --dir "${current_directory}" --target "${HOME}"
 
 # Download paru (https://aur.archlinux.org/packages/paru) so packages from the AUR can be installed.
 # $current_directory/setup-scripts/paru.sh
-
-# Download themes for Spicetify
-# TODO: add as submodule
-# $current_directory/setup-scripts/spicetify_themes.sh
 
 # sudo ln -sf $current_directory/etc/unlock-conservation-mode.service /etc/systemd/system/
 # sudo systemctl enable unlock-conservation-mode
