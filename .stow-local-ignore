@@ -1,17 +1,23 @@
+#        _                     _                            
+#    ___| |_ _____      __    (_) __ _ _ __   ___  _ __ ___ 
+#   / __| __/ _ \ \ /\ / /____| |/ _` | '_ \ / _ \| '__/ _ \
+#  _\__ \ || (_) \ V  V /_____| | (_| | | | | (_) | | |  __/
+# (_)___/\__\___/ \_/\_/      |_|\__, |_| |_|\___/|_|  \___|
+#                                |___/                      
+#
 # Files stow should ignore
 
 # Git files
 /.git
 .gitignore
-
-# Setup files
-setup
-/setup-scripts
-
-# Other
+.gitmodules
 LICENSE
 README.md
+
+# The setup scrip
+setup
+
+# Other
 TODO.txt
-.stow-local-ignore
 /etc
 

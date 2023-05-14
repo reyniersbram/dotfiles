@@ -1,21 +1,66 @@
-#!/bin/bash
+#!/usr/bin/env sh
 
-# The directory of this repository
-CDIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+echo "Finding path to this repo..."
+current_directory=$(cd -- "$( dirname -- "$0")" > /dev/null 2>&1 && pwd)
+echo "Repo detected at ${current_directory}"
 
-# Make sure some directories exist before symlinking
-$CDIR/setup-scripts/ensure-dirs.sh
+echo "Doing a full system upgrade before starting the installation..."
+sudo pacman -Syyu
 
-# Download paru (https://aur.archlinux.org/packages/paru) so packages from the AUR can be installed.
-$CDIR/setup-scripts/paru.sh
+echo "Installing packages required to run the install script..."
+packages="${current_directory}/etc/required.txt"
+if [ -s "$packages" ]; then
+    # shellcheck disable=SC2024
+    sudo pacman -S --needed - < "$packages"
+fi
 
-# Download themes for Spicetify
-# TODO: add as submodule
-$CDIR/setup-scripts/spicetify_themes.sh
+# Make sure XDG Base Directory Specification is used
+XDG_CONFIG_HOME="${HOME}/.config"
+XDG_CACHE_HOME="${HOME}/.cache"
+XDG_DATA_HOME="${HOME}/.local/share"
+XDG_STATE_HOME="${HOME}/.local/state"
 
-# Symlink files
-$CDIR/setup-scripts/stow.sh $CDIR
+echo "Creating directories according to the XDG Base Directory Specification..."
+mkdir -vp "${XDG_CONFIG_HOME}"
+mkdir -vp "${XDG_CACHE_HOME}"
+mkdir -vp "${XDG_DATA_HOME}"
+mkdir -vp "${XDG_STATE_HOME}"
 
-sudo ln -sf $CDIR/etc/unlock-conservation-mode.service /etc/systemd/system/
-sudo systemctl enable unlock-conservation-mode
+echo "Creating directories necessary for the installation..."
+mkdir -vp "${HOME}/.local/bin"
 
+# Use stow to do most of this work
+echo "Symlinking files with stow..."
+stow --verbose=2 --dir "${current_directory}" --target "${HOME}"
+
+# sudo ln -sf $current_directory/etc/unlock-conservation-mode.service /etc/systemd/system/
+# sudo systemctl enable unlock-conservation-mode
+
+echo "Installing additional packages..."
+
+if ! (which paru > /dev/null 2>&1); then
+    echo "Installing paru from AUR..."
+    if (
+        git clone https://aur.archlinux.org/paru.git
+        cd paru || exit
+        makepkg -si --clean
+        cd ..
+        rm -rf paru
+    ); then
+        echo "Failed to install paru" >&2
+    fi
+else
+    echo "paru already installed, skipping..."
+fi
+
+packages="${current_directory}/etc/packages.txt"
+if [ -s "$packages" ]; then
+    # shellcheck disable=SC2024
+    sudo pacman -S --needed - < "$packages"
+fi
+
+packages="${current_directory}/etc/packages_paru.txt"
+if [ -s "$packages" ]; then
+    # shellcheck disable=SC2024
+    sudo paru -S --needed - < "$packages"
+fi
