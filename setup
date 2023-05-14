@@ -8,10 +8,10 @@ echo "Doing a full system upgrade before starting the installation..."
 sudo pacman -Syyu
 
 echo "Installing packages required to run the install script..."
-required_packages="${current_directory}/etc/required.txt"
-if [ -s "$required_packages" ]; then
+packages="${current_directory}/etc/required.txt"
+if [ -s "$packages" ]; then
     # shellcheck disable=SC2024
-    sudo pacman -S --needed - < "$required_packages"
+    sudo pacman -S --needed - < "$packages"
 fi
 
 # Make sure XDG Base Directory Specification is used
@@ -57,4 +57,10 @@ packages="${current_directory}/etc/packages.txt"
 if [ -s "$packages" ]; then
     # shellcheck disable=SC2024
     sudo pacman -S --needed - < "$packages"
+fi
+
+packages="${current_directory}/etc/packages_paru.txt"
+if [ -s "$packages" ]; then
+    # shellcheck disable=SC2024
+    sudo paru -S --needed - < "$packages"
 fi
