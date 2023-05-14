@@ -56,5 +56,5 @@ fi
 packages="${current_directory}/etc/packages.txt"
 if [ -s "$packages" ]; then
     # shellcheck disable=SC2024
-    sudo paru -S --needed - < "$packages"
+    sudo pacman -S --needed - < "$packages"
 fi
