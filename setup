@@ -53,3 +53,8 @@ else
     echo "paru already installed, skipping..."
 fi
 
+packages="${current_directory}/etc/packages.txt"
+if [ -s "$packages" ]; then
+    # shellcheck disable=SC2024
+    sudo paru -S --needed - < "$packages"
+fi
