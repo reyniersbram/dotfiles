@@ -45,6 +45,11 @@ end
 
 vim.opt.shortmess:append("c")
 
+-- Disable netrw for nvim-tree
+-- see nvim-tree.disable_netrw
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 -- vim.cmd("set whichwrap+=<,>,[,],h,l")
 -- vim.cmd([[set iskeyword+=-]])
 -- vim.cmd([[set formatoptions-=cro]]) -- TODO: this doesn't seem to work

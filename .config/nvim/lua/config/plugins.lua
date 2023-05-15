@@ -81,7 +81,10 @@ local plugins = {
     "lewis6991/gitsigns.nvim",
 
     -- NVim Tree
-    "kyazdani42/nvim-tree.lua",
+    {
+        "nvim-tree/nvim-tree.lua",
+        requires = "nvim-tree/nvim-web-devicons",
+    },
 
     -- Bufferline
     {

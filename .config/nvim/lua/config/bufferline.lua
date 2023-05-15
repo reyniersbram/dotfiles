@@ -64,7 +64,7 @@ bufferline.setup {
                 level:match("info") and icons.diagnostics.Information or
                 level:match("hint") and icons.diagnostics.Hint or
                 icons.diagnostics.Hint
-            return " " .. icon .. count
+            return " " .. icon .. " " .. count
         end,
         -- NOTE: this will be called a lot so don't do any heavy processing here
         -- custom_filter = function(buf_number)
