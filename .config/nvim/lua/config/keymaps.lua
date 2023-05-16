@@ -63,10 +63,6 @@ keymap("n", "<leader>ff", ":Telescope find_files hidden=true<CR>", opts)
 -- Enter Command mode
 keymap("n", "<leader><CR>", ":", opts)
 
--- Insert --
--- Press jk fast to enter
-keymap("i", "jk", "<ESC>", opts)
-
 -- Visual --
 -- Stay in indent mode
 keymap("v", "<", "<gv", opts)
