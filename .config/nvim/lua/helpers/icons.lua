@@ -53,7 +53,7 @@ return {
             None = " ",
         },
         SymLink = "",
-        SymLinkArrow = "  "
+        SymLinkArrow = ""
     },
     git = {
         Add = "",
@@ -98,6 +98,11 @@ return {
         Table = " ",
         Calendar = " ",
         CloudDownload = " ",
+        status = {
+            Loading = "⟳",
+            Failed = "✗",
+            Done = "✓",
+        },
     },
     diagnostics = {
         Error = "",

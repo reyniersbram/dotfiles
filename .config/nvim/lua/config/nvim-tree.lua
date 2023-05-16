@@ -4,11 +4,13 @@
 local nvim_tree_status_ok, nvim_tree = pcall(require, "nvim-tree")
 if not nvim_tree_status_ok then
     vim.notify("nvim-tree not found")
+    return
 end
 
-local icons_status_ok, icons = pcall(require, "config.icons")
+local icons_status_ok, icons = pcall(require, "helpers.icons")
 if not icons_status_ok then
     vim.notify("icons not found")
+    return
 end
 
 local function open_nvim_tree(data)
@@ -153,7 +155,7 @@ nvim_tree.setup {
         debounce_delay = 50,
         ignore_dirs = {}, -- TODO
     },
-    on_attach = on_attach, -- TODO
+    on_attach = on_attach,
     select_prompts = false, -- TODO
     view = {
         centralize_selection = false,
@@ -208,7 +210,7 @@ nvim_tree.setup {
             git_placement = "before",
             modified_placement = "after",
             padding = " ",
-            symlink_arrow = icons.documents.SymLinkArrow,
+            symlink_arrow = " " .. icons.documents.SymLinkArrow .. " ",
             show = {
                 file = true,
                 folder = true,

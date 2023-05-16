@@ -36,7 +36,7 @@ local function check_backspace ()
 end
 
 
-local icons = require("config.icons")
+local icons = require("helpers.icons")
 local kind_icons = icons.kind
 
 -- vim.g.cmp_active = true

@@ -4,7 +4,7 @@ if not status_ok then
     return
 end
 
-local icons_status_ok, icons = pcall(require, "config.icons")
+local icons_status_ok, icons = pcall(require, "helpers.icons")
 if not icons_status_ok then
     vim.notify("icons not found")
 end

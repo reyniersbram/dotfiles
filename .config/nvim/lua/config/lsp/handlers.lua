@@ -2,7 +2,7 @@ local M = {}
 
 -- TODO: backfill this to template
 M.setup = function()
-    local icons = require("config.icons")
+    local icons = require("helpers.icons")
 	local signs = {
         { name = "DiagnosticSignError", text = icons.diagnostics.Error },
         { name = "DiagnosticSignWarn", text = icons.diagnostics.Warning },
