@@ -2,7 +2,7 @@ local plugins = {
     "wbthomason/packer.nvim", -- Have packer manage itself
     "nvim-lua/popup.nvim", -- An implementation of the Popup API from vim in Neovim
     "nvim-lua/plenary.nvim", -- Useful lua functions used by lots of plugins
-    "kyazdani42/nvim-web-devicons", -- Use web-devicons, used by some plugins
+    -- "kyazdani42/nvim-web-devicons", -- Use web-devicons, used by some plugins
 
     -- Colorschemes
     "ellisonleao/gruvbox.nvim",
@@ -89,7 +89,10 @@ local plugins = {
     -- Bufferline
     {
         "akinsho/bufferline.nvim",
-        requires = "moll/vim-bbye",
+        requires = {
+            "moll/vim-bbye",
+            "nvim-tree/nvim-web-devicons",
+        }
     },
 
     -- ToggleTerm
@@ -100,12 +103,13 @@ local plugins = {
 }
 
 
-local fn = vim.fn
-
--- Automatically install packer
-local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-if fn.empty(fn.glob(install_path)) > 0 then
-    PACKER_BOOTSTRAP = fn.system({
+local function ensure_packer()
+    local install_path = vim.fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+    if vim.fn.empty(vim.fn.glob(install_path)) == 0 then
+        return false
+    end
+    vim.notify("Installing packer")
+    vim.fn.system({
         "git",
         "clone",
         "--depth",
@@ -113,44 +117,58 @@ if fn.empty(fn.glob(install_path)) > 0 then
         "https://github.com/wbthomason/packer.nvim",
         install_path,
     })
-    print("Installing packer close and reopen Neovim...")
     vim.cmd([[packadd packer.nvim]])
+    return true
 end
 
--- Autocommand that reloads neovim whenever you save the plugins.lua file
+local function install_plugins(use)
+    for _, plugin in ipairs(plugins) do
+        use(plugin)
+    end
+end
+
+-- Autocommand that runs `:PackerSync` whenever `plugins.lua` is updated
 vim.cmd(
     [[
         augroup packer_user_config
-        autocmd!
-        autocmd BufWritePost plugins.lua source <afile> | PackerSync
+            autocmd!
+            autocmd BufWritePost plugins.lua source <afile> | PackerSync
         augroup end
     ]]
 )
 
+local packer_bootstrap = ensure_packer()
+
 -- Use a protected call so we don't error out on first use
-local status_ok, packer = pcall(require, "packer")
-if not status_ok then
+local packer_status_ok, packer = pcall(require, "packer")
+if not packer_status_ok then
     return
 end
+
+local icons_status_ok, icons = pcall(require, "helpers.icons")
+if not icons_status_ok then
+    return
+end
+
 -- Have packer use a popup window
 packer.init({
     display = {
         open_fn = function()
             return require("packer.util").float({ border = "rounded" })
         end,
+        working_sym = icons.ui.status.Loading, -- The symbol for a plugin being installed/updated
+        error_sym = icons.ui.status.Failed, -- The symbol for a plugin with an error in installation/updating
+        done_sym = icons.ui.status.Done, -- The symbol for a plugin which has completed installation/updating
+        removed_sym = icons.git.Remove, -- The symbol for an unused plugin which was removed
+        moved_sym = icons.documents.SymLinkArrow, -- The symbol for a plugin which was moved (e.g. from opt to start)
+        header_sym = '━', -- The symbol for the header line in packer's display
     },
 })
 
--- Install your plugins here
-return packer.startup(function(use)
-    for _, plugin in ipairs(plugins) do
-        use(plugin)
+return packer.startup(
+    function(use)
+        install_plugins(use)
+        if packer_bootstrap then packer.sync() end
     end
-
-    -- Automatically set up your configuration after cloning packer.nvim
-    -- Put this at the end after all plugins
-    if PACKER_BOOTSTRAP then
-        require("packer").sync()
-    end
-end)
+)
 
