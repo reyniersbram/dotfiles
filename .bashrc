@@ -68,14 +68,14 @@ shopt -s no_empty_cmd_completion
 
 ### Enable completion
 [ -r /usr/share/bash-completion/bash_completion ] && source "/usr/share/bash-completion/bash_completion"
-[ -f /usr/share/bash-completion/completions/git ] && source "/usr/share/bash-completion/completions/git"
+[ -r /usr/share/bash-completion/completions/git ] && source "/usr/share/bash-completion/completions/git"
 bind "set completion-ignore-case on"
 
 ### source alias definitions
-[ -f ${XDG_CONFIG_HOME}/bash/.bash_aliases ] && source ${XDG_CONFIG_HOME}/bash/.bash_aliases 
+[ -f "${XDG_CONFIG_HOME}/bash/bash_aliases" ] && source "${XDG_CONFIG_HOME}/bash/bash_aliases"
 
 ### source prompt configuration
-[ -f ${XDG_CONFIG_HOME}/bash/.bash_prompt ] && source ${XDG_CONFIG_HOME}/bash/.bash_prompt 
+[ -f "${XDG_CONFIG_HOME}/bash/bash_prompt" ] && source "${XDG_CONFIG_HOME}/bash/bash_prompt"
 
 # TODO: figure out what this does
 xhost +local:root > /dev/null 2>&1
