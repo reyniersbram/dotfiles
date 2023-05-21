@@ -1,2 +1,2 @@
-vim.opt.wrap = true
-vim.opt.spell = true
+vim.opt.formatoptions = "jtcroql"
+-- vim.opt.spell = true

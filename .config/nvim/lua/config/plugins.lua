@@ -100,6 +100,9 @@ local plugins = {
 
     -- Wakatime
     "wakatime/vim-wakatime",
+
+    -- ColorColumn
+    "Bekaboo/deadcolumn.nvim",
 }
 
 

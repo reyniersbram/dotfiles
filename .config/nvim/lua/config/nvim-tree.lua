@@ -13,19 +13,6 @@ if not icons_status_ok then
     return
 end
 
-local function open_nvim_tree(data)
-    -- check if buffer is a directory
-    if vim.fn.isdirectory(data.file) ~= 1 then
-        return
-    end
-    -- change directory
-    vim.cmd.cd(data.file)
-    -- open the tree
-    require("nvim-tree.api").tree.open()
-end
-
-vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
-
 local function on_attach(bufnr)
     local api_status_ok, api = pcall(require, "nvim-tree.api")
     if not api_status_ok then
