@@ -21,3 +21,5 @@ require "config.bufferline"
 require "config.toggleterm"
 -- require "config.colorizer"
 
+-- WIP
+require "config.lualine"

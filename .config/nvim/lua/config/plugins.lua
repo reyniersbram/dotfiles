@@ -92,7 +92,16 @@ local plugins = {
         requires = {
             "moll/vim-bbye",
             "nvim-tree/nvim-web-devicons",
-        }
+        },
+    },
+
+    -- Lualine
+    {
+        "nvim-lualine/lualine.nvim",
+        requires = {
+            "nvim-tree/nvim-web-devicons",
+            "arkav/lualine-lsp-progress",
+        },
     },
 
     -- ToggleTerm
@@ -103,6 +112,7 @@ local plugins = {
 
     -- ColorColumn
     "Bekaboo/deadcolumn.nvim",
+    -- "lukas-reineke/virt-column.nvim",
 }
 
 

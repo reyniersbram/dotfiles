@@ -116,5 +116,14 @@ return {
         Squirrel = " ",
         Tag = " ",
         Watch = " ",
+        OS = {
+            LinuxTux = "",
+            Apple = "",
+            Windows = "",
+        },
+        keyboard = {
+            Space = "󱁐",
+            Tab = "󰌒"
+        }
     },
 }
