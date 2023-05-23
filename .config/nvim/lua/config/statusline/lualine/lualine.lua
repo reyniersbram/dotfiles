@@ -23,6 +23,8 @@ extensions.nvim_tree = {
             components.branch
         },
     },
+    winbar = {},
+    inactive_winbar = {},
     filetypes = { 'NvimTree' }
 }
 
