@@ -20,7 +20,7 @@ local plugins = {
     },
 
     -- CMP plugins
-	"hrsh7th/nvim-cmp", -- The completion plugin 
+	"hrsh7th/nvim-cmp", -- The completion plugin
 	"hrsh7th/cmp-buffer", -- buffer completions
 	"hrsh7th/cmp-path", -- path completions
 	"hrsh7th/cmp-cmdline", -- cmdline completions
@@ -40,7 +40,6 @@ local plugins = {
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
 --     "jose-elias-alvarez/null-ls.nvim",
---     "SmiteshP/nvim-navic"
 --     "ray-x/lsp_signature.nvim"
 --     "RRethy/vim-illuminate"
 --     "lvimuser/lsp-inlayhints.nvim"
@@ -101,6 +100,14 @@ local plugins = {
         requires = {
             "nvim-tree/nvim-web-devicons",
             "arkav/lualine-lsp-progress",
+        },
+    },
+
+    -- Nvim-Navic
+    {
+        "SmiteshP/nvim-navic",
+        requires = {
+            "neovim/nvim-lspconfig",
         },
     },
 

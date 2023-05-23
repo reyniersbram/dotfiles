@@ -22,4 +22,4 @@ require "config.toggleterm"
 -- require "config.colorizer"
 
 -- WIP
-require "config.lualine"
+require "config.statusline"

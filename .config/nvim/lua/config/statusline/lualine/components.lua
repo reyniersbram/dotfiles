@@ -1,8 +1,4 @@
-local lualine_status_ok, lualine = pcall(require, "lualine")
-if not lualine_status_ok then
-    vim.notify("lualine not found")
-    return
-end
+local M = {}
 
 local icons_status_ok, icons = pcall(require, "helpers.icons")
 if not icons_status_ok then
@@ -10,12 +6,11 @@ if not icons_status_ok then
     return
 end
 
-local components = {}
-components.branch = {
+M.branch = {
     'branch',
     icon = icons.git.Branch,
 }
-components.diff = {
+M.diff = {
     'diff',
     icon = icons.git.Diff,
     symbols = {
@@ -25,10 +20,10 @@ components.diff = {
     },
     colored = true,
 }
-components.diagnostics = {
+M.diagnostics = {
     'diagnostics',
     sources = { 'nvim_lsp' },
-    components = { 'error', 'warn', 'info', 'hint'},
+    M = { 'error', 'warn', 'info', 'hint'},
     symbols = {
         error = icons.diagnostics.Error,
         warn = icons.diagnostics.Warning,
@@ -39,7 +34,7 @@ components.diagnostics = {
     update_in_insert = false,
     always_visible = true,
 }
-components.fileformat = {
+M.fileformat = {
     'fileformat',
     symbols = {
         unix = icons.misc.OS.LinuxTux,
@@ -49,32 +44,32 @@ components.fileformat = {
     separator = { right = '' },
     padding = { right = 0, left = 1 },
 }
-components.filename = {
+M.filename = {
     'filename',
     path = 4,
     -- TODO
 }
-components.filetype = {
+M.filetype = {
     'filetype',
     colored = true,
     icon = { align = 'left', },
 }
-components.lsp_progress = {
+M.lsp_progress = {
     'lsp_progress',
-    display_components = { { 'message' }, 'lsp_client_name' },
+    display_M = { { 'message' }, 'lsp_client_name' },
 }
 
 local function get_color(group, attr)
     return vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID(group)), attr)
 end
-components.whitespace = {
+M.whitespace = {
     function ()
         local space = vim.fn.search([[\s\+$]], 'nwc')
         return space ~= 0 and icons.misc.keyboard.Space .. space or ""
     end,
     color = { fg = get_color('DiagnosticInfo', "fg#") },
 }
-components.mixed_indent = {
+M.mixed_indent = {
     function()
       local space_pattern = [[\v^ +]]
       local tab_pattern = [[\v^\t+]]
@@ -102,58 +97,4 @@ components.mixed_indent = {
     color = { fg = get_color('DiagnosticInfo', "fg#") },
 }
 
-local extensions = {}
-extensions.nvim_tree = {
-    sections = {
-        lualine_a = { function () vim.fn.fnamemodify(vim.fn.getcwd(), ':~') end },
-        lualine_b = { components.branch },
-    },
-    filetypes = { 'NvimTree' }
-}
-
-lualine.setup({
-      options = {
-        icons_enabled = true,
-        theme = 'auto',
-        component_separators = {
-            left = '',
-            right = '',
-        },
-        section_separators = {
-            left = '',
-            right = '',
-        },
-        disabled_filetypes = {
-          statusline = {},
-          winbar = {},
-        },
-        -- ignore_focus = { "toggleterm" },
-        always_divide_middle = true,
-        globalstatus = true,
-        refresh = {
-          statusline = 1000,
-          tabline = 1000,
-          winbar = 1000,
-        },
-      },
-      sections = {
-        lualine_a = { 'mode' },
-        lualine_b = { components.diagnostics, components.whitespace, components.mixed_indent },
-        lualine_c = { components.filename },
-        lualine_x = { components.lsp_progress, components.fileformat, 'encoding', components.filetype },
-        lualine_y = { components.diff, components.branch },
-        lualine_z = {'progress', 'location'},
-      },
-      inactive_components = {
-        lualine_a = {},
-        lualine_b = {},
-        lualine_c = { components.filename },
-        lualine_x = {'location'},
-        lualine_y = {},
-        lualine_z = {},
-      },
-      tabline = {},
-      winbar = {},
-      inactive_winbar = {},
-      extensions = { extensions.nvim_tree, 'toggleterm' }
-})
+return M
