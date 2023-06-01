@@ -31,7 +31,7 @@ mkdir -vp "${HOME}/.local/bin"
 
 # Use stow to do most of this work
 echo "Symlinking files with stow..."
-stow --verbose=2 --dir "${current_directory}" --target "${HOME}"
+stow --verbose=2 --dir "${current_directory}" --target "${HOME}" .
 
 # sudo ln -sf $current_directory/etc/unlock-conservation-mode.service /etc/systemd/system/
 # sudo systemctl enable unlock-conservation-mode
