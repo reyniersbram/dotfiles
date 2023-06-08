@@ -21,8 +21,7 @@ env:
   # each instance of Alacritty. If it is not present, alacritty will
   # check the local terminfo database and use `alacritty` if it is
   # available, otherwise `xterm-256color` is used.
-  TERM: xterm-256color 
-  SHELL: /bin/bash
+  TERM: xterm-256color
 
 window:
   # Window dimensions (changes require restart)
@@ -48,8 +47,8 @@ window:
   # Blank space added around the window in pixels. This padding is scaled
   # by DPI and the specified value is always added at both opposing sides.
   padding:
-    x: 1
-    y: 1
+    x: 0
+    y: 0
 
   # Spread additional padding evenly around the terminal content.
   # dynamic_padding: false
@@ -77,9 +76,7 @@ window:
   #   - Windowed
   #   - Maximized
   #   - Fullscreen
-  #
-  # Values for `startup_mode` (macOS only):
-  #   - SimpleFullscreen
+  #   - SimpleFullscreen (macOS only)
   startup_mode: Windowed
 
   # Window title
@@ -101,6 +98,18 @@ window:
   # Commonly supported values are `dark` and `light`. Set this to `None` to use
   # the default theme variant.
   decorations_theme_variant: None
+
+  # Resize increments
+  #
+  # Prefer resizing window by discrete steps equal to cell dimensions.
+  #resize_increments: false
+
+  # Make `Option` key behave as `Alt` (macOS only):
+  #   - OnlyLeft
+  #   - OnlyRight
+  #   - Both
+  #   - None (default)
+  #option_as_alt: None
 
 scrolling:
   # Maximum number of lines in the scrollback buffer.
@@ -185,120 +194,10 @@ font:
 # If `true`, bold text is drawn using the bright color variants.
 draw_bold_text_with_bright_colors: false
 
-# Color schemes
-#
-# TODO: These themes are mostly incomplete, see #Colors for options yet to configure
-# I got these from https://github.com/alacritty/alacritty/wiki/Color-schemes
-schemes:
-  campbell: &campbell
-    # Default colors
-    primary:
-      background: '#0c0c0c'
-      foreground: '#cccccc'
-    # Normal colors
-    normal:
-      black:      '#0c0c0c'
-      red:        '#c50f1f'
-      green:      '#13a10e'
-      yellow:     '#c19c00'
-      blue:       '#0037da'
-      magenta:    '#881798'
-      cyan:       '#3a96dd'
-      white:      '#cccccc'
-    # Bright colors
-    bright:
-      black:      '#767676'
-      red:        '#e74856'
-      green:      '#16c60c'
-      yellow:     '#f9f1a5'
-      blue:       '#3b78ff'
-      magenta:    '#b4009e'
-      cyan:       '#61d6d6'
-      white:      '#f2f2f2'
+# List of themes: https://github.com/alacritty/alacritty-theme
+import:
+ - ~/.config/alacritty/themes/custom.yaml
 
-  kitty: &kitty
-     # Default colors
-    primary:
-      background: '#000000'
-      foreground: '#dddddd'
-    # Normal colors
-    normal:
-      black:   '#000000'
-      red:     '#cc0403'
-      green:   '#19cb00'
-      yellow:  '#cecb00'
-      blue:    '#0d73cc'
-      magenta: '#cb1ed1'
-      cyan:    '#0dcdcd'
-      white:   '#dddddd'
-    # Bright colors
-    bright:
-      black:   '#767676'
-      red:     '#f2201f'
-      green:   '#23fd00'
-      yellow:  '#fffd00'
-      blue:    '#1a8fff'
-      magenta: '#fd28ff'
-      cyan:    '#14ffff'
-      white:   '#ffffff'
-    # Selection colors
-    selection:
-      text: '#5963a2'
-      background: '#f6f6f6' 
-
-  xterm: &xterm
-     # Default colors
-     primary:
-       background: '#000000'
-       foreground: '#ffffff'
-     # Normal colors
-     normal:
-       black:   '#000000'
-       red:     '#cd0000'
-       green:   '#00cd00'
-       yellow:  '#cdcd00'
-       blue:    '#0000ee'
-       magenta: '#cd00cd'
-       cyan:    '#00cdcd'
-       white:   '#e5e5e5'
-     # Bright colors
-     bright:
-       black:   '#7f7f7f'
-       red:     '#ff0000'
-       green:   '#00ff00'
-       yellow:  '#ffff00'
-       blue:    '#5c5cff'
-       magenta: '#ff00ff'
-       cyan:    '#00ffff'
-       white:   '#ffffff'
-
-  custom: &custom
-    #Default colors
-    primary:
-      background: '#0c0c0c'
-      foreground: '#eeeeec'
-    # Normal colors
-    normal:
-       black:   '#2f3437'
-       red:     '#cc0101'
-       green:   '#4e9a06'
-       yellow:  '#c5a100'
-       blue:    '#3565a5'
-       magenta: '#74517b'
-       cyan:    '#06989a'
-       white:   '#d2d7ce'
-    # Bright colors
-    bright:
-       black:   '#545752'
-       red:     '#ee2829'
-       green:   '#8be334'
-       yellow:  '#fde84f'
-       blue:    '#739ecf'
-       magenta: '#ad7ea9'
-       cyan:    '#35e3e2'
-       white:   '#eeeeec'
-
-colors: *custom
 # colors:
 #   # Default colors (Tomorrow Night)
 #   primary:
