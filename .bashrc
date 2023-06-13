@@ -48,7 +48,7 @@ unset -f append_to_path
 ### CHANGE TITLE OF TERMINALS
 case ${TERM} in
     xterm*|rxvt*|Eterm*|aterm|kterm|gnome*|alacritty|st|konsole*)
-        PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\007"'
+        PROMPT_COMMAND='echo -ne "\033]0;${TERM}:${PWD/#$HOME/\~}\007"'
         ;;
     screen*)
         PROMPT_COMMAND='echo -ne "\033_${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\033\\"'
