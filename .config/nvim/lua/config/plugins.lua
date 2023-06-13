@@ -43,6 +43,7 @@ local plugins = {
 --     "ray-x/lsp_signature.nvim"
 --     "RRethy/vim-illuminate"
 --     "lvimuser/lsp-inlayhints.nvim"
+    "fladson/vim-kitty",
 
     -- Discord Rich Presence
     -- "andweeb/presence.nvim",

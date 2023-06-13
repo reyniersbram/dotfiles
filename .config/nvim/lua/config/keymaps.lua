@@ -60,9 +60,6 @@ keymap("n", "<leader>y", ":%y+<CR>", opts)
 -- Toggle Telescope
 keymap("n", "<leader>ff", ":Telescope find_files hidden=true<CR>", opts)
 
--- Enter Command mode
-keymap("n", "<leader><CR>", ":", opts)
-
 -- Visual --
 -- Stay in indent mode
 keymap("v", "<", "<gv", opts)

@@ -64,16 +64,16 @@ return {
         SymLinkArrow = ""
     },
     git = {
-        Add = "",
-        Mod = "",
-        Remove = "",
-        Ignore = "",
-        Rename = "",
-        Diff = "",
+        Add = "", -- f457
+        Mod = "", -- f459
+        Remove = "", -- f458
+        Ignore = "", -- f474
+        Rename = "", -- f45a
+        Diff = "", -- f440
         Repo = "",
-        Merge = "",
-        Branch = "",
-        Commit = "",
+        Merge = "", -- e727
+        Branch = "", -- e725
+        Commit = "", -- e729
     },
     ui = {
         Lock = " ",
@@ -125,9 +125,9 @@ return {
         Tag = " ",
         Watch = " ",
         OS = {
-            LinuxTux = "",
-            Apple = "",
-            Windows = "",
+            LinuxTux = "", -- e712
+            Apple = "", -- e711
+            Windows = "", -- e70f
         },
         keyboard = {
             Space = "󱁐",
