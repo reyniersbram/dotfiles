@@ -20,11 +20,11 @@ myToggleStrutsKey XConfig{modMask = m} = (m, xK_s)
 
 -- Default terminal
 defaultTerminal :: String
-defaultTerminal = "alacritty"
+defaultTerminal = "kitty"
 
 -- Default browser
 defaultBrowser :: String
-defaultBrowser = "brave"
+defaultBrowser = "firefox"
 
 -- XMobar Pretty Printer
 myXmobarPP :: PP
