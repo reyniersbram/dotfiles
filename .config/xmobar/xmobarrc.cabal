@@ -1,0 +1,19 @@
+cabal-version:          2.4
+name:       xmobarrc
+version:    0.1.0
+build-type: Simple
+
+library
+    hs-source-dirs: lib
+    build-depends: base, xmobar
+    exposed-modules: Bars.SystemStatus, Bars.MainBar
+    other-modules: Bars.Default, Colors
+
+executable xmobar
+    hs-source-dirs:
+        src, lib
+    ghc-options: -O2 -Wall -Wcompat -Wincomplete-record-updates -Wredundant-constraints -rtsopts -threaded -with-rtsopts=-N
+    main-is: xmobarrc.hs
+    default-language: Haskell2010
+    build-depends: base, xmobar
+    other-modules: Bars.Default, Colors, Bars.SystemStatus, Bars.MainBar

@@ -7,3 +7,6 @@
 [submodule ".config/spicetify/Themes"]
 	path = .config/spicetify/Themes
 	url = https://github.com/reyniersbram/spicetify-themes
+[submodule ".config/xmobar/xmobar"]
+	path = .config/xmobar/xmobar
+	url = https://codeberg.org/xmobar/xmobar.git

@@ -3,6 +3,3 @@
 
 # Compliled nvim plugins
 .config/nvim/plugin/
-
-# Stack binaries
-**/.stack-work

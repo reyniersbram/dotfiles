@@ -6,17 +6,15 @@ import XMonad.Util.Loggers
 
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.DynamicLog
-import XMonad.Hooks.StatusBar
-import XMonad.Hooks.StatusBar.PP
+import XMonad.Util.Run (spawnPipe)
+import XMonad.Hooks.ManageDocks (docks, avoidStruts, ToggleStruts (ToggleStruts))
+import qualified XMonad.Util.Hacks as Hacks
+import Data.Monoid (All)
 
 -- Default Mod-key
 -- mod4Mask: Super-key
 modKey :: KeyMask
 modKey = mod4Mask
-
--- Default key to toggle struts
-myToggleStrutsKey :: XConfig Layout -> (KeyMask, KeySym)
-myToggleStrutsKey XConfig{modMask = m} = (m, xK_s)
 
 -- Default terminal
 defaultTerminal :: String
@@ -35,7 +33,7 @@ myXmobarPP = def
     , ppHidden = white . wrap " " ""
     , ppHiddenNoWindows = lowWhite . wrap " " ""
     , ppUrgent = red . wrap (yellow "!") (yellow "!")
-    , ppOrder = \(ws:l:_:wins:_) -> [ws, l, wins]
+    , ppOrder = order
     , ppExtras = [logTitles formatFocused formatUnfocused]
     }
     where
@@ -45,6 +43,10 @@ myXmobarPP = def
         ppWindow :: String -> String
         ppWindow = xmobarRaw . (\w -> if null w then "untitled" else w) . shorten 25
 
+        order :: [String] -> [String]
+        order (ws:l:_:wins:_) = [ws, l, wins]
+        order a = a
+
 blue, lowWhite, magenta, red, white, yellow :: String -> String
 magenta = xmobarColor "#ff79c6" ""
 blue = xmobarColor "#bd93f9" ""
@@ -52,6 +54,10 @@ white = xmobarColor "#f8f8f2" ""
 yellow = xmobarColor "#f1fa8c" ""
 red = xmobarColor "#ff55555" ""
 lowWhite = xmobarColor "#bbbbbb" ""
+
+-- Startup
+myStartupHook :: X ()
+myStartupHook = undefined
 
 -- Layouts
 myLayoutHook :: Choose Tall (Choose (Mirror Tall) Full) a
@@ -62,20 +68,34 @@ myLayoutHook = tiled ||| Mirror tiled ||| Full
         delta   = 3 / 100   -- Percent of screen on resize
         ratio   = 1 / 2     -- Default proportion of screen occupied by master pane
 
+-- Events
+myHandleEventHook :: Event -> X All
+myHandleEventHook = handleEventHook def
+    <> Hacks.windowedFullscreenFixEventHook
+
 main :: IO ()
-main = xmonad .
-        ewmhFullscreen .
-        ewmh .
-        withEasySB (statusBarProp "xmobar $HOME/.config/xmobar/xmobarrc" (pure myXmobarPP)) myToggleStrutsKey $
-        def
-    { modMask = modKey
-    , terminal = defaultTerminal
-    , layoutHook = myLayoutHook
-    , focusFollowsMouse = False
-    , clickJustFocuses = False
-    }
-    `additionalKeysP`
-    [ ("M-b", spawn defaultBrowser)
-    , ("M-S-z", spawn "xscreensaver-command -lock")
-    , ("M-S-s", unGrab *> spawn "scrot $HOME/Pictures/Screenshots/%Y-%m-%d.png -s")
-    ]
+main = do
+    -- spawn "killall xmobar"
+    xmProc <- spawnPipe "$XDG_CONFIG_HOME/xmobar/xmobar.sh"
+    -- xmprocTop <- spawnPipe "sleep 2 && xmobar $XDG_CONFIG_HOME/xmobar/xmobar.hs"
+    -- xmprocTop <- spawnPipe "sleep 2 && xmobar $XDG_CONFIG_HOME/xmobar/xmobarrc"
+    -- xmprocBottom <- spawnPipe "sleep 2 && xmobar $XDG_CONFIG_HOME/xmobar/sys_info_xmobarrc"
+    xmonad
+        . ewmh
+        . docks
+        $ def
+        { modMask = modKey
+        , logHook = dynamicLogString myXmobarPP >>= xmonadPropLog
+        , terminal = defaultTerminal
+        , layoutHook = avoidStruts myLayoutHook
+        , focusFollowsMouse = False
+        , clickJustFocuses = False
+        , handleEventHook = myHandleEventHook
+        -- , startupHook = myStartupHook
+        }
+        `additionalKeysP`
+        [ ("M-b", spawn defaultBrowser)
+        , ("M-S-z", spawn "xscreensaver-command -lock")
+        , ("M-S-s", unGrab *> spawn "scrot $HOME/Pictures/Screenshots/%Y-%m-%d.png -s")
+        , ("M-s", sendMessage ToggleStruts)
+        ]
