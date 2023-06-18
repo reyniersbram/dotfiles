@@ -46,16 +46,7 @@ export PATH
 unset -f append_to_path
 
 ### CHANGE TITLE OF TERMINALS
-case ${TERM} in
-    xterm*|rxvt*|Eterm*|aterm|kterm|gnome*|alacritty|st|konsole*)
-        PROMPT_COMMAND='echo -ne "\033]0;${TERM}:${PWD/#$HOME/\~}\007"'
-        ;;
-    screen*)
-        PROMPT_COMMAND='echo -ne "\033_${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\033\\"'
-        ;;
-    *)
-        ;;
-esac
+PROMPT_COMMAND='echo -ne "\033]0;\uf489 : $(echo ${PWD/#$HOME/\~} | sed "s/.*\/\([^\/]\)/\1/")\007"'
 
 ### SHOPT
 shopt -s cdable_vars
