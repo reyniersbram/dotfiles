@@ -1,1 +1,12 @@
+base-devel
+gcc
+clang
+make
+cmake
+git
+vim
+vi
+python
+dmenu
 stow
+
