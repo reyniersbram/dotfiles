@@ -125,13 +125,13 @@ return {
         Tag = " ",
         Watch = " ",
         OS = {
-            LinuxTux = "", -- e712
-            Apple = "", -- e711
-            Windows = "", -- e70f
+            LinuxTux = " ", -- e712
+            Apple = " ", -- e711
+            Windows = " ", -- e70f
         },
         keyboard = {
-            Space = "󱁐",
-            Tab = "󰌒"
+            Space = "󱁐 ",
+            Tab = "󰌒 "
         }
     },
 }

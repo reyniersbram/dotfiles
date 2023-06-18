@@ -52,13 +52,15 @@ local plugins = {
     {
         "nvim-telescope/telescope.nvim",
         tag = '0.1.0',
-        requires = "nvim-lua/plenary.nvim"
+        requires = {
+            "nvim-lua/plenary.nvim",
+            {
+               "nvim-telescope/telescope-fzf-native.nvim", -- Better telescope sorting
+                run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build"
+            },
+        },
     },
     -- "nvim-telescope/telescope-media-files.nvim",
-    {
-        "nvim-telescope/telescope-fzf-native.nvim", -- Better telescope sorting
-        run = "make"
-    },
 
     -- Color Highlighting
     "norcalli/nvim-colorizer.lua",
@@ -116,7 +118,7 @@ local plugins = {
     "akinsho/toggleterm.nvim",
 
     -- Wakatime
-    "wakatime/vim-wakatime",
+    -- "wakatime/vim-wakatime",
 
     -- ColorColumn
     "Bekaboo/deadcolumn.nvim",

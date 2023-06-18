@@ -14,7 +14,7 @@ telescope.setup {
         file_ignore_patterns = {
             "^./.git/",
             "^./node_modules/",
-            "^./__pycache__/"
+            "^./__pycache__/",
         },
 
         mappings = {
