@@ -1,8 +1,14 @@
 # My dotfiles
 
-This is my dotfiles repo. I recently switched to Linux, so this is still a work in progress.
+This is my dotfiles repo.
 
-Currently, I'm using Manjaro with GNOME, but I'm going to switch to Arch Linux with XMonad as my window manager.
+I use:
+- Distro: Arch Linux
+- Window Manager: XMonad + XMobar
+- Shell: Bash
+- Terminal Emulator: Kitty (coming from Alacritty)
+- Text Editor: NeoVim
+- File Manager: *currently none*
 
 Feel free to create an issue when you have comments, tips, questions...
 
