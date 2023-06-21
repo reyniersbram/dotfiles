@@ -15,3 +15,6 @@ NVim Plugins to try:
     - BurntSushi/ripgrep
     - sharkdp/fd
 
+
+- NVIM:
+  - skip trailing spaces error in MD-files

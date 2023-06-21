@@ -61,25 +61,5 @@ for _, server in pairs(servers) do
         opts = vim.tbl_deep_extend("force", conf_opts, opts)
     end
 
---     if server == "sumneko_lua" then
---         local sumneko_opts = require("config.lsp.settings.sumneko_lua")
---  		opts = vim.tbl_deep_extend("force", sumneko_opts, opts)
---     end
-
-  -- if server == "pyright" then
-  --  local pyright_opts = require "config.lsp.settings.pyright"
-  --   opts = vim.tbl_deep_extend("force", pyright_opts, opts)
-  -- end
-
-  -- if server == "ccls" then
-  --  local ccsl = require "config.lsp.settings.ccls"
-  --  opts = vim.tbl_deep_extend("force", ccsl, opts)
-  -- end
-
---     if server == "hls" then
---         local ccsl = require "config.lsp.settings.hls"
---         opts = vim.tbl_deep_extend("force", ccsl, opts)
---     end
-
     lspconfig[server].setup(opts)
 end
