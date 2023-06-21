@@ -1,15 +1,42 @@
-import XMonad
+import XMonad.Main (xmonad)
 
-import XMonad.Util.EZConfig
-import XMonad.Util.Ungrab
-import XMonad.Util.Loggers
+import XMonad.Core (spawn, X, ManageHook, XConfig (..))
 
-import XMonad.Hooks.EwmhDesktops
+import XMonad.Layout (Choose, Tall (..), Mirror (..), Full (..), (|||))
+
+import XMonad.Operations (sendMessage)
+
+import XMonad.Util.EZConfig (additionalKeysP)
+import XMonad.Util.Ungrab (unGrab)
+import XMonad.Util.Loggers (logTitles)
+
+import XMonad.ManageHook (doFloat, composeAll, (-->))
+
+import XMonad.Hooks.StatusBar (xmonadPropLog)
+import XMonad.Hooks.EwmhDesktops (ewmh)
 import XMonad.Hooks.DynamicLog
-import XMonad.Util.Run (spawnPipe)
+    ( PP (..)
+    , wrap, shorten
+    , xmobarRaw
+    , xmobarColor
+    , xmobarBorder
+    , xmobarStrip
+    , dynamicLogString
+    )
+import XMonad.Hooks.ManageHelpers (isDialog)
 import XMonad.Hooks.ManageDocks (docks, avoidStruts, ToggleStruts (ToggleStruts))
+
+import XMonad.Util.Run (spawnPipe)
+import XMonad.Util.SpawnOnce (spawnOnce)
 import qualified XMonad.Util.Hacks as Hacks
+
 import Data.Monoid (All)
+import Data.Default.Class (Default (def))
+
+import Graphics.X11.Types (KeyMask, mod4Mask)
+import Graphics.X11.Xlib.Extras (Event)
+
+import Utils (join)
 
 -- Default Mod-key
 -- mod4Mask: Super-key
@@ -27,16 +54,26 @@ defaultBrowser = "firefox"
 -- XMobar Pretty Printer
 myXmobarPP :: PP
 myXmobarPP = def
-    { ppSep = magenta " • "
-    , ppTitleSanitize = xmobarStrip
-    , ppCurrent = wrap " " "" . xmobarBorder "Bottom" "#8be9fd" 2
+    { ppCurrent = wrap " " "" . xmobarBorder "Bottom" "#8be9fd" 2
+    -- , ppVisible = def
     , ppHidden = white . wrap " " ""
     , ppHiddenNoWindows = lowWhite . wrap " " ""
+    -- , ppVisibleNoWindows = def
     , ppUrgent = red . wrap (yellow "!") (yellow "!")
+    -- , ppRename = def
+    , ppSep = magenta " • "
+    , ppWsSep = " "
+    , ppTitle = id
+    , ppTitleSanitize = xmobarStrip
+    , ppLayout = id
     , ppOrder = order
+    -- , ppSort = def
     , ppExtras = [logTitles formatFocused formatUnfocused]
+    -- , ppOutput = def -- useless when working with dynamicLogString
+    -- , ppPrinters = def
     }
     where
+        formatFocused, formatUnfocused :: String -> String
         formatFocused = wrap (white "[") (white "]") . magenta . ppWindow
         formatUnfocused = wrap (lowWhite "[") (lowWhite "]") . blue . ppWindow
 
@@ -45,7 +82,7 @@ myXmobarPP = def
 
         order :: [String] -> [String]
         order (ws:l:_:wins:_) = [ws, l, wins]
-        order a = a
+        order sections = sections
 
 blue, lowWhite, magenta, red, white, yellow :: String -> String
 magenta = xmobarColor "#ff79c6" ""
@@ -55,9 +92,29 @@ yellow = xmobarColor "#f1fa8c" ""
 red = xmobarColor "#ff55555" ""
 lowWhite = xmobarColor "#bbbbbb" ""
 
+trayerSettings :: [String]
+trayerSettings =
+    [ "--edge", "top"
+    , "--align", "right"
+    , "--width", "5"
+    , "--height", "22"
+    , "--iconspacing", "10"
+    , "--tint", "0x0c0c0c"
+    , "--transparent", "true"
+    , "--alpha", "0"
+    , "--expand", "true"
+    , "--padding", "10"
+    , "--SetDockType", "true"
+    , "--SetPartialStrut", "true"
+    , "-l"
+    ]
+
 -- Startup
 myStartupHook :: X ()
-myStartupHook = undefined
+myStartupHook = do
+    spawn "killall trayer"
+    spawnOnce "nitrogen --restore"
+    spawn ("sleep 2 && trayer " ++ join trayerSettings " ")
 
 -- Layouts
 myLayoutHook :: Choose Tall (Choose (Mirror Tall) Full) a
@@ -72,17 +129,23 @@ myLayoutHook = tiled ||| Mirror tiled ||| Full
 myHandleEventHook :: Event -> X All
 myHandleEventHook = handleEventHook def
     <> Hacks.windowedFullscreenFixEventHook
+    <> Hacks.trayerAboveXmobarEventHook
+    <> Hacks.trayerPaddingXmobarEventHook
 
+-- Manage Hook
+myManageHook :: ManageHook
+myManageHook = composeAll
+    [ isDialog --> doFloat
+    ]
+
+-- Main
 main :: IO ()
 main = do
-    -- spawn "killall xmobar"
-    xmProc <- spawnPipe "$XDG_CONFIG_HOME/xmobar/xmobar.sh"
-    -- xmprocTop <- spawnPipe "sleep 2 && xmobar $XDG_CONFIG_HOME/xmobar/xmobar.hs"
-    -- xmprocTop <- spawnPipe "sleep 2 && xmobar $XDG_CONFIG_HOME/xmobar/xmobarrc"
-    -- xmprocBottom <- spawnPipe "sleep 2 && xmobar $XDG_CONFIG_HOME/xmobar/sys_info_xmobarrc"
+    _ <- spawnPipe "$XDG_CONFIG_HOME/xmobar/xmobar.sh"
     xmonad
         . ewmh
         . docks
+        . Hacks.javaHack
         $ def
         { modMask = modKey
         , logHook = dynamicLogString myXmobarPP >>= xmonadPropLog
@@ -91,7 +154,8 @@ main = do
         , focusFollowsMouse = False
         , clickJustFocuses = False
         , handleEventHook = myHandleEventHook
-        -- , startupHook = myStartupHook
+        , manageHook = myManageHook
+        , startupHook = myStartupHook
         }
         `additionalKeysP`
         [ ("M-b", spawn defaultBrowser)
