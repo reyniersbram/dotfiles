@@ -1,7 +1,7 @@
-cabal-version:          2.4
-name:       xmobarrc
-version:    0.1.0
-build-type: Simple
+cabal-version:  2.4
+name:           xmobarrc
+version:        0.1.0
+build-type:     Simple
 
 library
     hs-source-dirs: lib
