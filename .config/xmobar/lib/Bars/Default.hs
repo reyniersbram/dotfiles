@@ -26,7 +26,7 @@ myDefaultConfig = defaultConfig
     , borderWidth = 1
 
     -- , iconRoot = "/"
-    
+
     , lowerOnStart = True
     , hideOnStart = False
     , allDesktops = False
