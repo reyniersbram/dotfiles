@@ -1,11 +1,25 @@
-cabal-version:          2.4
-name:                   myXmonad
-version:                0.1.0.0
-build-type:             Simple
+cabal-version:  2.4
+name:           myXmonad
+version:        0.1.0.0
+build-type:     Simple
+
+library
+    hs-source-dirs:     lib
+    build-depends:      base
+    exposed-modules:    Utils
 
 executable xmonad-bck
     main-is:            xmonad.hs
-    hs-source-dirs:     .
+    hs-source-dirs:     ., lib
     ghc-options:        -Wall -rtsopts -threaded -with-rtsopts=-N
-    build-depends:      base ^>=4.16.4.0, xmonad, xmonad-contrib
+    build-depends:      base ^>=4.16.4.0, xmonad, xmonad-contrib, data-default-class, X11
     default-language:   Haskell2010
+    other-modules:      Utils
+
+test-suite myXmonad-test
+    type:               exitcode-stdio-1.0
+    main-is:            Test.hs
+    hs-source-dirs:     test
+    default-language:   Haskell2010
+    build-depends:      base, myXmonad, hspec
+    other-modules:      UtilsTest
