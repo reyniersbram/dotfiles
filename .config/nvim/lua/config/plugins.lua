@@ -36,9 +36,14 @@ local plugins = {
 
     -- LSP
     "neovim/nvim-lspconfig",
---  "williamboman/nvim-lsp-installer", -- deprecated, use mason
     "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim",
+    {
+        "williamboman/mason-lspconfig.nvim",
+        requires = {
+            "williamboman/mason.nvim",
+            "neovim/nvim-lspconfig",
+        },
+    },
 --     "jose-elias-alvarez/null-ls.nvim",
 --     "ray-x/lsp_signature.nvim"
 --     "RRethy/vim-illuminate"

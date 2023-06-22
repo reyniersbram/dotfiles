@@ -1,65 +1,64 @@
-local status_ok, mason = pcall(require, "mason")
-if not status_ok then
+local mason_status_ok, mason = pcall(require, "mason")
+if not mason_status_ok then
     vim.notify("mason not found!")
     return
 end
 
-local status_ok_1, mason_lspconfig = pcall(require, "mason-lspconfig")
-if not status_ok_1 then
-  vim.notify("mason-lspconfig not found!")
-  return
-end
-
-local servers = {
-    "lua_ls",
-    "hls",
-    "bashls",
-    "r_language_server",
-    "pyright",
-    "tsserver",
-    "clangd",
-    "html",
-}
-
-local settings = {
-    ui = {
-        border = "rounded",
-        icons = {
-            package_installed = "◍",
-            package_pending = "◍",
-            package_uninstalled = "◍",
-        },
-    },
-    log_level = vim.log.levels.INFO,
-    max_concurrent_installers = 4,
-}
-
-mason.setup(settings)
---[[ mason_lspconfig.setup{
-    ensure_installed = servers,
-    automatic_installation = true,
-} ]]
-
-local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
-if not lspconfig_status_ok then
-    vim.notify("lspconfig not found!")
+local mason_lspconfig_status_ok, mason_lspconfig = pcall(require, "mason-lspconfig")
+if not mason_lspconfig_status_ok then
+    vim.notify("mason-lspconfig not found!")
     return
 end
 
-local opts = {}
+local icons_status_ok, icons = pcall(require, "helpers.icons")
 
-for _, server in pairs(servers) do
-    opts = {
-        on_attach = require("config.lsp.handlers").on_attach,
-        capabilities = require("config.lsp.handlers").capabilities,
-    }
+-- Setup mason
+mason.setup {
+    max_concurrent_installers = 5,
+    registries = {
+        "github:mason-org/mason-registry",
+    },
+    providers = {
+        "mason.providers.registry-api",
+        "mason.providers.client",
+    },
+    github = {
+        download_url_template = "https://github.com/%s/releases/download/%s/%s",
+    },
+    pip = {
+        upgrade_pip = false,
+        install_args = {},
+    },
+    ui = {
+        check_outdated_packages_on_open = true,
+        -- border options: none, single, double, rounded, solid, shadow, {...}
+        border = "rounded",
+        width = 0.8,
+        height = 0.9,
+        icons = {
+            package_installed = icons_status_ok and icons.ui.status.Done or "✓",
+            package_pending = icons_status_ok and icons.ui.status.Loading or "➜",
+            package_uninstalled = icons_status_ok and icons.ui.status.Failed or "◍",
+        },
+    },
+    keymaps = {
+        install_package = "i",
+        update_package = "u",
+        uninstall_package = "X",
+        update_all_packages = "U",
+        toggle_package_expand = "<CR>",
+        check_package_version = "c",
+        check_outdated_packages = "C",
+        cancel_installation = "<C-c>",
+        apply_language_filter = "<C-f>",
+    },
+}
 
-    server = vim.split(server, "@")[1]
+-- Setup mason-lspconfig
+mason_lspconfig.setup {
+    ensure_installed = {
 
-    local server_require_status_ok, conf_opts = pcall(require, "config.lsp.settings." .. server)
-    if server_require_status_ok then
-        opts = vim.tbl_deep_extend("force", conf_opts, opts)
-    end
-
-    lspconfig[server].setup(opts)
-end
+    },
+    automatic_installation = false,
+    handlers = nil,
+}
