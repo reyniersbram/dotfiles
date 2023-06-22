@@ -50,7 +50,7 @@ mainBar = myDefaultConfig
         , Run $ Com
             "/bin/bash"
             [ "-c"
-            , "$XDG_CONFIG_HOME/xmobar/bin/conservation_mode_status.sh"
+            , "$XDG_CONFIG_HOME/xmobar/bin/conservation_mode_icon.sh"
             ] "conservation_status" 10
         , Run $ XPropertyLog "_XMONAD_TRAYPAD"
         ]

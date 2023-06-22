@@ -26,7 +26,6 @@ import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageHelpers (isDialog)
 import XMonad.Hooks.ManageDocks (docks, avoidStruts, ToggleStruts (ToggleStruts))
 
-import XMonad.Util.Run (spawnPipe)
 import XMonad.Util.SpawnOnce (spawnOnce)
 import qualified XMonad.Util.Hacks as Hacks
 
@@ -92,8 +91,8 @@ yellow = xmobarColor "#f1fa8c" ""
 red = xmobarColor "#ff55555" ""
 lowWhite = xmobarColor "#bbbbbb" ""
 
-trayerSettings :: [String]
-trayerSettings =
+trayerConfig :: [String]
+trayerConfig =
     [ "--edge", "top"
     , "--align", "right"
     , "--width", "5"
@@ -112,9 +111,9 @@ trayerSettings =
 -- Startup
 myStartupHook :: X ()
 myStartupHook = do
-    spawn "killall trayer"
     spawnOnce "nitrogen --restore"
-    spawn ("sleep 2 && trayer " ++ join trayerSettings " ")
+    spawn "$XDG_CONFIG_HOME/xmobar/xmobar.sh"
+    spawnOnce $ "trayer " ++ join trayerConfig " "
 
 -- Layouts
 myLayoutHook :: Choose Tall (Choose (Mirror Tall) Full) a
@@ -141,7 +140,6 @@ myManageHook = composeAll
 -- Main
 main :: IO ()
 main = do
-    _ <- spawnPipe "$XDG_CONFIG_HOME/xmobar/xmobar.sh"
     xmonad
         . ewmh
         . docks
