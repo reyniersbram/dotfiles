@@ -1,16 +1,15 @@
 import XMonad.Main (xmonad)
 
-import XMonad.Core (spawn, X, ManageHook, XConfig (..))
+import XMonad.Core (spawn, X, ManageHook, XConfig (..), Layout)
 
 import XMonad.Layout (Choose, Tall (..), Mirror (..), Full (..), (|||))
 
 import XMonad.Operations (sendMessage)
 
-import XMonad.Util.EZConfig (additionalKeysP)
 import XMonad.Util.Ungrab (unGrab)
 import XMonad.Util.Loggers (logTitles)
 
-import XMonad.ManageHook (doFloat, composeAll, (-->))
+import XMonad.ManageHook (doFloat, (-->), (<+>))
 
 import XMonad.Hooks.StatusBar (xmonadPropLog)
 import XMonad.Hooks.EwmhDesktops (ewmh)
@@ -31,11 +30,16 @@ import qualified XMonad.Util.Hacks as Hacks
 
 import Data.Monoid (All)
 import Data.Default.Class (Default (def))
+import Data.Map (Map)
+import qualified Data.Map as Map
 
-import Graphics.X11.Types (KeyMask, mod4Mask)
+import GHC.Bits ((.|.))
+
+import Graphics.X11.Types
+    (shiftMask, mod4Mask
+    , xK_b, xK_s, xK_z
+    , ButtonMask, KeySym, KeyMask)
 import Graphics.X11.Xlib.Extras (Event)
-
-import Utils (join)
 
 -- Default Mod-key
 -- mod4Mask: Super-key
@@ -113,13 +117,13 @@ myStartupHook :: X ()
 myStartupHook = do
     spawnOnce "nitrogen --restore"
     spawn "$XDG_CONFIG_HOME/xmobar/xmobar.sh"
-    spawnOnce $ "trayer " ++ join trayerConfig " "
+    spawnOnce $ "trayer " ++ unwords trayerConfig
 
 -- Layouts
 myLayoutHook :: Choose Tall (Choose (Mirror Tall) Full) a
-myLayoutHook = tiled ||| Mirror tiled ||| Full
+myLayoutHook = tall ||| Mirror tall ||| Full
     where
-        tiled   = Tall nmaster delta ratio
+        tall   = Tall nmaster delta ratio
         nmaster = 1         -- Default number of windows in master pane
         delta   = 3 / 100   -- Percent of screen on resize
         ratio   = 1 / 2     -- Default proportion of screen occupied by master pane
@@ -133,8 +137,16 @@ myHandleEventHook = handleEventHook def
 
 -- Manage Hook
 myManageHook :: ManageHook
-myManageHook = composeAll
-    [ isDialog --> doFloat
+myManageHook = manageHook def
+    <+> (isDialog --> doFloat)
+
+-- Key Bindings
+myKeys :: XConfig Layout -> Map (ButtonMask, KeySym) (X ())
+myKeys conf = keys def conf `Map.union` Map.fromList
+    [ ((modKey, xK_b), spawn defaultBrowser)
+    , ((modKey .|. shiftMask, xK_z), spawn "xscreensaver-command -lock")
+    , ((modKey .|. shiftMask, xK_s), unGrab *> spawn "scrot $HOME/Pictures/Screenshots/%Y-%m-%d.png -s")
+    , ((modKey, xK_s), sendMessage ToggleStruts)
     ]
 
 -- Main
@@ -145,19 +157,23 @@ main = do
         . docks
         . Hacks.javaHack
         $ def
-        { modMask = modKey
-        , logHook = dynamicLogString myXmobarPP >>= xmonadPropLog
+        { normalBorderColor = "#dddddd"
+        , focusedBorderColor = "#ff0000"
         , terminal = defaultTerminal
         , layoutHook = avoidStruts myLayoutHook
+        , manageHook = myManageHook
+        , handleEventHook = myHandleEventHook
+        , workspaces = map show [1 .. 9]
+        , modMask = modKey
+        , keys = myKeys
+        -- , mouseBindings = undefined
+        , borderWidth = 1
+        , logHook = dynamicLogString myXmobarPP >>= xmonadPropLog
+        , startupHook = myStartupHook
         , focusFollowsMouse = False
         , clickJustFocuses = False
-        , handleEventHook = myHandleEventHook
-        , manageHook = myManageHook
-        , startupHook = myStartupHook
+        -- , clientMask = undefined
+        -- , rootMask = undefined
+        -- , handleExtraArgs = undefined
+        -- , extensibleConf = undefined
         }
-        `additionalKeysP`
-        [ ("M-b", spawn defaultBrowser)
-        , ("M-S-z", spawn "xscreensaver-command -lock")
-        , ("M-S-s", unGrab *> spawn "scrot $HOME/Pictures/Screenshots/%Y-%m-%d.png -s")
-        , ("M-s", sendMessage ToggleStruts)
-        ]
