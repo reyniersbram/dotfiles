@@ -1,4 +1,4 @@
-import Xmobar
+import Xmobar (Config, xmobar)
 
 import Bars.SystemStatus (systemStatus)
 import Bars.MainBar (mainBar)
