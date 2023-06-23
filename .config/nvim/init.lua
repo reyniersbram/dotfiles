@@ -1,3 +1,6 @@
+require "core"
+require "plugins"
+
 -- Standard Configs
 require "config.options"
 require "config.keymaps"
@@ -6,7 +9,7 @@ require "config.colorscheme"
 
 -- Coding Configs
 -- require "config.cmp"
-require "config.lsp"
+-- require "config.lsp"
 require "config.treesitter"
 require "config.autopairs"
 

@@ -20,8 +20,8 @@ local servers = {
 }
 
 local default_opts = {
-    on_attach = require("config.lsp.handlers").on_attach,
-    capabilities = require("config.lsp.handlers").capabilities,
+    on_attach = require("plugins.lsp.handlers").on_attach,
+    capabilities = require("plugins.lsp.handlers").capabilities,
     autostart = true,
 }
 
