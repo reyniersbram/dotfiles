@@ -1,3 +1,5 @@
+local module_path = "plugins.lsp"
+
 local prequire = require("helpers.utils").prequire
 
 local lspconfig_status_ok, lspconfig = prequire("lspconfig")
@@ -20,8 +22,8 @@ local servers = {
 }
 
 local default_opts = {
-    on_attach = require("plugins.lsp.handlers").on_attach,
-    capabilities = require("plugins.lsp.handlers").capabilities,
+    on_attach = require(module_path .. ".handlers").on_attach,
+    capabilities = require(module_path .. ".handlers").capabilities,
     autostart = true,
 }
 
@@ -31,7 +33,7 @@ for _, server in pairs(servers) do
     opts = default_opts
     local server_opts_status_ok, server_opts =
         prequire(
-            "config.lsp.settings." .. server
+            module_path .. ".settings." .. server
         )
     if server_opts_status_ok then
         opts = vim.tbl_deep_extend("force", opts, server_opts)

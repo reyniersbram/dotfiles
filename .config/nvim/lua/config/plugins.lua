@@ -1,36 +1,23 @@
 local plugins = {
-    "wbthomason/packer.nvim", -- Have packer manage itself
-    "nvim-lua/popup.nvim", -- An implementation of the Popup API from vim in Neovim
-    "nvim-lua/plenary.nvim", -- Useful lua functions used by lots of plugins
-    -- "kyazdani42/nvim-web-devicons", -- Use web-devicons, used by some plugins
+    "wbthomason/packer.nvim", -- packer plugin manager
 
     -- Colorschemes
-    "ellisonleao/gruvbox.nvim",
-    --[[ {
-        "monsonjeremy/onedark.nvim",
-        branch = "treesitter",
-    }, ]]
+    -- "ellisonleao/gruvbox.nvim",
     "navarasu/onedark.nvim",
 
-    -- Markdown preview plugin
-    {
-        "iamcco/markdown-preview.nvim",
-        run = "cd app && npm install",
-        ft = "markdown",
-    },
+    -- CMP
+    "hrsh7th/nvim-cmp", -- The completion plugin
+    -- sources
+    "hrsh7th/cmp-buffer", -- buffer completions
+    "hrsh7th/cmp-path", -- path completions
+    "hrsh7th/cmp-cmdline", -- cmdline completions
+    "saadparwaiz1/cmp_luasnip", -- snippet completions
+    "hrsh7th/cmp-nvim-lsp", -- integration with lsp
+    "hrsh7th/cmp-nvim-lua", -- extra nvim lua completion
+ --    "hrsh7th/cmp-emoji", -- emojiiis🙂
+ --    "f3fora/cmp-spell", -- spell checker
 
-    -- CMP plugins
-	"hrsh7th/nvim-cmp", -- The completion plugin
-	"hrsh7th/cmp-buffer", -- buffer completions
-	"hrsh7th/cmp-path", -- path completions
-	"hrsh7th/cmp-cmdline", -- cmdline completions
-	"saadparwaiz1/cmp_luasnip", -- snippet completions
-	"hrsh7th/cmp-nvim-lsp", -- integration with lsp
-	"hrsh7th/cmp-nvim-lua", -- extra lua completion
-    "hrsh7th/cmp-emoji", -- emojiiis🙂
-    "f3fora/cmp-spell", -- spell checker
-
-    -- snippet plugins
+    -- Snippet plugins for cmp
     "L3MON4D3/LuaSnip", --snippet engine
     "rafamadriz/friendly-snippets", -- a bunch of snippets to use
 
@@ -49,6 +36,45 @@ local plugins = {
     -- "RRethy/vim-illuminate"
     -- "lvimuser/lsp-inlayhints.nvim"
     "fladson/vim-kitty",
+
+    -- NVim Tree
+    {
+        "nvim-tree/nvim-tree.lua",
+        requires = "nvim-tree/nvim-web-devicons",
+    },
+
+    -- ColorColumn
+    "Bekaboo/deadcolumn.nvim",
+
+    -- Wakatime
+    "wakatime/vim-wakatime",
+
+    -- Bufferline
+    {
+        "akinsho/bufferline.nvim",
+        requires = {
+            "moll/vim-bbye",
+            "nvim-tree/nvim-web-devicons",
+        },
+    },
+
+
+
+
+
+
+
+    -- Misc
+    "nvim-lua/popup.nvim", -- An implementation of the Popup API from vim in Neovim
+    "nvim-lua/plenary.nvim", -- Useful lua functions used by lots of plugins
+    -- "kyazdani42/nvim-web-devicons", -- Use web-devicons, used by some plugins
+
+    -- Markdown preview plugin
+    {
+        "iamcco/markdown-preview.nvim",
+        run = "cd app && npm install",
+        ft = "markdown",
+    },
 
     -- Discord Rich Presence
     -- "andweeb/presence.nvim",
@@ -87,21 +113,6 @@ local plugins = {
     -- Git
     "lewis6991/gitsigns.nvim",
 
-    -- NVim Tree
-    {
-        "nvim-tree/nvim-tree.lua",
-        requires = "nvim-tree/nvim-web-devicons",
-    },
-
-    -- Bufferline
-    {
-        "akinsho/bufferline.nvim",
-        requires = {
-            "moll/vim-bbye",
-            "nvim-tree/nvim-web-devicons",
-        },
-    },
-
     -- Lualine
     {
         "nvim-lualine/lualine.nvim",
@@ -121,13 +132,6 @@ local plugins = {
 
     -- ToggleTerm
     "akinsho/toggleterm.nvim",
-
-    -- Wakatime
-    -- "wakatime/vim-wakatime",
-
-    -- ColorColumn
-    "Bekaboo/deadcolumn.nvim",
-    -- "lukas-reineke/virt-column.nvim",
 }
 
 
