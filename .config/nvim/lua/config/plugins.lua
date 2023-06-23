@@ -36,18 +36,18 @@ local plugins = {
 
     -- LSP
     "neovim/nvim-lspconfig",
-    "williamboman/mason.nvim",
-    {
-        "williamboman/mason-lspconfig.nvim",
-        requires = {
-            "williamboman/mason.nvim",
-            "neovim/nvim-lspconfig",
-        },
-    },
---     "jose-elias-alvarez/null-ls.nvim",
---     "ray-x/lsp_signature.nvim"
---     "RRethy/vim-illuminate"
---     "lvimuser/lsp-inlayhints.nvim"
+    -- "williamboman/mason.nvim",
+    -- {
+    --     "williamboman/mason-lspconfig.nvim",
+    --     requires = {
+    --         "williamboman/mason.nvim",
+    --         "neovim/nvim-lspconfig",
+    --     },
+    -- },
+    -- "jose-elias-alvarez/null-ls.nvim",
+    -- "ray-x/lsp_signature.nvim"
+    -- "RRethy/vim-illuminate"
+    -- "lvimuser/lsp-inlayhints.nvim"
     "fladson/vim-kitty",
 
     -- Discord Rich Presence

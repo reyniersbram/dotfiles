@@ -1,33 +1,21 @@
+local prequire = require("helpers.utils").prequire
+
 local M = {}
 
--- TODO uitzoeken wat dit doet
--- local function attach_navic(client, bufnr)
---     vim.g.navic_silence = true
---     local status_ok, navic = pcall(require, "nvim-navic")
---     if not status_ok then
---         vim.notify("nvim-navic not found!!")
---         return
---     end
---     navic.attach(client, bufnr)
--- end
+-- Capabilities
+M.capabilities = vim.lsp.protocol.make_client_capabilities()
+M.capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-local function lsp_highlight_document(client)
-    -- Set autocommands conditional on server_capabilities
-    if client.resolved_capabilities.document_highlight then
-        vim.api.nvim_exec(
-            [[
-                augroup lsp_document_highlight
-                autocmd! * <buffer>
-                autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-                autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-                augroup END
-            ]],
-            false
-        )
-    end
+-- CMP integration
+local cmp_nvim_lsp_status_ok, cmp_nvim_lsp = prequire("cmp_nvim_lsp")
+if not cmp_nvim_lsp_status_ok then
+    vim.notify("cmp_nvim_lsp not found")
+    return
 end
+M.capabilities = cmp_nvim_lsp.default_capabilities(M.capabilities)
 
-local function lsp_keymaps(bufnr)
+-- On Attach
+local function set_keymaps(bufnr)
     local opts = { noremap = true, silent = true, buffer = bufnr }
 
     vim.keymap.set("n", "gl", vim.diagnostic.open_float, opts)
@@ -50,46 +38,41 @@ local function lsp_keymaps(bufnr)
     vim.keymap.set("n", "gf", vim.lsp.buf.format, opts)
     vim.keymap.set("n", "ga", vim.lsp.buf.code_action, opts)
 
-    -- Deprecated
+    -- Using Telescope
     -- vim.api.nvim_buf_set_keymap(bufnr, "n", "gD", "<cmd>Telescope lsp_declarations<<CR>", opts)
     -- vim.api.nvim_buf_set_keymap(bufnr, "n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
     -- vim.api.nvim_buf_set_keymap(bufnr, "n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts)
 
-    -- TODO
+    -- TODO check if I want these
     -- vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", "<cmd>Telescope lsp_references<CR>", opts)
     -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
     -- vim.cmd([[ command! Format execute 'lua vim.lsp.buf.format()' ]])
 end
 
 M.on_attach = function(client, bufnr)
-    --     if client.name == "pyright" then
-    --       require("lsp-inlayhints").on_attach(client, bufnr)
-    --     end
-    --
-    --     if client.name == "sumneko_lua" then
-    --       require("lsp-inlayhints").on_attach(client, bufnr)
-    --     end
-
-    lsp_keymaps(bufnr)
-    --        lsp_highlight_document(client)
-    --     attach_navic(client,bufnr)
+    set_keymaps(bufnr)
+    -- lsp_highlight_document(client)
 end
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
 
-local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-if not status_ok then
-    vim.notify("cmp_nvim_lsp not found")
-    return
+-- TODO uitzoeken wat dit doet
+local function lsp_highlight_document(client)
+    -- Set autocommands conditional on server_capabilities
+    if client.resolved_capabilities.document_highlight then
+        vim.api.nvim_exec(
+            [[
+                augroup lsp_document_highlight
+                autocmd! * <buffer>
+                autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+                autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+                augroup END
+            ]],
+            false
+        )
+    end
 end
 
-M.capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
-
--- TODO uitzoeken wat dit allemaal doet
-
--- M.capabilities.textDocument.completion.completionItem.snippetSupport = true
--- M.capabilities = cmp_nvim_lsp.default_capabilities(M.capabilities)
-
+-- TODO uitzoeken wat dit doet
 -- function M.enable_format_on_save()
 --     vim.cmd(
 --         [[ augroup format_on_save
@@ -120,13 +103,5 @@ M.capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
 -- end
 
 -- vim.cmd [[ command! LspToggleAutoFormat execute 'lua require("user.lsp.handlers").toggle_format_on_save()' ]]
-
--- M.capabilities = vim.lsp.protocol.make_client_capabilities()
-
--- local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
--- if not status_ok then
---     vim.notify("cmp_nvim_lsp not found!")
---     return
--- end
 
 return M

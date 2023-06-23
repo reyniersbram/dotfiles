@@ -5,7 +5,7 @@ require "config.plugins"
 require "config.colorscheme"
 
 -- Coding Configs
-require "config.cmp"
+-- require "config.cmp"
 require "config.lsp"
 require "config.treesitter"
 require "config.autopairs"
