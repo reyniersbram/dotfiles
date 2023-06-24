@@ -1,15 +1,13 @@
 import XMonad.Main (xmonad)
-
 import XMonad.Core (spawn, X, ManageHook, XConfig (..), Layout)
-
 import XMonad.Layout (Choose, Tall (..), Mirror (..), Full (..), (|||))
-
 import XMonad.Operations (sendMessage)
+import XMonad.ManageHook (appName, doShift, (=?), doFloat, (-->))
 
 import XMonad.Util.Ungrab (unGrab)
 import XMonad.Util.Loggers (logTitles)
-
-import XMonad.ManageHook (doFloat, (-->), (<+>))
+import XMonad.Util.SpawnOnce (spawnOnce)
+import qualified XMonad.Util.Hacks as Hacks
 
 import XMonad.Hooks.StatusBar (xmonadPropLog)
 import XMonad.Hooks.EwmhDesktops (ewmh)
@@ -25,9 +23,6 @@ import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageHelpers (isDialog)
 import XMonad.Hooks.ManageDocks (docks, avoidStruts, ToggleStruts (ToggleStruts))
 
-import XMonad.Util.SpawnOnce (spawnOnce)
-import qualified XMonad.Util.Hacks as Hacks
-
 import Data.Monoid (All)
 import Data.Default.Class (Default (def))
 import Data.Map (Map)
@@ -38,7 +33,8 @@ import GHC.Bits ((.|.))
 import Graphics.X11.Types
     (shiftMask, mod4Mask
     , xK_b, xK_s, xK_z, xK_Return
-    , ButtonMask, KeySym, KeyMask, Button, Window)
+    , ButtonMask, KeySym, KeyMask, Button, Window
+    )
 import Graphics.X11.Xlib.Extras (Event)
 
 -- Default Mod-key
@@ -138,7 +134,10 @@ myHandleEventHook = handleEventHook def
 -- Manage Hook
 myManageHook :: ManageHook
 myManageHook = manageHook def
-    <+> (isDialog --> doFloat)
+    <> (isDialog --> doFloat)
+    <> (appName =? "Places" --> doFloat) -- Firefox Bookmark manager
+    <> (appName =? "discord" --> doShift (myWorkspaces !! 7))
+    <> (appName =? "spotify" --> doShift (myWorkspaces !! 8))
 
 -- Key Bindings
 myKeys :: XConfig Layout -> Map (ButtonMask, KeySym) (X ())
@@ -157,7 +156,9 @@ myMouseBindings conf = Map.empty `Map.union` mouseBindings def conf
 
 -- Workspaces
 myWorkspaces :: [String]
-myWorkspaces = map show ([1 .. 9] :: [Integer])
+myWorkspaces = map show ([1 .. 7] :: [Integer])
+    ++ [xmobarColor "#738adb" "" "\xf066f"] -- Discord
+    ++ [xmobarColor "#1ed761" "" "\xf04c7"] -- Spotify
 
 -- Main
 main :: IO ()
