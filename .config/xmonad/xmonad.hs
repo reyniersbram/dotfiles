@@ -37,8 +37,8 @@ import GHC.Bits ((.|.))
 
 import Graphics.X11.Types
     (shiftMask, mod4Mask
-    , xK_b, xK_s, xK_z
-    , ButtonMask, KeySym, KeyMask)
+    , xK_b, xK_s, xK_z, xK_Return
+    , ButtonMask, KeySym, KeyMask, Button, Window)
 import Graphics.X11.Xlib.Extras (Event)
 
 -- Default Mod-key
@@ -142,12 +142,22 @@ myManageHook = manageHook def
 
 -- Key Bindings
 myKeys :: XConfig Layout -> Map (ButtonMask, KeySym) (X ())
-myKeys conf = keys def conf `Map.union` Map.fromList
+myKeys conf = Map.fromList
     [ ((modKey, xK_b), spawn defaultBrowser)
     , ((modKey .|. shiftMask, xK_z), spawn "xscreensaver-command -lock")
     , ((modKey .|. shiftMask, xK_s), unGrab *> spawn "scrot $HOME/Pictures/Screenshots/%Y-%m-%d.png -s")
     , ((modKey, xK_s), sendMessage ToggleStruts)
+    , ((modKey .|. shiftMask, xK_Return), return ())
+    , ((modKey, xK_Return), spawn defaultTerminal)
     ]
+    `Map.union` keys def conf
+
+myMouseBindings :: XConfig Layout -> Map (ButtonMask, Button) (Window -> X ())
+myMouseBindings conf = Map.empty `Map.union` mouseBindings def conf
+
+-- Workspaces
+myWorkspaces :: [String]
+myWorkspaces = map show ([1 .. 9] :: [Integer])
 
 -- Main
 main :: IO ()
@@ -163,10 +173,10 @@ main = do
         , layoutHook = avoidStruts myLayoutHook
         , manageHook = myManageHook
         , handleEventHook = myHandleEventHook
-        , workspaces = map show [1 .. 9]
+        , workspaces = myWorkspaces
         , modMask = modKey
         , keys = myKeys
-        -- , mouseBindings = undefined
+        , mouseBindings = myMouseBindings
         , borderWidth = 1
         , logHook = dynamicLogString myXmobarPP >>= xmonadPropLog
         , startupHook = myStartupHook
