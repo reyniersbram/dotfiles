@@ -13,7 +13,7 @@ end
 local servers = {
     "lua_ls",
     "hls",
-    -- "bashls",
+    "bashls",
     -- "r_language_server",
     -- "pyright",
     -- "tsserver",

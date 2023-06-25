@@ -58,6 +58,8 @@ local plugins = {
         },
     },
 
+    -- Discord Rich Presence
+    "andweeb/presence.nvim",
 
 
 
@@ -76,8 +78,6 @@ local plugins = {
         ft = "markdown",
     },
 
-    -- Discord Rich Presence
-    -- "andweeb/presence.nvim",
 
     -- Telescope
     {
@@ -101,7 +101,6 @@ local plugins = {
         "nvim-treesitter/nvim-treesitter",
         run = ":TSUpdate",
     },
-    "p00f/nvim-ts-rainbow",
     "JoosepAlviste/nvim-ts-context-commentstring",
 
     -- Autopairs
