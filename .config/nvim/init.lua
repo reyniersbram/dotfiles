@@ -1,3 +1,5 @@
+vim.notify = require("notify")
+
 require "core"
 require "plugins"
 

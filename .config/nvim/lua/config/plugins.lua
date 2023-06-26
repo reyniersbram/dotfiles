@@ -23,14 +23,6 @@ local plugins = {
 
     -- LSP
     "neovim/nvim-lspconfig",
-    -- "williamboman/mason.nvim",
-    -- {
-    --     "williamboman/mason-lspconfig.nvim",
-    --     requires = {
-    --         "williamboman/mason.nvim",
-    --         "neovim/nvim-lspconfig",
-    --     },
-    -- },
     -- "jose-elias-alvarez/null-ls.nvim",
     -- "ray-x/lsp_signature.nvim"
     -- "RRethy/vim-illuminate"
@@ -46,9 +38,6 @@ local plugins = {
     -- ColorColumn
     "Bekaboo/deadcolumn.nvim",
 
-    -- Wakatime
-    "wakatime/vim-wakatime",
-
     -- Bufferline
     {
         "akinsho/bufferline.nvim",
@@ -58,8 +47,12 @@ local plugins = {
         },
     },
 
-    -- Discord Rich Presence
+    -- Social
     "andweeb/presence.nvim",
+    "wakatime/vim-wakatime",
+
+    -- Notifications
+    "rcarriga/nvim-notify",
 
 
 
@@ -69,7 +62,6 @@ local plugins = {
     -- Misc
     "nvim-lua/popup.nvim", -- An implementation of the Popup API from vim in Neovim
     "nvim-lua/plenary.nvim", -- Useful lua functions used by lots of plugins
-    -- "kyazdani42/nvim-web-devicons", -- Use web-devicons, used by some plugins
 
     -- Markdown preview plugin
     {
@@ -77,7 +69,6 @@ local plugins = {
         run = "cd app && npm install",
         ft = "markdown",
     },
-
 
     -- Telescope
     {

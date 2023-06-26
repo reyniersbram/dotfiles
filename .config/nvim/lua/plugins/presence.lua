@@ -58,6 +58,9 @@ presence.setup {
                 local excluded = {
                     "term",
                 }
+                if repo_url == nil then
+                    return false
+                end
                 if string.match(repo_url, "term") then
                     return false
                 end

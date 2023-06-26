@@ -249,18 +249,19 @@ cmp.setup {
     },
 }
 
-cmp.setup.cmdline("/", {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = {
-        { name = "buffer", },
-    },
-})
-
-cmp.setup.cmdline(":", {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = cmp.config.sources({
-        { name = "cmdline", },
-        { name = "path", },
-        { name = "buffer", },
-    }),
-})
+-- TODO figure out how I want this
+-- cmp.setup.cmdline("/", {
+--     mapping = cmp.mapping.preset.cmdline(),
+--     sources = {
+--         { name = "buffer", },
+--     },
+-- })
+--
+-- cmp.setup.cmdline(":", {
+--     mapping = cmp.mapping.preset.cmdline(),
+--     sources = cmp.config.sources({
+--         { name = "cmdline", },
+--         { name = "path", },
+--         { name = "buffer", },
+--     }),
+-- })
