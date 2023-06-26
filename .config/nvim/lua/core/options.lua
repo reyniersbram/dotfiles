@@ -38,6 +38,7 @@ local options = {
     spelllang = {"en_us"},
     spell = false, -- enable/disable spellcheck by default
     formatoptions = "jcroql",
+    textwidth = 80,
 }
 
 for k, v in pairs(options) do
