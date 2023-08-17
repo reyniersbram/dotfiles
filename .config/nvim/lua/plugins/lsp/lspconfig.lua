@@ -11,20 +11,35 @@ end
 -- Language Servers
 
 local servers = {
-    "lua_ls",
-    "hls",
-    "bashls",
+    "bashls",   -- Shell
+    "cssls",    -- CSS
+    "eslint",   -- Eslint
+    "hls",      -- Haskell
+    "html",     -- HTML
+    -- "jdtls", -- also use nvim-jdtls
+    "jsonls",   -- JSON
+    "lua_ls",   -- Lua
+    "tsserver", -- TypeScript/JavaScript
     -- "r_language_server",
-    -- "pyright",
-    -- "tsserver",
+    -- "pyright", -- or jedi_language-server
     -- "clangd",
-    -- "html",
+    -- "arduino_language_server",
+    -- "asm_lsp",
+    -- "kotlin_language_server",
+    -- "sqlls",
+    -- voloar or vuels
+    -- yamlls
+    --
+    -- https://github.com/stardog-union/stardog-language-servers/tree/master/packages/sparql-language-server
+    -- "turtle_ls", -- (RDF syntax)
+    -- "sparql_ls"
 }
 
 local default_opts = {
     on_attach = require(module_path .. ".handlers").on_attach,
     capabilities = require(module_path .. ".handlers").capabilities,
     autostart = true,
+    single_file_support = true,
 }
 
 local opts = {}
