@@ -13,7 +13,7 @@ mainBar = myDefaultConfig
         [ Run XMonadLog
         , Run $ Kbd [("us", "us")]
         , Run $ Date "%H:%M · %a %Y-%m-%d" "date" 300
-        , Run $ Alsa "default" "Speaker"
+        , Run $ Alsa "default" "Master"
             [ "--template", "<status><volume>"
             , "--suffix", "True"
             , "--"
@@ -62,7 +62,7 @@ mainBar = myDefaultConfig
         \ | \
         \\xf030c %kbd%\
         \ | \
-        \%alsa:default:Speaker%\
+        \<action=`amixer sset Master toggle`>%alsa:default:Master%</action>\
         \ | \
         \%battery%\
         \ · \
