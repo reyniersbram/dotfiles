@@ -43,8 +43,14 @@ white = color7
 bgColor :: String
 bgColor = "#0c0c0c"
 
+bgHLight :: String
+bgHLight = bgColor
+
 fgColor :: String
 fgColor = color15
+
+fgHLight :: String
+fgHLight = yellow 
 
 alpha :: Float
 alpha = 1

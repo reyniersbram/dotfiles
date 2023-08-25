@@ -32,10 +32,12 @@ import GHC.Bits ((.|.))
 
 import Graphics.X11.Types
     (shiftMask, mod4Mask
-    , xK_b, xK_s, xK_z, xK_Return
+    , xK_b, xK_s, xK_z, xK_p, xK_Return
     , ButtonMask, KeySym, KeyMask, Button, Window
     )
 import Graphics.X11.Xlib.Extras (Event)
+import XMonad.Prompt.Pass (passPrompt)
+import XPConfig (myXPConfig)
 
 -- Default Mod-key
 -- mod4Mask: Super-key
@@ -135,7 +137,7 @@ myHandleEventHook = handleEventHook def
 myManageHook :: ManageHook
 myManageHook = manageHook def
     <> (isDialog --> doFloat)
-    <> (appName =? "Places" --> doFloat) -- Firefox Bookmark manager
+    <> (appName =? "Places" --> doFloat) -- Firefox Popups
     <> (appName =? "discord" --> doShift (myWorkspaces !! 7))
     <> (appName =? "spotify" --> doShift (myWorkspaces !! 8))
 
@@ -148,6 +150,7 @@ myKeys conf = Map.fromList
     , ((modKey, xK_s), sendMessage ToggleStruts)
     , ((modKey .|. shiftMask, xK_Return), return ())
     , ((modKey, xK_Return), spawn defaultTerminal)
+    , ((modKey .|. shiftMask, xK_p), passPrompt myXPConfig)
     ]
     `Map.union` keys def conf
 
