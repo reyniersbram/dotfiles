@@ -55,7 +55,7 @@ mainBar = myDefaultConfig
         , Run $ XPropertyLog "_XMONAD_TRAYPAD"
         ]
     , template = "\
-        \ \xf31a %XMonadLog%\
+        \ \xf31a  %XMonadLog%\
         \ }\
         \{ \
         \%date%\

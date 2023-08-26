@@ -12,4 +12,4 @@ xftfont :: String
 xftfont = "xft:" ++ font
 
 xftfont' :: Int -> String
-xftfont' size = xftfont ++ ":-" ++ show size
+xftfont' size = xftfont ++ "-" ++ show size

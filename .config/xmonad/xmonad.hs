@@ -38,6 +38,7 @@ import Graphics.X11.Types
 import Graphics.X11.Xlib.Extras (Event)
 import XMonad.Prompt.Pass (passPrompt)
 import XPConfig (myXPConfig)
+import qualified Colors
 
 -- Default Mod-key
 -- mod4Mask: Super-key
@@ -55,10 +56,10 @@ defaultBrowser = "firefox"
 -- XMobar Pretty Printer
 myXmobarPP :: PP
 myXmobarPP = def
-    { ppCurrent = wrap " " "" . xmobarBorder "Bottom" "#8be9fd" 2
-    -- , ppVisible = def
-    , ppHidden = white . wrap " " ""
-    , ppHiddenNoWindows = lowWhite . wrap " " ""
+    { ppCurrent = highlight . wrapWorkspaceName . xmobarBorder "Bottom" Colors.blue 3
+    , ppVisible = wrapWorkspaceName . xmobarBorder "Bottom" Colors.blue 3
+    , ppHidden = white . wrapWorkspaceName
+    , ppHiddenNoWindows = lowWhite . wrapWorkspaceName
     -- , ppVisibleNoWindows = def
     , ppUrgent = red . wrap (yellow "!") (yellow "!")
     -- , ppRename = def
@@ -74,9 +75,15 @@ myXmobarPP = def
     -- , ppPrinters = def
     }
     where
+        wrapWorkspaceName :: String -> String
+        wrapWorkspaceName = wrap "" ""
+
+        wrapColored :: ColorWrapper -> String -> String -> String -> String
+        wrapColored color prefix postfix = wrap (color prefix) (color postfix)
+
         formatFocused, formatUnfocused :: String -> String
-        formatFocused = wrap (white "[") (white "]") . magenta . ppWindow
-        formatUnfocused = wrap (lowWhite "[") (lowWhite "]") . blue . ppWindow
+        formatFocused = wrapColored white "[" "]" . magenta . ppWindow
+        formatUnfocused = wrapColored lowWhite "[" "]" . cyan . ppWindow
 
         ppWindow :: String -> String
         ppWindow = xmobarRaw . (\w -> if null w then "untitled" else w) . shorten 25
@@ -85,13 +92,16 @@ myXmobarPP = def
         order (ws:l:_:wins:_) = [ws, l, wins]
         order sections = sections
 
-blue, lowWhite, magenta, red, white, yellow :: String -> String
-magenta = xmobarColor "#ff79c6" ""
-blue = xmobarColor "#bd93f9" ""
-white = xmobarColor "#f8f8f2" ""
-yellow = xmobarColor "#f1fa8c" ""
-red = xmobarColor "#ff55555" ""
-lowWhite = xmobarColor "#bbbbbb" ""
+type ColorWrapper = String -> String
+
+cyan, lowWhite, magenta, red, white, yellow, highlight :: String -> String
+magenta = xmobarColor Colors.magenta ""
+cyan = xmobarColor Colors.cyan ""
+white = xmobarColor Colors.white ""
+yellow = xmobarColor Colors.yellow ""
+red = xmobarColor Colors.red ""
+lowWhite = xmobarColor Colors.color15 ""
+highlight = xmobarColor Colors.fgHLight ""
 
 trayerConfig :: [String]
 trayerConfig =
