@@ -20,6 +20,7 @@ setup
 # Other
 TODO.txt
 /etc
+/src
 
 /.config/spicetify
 
