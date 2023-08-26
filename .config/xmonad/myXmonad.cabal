@@ -4,61 +4,81 @@ version:       0.1.0.0
 build-type:    Simple
 
 library
-    hs-source-dirs:  lib
+    hs-source-dirs:     lib
     build-depends:
         , base
+        , containers
+        , data-default-class
         , X11
         , xmobar
+        , xmonad
         , xmonad-contrib
 
+    default-language:   GHC2021 
+    default-extensions: ImportQualifiedPost
     exposed-modules:
-        Bars.MainBar
-        Bars.SystemStatus
         Colors
         Defaults
+        Hooks.Event
+        Hooks.Layout
+        Hooks.Log
+        Hooks.Manage
+        Hooks.Startup
+        KeyBinds
         Utils
+        XMobar.Bars.MainBar
+        XMobar.Bars.SystemStatus
+        XMobar.PrettyPrinter
         XPConfig
 
-    other-modules:
-        Bars.Default
+    other-modules:      XMobar.Bars.Default
 
 executable xmonad
-    main-is:          xmonad.hs
-    hs-source-dirs:   . lib
-    ghc-options:      -Wall -rtsopts -threaded -with-rtsopts=-N
+    main-is:            xmonad.hs
+    hs-source-dirs:     . lib
+    ghc-options:        -Wall -rtsopts -threaded -with-rtsopts=-N
     build-depends:
-        , base                ^>=4.16.4.0
+        , base
         , containers
         , data-default-class
         , X11
         , xmonad
         , xmonad-contrib
 
-    default-language: Haskell2010
+    default-language:   GHC2021 
+    default-extensions: ImportQualifiedPost
     other-modules:
         Colors
         Defaults
+        Hooks.Event
+        Hooks.Layout
+        Hooks.Log
+        Hooks.Manage
+        Hooks.Startup
+        KeyBinds
         Utils
+        XMobar.PrettyPrinter
         XPConfig
 
 executable xmobar
-    main-is:          xmobar.hs
-    hs-source-dirs:   . lib
+    main-is:            xmobar.hs
+    hs-source-dirs:     . lib
     ghc-options:
         -O2 -Wall -Wcompat -Wincomplete-record-updates
         -Wredundant-constraints -rtsopts -threaded -with-rtsopts=-N
 
-    default-language: Haskell2010
+    default-language:   GHC2021 
+    default-extensions: ImportQualifiedPost
     build-depends:
         , base
         , xmobar
 
     other-modules:
-        Bars.Default
-        Bars.MainBar
-        Bars.SystemStatus
         Colors
         Defaults
+        XMobar.Bars.Default
+        XMobar.Bars.MainBar
+        XMobar.Bars.SystemStatus
 
 test-suite myXmonad-test
     type:             exitcode-stdio-1.0

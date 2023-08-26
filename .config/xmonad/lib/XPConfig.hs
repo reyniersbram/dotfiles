@@ -3,8 +3,8 @@ module XPConfig
   )
 where
 
-import qualified Colors (fgColor, fgHLight, white, color8)
-import qualified Defaults (xftfont')
+import Colors qualified (color8, fgColor, fgHLight, white)
+import Defaults qualified (xftfont')
 import Graphics.X11.Types (xK_Tab, xK_grave)
 import XMonad.Prompt
   ( ComplCaseSensitivity (..),
