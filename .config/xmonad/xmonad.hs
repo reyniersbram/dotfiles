@@ -124,7 +124,7 @@ trayerConfig =
 myStartupHook :: X ()
 myStartupHook = do
     spawnOnce "nitrogen --restore"
-    spawn "$XDG_CONFIG_HOME/xmobar/xmobar.sh"
+    spawn "xmobar.sh"
     spawnOnce $ "trayer " ++ unwords trayerConfig
 
 -- Layouts

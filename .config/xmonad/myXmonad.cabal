@@ -15,10 +15,12 @@ library
         Bars.MainBar
         Bars.SystemStatus
         Colors
+        Defaults
         Utils
         XPConfig
 
-    other-modules:   Bars.Default
+    other-modules:
+        Bars.Default
 
 executable xmonad
     main-is:          xmonad.hs
@@ -34,6 +36,8 @@ executable xmonad
 
     default-language: Haskell2010
     other-modules:
+        Colors
+        Defaults
         Utils
         XPConfig
 
@@ -54,6 +58,7 @@ executable xmobar
         Bars.MainBar
         Bars.SystemStatus
         Colors
+        Defaults
 
 test-suite myXmonad-test
     type:             exitcode-stdio-1.0

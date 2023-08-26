@@ -50,7 +50,7 @@ mainBar = myDefaultConfig
         , Run $ Com
             "/bin/bash"
             [ "-c"
-            , "$XDG_CONFIG_HOME/xmobar/bin/conservation_mode_icon.sh"
+            , "conservation_mode icon"
             ] "conservation_status" 10
         , Run $ XPropertyLog "_XMONAD_TRAYPAD"
         ]
@@ -66,7 +66,7 @@ mainBar = myDefaultConfig
         \ | \
         \%battery%\
         \ · \
-        \<action=`toggle-conservation-mode`>%conservation_status%</action>\
+        \<action=`conservation_mode toggle`>%conservation_status%</action>\
         \%_XMONAD_TRAYPAD%\
         \"
     } 

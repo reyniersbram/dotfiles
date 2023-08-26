@@ -1,0 +1,44 @@
+#!/usr/bin/env sh
+
+path="/sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode"
+status=$(cat $path)
+
+toggle() {
+    echo $((!status)) > $path
+
+    # shellcheck disable=2320
+    failed=$?
+
+    if [ $failed -ne 0 ]; then
+        echo "Failed to toggle conservation mode"
+        exit
+    fi
+
+    echo "Conservation mode toggled to $((!status))"
+}
+
+icon() {
+    case "$status" in
+        0)
+            printf "\Uf1210 "
+            ;;
+        1)
+            printf "\Uf120f "
+            ;;
+        *)
+            printf "\Uf071 "
+    esac
+}
+
+command=$1
+
+case "$command" in
+    toggle)
+        toggle
+        ;;
+    icon)
+        icon
+        ;;
+    *)
+        echo "command '$command' not found"
+esac
