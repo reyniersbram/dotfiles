@@ -4,17 +4,34 @@ module XPConfig
 where
 
 import Colors qualified (color8, fgColor, fgHLight, white)
+import Control.Arrow (first)
+import Data.Map as Map (Map, fromList, union)
 import Defaults qualified (xftfont')
-import Graphics.X11.Types (xK_Tab, xK_grave)
+import Graphics.X11.Types
+  ( KeyMask,
+    KeySym,
+    controlMask,
+    xK_Tab,
+    xK_b,
+    xK_f,
+    xK_grave,
+    xK_n,
+    xK_p,
+  )
 import XMonad.Prompt
   ( ComplCaseSensitivity (..),
+    Direction1D (Next, Prev),
+    XP,
     XPConfig (..),
     XPPosition (..),
     def,
     defaultXPKeymap,
     deleteAllDuplicates,
+    moveCursor,
+    moveHistory,
   )
 import XMonad.Prompt.FuzzyMatch (fuzzyMatch, fuzzySort)
+import XMonad.StackSet (focusDown', focusUp')
 
 myXPConfig :: XPConfig
 myXPConfig =
@@ -33,7 +50,7 @@ myXPConfig =
       maxComplColumns = Just 3,
       historySize = 256,
       historyFilter = deleteAllDuplicates,
-      promptKeymap = defaultXPKeymap,
+      promptKeymap = keyMap,
       completionKey = (0, xK_Tab),
       changeModeKey = xK_grave,
       defaultText = "",
@@ -44,3 +61,16 @@ myXPConfig =
       defaultPrompter = id,
       sorter = fuzzySort
     }
+
+keyMap :: Map (KeyMask, KeySym) (XP ())
+keyMap =
+  Map.fromList
+    ( map
+        (first $ (,) controlMask)
+        [ (xK_b, moveCursor Prev),
+          (xK_f, moveCursor Next),
+          (xK_p, moveHistory focusUp'),
+          (xK_n, moveHistory focusDown')
+        ]
+    )
+    `Map.union` defaultXPKeymap
