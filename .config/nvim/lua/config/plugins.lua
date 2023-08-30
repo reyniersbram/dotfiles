@@ -51,13 +51,13 @@ local plugins = {
     "andweeb/presence.nvim",
     "wakatime/vim-wakatime",
 
+
+
+
+
+
     -- Notifications
     "rcarriga/nvim-notify",
-
-
-
-
-
 
     -- Misc
     "nvim-lua/popup.nvim", -- An implementation of the Popup API from vim in Neovim

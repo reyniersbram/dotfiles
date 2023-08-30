@@ -30,7 +30,7 @@ keymap("n", "<A-7>", ":BufferLineGoToBuffer 7<CR>", opts)
 keymap("n", "<A-8>", ":BufferLineGoToBuffer 8<CR>", opts)
 keymap("n", "<A-9>", ":BufferLineGoToBuffer 9<CR>", opts)
 keymap("n", "<A-0>", ":BufferLineGoToBuffer -1<CR>", opts)
-
+keymap("n", "<A-w>", ":BufferLineCloseOthers<CR>", opts)
 -- requires moll/vim-bbye
 keymap("n", "<C-w>", ":Bdelete<CR>", opts)
 

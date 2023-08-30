@@ -1,4 +1,3 @@
-local lspconfig = require("lspconfig")
 return {
     cmd = { "typescript-language-server", "--stdio" },
     filetypes = {
@@ -8,8 +7,5 @@ return {
     init_options = {
         hostInfo = "neovim",
     },
-    root_dir = lspconfig.root_pattern(
-        "package.json", "tsconfig.json", "jsconfig.json", ".git"
-    ),
 }
 
