@@ -11,7 +11,6 @@ export TERM='xterm-256color'
 export HISTCONTROL="ignoredups:erasedups"
 export EDITOR=nvim
 export VISUAL=nvim
-export MANPAGER="sh -c 'col -bx | bat -l man -p'" # Use `bat` as manpager
 
 ### XDG Base Directory Specification
 # https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html

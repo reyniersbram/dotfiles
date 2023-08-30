@@ -20,19 +20,6 @@ alias grep='grep --colour=auto'
 alias egrep='egrep --colour=auto'
 alias fgrep='fgrep --colour=auto'
 
-# pacman
-alias pacsyu='sudo pacman -Syu'
-alias pacsyyu='sudo pacman -Syyu'
-alias pacs='sudo pacman -S'
-alias pacss='pacman -Ss'
-alias pacrns='sudo pacman -Rns'
-
-# paru
-alias parusua='paru -Sua'
-alias parus='paru -S'
-alias paruss='paru -Ss'
-alias parurns='paru -Rns'
-
 # confirm overwrite
 alias cp='cp -i'
 alias mv='mv -i'
@@ -45,6 +32,9 @@ alias free='free -m'
 # More information:
 # https://unix.stackexchange.com/questions/81129/what-are-the-differences-between-most-more-and-less
 alias more=less
+
+# use bat as manpager
+alias man=batman
 
 # Use neovim instead of vim
 alias vim='nvim'
