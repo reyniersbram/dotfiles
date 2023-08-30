@@ -41,7 +41,7 @@ presence.setup {
     client_id = "793271441293967371",
     -- Log messages at or above this level
     -- (one of the following: "debug", "info", "warn", "error")
-    log_level = "error",
+    log_level = nil,
     -- Number of seconds to debounce events (or calls to
     -- `:lua package.loaded.presence:update(<filename>, true)`)
     debounce_timeout = 10,
