@@ -21,6 +21,7 @@ _purple="$_clearAll\[\e[0;35m\]"
 _brightGreen="$_clearAll\[\e[1;32m\]"
 _brightBlue="$_clearAll\[\e[1;34m\]"
 _brightYellow="$_clearAll\[\e[1;33m\]"
+_brightRed="$_clearAll\[\e[1;31m\]"
 
 # Used Markup Values
 _defaultColor="$_clearAll"
@@ -58,7 +59,8 @@ _nonPrintBegin="\["
 _nonPrintEnd="\]"
 # __ascii="\nnn"      # Character with ASCII code as octal value nnn
 
-_gitBranch="\$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/$_mainPromptColor[$_branchColor \1$_mainPromptColor] /')"
+_gitBranch="\$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/$_mainPromptColor[$_branchColor$(echo -e '\ue725') \1$_mainPromptColor] /')"
+_npmProject="\$(while [[ ! -f package.json && $(pwd) != $HOME ]]; do cd ..; done; [[ -f package.json ]] && echo $(echo -e '\ue71e') )"
 
 export PS1="\
 $_mainPromptColor$_user@$_hostLong: \
