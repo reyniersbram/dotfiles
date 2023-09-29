@@ -1,10 +1,12 @@
-# increase volume
+# manage volume
 "amixer sset Master 2%+"
     XF86AudioRaiseVolume
 "amixer sset Master 2%-"
     XF86AudioLowerVolume
 "amixer sset Master toggle"
     XF86AudioMute
+
+# manage monitor brightness
 "xbacklight -inc 10"
     XF86MonBrightnessUp
 "xbacklight -dec 10"
