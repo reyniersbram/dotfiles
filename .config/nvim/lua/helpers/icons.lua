@@ -51,7 +51,7 @@ return {
             Folder = "\u{f024b}", -- 󰉋
             Open = "\u{f0770}", -- 󰝰
             Empty = "\u{f0256}", -- 󰉖
-            EmptyOpen = "\u{f0dcf}", -- 󰷏 
+            EmptyOpen = "\u{f0dcf}", -- 󰷏
             SymLink = "\u{f19ef}", -- 󱧯
             Collapsed = " ",
             Expanded = " ",
@@ -67,16 +67,16 @@ return {
         SymLinkArrow = ""
     },
     git = {
-        Add = "\u{f457}", --  
+        Add = "\u{f457}", -- 
         Mod = "\u{f459}", -- 
         Remove = "\u{f458}", -- 
         Ignore = "\u{f474}", -- 
-        Rename = "\u{f45a}", --  
+        Rename = "\u{f45a}", -- 
         Diff = "\u{f440}", -- 
         Repo = "\u{f401}", -- 
         Merge = "\u{e727}", -- 
         Branch = "\u{e725}", -- 
-        Commit = "\u{e729}", --  
+        Commit = "\u{e729}", -- 
     },
     ui = {
         Lock = " ",
@@ -113,6 +113,11 @@ return {
             Loading = "\u{f0453}", -- 󰑓
             Failed = "✗ ",
             Done = "✓ ",
+        },
+        window = {
+            float = {
+                border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+            },
         },
     },
     diagnostics = {

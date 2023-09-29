@@ -44,5 +44,7 @@ if defined_colors == 16 then
     end
 end
 
--- Create terminal highlight group
-vim.cmd("highlight Terminal guibg='#0c0c0c' guifg='#eeeeec'")
+-- Make floating windows appear transparent
+vim.api.nvim_set_hl(0, "NormalFloat", { link = "Normal" })
+vim.api.nvim_set_hl(0, "FloatBorder", { link = "Normal" })
+

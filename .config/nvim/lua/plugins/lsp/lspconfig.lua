@@ -12,18 +12,19 @@ end
 
 local servers = {
     "bashls",   -- Shell
+    "clangd",   -- C / C++
+    "cmake",    -- CMake
     "cssls",    -- CSS
     "eslint",   -- Eslint
     "hls",      -- Haskell
     "html",     -- HTML
-    -- "jdtls", -- also use nvim-jdtls
     "jsonls",   -- JSON
     "lua_ls",   -- Lua
     "tsserver", -- TypeScript/JavaScript
+    --
+    -- "jdtls", -- also use nvim-jdtls
     -- "r_language_server",
-    "pyright", -- or jedi_language-server
-    "clangd",   -- C / C++
-    "cmake",    -- CMake
+    -- "pyright", -- or jedi_language-server
     -- "arduino_language_server",
     -- "asm_lsp",
     -- "kotlin_language_server",

@@ -7,12 +7,12 @@ return {
     },
     filetypes = { "haskell", "lhaskell", "cabal" },
     root_dir =
-    function(path)
-        return (
-            lspconfig.util.root_pattern("hie.yaml", 'stack.yaml', 'cabal.project')(path)
-            or lspconfig.util.root_pattern("*.cabal", "package.yaml")(path)
-        )
-    end,
+        function(path)
+            return (
+                lspconfig.util.root_pattern("hie.yaml", 'stack.yaml', 'cabal.project')(path)
+                or lspconfig.util.root_pattern("*.cabal", "package.yaml")(path)
+            )
+        end,
     settings = {
         haskell = {
             cabalFormattingProvider = "cabalfmt",

@@ -4,16 +4,13 @@ if not mason_status_ok then
     return
 end
 
-local mason_lspconfig_status_ok, mason_lspconfig = pcall(require, "mason-lspconfig")
-if not mason_lspconfig_status_ok then
-    vim.notify("mason-lspconfig not found!")
-    return
-end
-
 local icons_status_ok, icons = pcall(require, "helpers.icons")
 
 -- Setup mason
 mason.setup {
+    -- install_root_dir = require("mason-core.path").concat { vim.fn.stdpath "data", "mason" },
+    PATH = "append",
+    log_level = vim.log.levels.INFO,
     max_concurrent_installers = 5,
     registries = {
         "github:mason-org/mason-registry",
@@ -32,33 +29,26 @@ mason.setup {
     ui = {
         check_outdated_packages_on_open = true,
         -- border options: none, single, double, rounded, solid, shadow, {...}
-        border = "rounded",
-        width = 0.8,
-        height = 0.9,
+        border = icons.ui.window.float.border,
+        width = 0.7,
+        height = 0.7,
         icons = {
             package_installed = icons_status_ok and icons.ui.status.Done or "✓",
             package_pending = icons_status_ok and icons.ui.status.Loading or "➜",
             package_uninstalled = icons_status_ok and icons.ui.status.Failed or "◍",
         },
+        keymaps = {
+            toggle_package_expand = "<CR>",
+            install_package = "i",
+            update_package = "u",
+            check_package_version = "c",
+            update_all_packages = "U",
+            check_outdated_packages = "C",
+            uninstall_package = "X",
+            cancel_installation = "<C-c>",
+            apply_language_filter = "<C-f>",
+            toggle_package_intall_log = "<CR>",
+            toggle_help = "g?",
+        },
     },
-    keymaps = {
-        install_package = "i",
-        update_package = "u",
-        uninstall_package = "X",
-        update_all_packages = "U",
-        toggle_package_expand = "<CR>",
-        check_package_version = "c",
-        check_outdated_packages = "C",
-        cancel_installation = "<C-c>",
-        apply_language_filter = "<C-f>",
-    },
-}
-
--- Setup mason-lspconfig
-mason_lspconfig.setup {
-    ensure_installed = {
-
-    },
-    automatic_installation = false,
-    handlers = nil,
 }
