@@ -17,7 +17,6 @@ require "config.gitsigns"
 require "config.telescope"
 require "config.comment"
 require "config.bufferline"
-require "config.toggleterm"
 -- require "config.colorizer"
 
 -- WIP

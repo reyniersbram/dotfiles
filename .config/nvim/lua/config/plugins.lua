@@ -16,13 +16,13 @@ local plugins = {
     "hrsh7th/cmp-nvim-lua", -- extra nvim lua completion
  --    "hrsh7th/cmp-emoji", -- emojiiis🙂
  --    "f3fora/cmp-spell", -- spell checker
-
-    -- Snippet plugins for cmp
+    -- snippets
     "L3MON4D3/LuaSnip", --snippet engine
     "rafamadriz/friendly-snippets", -- a bunch of snippets to use
 
     -- LSP
     "neovim/nvim-lspconfig",
+    "williamboman/mason.nvim",
     -- "jose-elias-alvarez/null-ls.nvim",
     -- "ray-x/lsp_signature.nvim"
     -- "RRethy/vim-illuminate"
@@ -119,9 +119,6 @@ local plugins = {
             "neovim/nvim-lspconfig",
         },
     },
-
-    -- ToggleTerm
-    "akinsho/toggleterm.nvim",
 }
 
 

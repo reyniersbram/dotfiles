@@ -148,12 +148,7 @@ nvim_tree.setup {
         centralize_selection = false,
         cursorline = true,
         debounce_delay = 15,
-        hide_root_folder = false,
-        width = {
-            min = 30,
-            max = 30,
-            padding = 1,
-        },
+        width = 30,
         side = "left",
         preserve_window_proportions = true,
         number = true,
