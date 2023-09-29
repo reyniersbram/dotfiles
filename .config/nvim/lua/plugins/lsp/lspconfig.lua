@@ -21,8 +21,9 @@ local servers = {
     "lua_ls",   -- Lua
     "tsserver", -- TypeScript/JavaScript
     -- "r_language_server",
-    -- "pyright", -- or jedi_language-server
-    -- "clangd",
+    "pyright", -- or jedi_language-server
+    "clangd",   -- C / C++
+    "cmake",    -- CMake
     -- "arduino_language_server",
     -- "asm_lsp",
     -- "kotlin_language_server",
