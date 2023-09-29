@@ -19,7 +19,7 @@ trayerConfig =
     "--align",
     "right",
     "--width",
-    "5",
+    "7",
     "--height",
     "22",
     "--iconspacing",
