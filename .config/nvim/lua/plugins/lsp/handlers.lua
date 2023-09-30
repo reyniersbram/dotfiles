@@ -1,5 +1,3 @@
-local prequire = require("helpers.utils").prequire
-
 local M = {}
 
 -- Capabilities
@@ -7,7 +5,7 @@ M.capabilities = vim.lsp.protocol.make_client_capabilities()
 M.capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 -- CMP integration
-local cmp_nvim_lsp_status_ok, cmp_nvim_lsp = prequire("cmp_nvim_lsp")
+local cmp_nvim_lsp_status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
 if not cmp_nvim_lsp_status_ok then
     vim.notify("cmp_nvim_lsp not found")
     return

@@ -1,12 +1,10 @@
-local prequire = require "helpers.utils".prequire
-
-local cmp_status_ok, cmp = prequire("cmp")
+local cmp_status_ok, cmp = pcall(require, "cmp")
 if not cmp_status_ok then
     vim.notify("cmp not found!")
     return
 end
 
-local snip_status_ok, luasnip = prequire("luasnip")
+local snip_status_ok, luasnip = pcall(require, "luasnip")
 if not snip_status_ok then
     vim.notify("luasnip not found!")
     return
