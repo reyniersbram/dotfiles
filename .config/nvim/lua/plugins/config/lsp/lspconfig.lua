@@ -34,8 +34,8 @@ local servers = {
 }
 
 local default_opts = {
-    on_attach = require("plugins-config.lsp.handlers").on_attach,
-    capabilities = require("plugins-config.lsp.handlers").capabilities,
+    on_attach = require("plugins.config.lsp.handlers").on_attach,
+    capabilities = require("plugins.config.lsp.handlers").capabilities,
     autostart = true,
     single_file_support = true,
 }
@@ -47,7 +47,7 @@ for _, server in pairs(servers) do
     local server_opts_status_ok, server_opts =
         pcall(
             require,
-            "plugins-config.lsp.settings." .. server
+            "plugins.config.lsp.settings." .. server
         )
     if server_opts_status_ok then
         opts = vim.tbl_deep_extend("force", opts, server_opts)

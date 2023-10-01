@@ -3,14 +3,14 @@ return {
     -- LSP
     {
         "williamboman/mason.nvim",
-        config = require("plugins-config.lsp.mason"),
+        config = require("plugins.config.lsp.mason"),
     },
     {
         "williamboman/mason-lspconfig.nvim",
         dependencies = {
             "williamboman/mason.nvim",
         },
-        config = require("plugins-config.lsp.mason-lspconfig"),
+        config = require("plugins.config.lsp.mason-lspconfig"),
     },
     {
         "neovim/nvim-lspconfig",
@@ -18,7 +18,7 @@ return {
             "williamboman/mason.nvim",
             "williamboman/mason-lspconfig.nvim",
         },
-        config = require("plugins-config.lsp.lspconfig"),
+        config = require("plugins.config.lsp.lspconfig"),
         -- event = { "BufReadPost", "BufNewFile" },
         -- cmd = { "LspInfo", "LspInstall", "LspUninstall" },
     },
