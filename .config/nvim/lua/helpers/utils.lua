@@ -24,4 +24,10 @@ M.ssh2http =
         return nil
     end
 
+function M.require(module_name)
+    return function()
+        require(module_name)
+    end
+end
+
 return M

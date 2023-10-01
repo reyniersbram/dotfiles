@@ -1,13 +1,26 @@
+local require = require("helpers.utils").require
 return {
     -- LSP
-    "neovim/nvim-lspconfig",
-    "williamboman/mason.nvim",
+    {
+        "williamboman/mason.nvim",
+        config = require("plugins-config.lsp.mason"),
+    },
     {
         "williamboman/mason-lspconfig.nvim",
         dependencies = {
             "williamboman/mason.nvim",
-            "neovim/nvim-lspconfig",
-        }
+        },
+        config = require("plugins-config.lsp.mason-lspconfig"),
+    },
+    {
+        "neovim/nvim-lspconfig",
+        dependencies = {
+            "williamboman/mason.nvim",
+            "williamboman/mason-lspconfig.nvim",
+        },
+        config = require("plugins-config.lsp.lspconfig"),
+        -- event = { "BufReadPost", "BufNewFile" },
+        -- cmd = { "LspInfo", "LspInstall", "LspUninstall" },
     },
     -- "jose-elias-alvarez/null-ls.nvim",
     -- "ray-x/lsp_signature.nvim"
@@ -16,12 +29,7 @@ return {
     "fladson/vim-kitty",
 
     -- Social
-    "wakatime/vim-wakatime",
-
-
-
-
-
+    -- "wakatime/vim-wakatime",
 
     -- Notifications
     "rcarriga/nvim-notify",
@@ -39,13 +47,22 @@ return {
 
 
     -- Color Highlighting
-    "norcalli/nvim-colorizer.lua",
+    {
+        "norcalli/nvim-colorizer.lua",
+        config = require("config.colorizer")
+    },
 
     -- Autopairs
-    "windwp/nvim-autopairs",
+    {
+        "windwp/nvim-autopairs",
+        config = require("config.autopairs")
+    },
 
     -- Git
-    "lewis6991/gitsigns.nvim",
+    {
+        "lewis6991/gitsigns.nvim",
+        config = require("config.gitsigns")
+    },
 
     -- Lualine
     {
@@ -54,6 +71,7 @@ return {
             "nvim-tree/nvim-web-devicons",
             "arkav/lualine-lsp-progress",
         },
+        config = require("config.statusline")
     },
 
     -- Nvim-Navic
