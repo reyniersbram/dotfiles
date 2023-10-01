@@ -1,12 +1,5 @@
-local presence_status_ok, presence = pcall(require, "presence")
-if not presence_status_ok then
-    vim.notify("presence not found!")
-    return
-end
-
 local ssh2http = require("helpers.utils").ssh2http
-
-presence.setup {
+local config = {
     -- General options
 
     -- Update activity based on autocmd events (if `false`, map or manually
@@ -70,4 +63,9 @@ presence.setup {
     reading_text        = "Reading %s",         -- Format string rendered when a read-only or unmodifiable file is loaded in the buffer (either string or function(filename: string): string)
     workspace_text      = "Working on %s",      -- Format string rendered when in a git repository (either string or function(project_name: string|nil, filename: string): string)
     line_number_text    = "Line %s out of %s",  -- Format string rendered when `enable_line_number` is set to true (either string or function(line_number: number, line_count: number): string)
+}
+
+return {
+    "andweeb/presence.nvim",
+    config = config,
 }

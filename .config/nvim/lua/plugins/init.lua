@@ -15,11 +15,7 @@ return {
     -- "lvimuser/lsp-inlayhints.nvim"
     "fladson/vim-kitty",
 
-    -- ColorColumn
-    "Bekaboo/deadcolumn.nvim",
-
     -- Social
-    "andweeb/presence.nvim",
     "wakatime/vim-wakatime",
 
 
