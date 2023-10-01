@@ -28,7 +28,6 @@ mason.setup {
     },
     ui = {
         check_outdated_packages_on_open = true,
-        -- border options: none, single, double, rounded, solid, shadow, {...}
         border = icons.ui.window.float.border,
         width = 0.7,
         height = 0.7,

@@ -1,6 +1,0 @@
-require("plugins.lsp.native")
-require("plugins.lsp.mason")
-require("plugins.lsp.mason-lspconfig")
-require("plugins.lsp.lspconfig")
--- require("config.lsp.lsp-signature")
--- require("config.lsp.null-ls")

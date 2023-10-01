@@ -25,15 +25,15 @@ npairs.setup {
     },
 }
 
-local auto_cmp_status_ok, cmp_autopairs = pcall(require, "nvim-autopairs.completion.cmp")
-if not auto_cmp_status_ok then
-    vim.notify "nvim-autopairs.completion.cmp not found!"
-    return
-end
-local cmp_status_ok, cmp = pcall(require, "cmp")
-if not cmp_status_ok then
-    vim.notify("cmp not found!")
-    return
-end
-cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done { map_char = { tex = "" } })
+-- local auto_cmp_status_ok, cmp_autopairs = pcall(require, "nvim-autopairs.completion.cmp")
+-- if not auto_cmp_status_ok then
+--     vim.notify "nvim-autopairs.completion.cmp not found!"
+--     return
+-- end
+-- local cmp_status_ok, cmp = pcall(require, "cmp")
+-- if not cmp_status_ok then
+--     vim.notify("cmp not found!")
+--     return
+-- end
+-- cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done { map_char = { tex = "" } })
 

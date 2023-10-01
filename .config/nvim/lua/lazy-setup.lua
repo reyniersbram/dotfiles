@@ -20,4 +20,4 @@ if not lazy_status_ok then
     vim.notify("Could not load lazy.nvim")
 end
 
-lazy.setup("plugins", {})
+lazy.setup("plugins", require("plugins.config.lazy"))

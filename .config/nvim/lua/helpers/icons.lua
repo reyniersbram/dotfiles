@@ -47,6 +47,7 @@ return {
     documents = {
         File = "\u{f0214}", -- 󰈔
         Files = "\u{f0222}", -- 󰈢
+        ImportFile = "\u{f0220}", -- 󰈠
         Folder = {
             Folder = "\u{f024b}", -- 󰉋
             Open = "\u{f0770}", -- 󰝰
@@ -92,7 +93,7 @@ return {
         History = " ",
         Comment = " ",
         Bug = " ",
-        Code = " ",
+        Code = "\u{f121}", -- 
         Telescope = " ",
         Gear = " ",
         Package = " ",
@@ -109,6 +110,14 @@ return {
         Table = " ",
         Calendar = " ",
         CloudDownload = " ",
+        Terminal = "\u{f489}", -- 
+        Keyboard = "\u{f030c}", -- 󰌌
+        Sleep = "\u{f04b2}", -- 󰒲
+        Start = "\u{ead3}", -- 
+        CheckBox = {
+            Box = "\u{f0131}", -- 󰄱
+            Check = "\u{f0135}",-- 󰄵
+        },
         status = {
             Loading = "\u{f0453}", -- 󰑓
             Failed = "✗ ",
@@ -136,6 +145,9 @@ return {
             LinuxTux = "\u{e712}", -- 
             Apple = "\u{e711}", -- 
             Windows = "\u{e70f}", -- 
+        },
+        technology = {
+            Vim = "\u{e7c5}", -- 
         },
         keyboard = {
             Space = "󱁐 ",
