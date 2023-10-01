@@ -1,5 +1,5 @@
 local ssh2http = require("helpers.utils").ssh2http
-local config = {
+local opts = {
     -- General options
 
     -- Update activity based on autocmd events (if `false`, map or manually
@@ -67,5 +67,5 @@ local config = {
 
 return {
     "andweeb/presence.nvim",
-    config = config,
+    opts = opts,
 }
