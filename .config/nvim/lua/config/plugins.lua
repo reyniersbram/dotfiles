@@ -2,8 +2,16 @@ local plugins = {
     "wbthomason/packer.nvim", -- packer plugin manager
 
     -- Colorschemes
-    -- "ellisonleao/gruvbox.nvim",
-    "navarasu/onedark.nvim",
+    {
+        "ellisonleao/gruvbox.nvim",
+        -- lazy = true,
+        -- priority = 100,
+    },
+    {
+        "navarasu/onedark.nvim",
+        -- lazy = true,
+        -- priority = 100,
+    },
 
     -- CMP
     "hrsh7th/nvim-cmp", -- The completion plugin
@@ -128,6 +136,20 @@ local plugins = {
     },
 }
 
+local function bootstrap()
+    local install_path = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+    if not vim.loop.fs_stat(install_path) then
+        vim.fn.system {
+            "git",
+            "clone",
+            "--filter=blob:none",
+            "https://github.com/folke/lazy.nvim.git",
+            "--branch=stable",
+            install_path,
+        }
+    end
+    vim.opt.rtp:prepend(install_path)
+end
 
 local function ensure_packer()
     local install_path = vim.fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
@@ -171,12 +193,13 @@ if not packer_status_ok then
     return
 end
 
+
+
 local icons_status_ok, icons = pcall(require, "helpers.icons")
 if not icons_status_ok then
     return
 end
 
--- Have packer use a popup window
 packer.init({
     display = {
         open_fn = function()

@@ -1,23 +1,25 @@
-vim.notify = require("notify")
-
 require "core"
-require "plugins"
+require "lazy-setup"
+
+-- vim.notify = require("notify")
+
+-- require "plugins"
 
 -- Standard Configs
 require "config.keymaps"
-require "config.plugins"
-require "config.colorscheme"
+-- require "config.plugins"
+-- require "config.colorscheme"
 
 -- Coding Configs
-require "config.treesitter"
-require "config.autopairs"
+-- require "config.treesitter"
+-- require "config.autopairs"
 
 -- Other Configs
-require "config.gitsigns"
-require "config.telescope"
-require "config.comment"
-require "config.bufferline"
+-- require "config.gitsigns"
+-- require "config.telescope"
+-- require "config.comment"
+-- require "config.bufferline"
 -- require "config.colorizer"
 
 -- WIP
-require "config.statusline"
+-- require "config.statusline"
