@@ -1,16 +1,3 @@
-local colorscheme = "onedark"
-
-local status_ok, scheme = pcall(require, colorscheme)
-if not status_ok then
-    vim.notify("Colorscheme " .. colorscheme .. " not found!")
-    return
-end
-scheme.setup{
-    style = "darker",
-}
-scheme.load()
-
-
 -- Customized colors for in-app terminal
 local terminal_colors = {
     -- normal colors
@@ -35,7 +22,7 @@ local terminal_colors = {
 
 local defined_colors = 0
 for _ in ipairs(terminal_colors) do
-    defined_colors= defined_colors + 1
+    defined_colors = defined_colors + 1
 end
 
 if defined_colors == 16 then

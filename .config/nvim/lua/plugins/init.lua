@@ -1,20 +1,4 @@
 return {
-    -- Colorschemes
-    {
-        "ellisonleao/gruvbox.nvim",
-        lazy = true,
-        priority = 100,
-    },
-    {
-        "navarasu/onedark.nvim",
-        lazy = false,
-        priority = 100,
-        config = function()
-            vim.cmd([[colorscheme onedark]])
-        end,
-
-    },
-
     -- LSP
     "neovim/nvim-lspconfig",
     "williamboman/mason.nvim",
