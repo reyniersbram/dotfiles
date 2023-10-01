@@ -141,7 +141,6 @@ end
 
 return {
     "akinsho/bufferline.nvim",
-    lazy = false,
     dependencies = {
         "moll/vim-bbye",
         "nvim-tree/nvim-web-devicons",
