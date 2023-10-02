@@ -1,6 +1,10 @@
 local require = require("helpers.utils").require
 return {
     -- Social
+    {
+        "andweeb/presence.nvim",
+        config = require("plugins.config.presence"),
+    },
     -- "wakatime/vim-wakatime",
 
     -- Notifications
@@ -34,16 +38,6 @@ return {
     {
         "lewis6991/gitsigns.nvim",
         config = require("config.gitsigns")
-    },
-
-    -- Lualine
-    {
-        "nvim-lualine/lualine.nvim",
-        dependencies  = {
-            "nvim-tree/nvim-web-devicons",
-            "arkav/lualine-lsp-progress",
-        },
-        config = require("config.statusline")
     },
 
     -- Nvim-Navic

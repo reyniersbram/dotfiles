@@ -1,5 +1,12 @@
 local ssh2http = require("helpers.utils").ssh2http
-local opts = {
+
+local status_ok, presence = pcall(require, "presence")
+if not status_ok then
+    vim.notify("presence.nvim not found")
+    return
+end
+
+presence.setup {
     -- General options
 
     -- Update activity based on autocmd events (if `false`, map or manually
@@ -65,7 +72,3 @@ local opts = {
     line_number_text    = "Line %s out of %s",  -- Format string rendered when `enable_line_number` is set to true (either string or function(line_number: number, line_count: number): string)
 }
 
-return {
-    "andweeb/presence.nvim",
-    opts = opts,
-}

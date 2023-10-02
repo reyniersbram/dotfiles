@@ -9,7 +9,7 @@ if not navic_status_ok then
     return
 end
 
-local components = require "config.statusline.lualine.components"
+local components = require "plugins.config.statusline.lualine.components"
 
 local extensions = {}
 extensions.nvim_tree = {
