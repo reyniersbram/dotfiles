@@ -146,7 +146,11 @@ local function config()
             centralize_selection = false,
             cursorline = true,
             debounce_delay = 15,
-            width = 30,
+            width = {
+                min = 30,
+                max = 30,
+                padding = 1,
+            },
             side = "left",
             preserve_window_proportions = true,
             number = true,
@@ -319,6 +323,7 @@ end
 return {
     "nvim-tree/nvim-tree.lua",
     dependencies = "nvim-tree/nvim-web-devicons",
+    dev = true,
     config = config,
 }
 
