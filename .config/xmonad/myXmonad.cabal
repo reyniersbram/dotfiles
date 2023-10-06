@@ -29,6 +29,7 @@ library
         XMobar.Bars.MainBar
         XMobar.Bars.SystemStatus
         XMobar.PrettyPrinter
+        XMobar.Monitors
         XPConfig
 
     other-modules:      XMobar.Bars.Default
@@ -79,6 +80,7 @@ executable xmobar
         XMobar.Bars.Default
         XMobar.Bars.MainBar
         XMobar.Bars.SystemStatus
+        XMobar.Monitors
 
 test-suite myXmonad-test
     type:             exitcode-stdio-1.0

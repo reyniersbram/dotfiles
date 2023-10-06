@@ -1,81 +1,33 @@
 module XMobar.Bars.MainBar where
 
-import Colors
-import XMobar.Bars.Default
+import XMobar.Bars.Default (myDefaultConfig)
+import XMobar.Monitors
+  ( battery,
+    conservationStatus,
+    date,
+    keyboardLayout,
+    sound,
+  )
 import Xmobar
+  ( Config (commands, position, template, wmClass, wmName),
+    Runnable (Run),
+    XMonadLog (XMonadLog, XPropertyLog),
+    XPosition,
+  )
 
-mainBar :: Config
-mainBar =
+mainBar :: XPosition -> Config
+mainBar position =
   myDefaultConfig
-    { position = TopH 22,
+    { position = position,
       wmClass = "xmobar",
       wmName = "xmobar-main",
       commands =
         [ Run XMonadLog,
-          Run $ Kbd [("us", "us")],
-          Run $ Date "%H:%M · %a %Y-%m-%d" "date" 300,
-          Run $
-            Alsa
-              "default"
-              "Master"
-              [ "--template",
-                "<status><volume>",
-                "--suffix",
-                "True",
-                "--",
-                "--on",
-                "",
-                "--onc",
-                Colors.fgColor,
-                "--off",
-                "\xf0581 ",
-                "--offc",
-                Colors.fgColor,
-                "--lows",
-                "\xf057f ",
-                "--mediums",
-                "\xf0580 ",
-                "--highs",
-                "\xf057e "
-              ],
-          Run $
-            Battery
-              [ "--template",
-                "<acstatus>",
-                -- Tresholds
-                "--Low",
-                "25", -- %
-                "--High",
-                "85", -- %
-                "--bwidth",
-                "15",
-                -- Treshold Colors
-                "--low",
-                red,
-                "--normal",
-                "orange",
-                "--high",
-                green,
-                "--", -- battery specific options
-                -- AC "off" status (discharging)
-                "-o",
-                "\xf007e <left>% (<timeleft>)",
-                -- AC "on" status (charging)
-                "-O",
-                "\xf0084 <left>%",
-                -- AC "idle" status (charged)
-                "-i",
-                "\xf17e2 <left>%"
-              ]
-              50,
-          Run $
-            Com
-              "/bin/bash"
-              [ "-c",
-                "conservation_mode icon"
-              ]
-              "conservation_status"
-              10,
+          Run keyboardLayout,
+          Run sound,
+          Run $ date 300,
+          Run $ battery 50,
+          Run $ conservationStatus 10,
           Run $ XPropertyLog "_XMONAD_TRAYPAD"
         ],
       template =

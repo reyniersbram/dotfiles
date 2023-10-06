@@ -1,102 +1,28 @@
 module XMobar.Bars.SystemStatus where
 
-import Colors
-import XMobar.Bars.Default
+import XMobar.Bars.Default (myDefaultConfig)
+import XMobar.Monitors (cpuFrequency, cpuTemperature, cpuUsage, diskIO, diskUsage, memory, networkIO, swap)
 import Xmobar
+  ( Config (commands, position, template, wmClass, wmName),
+    Runnable (Run),
+    XPosition,
+  )
 
-systemStatus :: Config
-systemStatus =
+systemStatus :: XPosition -> Config
+systemStatus position =
   myDefaultConfig
-    { position = BottomH 22,
+    { position = position,
       wmClass = "xmobar",
       wmName = "xmobar-systemstatus",
       commands =
-        [ Run $
-            Memory
-              [ "--template",
-                "\xf035b <used>/<total>G",
-                "--ddigits",
-                "2",
-                "--width",
-                "5",
-                "--Low",
-                "4",
-                "--High",
-                "8",
-                "--low",
-                green,
-                "--normal",
-                "orange",
-                "--high",
-                red,
-                "--",
-                "--scale",
-                "1024"
-              ]
-              10,
-          Run $
-            Swap
-              [ "--template",
-                "\xf0fb4 <usedratio>%",
-                "--width",
-                "2"
-              ]
-              10,
-          Run $
-            MultiCpu
-              [ "--template",
-                "\xf061a <total>%",
-                "--minwidth",
-                "2",
-                "--Low",
-                "20",
-                "--High",
-                "60",
-                "--low",
-                green,
-                "--normal",
-                "orange",
-                "--high",
-                red
-              ]
-              10,
-          Run $
-            CpuFreq
-              [ "--template",
-                "\xf04c5 <avg>Ghz"
-              ]
-              10,
-          Run $
-            MultiCoreTemp
-              [ "--template",
-                "\xf050f <avg>\x2103"
-              ]
-              10,
-          Run $
-            DiskIO
-              [ ("/", "<fc=#4e9a06>\xf19b2<read>B/s</fc> <fc=#cc0101>\xf19b3<write>B/s</fc>")
-              -- TODO: Reports double in comparison with htop?
-              ]
-              [ "--width",
-                "4"
-              ]
-              10,
-          Run $
-            DiskU
-              [ ("/", "\xf02ca <used>/<size>")
-              ]
-              []
-              30000,
-          Run $
-            DynNetwork
-              [ "--template",
-                "<fc=#4e9a06>\xf16b6 <rx></fc> <fc=#cc0101>\xf16ba <tx></fc>",
-                "--suffix",
-                "True",
-                "--width",
-                "7"
-              ]
-              10
+        [ Run $ memory 10,
+          Run $ swap 10,
+          Run $ cpuUsage 10,
+          Run $ cpuFrequency 10,
+          Run $ cpuTemperature 10,
+          Run $ diskIO 10,
+          Run $ diskUsage 30000,
+          Run $ networkIO 10
         ],
       template =
         "\
