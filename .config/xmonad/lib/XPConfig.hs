@@ -6,8 +6,7 @@ where
 import Colors qualified (color8, fgColor, fgHLight, white)
 import Control.Arrow (first)
 import Data.Map as Map (Map, fromList, union)
-import Defaults qualified (font)
-import Utils.Font (xft, xftsize)
+import Defaults qualified (defaultFont)
 import Graphics.X11.Types
   ( KeyMask,
     KeySym,
@@ -19,6 +18,7 @@ import Graphics.X11.Types
     xK_n,
     xK_p,
   )
+import Utils.Font (xft, xftsize)
 import XMonad.Prompt
   ( ComplCaseSensitivity (..),
     Direction1D (Next, Prev),
@@ -37,7 +37,7 @@ import XMonad.StackSet (focusDown', focusUp')
 myXPConfig :: XPConfig
 myXPConfig =
   def
-    { font = xftsize 14 . xft $ Defaults.font,
+    { font = xftsize 14 . xft $ Defaults.defaultFont,
       bgColor = Colors.color8,
       fgColor = Colors.fgColor,
       fgHLight = Colors.fgHLight,

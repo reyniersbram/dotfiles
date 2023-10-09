@@ -5,7 +5,7 @@ import Xmobar
   ( Command (Com),
     Date (Date),
     Kbd (Kbd),
-    Monitors (Alsa, Battery, CpuFreq, DiskIO, DiskU, Memory, MultiCoreTemp, MultiCpu, Swap, DynNetwork),
+    Monitors (Alsa, Battery, CpuFreq, DiskIO, DiskU, DynNetwork, Memory, MultiCoreTemp, MultiCpu, Swap),
   )
 
 sound :: Monitors

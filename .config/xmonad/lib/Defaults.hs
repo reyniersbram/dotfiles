@@ -1,12 +1,13 @@
 module Defaults
-  ( font,
+  ( defaultFont ,
     defaultTerminal,
     defaultBrowser,
   )
 where
 
-font :: String
-font = "Hack Nerd Font"
+-- Default font
+defaultFont :: String
+defaultFont  = "Hack Nerd Font"
 
 -- Default terminal
 defaultTerminal :: String

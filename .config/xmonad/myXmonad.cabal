@@ -14,7 +14,7 @@ library
         , xmonad
         , xmonad-contrib
 
-    default-language:   GHC2021 
+    default-language:   GHC2021
     default-extensions: ImportQualifiedPost
     exposed-modules:
         Colors
@@ -47,7 +47,7 @@ executable xmonad
         , xmonad
         , xmonad-contrib
 
-    default-language:   GHC2021 
+    default-language:   GHC2021
     default-extensions: ImportQualifiedPost
     other-modules:
         Colors
@@ -70,7 +70,7 @@ executable xmobar
         -O2 -Wall -Wcompat -Wincomplete-record-updates
         -Wredundant-constraints -rtsopts -threaded -with-rtsopts=-N
 
-    default-language:   GHC2021 
+    default-language:   GHC2021
     default-extensions: ImportQualifiedPost
     build-depends:
         , base
@@ -83,6 +83,7 @@ executable xmobar
         XMobar.Bars.MainBar
         XMobar.Bars.SystemStatus
         XMobar.Monitors
+        Utils.Font
 
 test-suite myXmonad-test
     type:             exitcode-stdio-1.0
