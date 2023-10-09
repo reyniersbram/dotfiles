@@ -25,7 +25,8 @@ library
         Hooks.Manage
         Hooks.Startup
         KeyBinds
-        Utils
+        Utils.Utils
+        Utils.Font
         XMobar.Bars.MainBar
         XMobar.Bars.SystemStatus
         XMobar.PrettyPrinter
@@ -57,7 +58,8 @@ executable xmonad
         Hooks.Manage
         Hooks.Startup
         KeyBinds
-        Utils
+        Utils.Utils
+        Utils.Font
         XMobar.PrettyPrinter
         XPConfig
 

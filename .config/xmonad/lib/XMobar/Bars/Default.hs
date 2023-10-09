@@ -4,7 +4,7 @@ module XMobar.Bars.Default
 where
 
 import Colors qualified (alpha, bgColor, black, fgColor)
-import Defaults qualified (xftfont')
+import Defaults qualified (font)
 import GHC.Float (float2Int)
 import Xmobar
   ( Border (NoBorder),
@@ -12,12 +12,13 @@ import Xmobar
     TextOutputFormat (Plain),
     defaultConfig,
   )
+import Utils.Font (size, bold)
 
 myDefaultConfig :: Config
 myDefaultConfig =
   defaultConfig
-    { font = Defaults.xftfont' 13,
-      additionalFonts = ["Noto Color Emoji"],
+    { font = size 13 Defaults.font,
+      additionalFonts = [size 13 . bold $ Defaults.font, "Noto Color Emoji"],
       dpi = 96,
       bgColor = Colors.bgColor,
       fgColor = Colors.fgColor,

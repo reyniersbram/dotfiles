@@ -4,7 +4,7 @@ module UtilsTest (
 
 import Test.Hspec
 
-import Utils (join)
+import Utils.Utils (join)
 
 joinTest :: IO ()
 joinTest = hspec $ do

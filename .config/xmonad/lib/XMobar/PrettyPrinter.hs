@@ -15,6 +15,7 @@ import XMonad.Hooks.DynamicLog
     xmobarStrip,
   )
 import XMonad.Util.Loggers (logTitles)
+import XMonad.Hooks.StatusBar.PP (xmobarFont)
 
 type ColorWrapper = String -> String
 
@@ -23,7 +24,7 @@ xmobarPP =
   def
     { ppCurrent = highlight . wrapWorkspaceName . xmobarBorder "Bottom" Colors.blue 3,
       ppVisible = wrapWorkspaceName . xmobarBorder "Bottom" Colors.blue 3,
-      ppHidden = white . wrapWorkspaceName,
+      ppHidden = wrapWorkspaceName . xmobarFont 1 . white,
       ppHiddenNoWindows = lowWhite . wrapWorkspaceName,
       -- ppVisibleNoWindows = def,
       ppUrgent = red . wrap (yellow "!") (yellow "!"),

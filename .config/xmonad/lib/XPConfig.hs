@@ -6,7 +6,8 @@ where
 import Colors qualified (color8, fgColor, fgHLight, white)
 import Control.Arrow (first)
 import Data.Map as Map (Map, fromList, union)
-import Defaults qualified (xftfont')
+import Defaults qualified (font)
+import Utils.Font (xft, xftsize)
 import Graphics.X11.Types
   ( KeyMask,
     KeySym,
@@ -36,7 +37,7 @@ import XMonad.StackSet (focusDown', focusUp')
 myXPConfig :: XPConfig
 myXPConfig =
   def
-    { font = Defaults.xftfont' 14,
+    { font = xftsize 14 . xft $ Defaults.font,
       bgColor = Colors.color8,
       fgColor = Colors.fgColor,
       fgHLight = Colors.fgHLight,
