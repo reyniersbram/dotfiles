@@ -11,6 +11,9 @@ alias ls='ls --color=auto -hF'
 alias ll='ls -l'
 alias la='ll -A'
 
+# Show hidden files with tree command
+alias tree='tree -a'
+
 # cd
 alias cdd='cd ..'
 alias dirs='dirs -v'
