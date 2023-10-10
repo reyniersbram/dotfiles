@@ -7,7 +7,7 @@ This is my dotfiles repo.
 | **Distro** | Arch Linux |
 | **Window Manager** | XMonad + XMobar |
 | **Shell** | Bash |
-| **Terminal Emulator** | Kitty (coming from Alacritty) |
+| **Terminal Emulator** | Kitty |
 | **Text Editor** | NeoVim |
 | **File Manager** | *currently none* |
 
