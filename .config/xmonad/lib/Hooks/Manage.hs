@@ -13,5 +13,6 @@ manageHook workspaces =
   XMonad.Core.manageHook def
     <> (isDialog --> doFloat)
     <> (appName =? "Places" --> doFloat) -- Firefox Pop-ups
+    <> (appName =? "xcalc" --> doFloat) -- Firefox Pop-ups
     <> (appName =? "discord" --> doShift (workspaces !! 7))
     <> (appName =? "spotify" --> doShift (workspaces !! 8))
