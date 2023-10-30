@@ -18,3 +18,4 @@ network-manager-applet
 xscreensaver
 scrot
 bash-completion
+dunst
