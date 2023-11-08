@@ -16,16 +16,16 @@ local servers = {
     "html",     -- HTML
     "jsonls",   -- JSON
     "lua_ls",   -- Lua
-    "tsserver", -- TypeScript/JavaScript
+    -- "tsserver", -- TypeScript/JavaScript, volar is used instead
     --
     -- "jdtls", -- also use nvim-jdtls
     -- "r_language_server",
-    -- "pyright", -- or jedi_language-server
+    "pyright", -- or jedi_language-server
     -- "arduino_language_server",
     -- "asm_lsp",
     -- "kotlin_language_server",
     -- "sqlls",
-    -- voloar or vuels
+    "volar", --  or vuels
     -- yamlls
     --
     -- https://github.com/stardog-union/stardog-language-servers/tree/master/packages/sparql-language-server
@@ -54,3 +54,6 @@ for _, server in pairs(servers) do
     end
     lspconfig[server].setup(opts)
 end
+
+require("lspconfig.ui.windows").default_options.border = require("helpers.icons").ui.window.float.border
+vim.api.nvim_set_hl(0, "LspInfoBorder", { link = "FloatBorder" })
