@@ -23,6 +23,9 @@ export XDG_STATE_HOME="${HOME}/.local/state"
 export XDG_DATA_DIRS="/usr/local/share:/usr/share"
 export XDG_CONFIG_DIRS="/etc/xdg"
 
+export PYTHON_VENV_DIR="${XDG_DATA_HOME}/python/virtual_environments"
+source "${HOME}/.local/bin/pyvenv"
+
 ### If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
