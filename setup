@@ -66,3 +66,7 @@ if [ -s "$packages" ]; then
     # shellcheck disable=SC2024
     sudo paru -S --needed - < "$packages"
 fi
+
+# Finishing up
+echo "Setting up crontab"
+crontab "${current_directory}/etc/crontab.txt"

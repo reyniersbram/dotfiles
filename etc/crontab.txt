@@ -1,0 +1,1 @@
+*/20 * * * * $HOME/.local/bin/break-reminder.sh
