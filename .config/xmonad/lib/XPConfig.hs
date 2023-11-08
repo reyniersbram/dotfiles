@@ -1,5 +1,6 @@
 module XPConfig
   ( myXPConfig,
+    myUnicodePrompt,
   )
 where
 
@@ -19,6 +20,7 @@ import Graphics.X11.Types
     xK_p,
   )
 import Utils.Font (xft, xftsize)
+import XMonad.Core (X)
 import XMonad.Prompt
   ( ComplCaseSensitivity (..),
     Direction1D (Next, Prev),
@@ -32,6 +34,7 @@ import XMonad.Prompt
     moveHistory,
   )
 import XMonad.Prompt.FuzzyMatch (fuzzyMatch, fuzzySort)
+import XMonad.Prompt.Unicode (mkUnicodePrompt)
 import XMonad.StackSet (focusDown', focusUp')
 
 myXPConfig :: XPConfig
@@ -75,3 +78,6 @@ keyMap =
         ]
     )
     `Map.union` defaultXPKeymap
+
+myUnicodePrompt :: XPConfig -> X ()
+myUnicodePrompt = mkUnicodePrompt "xsel" ["-i", "-b"] "/home/reyniersbram/.local/share/xmonad/unicode_chars.txt"

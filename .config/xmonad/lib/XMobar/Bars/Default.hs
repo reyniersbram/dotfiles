@@ -3,7 +3,7 @@ module XMobar.Bars.Default
   )
 where
 
-import Colors qualified 
+import Colors qualified
 import Defaults (defaultFont)
 import GHC.Float (float2Int)
 import Utils.Font (bold, size)
