@@ -21,17 +21,16 @@ local terminal_colors = {
 }
 
 local defined_colors = 0
-for _ in ipairs(terminal_colors) do
+for _ in pairs(terminal_colors) do
     defined_colors = defined_colors + 1
 end
 
 if defined_colors == 16 then
-    for i, v in ipairs(terminal_colors) do
-        vim.g["terminal_color_" .. (i - 1)] = v
+    for index, value in ipairs(terminal_colors) do
+        vim.g["terminal_color_" .. (index - 1)] = value
     end
 end
 
 -- Make floating windows appear transparent
 vim.api.nvim_set_hl(0, "NormalFloat", { link = "Normal" })
 vim.api.nvim_set_hl(0, "FloatBorder", { link = "Normal" })
-

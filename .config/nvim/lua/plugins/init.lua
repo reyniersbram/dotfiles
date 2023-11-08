@@ -5,10 +5,13 @@ return {
         "andweeb/presence.nvim",
         config = require("plugins.config.presence"),
     },
-    -- "wakatime/vim-wakatime",
+    "wakatime/vim-wakatime",
 
     -- Notifications
-    "rcarriga/nvim-notify",
+    {
+        "rcarriga/nvim-notify",
+        priority = 1000,
+    },
 
     -- Misc
     "nvim-lua/popup.nvim", -- An implementation of the Popup API from vim in Neovim

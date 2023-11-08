@@ -1,25 +1,16 @@
-require "core"
-require "lazy-setup"
+-- Remap space as leader key
+-- Should happen before lazy.setup
+vim.api.nvim_set_keymap(
+    "", "<Space>", "<Nop>",
+    { noremap = true, silent = true }
+)
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
+require "lazy-setup"
 vim.notify = require("notify")
 
--- require "plugins"
+require "core"
+require "core.colorscheme"
 
--- Standard Configs
 require "config.keymaps"
--- require "config.plugins"
--- require "config.colorscheme"
-
--- Coding Configs
--- require "config.treesitter"
--- require "config.autopairs"
-
--- Other Configs
--- require "config.gitsigns"
--- require "config.telescope"
--- require "config.comment"
--- require "config.bufferline"
--- require "config.colorizer"
-
--- WIP
--- require "config.statusline"
