@@ -7,9 +7,9 @@
 ### Simple aliases
 
 # ls
-alias ls='ls --color=auto -hF'
-alias ll='ls -l'
-alias la='ll -A'
+alias ls='ls --color=auto -h'
+alias ll='ls -lF'
+alias la='ll -AF'
 
 # Show hidden files with tree command
 alias tree='tree -a'
