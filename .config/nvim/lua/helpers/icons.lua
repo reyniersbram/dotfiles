@@ -141,6 +141,7 @@ return {
         Squirrel = " ",
         Tag = " ",
         Watch = " ",
+        Ellipsis = "\u{2026}", -- …
         OS = {
             LinuxTux = "\u{e712}", -- 
             Apple = "\u{e711}", -- 
