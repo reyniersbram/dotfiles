@@ -26,4 +26,11 @@ return {
     -- "RRethy/vim-illuminate"
     -- "lvimuser/lsp-inlayhints.nvim"
     "fladson/vim-kitty",
+    {
+        "hinell/lsp-timeout.nvim",
+        dependencies = {
+            "neovim/nvim-lspconfig",
+        },
+        config = require("plugins.config.lsp.timeout"),
+    },
 }
