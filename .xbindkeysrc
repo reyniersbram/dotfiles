@@ -7,7 +7,11 @@
     XF86AudioMute
 
 # manage monitor brightness
-"xbacklight -inc 10"
+"xbacklight -inc 5"
     XF86MonBrightnessUp
-"xbacklight -dec 10"
+"xbacklight -dec 5"
     XF86MonBrightnessDown
+
+# set keyboard layout
+"select_keyboard.sh"
+    Mod4 + Shift + l
