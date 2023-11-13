@@ -96,7 +96,7 @@ memory :: Int -> Monitors
 memory =
   Memory
     [ "--template",
-      "\xf035b <used>/<total>G",
+      "\xf035b <used>G",
       "--ddigits",
       "2",
       "--width",
