@@ -5,7 +5,7 @@ import Xmobar
   ( Command (Com),
     Date (Date),
     Kbd (Kbd),
-    Monitors (Alsa, Battery, CpuFreq, DiskIO, DiskU, DynNetwork, Memory, MultiCoreTemp, MultiCpu, Swap),
+    Monitors (Alsa, Battery, Brightness, CpuFreq, DiskIO, DiskU, DynNetwork, Memory, MultiCoreTemp, MultiCpu, Swap),
   )
 
 sound :: Monitors
@@ -32,6 +32,18 @@ sound =
       "\xf0580 ",
       "--highs",
       "\xf057e "
+    ]
+
+brightness :: Int -> Monitors
+brightness =
+  Brightness
+    [ "--template",
+      "<percent>",
+      "--suffix",
+      "True",
+      "--",
+      "-D",
+      "intel_backlight"
     ]
 
 battery :: Int -> Monitors
@@ -149,7 +161,7 @@ cpuTemperature =
 diskIO :: Int -> Monitors
 diskIO =
   DiskIO
-    [ ("/", "<fc=#4e9a06>\xf19b2<read>B/s</fc> <fc=#cc0101>\xf19b3<write>B/s</fc>")
+    [ ("/", "\xf443 <total>B/s")
     -- TODO: Reports double in comparison with htop?
     ]
     [ "--width",

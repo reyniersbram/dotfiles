@@ -1,7 +1,17 @@
 module XMobar.Bars.SystemStatus where
 
 import XMobar.Bars.Default (myDefaultConfig)
-import XMobar.Monitors (cpuFrequency, cpuTemperature, cpuUsage, diskIO, diskUsage, memory, networkIO, swap)
+import XMobar.Monitors
+    ( cpuFrequency,
+      cpuTemperature,
+      cpuUsage,
+      diskIO,
+      diskUsage,
+      memory,
+      networkIO,
+      swap,
+      keyboardLayout,
+      date )
 import Xmobar
   ( Config (commands, position, template, wmClass, wmName),
     Runnable (Run),
@@ -22,10 +32,15 @@ systemStatus position =
           Run $ cpuTemperature 10,
           Run $ diskIO 10,
           Run $ diskUsage 30000,
-          Run $ networkIO 10
+          Run $ networkIO 10,
+          Run $ date 300,
+          Run keyboardLayout
         ],
       template =
         "\
+        \ \xf00f0 %date%\
+        \ | \
+        \\xf030c %kbd%\
         \ }{ \
         \<action=`kitty -e htop`>\
         \%multicpu%\

@@ -4,12 +4,10 @@ import XMobar.Bars.Default (myDefaultConfig)
 import XMobar.Monitors
   ( battery,
     conservationStatus,
-    date,
-    keyboardLayout,
-    sound,
+    sound, brightness,
   )
 import Xmobar
-  ( Config (commands, position, template, wmClass, wmName),
+  ( Config (commands, position, template, wmClass, wmName, sepChar),
     Runnable (Run),
     XMonadLog (XMonadLog, XPropertyLog),
     XPosition,
@@ -23,27 +21,24 @@ mainBar position =
       wmName = "xmobar-main",
       commands =
         [ Run XMonadLog,
-          Run keyboardLayout,
           Run sound,
-          Run $ date 300,
+          Run $ brightness 1,
           Run $ battery 50,
           Run $ conservationStatus 10,
           Run $ XPropertyLog "_XMONAD_TRAYPAD"
         ],
+      sepChar = "*",
       template =
         "\
-        \ \xf31a  %XMonadLog%\
-        \ }\
-        \{ \
-        \%date%\
-        \ | \
-        \\xf030c %kbd%\
-        \ | \
-        \<action=`amixer sset Master toggle`>%alsa:default:Master%</action>\
-        \ | \
-        \%battery%\
+        \ \xf31a  *XMonadLog*\
+        \ }{ \
+        \\xf00e0 *bright*\
         \ · \
-        \<action=`conservation_mode toggle`>%conservation_status%</action>\
-        \%_XMONAD_TRAYPAD%\
+        \<action=`amixer sset Master toggle`>*alsa:default:Master*</action>\
+        \ | \
+        \*battery*\
+        \ · \
+        \<action=`conservation_mode toggle`>*conservation_status*</action>\
+        \*_XMONAD_TRAYPAD*\
         \"
     }
