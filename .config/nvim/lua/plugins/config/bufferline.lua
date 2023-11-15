@@ -110,18 +110,7 @@ bufferline.setup {
         show_tab_indicators = true,
         show_duplicate_prefix = false,
         persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
-        --- * `slant` - Use slanted/triangular separators
-        --- * `padded_slant` - Same as `slant` but with extra padding which some terminals require.
-        ---    If `slant` does not render correctly for you try padded this instead.
-        --- * `slope` - Use slanted/triangular separators but slopped to the right
-        --- * `padded_slope` - Same as `slope` but with extra padding which some terminals require.
-        ---    If `slope` does not render correctly for you try padded this instead.
-        --- * `thick` - Increase the thickness of the separator characters
-        --- * `thin` - (default) Use thin separator characters
-        --- * finally you can pass in a custom list containing 2 characters which will be
-        ---   used as the separators e.g. `{"|", "|"}`, the first is the left and the
-        ---   second is the right separator
-        separator_style = "padded_slant",
+        separator_style = "slant",
         enforce_regular_tabs = true,
         always_show_bufferline = true,
         hover = {
