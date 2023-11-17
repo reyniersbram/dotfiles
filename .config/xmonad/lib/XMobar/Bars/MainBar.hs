@@ -27,18 +27,18 @@ mainBar position =
           Run $ conservationStatus 10,
           Run $ XPropertyLog "_XMONAD_TRAYPAD"
         ],
-      sepChar = "*",
+      sepChar = "%",
       template =
         "\
-        \ \xf31a  *XMonadLog*\
+        \ \xf31a  %XMonadLog%\
         \ }{ \
-        \\xf00e0 *bright*\
+        \\xf00e0 %bright%\
         \ · \
-        \<action=`amixer sset Master toggle`>*alsa:default:Master*</action>\
+        \<action=`amixer sset Master toggle`>%alsa:default:Master%</action>\
         \ | \
-        \*battery*\
+        \%battery%\
         \ · \
-        \<action=`conservation_mode toggle`>*conservation_status*</action>\
-        \*_XMONAD_TRAYPAD*\
+        \<action=`conservation_mode toggle`>%conservation_status%</action>\
+        \%_XMONAD_TRAYPAD%\
         \"
     }
