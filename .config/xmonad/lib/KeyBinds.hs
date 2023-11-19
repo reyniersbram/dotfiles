@@ -47,7 +47,8 @@ keyBinds conf =
       ((modKey .|. shiftMask, xK_Return), return ()),
       ((modKey, xK_Return), spawn defaultTerminal),
       ((modKey .|. shiftMask, xK_p), passPrompt myXPConfig),
-      ((modKey .|. shiftMask, xK_u), myUnicodePrompt myXPConfig)
+      ((modKey .|. shiftMask, xK_u), myUnicodePrompt myXPConfig),
+      ((modKey, xK_p), spawn "rofi -show drun")
     ]
     `Map.union` keys def conf
 

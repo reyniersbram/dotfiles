@@ -8,6 +8,7 @@
 
 ### ENV VARS
 export TERM='xterm-256color'
+export TERMINAL="kitty"
 export HISTCONTROL="ignoredups:erasedups"
 export EDITOR=nvim
 export VISUAL=nvim
