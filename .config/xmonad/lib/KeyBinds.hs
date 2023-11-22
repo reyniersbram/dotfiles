@@ -22,7 +22,6 @@ import Graphics.X11.Types
     xK_b,
     xK_p,
     xK_s,
-    xK_u,
     xK_z,
   )
 import XMonad (Layout, XConfig (keys, mouseBindings))
@@ -31,7 +30,7 @@ import XMonad.Hooks.ManageDocks (ToggleStruts (ToggleStruts))
 import XMonad.Operations (sendMessage)
 import XMonad.Prompt.Pass (passPrompt)
 import XMonad.Util.Ungrab (unGrab)
-import XPConfig (myXPConfig, myUnicodePrompt)
+import XPConfig (myXPConfig)
 
 -- mod4Mask: Super-key
 modKey :: KeyMask
@@ -47,7 +46,6 @@ keyBinds conf =
       ((modKey .|. shiftMask, xK_Return), return ()),
       ((modKey, xK_Return), spawn defaultTerminal),
       ((modKey .|. shiftMask, xK_p), passPrompt myXPConfig),
-      ((modKey .|. shiftMask, xK_u), myUnicodePrompt myXPConfig),
       ((modKey, xK_p), spawn "rofi -show drun")
     ]
     `Map.union` keys def conf
