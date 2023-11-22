@@ -123,5 +123,11 @@ bufferline.setup {
         --     return buffer_a.modified > buffer_b.modified
         -- end,
     },
-    highlights = {},
+    highlights = function ()
+        local catppuccin_loaded, catppuccin_bufferline = pcall(require, "catppuccin.groups.integration.bufferline")
+        if not catppuccin_loaded then
+            return {}
+        end
+        return catppuccin_bufferline.get()
+    end,
 }

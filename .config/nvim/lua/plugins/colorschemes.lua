@@ -8,8 +8,15 @@ return {
     },
     {
         "navarasu/onedark.nvim",
-        lazy = false,
+        lazy = true,
         priority = 100,
         config = require("plugins.config.colorschemes.onedark"),
+    },
+    {
+        "catppuccin/nvim",
+        name = "catppuccin",
+        lazy = false,
+        priority = 100,
+        config = require("plugins.config.colorschemes.catppuccin"),
     },
 }
