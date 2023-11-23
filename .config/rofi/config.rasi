@@ -52,7 +52,7 @@ configuration {
   }
   
   // Window switcher
-  window-format: "{w}    {c}    {t}"; // TODO
+  window-format: "{c}    {t}";
   window-command: "wmctrl -i -R {window}";
   window-thumbnail: true;
   window {
