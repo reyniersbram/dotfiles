@@ -1,59 +1,127 @@
--- :help options
-
 local options = {
-    backup = false, -- creates a backup file
-    clipboard = "unnamedplus", -- allows neovim to access the system clipboard
-    cmdheight = 2, -- more space in the neovim command line for displaying messages
-    completeopt = { "menuone", "noselect" }, -- mostly just for cmp
-    conceallevel = 0, -- so that `` is visible in markdown files
-    fileencoding = "utf-8", -- the encoding written to a file
-    hlsearch = false, -- highlight all matches on previous search pattern
-    ignorecase = true, -- ignore case in search patterns
-    mouse = "a", -- allow the mouse to be used in neovim
-    pumheight = 10, -- pop up menu height
-    showmode = false, -- see things like -- INSERT --
-    showtabline = 2, -- always show tabs
-    smartcase = true, -- smart case
-    smartindent = true, -- make indenting smarter again
-    splitbelow = true, -- force all horizontal splits to go below current window
-    splitright = true, -- force all vertical splits to go to the right of current window
-    swapfile = false, -- creates a swapfile
-    termguicolors = true, -- set term gui colors (most terminals support this)
-    timeoutlen = 500, -- time to wait for a mapped sequence to complete (in milliseconds)
-    undofile = true, -- enable persistent undo
-    updatetime = 300, -- faster completion (4000ms default)
-    writebackup = false, -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
-    expandtab = true, -- convert tabs to spaces
-    shiftwidth = 4, -- the number of spaces inserted for each indentatio
-    tabstop = 4, -- insert 4 spaces for a tab
-    cursorline = false, -- don't highlight the current line
-    number = true, -- set numbered lines
-    relativenumber = true, -- set relative numbered lines
-    numberwidth = 4, -- set number column width to 2 {default 4}
-    signcolumn = "yes", -- always show the sign column, otherwise it would shift the text each time
-    wrap = false, -- display lines as one long line
+    autochdir = false,
+    autoindent = true,
+    autoread = true,
+    autowrite = false,
+    autowriteall = false,
+    backspace = {
+        "indent",
+        "eol",
+        "start",
+    },
+    backup = false,
+    belloff = { "all" },
+    clipboard = "unnamedplus",
+    cmdheight = 2,
+    colorcolumn = "+1",
+    completeopt = {
+        "menuone",
+        "noselect",
+    },
+    conceallevel = 0,
+    confirm = true,
+    cursorcolumn = false,
+    cursorline = true,
+    cursorlineopt = { "line" },
+    expandtab = true,
+    exrc = false, -- TODO
+    fileencoding = "utf-8",
+    fileformat = "unix",
+    fixendofline = true,
+    foldenable = false,
+    helplang = "en",
+    hlsearch = false,
+    ignorecase = true,
+    inccommand = "nosplit",
+    incsearch = true, -- use CTRL-G and CTRL-T to cycle matches
+                      -- use CTRL-L to add character of current match
+                      -- use CTRL-R,CTRL-W to complete current match
+    infercase = true,
+    mouse = "a",
+    mousefocus = false,
+    nrformats = {
+        "alpha",
+        -- "octal",
+        "hex",
+        "bin",
+    },
+    number = true,
+    numberwidth = 4,
+    pumheight = 10,
+    relativenumber = true,
+    report = 0,
     scrolloff = 8,
+    -- TODO sessionoptions = ...
+    shiftround = true,
+    shiftwidth = 4,
+    showmode = false,
+    showtabline = 2,
     sidescrolloff = 8,
-    guifont = "hack:h17", -- the font used in graphical neovim applications
-    spelllang = {"en_us"},
-    spell = false, -- enable/disable spellcheck by default
-    formatoptions = "jcroql",
+    signcolumn = "yes",
+    smartcase = true,
+    smartindent = true,
+    smarttab = true,
+    spell = false,
+    spelllang = { "en_us", "nl" },
+    splitbelow = true,
+    splitright = true,
+    swapfile = false,
+    tabstop = 4,
+    termguicolors = true,
     textwidth = 80,
+    timeoutlen = 500,
+    title = true,
+    titlestring = "\u{f36f} NeoVim: %t",
+    undofile = true,
+    wrap = false,
+
+    writebackup = false,
 }
 
-for k, v in pairs(options) do
-    vim.opt[k] = v
+for option, value in pairs(options) do
+    vim.opt[option] = value
 end
 
-vim.opt.shortmess:append("c")
+vim.opt.formatoptions:remove("t")
+vim.opt.formatoptions:append("c")
+vim.opt.formatoptions:append("r")
+vim.opt.formatoptions:append("o")
+vim.opt.formatoptions:append("/")
+vim.opt.formatoptions:append("q")
+vim.opt.formatoptions:append("w")
+vim.opt.formatoptions:append("a")
+vim.opt.formatoptions:remove("2")
+vim.opt.formatoptions:append("n")
+vim.opt.formatoptions:append("l")
+vim.opt.formatoptions:append("1")
+vim.opt.formatoptions:append("j")
+vim.opt.formatoptions:remove("p")
 
+vim.opt.shortmess:append("f")
+vim.opt.shortmess:append("i")
+vim.opt.shortmess:append("l")
+vim.opt.shortmess:remove("m")
+vim.opt.shortmess:append("n")
+vim.opt.shortmess:remove("r")
+vim.opt.shortmess:remove("w")
+vim.opt.shortmess:append("x")
+vim.opt.shortmess:remove("a")
+vim.opt.shortmess:append("o")
+vim.opt.shortmess:append("O")
+vim.opt.shortmess:remove("s")
+vim.opt.shortmess:append("t")
+vim.opt.shortmess:append("T")
+vim.opt.shortmess:remove("W")
+vim.opt.shortmess:remove("A")
+vim.opt.shortmess:remove("I")
+vim.opt.shortmess:append("c")
+vim.opt.shortmess:remove("C")
+vim.opt.shortmess:remove("q")
+vim.opt.shortmess:append("F")
+vim.opt.shortmess:remove("S")
+
+-- TODO should not be here
 -- Disable netrw for nvim-tree
 -- see nvim-tree.disable_netrw
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
-
--- vim.cmd("set whichwrap+=<,>,[,],h,l")
--- vim.cmd([[set iskeyword+=-]])
--- vim.cmd([[set formatoptions-=cro]]) -- TODO: this doesn't seem to work
--- vim.cmd([[imap <silent><script><expr> <C-S> copilot#Accept("\<CR>")]])
--- vim.cmd([[let g:copilot_no_tab_map = v:true]])
