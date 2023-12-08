@@ -73,14 +73,18 @@ local options = {
     title = true,
     titlestring = "\u{f36f} NeoVim: %t",
     undofile = true,
+    updatetime = 300,
+    virtualedit = { "block" },
     wrap = false,
-
+    wrapscan = true,
     writebackup = false,
 }
 
 for option, value in pairs(options) do
     vim.opt[option] = value
 end
+
+vim.opt.fillchars:append({ eob = " " })
 
 vim.opt.formatoptions:remove("t")
 vim.opt.formatoptions:append("c")
