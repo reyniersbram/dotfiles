@@ -1,3 +1,5 @@
+require "core"
+
 -- Remap space as leader key
 -- Should happen before lazy.setup
 vim.api.nvim_set_keymap(
@@ -9,7 +11,5 @@ vim.g.maplocalleader = " "
 
 require "lazy-setup"
 vim.notify = require("notify")
-
-require "core"
 
 require "config.keymaps"
