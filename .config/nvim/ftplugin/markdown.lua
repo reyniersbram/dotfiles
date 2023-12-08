@@ -1,2 +1,2 @@
-vim.opt.formatoptions = "jtcroql"
+vim.opt.formatoptions:append("t")
 -- vim.opt.spell = true

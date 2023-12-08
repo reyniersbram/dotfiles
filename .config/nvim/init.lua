@@ -11,6 +11,5 @@ require "lazy-setup"
 vim.notify = require("notify")
 
 require "core"
-require "core.colorscheme"
 
 require "config.keymaps"
