@@ -119,9 +119,3 @@ vim.opt.shortmess:remove("C")
 vim.opt.shortmess:remove("q")
 vim.opt.shortmess:append("F")
 vim.opt.shortmess:remove("S")
-
--- TODO should not be here
--- Disable netrw for nvim-tree
--- see nvim-tree.disable_netrw
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
