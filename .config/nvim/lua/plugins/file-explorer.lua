@@ -1,4 +1,4 @@
-local require = require("helpers.utils").require
+local require = require("helpers.utils").cb_require
 
 return {
     "nvim-tree/nvim-tree.lua",

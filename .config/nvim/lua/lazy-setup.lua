@@ -10,7 +10,7 @@ local function bootstrap()
             install_path,
         }
     end
-    vim.opt.rtp:append(install_path)
+    vim.opt.rtp:prepend(install_path)
 end
 
 bootstrap()

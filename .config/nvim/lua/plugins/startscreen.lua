@@ -1,4 +1,4 @@
-local require = require("helpers.utils").require
+local require = require("helpers.utils").cb_require
 
 return {
     "goolord/alpha-nvim",

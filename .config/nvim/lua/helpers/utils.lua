@@ -24,7 +24,10 @@ M.ssh2http =
         return nil
     end
 
-function M.require(module_name)
+--- Same as require, but returns a callback to require a certain module
+--- @param module_name string
+--- @return function
+function M.cb_require(module_name)
     return function()
         require(module_name)
     end
