@@ -1,10 +1,19 @@
 local require = require("helpers.utils").cb_require
 
 return {
-    "nvim-lualine/lualine.nvim",
-    dependencies  = {
-        "nvim-tree/nvim-web-devicons",
-        "arkav/lualine-lsp-progress",
+    -- Nvim-Navic
+    {
+        "SmiteshP/nvim-navic",
+        dependencies = {
+            "neovim/nvim-lspconfig",
+        },
     },
-    config = require("plugins.config.statusline")
+    {
+        "nvim-lualine/lualine.nvim",
+        dependencies  = {
+            "nvim-tree/nvim-web-devicons",
+            "arkav/lualine-lsp-progress",
+        },
+        config = require("plugins.config.statusline")
+    },
 }

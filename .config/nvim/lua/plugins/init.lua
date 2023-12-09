@@ -24,12 +24,11 @@ return {
         ft = "markdown",
     },
 
-
     -- Color Highlighting
-    {
-        "norcalli/nvim-colorizer.lua",
-        config = require("config.colorizer")
-    },
+    -- {
+    --     "norcalli/nvim-colorizer.lua",
+    --     config = require("config.colorizer")
+    -- },
 
     -- Autopairs
     {
@@ -41,13 +40,5 @@ return {
     {
         "lewis6991/gitsigns.nvim",
         config = require("config.gitsigns")
-    },
-
-    -- Nvim-Navic
-    {
-        "SmiteshP/nvim-navic",
-        dependencies = {
-            "neovim/nvim-lspconfig",
-        },
     },
 }
