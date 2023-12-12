@@ -8,4 +8,12 @@ return {
         },
         config = require("plugins.config.comment"),
     },
+    {
+        "folke/todo-comments.nvim",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-telescope/telescope.nvim",
+        },
+        config = require("plugins.config.todo")
+    },
 }

@@ -92,7 +92,6 @@ M = {
         Dashboard = " ",
         History = " ",
         Comment = " ",
-        Bug = " ",
         Code = "\u{f121}", -- 
         Telescope = " ",
         Gear = " ",
@@ -163,6 +162,16 @@ M.log_level = {
     INFO = M.diagnostics.INFO,
     WARN = M.diagnostics.WARN,
     ERROR = M.diagnostics.ERROR,
+}
+M.todo = {
+    TODO = M.ui.CheckBox.Check,
+    FIXME = "\u{f188}", -- 
+    NOTE = "\u{f249}", -- 
+    HACK = "\u{f490}", -- 
+    WARN = M.diagnostics.WARN,
+    TEST = "\u{f0668}", -- 󰙨
+    PERF = "\u{f0152}", -- 󰅒
+    NOIMP = M.kind.Constructor,
 }
 
 return M
