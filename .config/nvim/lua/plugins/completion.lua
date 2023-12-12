@@ -20,4 +20,9 @@ return {
             "rafamadriz/friendly-snippets", -- a bunch of snippets to use
         },
     },
+    {
+        "windwp/nvim-autopairs",
+        config = require("plugins.config.autopairs"),
+        event = "InsertEnter",
+    },
 }

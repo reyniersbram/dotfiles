@@ -24,12 +24,6 @@ return {
     --     config = require("config.colorizer")
     -- },
 
-    -- Autopairs
-    {
-        "windwp/nvim-autopairs",
-        config = require("config.autopairs")
-    },
-
     -- Git
     {
         "lewis6991/gitsigns.nvim",
