@@ -5,13 +5,26 @@ if not status_ok then
 end
 
 comment.setup {
+    padding = true,
+    sticky = true,
+    ignore = "^$",
+    toggler = {
+        line = "gcc",
+        block = "gbc",
+    },
+    opleader = {
+        line = "gc",
+        block = "gb",
+    },
+    extra = {
+        above = "gcO",
+        below = "gco",
+        eol = "gcA",
+    },
+    mappings = {
+        basic = true,
+        extra = true,
+    },
     pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
+    post_hook = nil,
 }
-
-local ft_status_ok, ft_comment = pcall(require, "Comment.ft")
-if not ft_status_ok then
-    vim.notify("Comment.ft not found!")
-    return
-end
-
-ft_comment.lua = {"-- %s", "--[[\n%s\n-- ]]"}
