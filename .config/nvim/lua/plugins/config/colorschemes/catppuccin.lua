@@ -35,7 +35,15 @@ catppuccin.setup {
         operators = {},
     },
     color_overrides = {},
-    custom_highlights = {},
+    custom_highlights = {
+        -- TODO: this surely can be done better
+        NormalFloat = {
+            link = "NormalNC",
+        },
+        FloatBorder = {
+            link = "NormalNC",
+        },
+    },
     integrations = {
         alpha = true,
         bufferline = true,
