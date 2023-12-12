@@ -8,6 +8,11 @@ local icons = require("helpers.icons")
 
 vim.notify = notify
 
+local telescope_installed, telescope = pcall(require, "telescope")
+if telescope_installed then
+    telescope.load_extension("notify")
+end
+
 notify.setup {
     level = vim.log.levels.INFO,
     timeout = 5000,
