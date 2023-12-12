@@ -57,7 +57,7 @@ lualine.setup({
         lualine_a = { 'mode' },
         lualine_b = { components.diagnostics, components.whitespace, components.mixed_indent },
         lualine_c = { components.filename },
-        lualine_x = { components.lsp_progress, components.fileformat, 'encoding', components.filetype },
+        lualine_x = { components.fileformat, 'encoding', components.filetype },
         lualine_y = { components.diff, components.branch },
         lualine_z = {'progress', 'location'},
     },

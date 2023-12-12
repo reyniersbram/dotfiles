@@ -1,4 +1,4 @@
-return {
+M = {
     kind = {
         Text = "\u{e612}", -- 
         Method = "\u{ea8c}", -- 
@@ -128,13 +128,7 @@ return {
                 border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
             },
         },
-    },
-    diagnostics = {
-        Error = " ",
-        Warning = " ",
-        Information = " ",
-        Question = " ",
-        Hint = " ",
+        spinner_frames = { "⣾", "⣽", "⣻", "⢿", "⡿", "⣟", "⣯", "⣷" },
     },
     misc = {
         Robot = " ",
@@ -156,3 +150,19 @@ return {
         }
     },
 }
+
+M.diagnostics = {
+    ERROR = " ", -- TODO: find proper icon
+    WARN = " ", -- TODO: find proper icon
+    INFO = " ", -- TODO: find proper icon
+    HINT = " ", -- TODO: find proper icon
+}
+M.log_level = {
+    TRACE = "✎", -- TODO: find proper icon
+    DEBUG = "", -- TODO: find proper icon
+    INFO = M.diagnostics.INFO,
+    WARN = M.diagnostics.WARN,
+    ERROR = M.diagnostics.ERROR,
+}
+
+return M

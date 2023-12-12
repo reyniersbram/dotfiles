@@ -1,17 +1,11 @@
 local require = require("helpers.utils").cb_require
 return {
     -- Social
-    {
-        "andweeb/presence.nvim",
-        config = require("plugins.config.presence"),
-    },
+    -- {
+    --     "andweeb/presence.nvim",
+    --     config = require("plugins.config.presence"),
+    -- },
     "wakatime/vim-wakatime",
-
-    -- Notifications
-    {
-        "rcarriga/nvim-notify",
-        priority = 1000,
-    },
 
     -- Misc
     "nvim-lua/popup.nvim", -- An implementation of the Popup API from vim in Neovim

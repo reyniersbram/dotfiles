@@ -25,10 +25,10 @@ M.diagnostics = {
     sources = { 'nvim_lsp' },
     M = { 'error', 'warn', 'info', 'hint'},
     symbols = {
-        error = icons.diagnostics.Error .. " ",
-        warn = icons.diagnostics.Warning .. " ",
-        info = icons.diagnostics.Information .. " ",
-        hint = icons.diagnostics.Hint .. " ",
+        error = icons.diagnostics.ERROR .. " ",
+        warn = icons.diagnostics.WARN .. " ",
+        info = icons.diagnostics.INFO .. " ",
+        hint = icons.diagnostics.HINT .. " ",
     },
     colored = true,
     update_in_insert = false,
@@ -53,10 +53,6 @@ M.filetype = {
     'filetype',
     colored = true,
     icon = { align = 'left', },
-}
-M.lsp_progress = {
-    'lsp_progress',
-    display_M = { { 'message' }, 'lsp_client_name' },
 }
 
 local function get_color(group, attr)

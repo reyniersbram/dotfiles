@@ -59,11 +59,11 @@ bufferline.setup {
         --- this should return a string
         --- Don't get too fancy as this function will be executed a lot
         diagnostics_indicator = function(count, level, diagnostics_dict, context)
-            local icon = level:match("error") and icons.diagnostics.Error or
-                level:match("warning") and icons.diagnostics.Warning or
-                level:match("info") and icons.diagnostics.Information or
-                level:match("hint") and icons.diagnostics.Hint or
-                icons.diagnostics.Hint
+            local icon = level:match("error") and icons.diagnostics.ERROR or
+                level:match("warning") and icons.diagnostics.WARN or
+                level:match("info") and icons.diagnostics.INFO or
+                level:match("hint") and icons.diagnostics.HINT or
+                icons.diagnostics.HINT
             return " " .. icon .. " " .. count
         end,
         -- NOTE: this will be called a lot so don't do any heavy processing here
