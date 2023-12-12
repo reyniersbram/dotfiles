@@ -116,7 +116,6 @@ vim.api.nvim_create_autocmd("User", {
                     end
                 else
                     -- Lsp is done
-                    vim.print(vim.inspect(progress))
                     notification_data.spinner = nil
                     notification_data.notification = vim.notify(
                         format_message(progress.message) or "Done",
