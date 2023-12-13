@@ -25,12 +25,27 @@ M.ssh2http =
     end
 
 --- Same as require, but returns a callback to require a certain module
---- @param module_name string
---- @return function
-function M.cb_require(module_name)
+--- @param modname string
+--- @return fun()
+function M.cb_require(modname)
     return function()
-        require(module_name)
+        require(modname)
     end
+end
+
+--- Try to execute a function using a plugin.
+--- @param plugin_name string
+--- @param callback fun(plugin)
+--- @param opts? table
+--- @return boolean # true if the function was executed, else false
+function M.try_with_plugin(plugin_name, callback, opts)
+    -- TODO: use opts to set verbose
+    local plugin_installed, plugin = pcall(require, plugin_name)
+    if plugin_installed then
+        callback(plugin)
+        return true
+    end
+    return false
 end
 
 return M
