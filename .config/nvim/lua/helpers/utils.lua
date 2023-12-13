@@ -33,18 +33,33 @@ function M.cb_require(modname)
     end
 end
 
---- Try to execute a function using a plugin.
---- @param plugin_name string
+--- Inform the user a module could not be found, uses vim.notify.
+--- @param modname string
+function M.notify_not_found(modname)
+    vim.notify(
+        modname,
+        vim.log.levels.WARN,
+        {
+            title = "Could not find module",
+            render = "compact",
+            timeout = 2500,
+        }
+    )
+end
+
+--- Try to execute a given callback with a module.
+--- @param modname string
 --- @param callback fun(plugin)
 --- @param opts? table
 --- @return boolean # true if the function was executed, else false
-function M.try_with_plugin(plugin_name, callback, opts)
+function M.try_with_module(modname, callback, opts)
     -- TODO: use opts to set verbose
-    local plugin_installed, plugin = pcall(require, plugin_name)
+    local plugin_installed, plugin = pcall(require, modname)
     if plugin_installed then
         callback(plugin)
         return true
     end
+    M.notify_not_found(modname)
     return false
 end
 

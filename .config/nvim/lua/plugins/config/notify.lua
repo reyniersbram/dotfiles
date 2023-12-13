@@ -8,10 +8,9 @@ local icons = require("helpers.icons")
 
 vim.notify = notify
 
-local telescope_installed, telescope = pcall(require, "telescope")
-if telescope_installed then
+require("helpers.utils").try_with_module("telescope", function(telescope)
     telescope.load_extension("notify")
-end
+end)
 
 notify.setup {
     level = vim.log.levels.INFO,
@@ -58,7 +57,7 @@ local function update_spinner(notif_data)
             replace = notif_data.notification,
         })
 
-        vim.defer_fn(function ()
+        vim.defer_fn(function()
             update_spinner(notif_data)
         end, 100)
     end
