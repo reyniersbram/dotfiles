@@ -15,10 +15,6 @@ end
 
 bootstrap()
 
-local lazy_status_ok, lazy = pcall(require, "lazy")
-if not lazy_status_ok then
-    vim.notify("Could not load lazy.nvim")
-    return
-end
-
-lazy.setup("plugins", require("plugins.config.lazy"))
+require("helpers.utils").try_with_module("lazy", function(lazy)
+    lazy.setup("plugins", require("plugins.config.lazy"))
+end)

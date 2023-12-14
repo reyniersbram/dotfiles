@@ -1,19 +1,19 @@
 local status_ok, todo = pcall(require, "todo-comments")
 if not status_ok then
-    vim.notify("Todo Comments not found")
+    require("helpers.utils").notify_not_found("todo-comments")
     return
 end
 
 local icons = require("helpers.icons")
 
--- TODO: some todo
--- FIXME: some fixme
--- NOTE: some note
--- HACK: some hack
--- WARN: some warning
--- TEST: some test
--- PERF: some performance
--- NOIMP: no implementation
+-- TODO: some todo comment
+-- FIXME: some fixme commment
+-- NOTE: some note commment
+-- HACK: some hack commment
+-- WARN: some warning commment
+-- TEST: some test commment
+-- PERF: some performance commment
+-- NOIMP: some no implementation commment
 todo.setup {
     signs = true,
     sign_priority = 8,
