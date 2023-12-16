@@ -10,7 +10,6 @@ alsa-firmware
 pulseaudio
 pulseaudio-alsa
 pavucontrol
-pacman-contrib
 ttf-hack-nerd
 noto-fonts-emoji
 trayer
@@ -19,3 +18,7 @@ xscreensaver
 scrot
 bash-completion
 dunst
+python
+dmenu
+stow
+cmake
