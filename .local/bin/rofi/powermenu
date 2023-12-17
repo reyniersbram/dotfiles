@@ -1,0 +1,2 @@
+#!/usr/bin/env sh
+rofi -show power-menu -modi power-menu:rofi-power-menu

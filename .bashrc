@@ -42,6 +42,7 @@ append_to_path() {
 }
 
 append_to_path "${HOME}/.local/bin"
+append_to_path "${HOME}/.local/bin/rofi"
 append_to_path "${HOME}/.ghcup/bin"
 append_to_path "${HOME}/.cabal/bin"
 
