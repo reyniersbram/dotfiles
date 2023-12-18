@@ -1,0 +1,297 @@
+/**
+ *
+ * This layout is strongly based on the launcher of adi1090x
+ * https://github.com/adi1090x/rofi/blob/0a55e154598466edb4352013798acc1d2f245306/files/launchers/type-1/style-5.rasi
+ * **/
+
+@theme "catppuccin/mocha"
+
+* {
+    border-color: var(selected);
+    handle-color: var(selected);
+    background-color: var(background);
+    foreground-color: var(foreground);
+    background-alternate: var(background-alt);
+    background-normal: var(background);
+    foreground-normal: var(foreground);
+    background-urgent: var(urgent);
+    foreground-urgent: var(background);
+    background-active: var(active);
+    foreground-active: var(background);
+    background-selected-normal: var(selected);
+    foreground-selected-normal: var(background);
+    background-selected-urgent: var(active);
+    foreground-selected-urgent: var(background);
+    background-selected-active: var(urgent);
+    foreground-selected-active: var(background);
+    background-alternate-normal: var(background);
+    foreground-alternate-normal: var(foreground);
+    background-alternate-urgent: var(urgent);
+    foreground-alternate-urgent: var(background);
+    background-alternate-active: var(active);
+    foreground-alternate-active: var(background);
+}
+
+window {
+    transparency: "real";
+    location: center;
+    anchor: center;
+    fullscreen: false;
+    width: 700px;
+    x-offset: 0px;
+    y-offset: 0px;
+
+    enabled: true;
+    margin: 0px;
+    padding: 0px;
+    border: 2px solid;
+    border-radius: 10px;
+    border-color: var(border-color);
+    background-color: var(background-normal);
+}
+
+mainbox {
+    enabled: true;
+    spacing: 10px;
+    margin: 0px;
+    padding: 30px;
+    border: 0px solid;
+    border-radius: 0px;
+    border-color: var(border-color);
+    background-color: transparent;
+    children: [inputbar, message, listview];
+}
+
+inputbar {
+    enabled: true;
+    spacing: 10px;
+    margin: 0px;
+    padding: 0px;
+    border: 0px solid;
+    border-radius: 0px;
+    border-color: var(border-color);
+    background-color: transparent;
+    text-color: var(foreground-normal);
+    children: [textbox-prompt-colon, entry, mode-switcher];
+}
+
+prompt {
+    enabled: false;
+    background-color: inherit;
+    text-color: inherit;
+}
+
+textbox-prompt-colon {
+    enabled: true;
+    padding: 5px 0px;
+    expand: false;
+    str: "";
+    background-color: inherit;
+    text-color: inherit;
+}
+
+entry {
+    enabled: true;
+    padding: 5px 0px;
+    background-color: inherit;
+    text-color: inherit;
+    cursor: text;
+    placeholder: "Search…";
+    placeholder-color: inherit;
+}
+
+num-filtered-rows {
+    enabled: false;
+    expand: false;
+    background-color: inherit;
+    text-color: inherit;
+}
+
+textbox-num-sep {
+    enabled: false;
+    expand: false;
+    str: "/";
+    background-color: inherit;
+    text-color: inherit;
+}
+
+num-rows {
+    enabled: false;
+    expand: true;
+    background-color: inherit;
+    text-color: inherit;
+}
+
+case-indicator {
+    enabled: true;
+    background-color: inherit;
+    text-color: inherit;
+}
+
+listview {
+    enabled: true;
+    columns: 1;
+    lines: 8;
+    cycle: true;
+    dynamic: true;
+    scrollbar: true;
+    layout: vertical;
+    reverse: false;
+    fixed-height: true;
+    fixed-columns: true;
+
+    spacing: 5px;
+    margin: 0px;
+    padding: 0px;
+    border: 0px solid;
+    border-radius: 0px;
+    border-color: var(border-color);
+    background-color: transparent;
+    text-color: var(foreground-normal);
+    cursor: default;
+}
+
+scrollbar {
+    handle-width: 5px;
+    handle-color: var(handle-color);
+    border-radius: 10px;
+    background-color: var(background-alternate);
+}
+
+element {
+    enabled: true;
+    spacing: 10px;
+    margin: 0px;
+    padding: 5px 10px;
+    border: 0px solid;
+    border-radius: 10px;
+    border-color: var(border-color);
+    background-color: transparent;
+    text-color: var(foreground-normal);
+    cursor: pointer;
+}
+
+element normal.normal {
+    background-color: var(background-normal);
+    text-color: var(foreground-normal);
+}
+
+element normal.urgent {
+    background-color: var(background-urgent);
+    text-color: var(foreground-urgent);
+}
+
+element normal.active {
+    background-color: var(background-active);
+    text-color: var(foreground-active);
+}
+
+element selected.normal {
+    background-color: var(background-selected-normal);
+    text-color: var(foreground-selected-normal);
+}
+
+element selected.urgent {
+    background-color: var(background-selected-urgent);
+    text-color: var(foreground-selected-urgent);
+}
+
+element selected.active {
+    background-color: var(background-selected-active);
+    text-color: var(foreground-selected-active);
+}
+
+element alternate.normal {
+    background-color: var(background-alternate-normal);
+    text-color: var(foreground-alternate-normal);
+}
+
+element alternate.urgent {
+    background-color: var(background-alternate-urgent);
+    text-color: var(foreground-alternate-urgent);
+}
+
+element alternate.active {
+    background-color: var(background-alternate-active);
+    text-color: var(foreground-alternate-active);
+}
+
+element-icon {
+    background-color: transparent;
+    text-color: inherit;
+    size: 24px;
+    cursor: inherit;
+}
+
+element-text {
+    background-color: transparent;
+    text-color: inherit;
+    highlight: inherit;
+    cursor: inherit;
+    vertical-align: 0.5;
+    horizontal-align: 0.0;
+}
+
+mode-switcher {
+    enabled: true;
+    expand: false;
+    spacing: 10px;
+    margin: 0px;
+    padding: 0px;
+    border: 0px solid;
+    border-radius: 0px;
+    border-color: transparent;
+    text-color: var(foreground-normal);
+}
+
+button {
+    padding: 5px 10px;
+    border: 0px solid;
+    border-radius: 10px;
+    border-color: var(border-color);
+    background-color: var(background-alternate);
+    text-color: inherit;
+    cursor: pointer;
+}
+
+button selected {
+    background-color: var(background-selected-normal);
+    text-color: var(foreground-selected-normal);
+}
+
+message {
+    enabled: true;
+    margin: 0px;
+    padding: 0px;
+    border: 0px solid;
+    border-radius: 0px;
+    border-color: var(border-color);
+    background-color: transparent;
+    text-color: var(foreground-normal);
+}
+
+textbox {
+    padding: 8px 10px;
+    border: 0px solid;
+    border-radius: 10px;
+    border-color: var(border-color);
+    background-color: var(background-alternate);
+    text-color: var(foreground-normal);
+    vertical-align: 0.5;
+    horizontal-align: 0.0;
+    highlight: none;
+    placeholder-color: var(foreground-normal);
+    blink: true;
+    markup: true;
+}
+
+error-message {
+    padding: 10px;
+    border: 2px solid;
+    border-radius: 10px;
+    border-color: var(border-color);
+    background-color: var(background-normal);
+    text-color: var(foreground-normal);
+}
+
+/* vim: ft=sass

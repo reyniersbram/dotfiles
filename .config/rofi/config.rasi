@@ -1,7 +1,7 @@
 configuration {
   // General
   threads: 0;
-  modes: [window, run, drun, calc, emoji];
+    modes: [drun, run, window, filebrowser];
   case-sensitive: false;
   cycle: true;
   filter: "";
@@ -89,6 +89,9 @@ configuration {
   }
   emoji {
     display-name: " ";
+  }
+  filebrowser {
+    display-name: " ";
   }
   // display-combi: ;
   // display-keys: ;
@@ -198,6 +201,6 @@ configuration {
 
 }
 
-@theme "catppuccin-mocha"
+@theme "launcher"
 
 /* vim: ft=sass

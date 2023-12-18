@@ -1,0 +1,12 @@
+* {
+    blue: #8caaee;
+    bg-col:  #303446;
+    bg-col-light: #303446;
+    border-col: @blue;
+    selected-col: #303446;
+    fg-col: #c6d0f5;
+    fg-col2: #e78284;
+    grey: #737994;
+}
+
+/* vim: ft=sass

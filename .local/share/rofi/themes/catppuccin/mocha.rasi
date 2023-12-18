@@ -1,0 +1,10 @@
+* {
+    background: #1e1e2e; // Base
+    background-alt: #313244; // Surface0
+    foreground: #cdd6f4; // Text
+    selected: #89b4fa; // Blue
+    active: #a6e3a1; // Green
+    urgent: #f38ba8; // Red
+}
+
+/* vim: ft=sass
