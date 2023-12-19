@@ -8,12 +8,14 @@ return {
             "windwp/nvim-ts-autotag",
         },
         build = ":TSUpdate",
-        config = require("plugins.config.treesitter")
+        config = require("plugins.config.treesitter"),
+        cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
+        event = { "BufReadPre", "BufNewFile" }
     },
     {
         "JoosepAlviste/nvim-ts-context-commentstring",
         opts = {
             enable_autocmd = false,
-        }
+        },
     },
 }

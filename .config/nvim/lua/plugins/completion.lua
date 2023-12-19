@@ -4,7 +4,7 @@ return {
     {
         "hrsh7th/nvim-cmp",
         config = require("plugins.config.cmp"),
-        event = "InsertEnter",
+        event = { "InsertEnter" },
         dependencies = {
             -- sources
             "hrsh7th/cmp-buffer", -- buffer completions
@@ -23,6 +23,6 @@ return {
     {
         "windwp/nvim-autopairs",
         config = require("plugins.config.autopairs"),
-        event = "InsertEnter",
+        event = { "InsertEnter" },
     },
 }

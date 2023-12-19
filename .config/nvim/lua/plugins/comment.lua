@@ -7,6 +7,7 @@ return {
             "JoosepAlviste/nvim-ts-context-commentstring",
         },
         config = require("plugins.config.comment"),
+        event = { "BufReadPre", "BufNewFile" },
     },
     {
         "folke/todo-comments.nvim",
@@ -14,6 +15,7 @@ return {
             "nvim-lua/plenary.nvim",
             "nvim-telescope/telescope.nvim",
         },
-        config = require("plugins.config.todo")
+        config = require("plugins.config.todo"),
+        event = { "BufReadPre", "BufNewFile" },
     },
 }
