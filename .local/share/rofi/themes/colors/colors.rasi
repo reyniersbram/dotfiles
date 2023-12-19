@@ -1,0 +1,29 @@
+@theme "colors/catppuccin/mocha.rasi"
+
+* {
+    border-color: var(selected);
+    handle-color: var(selected);
+    background-color: var(background);
+    foreground-color: var(foreground);
+    background-alternate: var(background-alt);
+    background-normal: var(background);
+    foreground-normal: var(foreground);
+    background-urgent: var(urgent);
+    foreground-urgent: var(background);
+    background-active: var(active);
+    foreground-active: var(background);
+    background-selected-normal: var(selected);
+    foreground-selected-normal: var(background);
+    background-selected-urgent: var(active);
+    foreground-selected-urgent: var(background);
+    background-selected-active: var(urgent);
+    foreground-selected-active: var(background);
+    background-alternate-normal: var(background);
+    foreground-alternate-normal: var(foreground);
+    background-alternate-urgent: var(urgent);
+    foreground-alternate-urgent: var(background);
+    background-alternate-active: var(active);
+    foreground-alternate-active: var(background);
+}
+
+/* vim: ft=sass

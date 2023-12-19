@@ -1,127 +1,127 @@
 configuration {
-  // General
-  threads: 0;
-    modes: [drun, run, window, filebrowser];
-  case-sensitive: false;
-  cycle: true;
-  filter: "";
-  // cache-dir: "$XDG_CACHE_HOME/rofi/";
-  scroll-method: 1;
-  normalize-match: true;
-  show-icons: true;
-  icon-theme: "Papirus";
-  steal-focus: false;
-  refilter-timeout-limit: 8192;
+    // General
+    threads: 0;
+    modes: "";
+    case-sensitive: false;
+    cycle: true;
+    filter: "";
+    // cache-dir: "$XDG_CACHE_HOME/rofi/";
+    scroll-method: 1;
+    normalize-match: true;
+    show-icons: true;
+    icon-theme: "Papirus";
+    steal-focus: false;
+    refilter-timeout-limit: 8192;
 
-  // Matching
-  matching: "fuzzy";
-  tokenize: true;
-  drun-categories: [];
-  drun-display-format:
-    "{name} [<span weight='light' size='small'><i>({generic})</i></span>]";
-  drun-show-actions: false;
-  window-match-fields: "all";
-  matching-negate-char: '-';
+    // Matching
+    matching: "fuzzy";
+    tokenize: true;
+    drun-categories: [];
+    drun-display-format:
+        "{name} [<span weight='light' size='small'><i>({generic})</i></span>]";
+    drun-show-actions: false;
+    window-match-fields: "all";
+    matching-negate-char: '-';
 
-  // Layout
-  location: 0;
-  fixed-num-lines: true;
-  sidebar-mode: true;
-  hover-select: false;
-  eh: 1;
-  auto-select: false;
-  monitor: "-4";
-  dpi: 0;
+    // Layout
+    location: 0;
+    fixed-num-lines: true;
+    sidebar-mode: true;
+    hover-select: false;
+    eh: 1;
+    auto-select: false;
+    monitor: "-4";
+    dpi: 0;
 
-  // Pattern
-  terminal: "rofi-sensible-terminal";
-  ssh-client: "ssh";
+    // Pattern
+    terminal: "rofi-sensible-terminal";
+    ssh-client: "ssh";
 
-  // SSH
-  ssh-command: "{terminal} -e {ssh-client} {host} [-p {port}]";
-  parse-hosts: false;
-  parse-known-hosts: true;
+    // SSH
+    ssh-command: "{terminal} -e {ssh-client} {host} [-p {port}]";
+    parse-hosts: false;
+    parse-known-hosts: true;
 
-  // Run
-  run-command: "{cmd}";
-  run-shell-command: "{terminal} -e {cmd}";
-  // run-list-command: "";
-  drun {
-    parse-user: true;
-    parse-system: true;
-  }
-  
-  // Window switcher
-  window-format: "{c}    {t}";
-  window-command: "wmctrl -i -R {window}";
-  window-thumbnail: true;
-  window {
-    close-on-delete: false;
-  }
+    // Run
+    run-command: "{cmd}";
+    run-shell-command: "{terminal} -e {cmd}";
+    // run-list-command: "";
+    drun {
+        parse-user: true;
+        parse-system: true;
+    }
+    
+    // Window switcher
+    window-format: "{c}    {t}";
+    window-command: "wmctrl -i -R {window}";
+    window-thumbnail: true;
+    window {
+        close-on-delete: false;
+    }
 
-  // Combi
-  combi-modes: "";
-  combi-display-format: "{mode} {text}";
-  combi-hide-mode-prefix: false;
+    // Combi
+    combi-modes: "";
+    combi-display-format: "{mode} {text}";
+    combi-hide-mode-prefix: false;
 
-  // History
-  disable-history: false;
-  max-history-size: 25;
+    // History
+    disable-history: false;
+    max-history-size: 25;
 
-  // Sorting
-  sort: true;
-  sorting-method: "levenshtein";
-  
-  // Display
-  window {
-    display-name: " ";
-  }
-  // display-windowcd: ;
-  run {
-    display-name: " ";
-  } 
-  // display-ssh: ;
-  drun {
-    display-name: " ";
-  }
-  calc {
-    display-name: " ";
-  }
-  emoji {
-    display-name: " ";
-  }
-  filebrowser {
-    display-name: " ";
-  }
-  // display-combi: ;
-  // display-keys: ;
-  // display-filebrowser: ;
+    // Sorting
+    sort: true;
+    sorting-method: "levenshtein";
+    
+    // Display
+    window {
+        display-name: " ";
+    }
+    // display-windowcd: ;
+    run {
+        display-name: " ";
+    } 
+    // display-ssh: ;
+    drun {
+        display-name: " ";
+    }
+    calc {
+        display-name: " ";
+    }
+    emoji {
+        display-name: " ";
+    }
+    filebrowser {
+        display-name: " ";
+    }
+    // display-combi: ;
+    // display-keys: ;
+    // display-filebrowser: ;
 
-  // Filebrowser
-  filebrowser {
-    directory: "/";
-    sorting-method: "name";
-    directories-first: true;
-  }
+    // Filebrowser
+    filebrowser {
+        directory: "/";
+        sorting-method: "name";
+        directories-first: true;
+    }
 
-  // Other
-  drun-use-desktop-cache: false;
-  drun-reload-desktop-cache: false;
-  drun-url-launcher: "xdg-open";
-  pid: "/run/user/1000/rofi.pid";
-  click-to-exit: true;
-  xserver-i300-workaround: false;
+    // Other
+    drun-use-desktop-cache: false;
+    drun-reload-desktop-cache: false;
+    drun-url-launcher: "xdg-open";
+    pid: "/run/user/1000/rofi.pid";
+    click-to-exit: true;
+    xserver-i300-workaround: false;
 
-  timeout {
-    delay: 15;
-    action: "kb-cancel";
-  }
+    timeout {
+        delay: 15;
+        action: "kb-cancel";
+    }
 
-  inputchange {
-    action: "kb-row-first";
-  }
+    inputchange {
+        action: "kb-row-first";
+    }
 
-  font: "Hack Nerd Font Mono";
+    font: "Hack Nerd Font Mono";
   kb-primary-paste: "Control+V,Shift+Insert";
   kb-secondary-paste: "Control+v,Insert";
 /*	kb-clear-line: "Control+w";*/
@@ -198,9 +198,6 @@ configuration {
 /*	me-select-entry: "MousePrimary";*/
 /*	me-accept-entry: "MouseDPrimary";*/
 /*	me-accept-custom: "Control+MouseDPrimary";*/
-
 }
-
-@theme "launcher"
 
 /* vim: ft=sass

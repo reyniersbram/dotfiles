@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+
+if [ -z "$1" ]; then
+    exit
+fi
+rofi -show "$1" -theme launcher

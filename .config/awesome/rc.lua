@@ -321,7 +321,7 @@ local globalkeys = gears.table.join(
 
     -- Prompt
     awful.key({ modkey }, "p", function()
-            awful.util.spawn("rofi -show drun")
+            awful.util.spawn("rofi-launcher drun")
         end,
         { description = "application launcher", group = "launcher" }),
 
@@ -337,7 +337,7 @@ local globalkeys = gears.table.join(
         { description = "lua execute prompt", group = "awesome" }),
     -- Menubar
     awful.key({ modkey }, "r", function()
-            awful.util.spawn("rofi -show run")
+            awful.util.spawn("rofi-launcher run")
         end,
         { description = "run prompt", group = "launcher" })
 )
