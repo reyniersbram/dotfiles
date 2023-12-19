@@ -23,8 +23,8 @@ autopairs.setup {
     map_c_w = false,
 
     ts_config = {
-        lua = { "string", "source" },
-        javascript = { "string", "template_string" },
+        lua = { "string" },
+        javascript = { "template_string" },
         java = false,
     },
 
@@ -40,8 +40,7 @@ autopairs.setup {
     },
 }
 
-local cmp_installed, cmp = pcall(require, "cmp")
-if cmp_installed then
+require("helpers.utils").try_with_module("cmp", function(cmp)
     local cmp_autopairs = require("nvim-autopairs.completion.cmp")
     cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
-end
+end)

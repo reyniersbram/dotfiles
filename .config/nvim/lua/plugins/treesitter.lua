@@ -18,4 +18,9 @@ return {
             enable_autocmd = false,
         },
     },
+    {
+        "windwp/nvim-autopairs",
+        config = require("plugins.config.autopairs"),
+        event = { "InsertEnter" },
+    },
 }
