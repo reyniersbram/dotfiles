@@ -5,7 +5,29 @@ local function on_attach(buffnr)
     local function opts(desc)
         return { noremap = true, silent = true, desc = desc }
     end
-    vim.keymap.set("n", "<leader>gb", gitsigns.blame_line, opts("Git Blame"))
+    vim.keymap.set("n",
+        "<leader>gb",
+        gitsigns.blame_line,
+        opts("Git Blame current line")
+    )
+    vim.keymap.set("n", "<leader>gd", gitsigns.diffthis, opts("Git Diff"))
+    vim.keymap.set(
+        "n",
+        "<leader>gD",
+        function()
+            gitsigns.diffthis("@^")
+        end,
+        opts("Git Diff with parent")
+    )
+    vim.keymap.set("n", "ghn", gitsigns.next_hunk, opts("Go to next git hunk"))
+    vim.keymap.set("n", "ghp", gitsigns.prev_hunk, opts("Go to previous git hunk"))
+    vim.keymap.set("n", "<leader>gh", gitsigns.select_hunk, opts("Git select Hunk"))
+    -- TODO: figure out if I want this
+    -- vim.keymap.set("n", "<leader>gs", gitsigns.stage_buffer, opts("Git Stage current buffer"))
+    -- vim.keymap.set("n", "<leader>gS", gitsigns.stage_hunk, opts("Git Stage current hunk"))
+    -- vim.keymap.set("v", "<leader>gs", gitsigns.stage_hunk, opts("Git Stage current hunk"))
+    -- vim.keymap.set("n", "<leader>gu", gitsigns.undo_stage_buffer, opts("Git Undo stage current buffer"))
+    -- vim.keymap.set("n", "<leader>gU", gitsigns.undo_stage_hunk, opts("Git Undo stage current hunk"))
 end
 
 gitsigns.setup({
