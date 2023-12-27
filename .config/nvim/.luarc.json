@@ -1,0 +1,6 @@
+{
+    "workspace.library": [
+        "XDG_CONFIG_HOME/nvim/lua",
+        "$VIMRUNTIME/lua"
+    ]
+}

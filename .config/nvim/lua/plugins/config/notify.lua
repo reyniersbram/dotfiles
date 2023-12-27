@@ -32,37 +32,6 @@ notify.setup {
 }
 
 -- LSP Progress
-local client_notifs = {}
-
-local function get_notif_data(client_id, token)
-    if not client_notifs[client_id] then
-        client_notifs[client_id] = {}
-    end
-
-    if not client_notifs[client_id][token] then
-        client_notifs[client_id][token] = {}
-    end
-
-    return client_notifs[client_id][token]
-end
-
-local function update_spinner(notif_data)
-    if notif_data.spinner then
-        local new_spinner = (notif_data.spinner + 1) % #icons.ui.spinner_frames
-        notif_data.spinner = new_spinner
-
-        notif_data.notification = vim.notify("", nil, {
-            hide_from_history = true,
-            icon = icons.ui.spinner_frames[notif_data.spinner],
-            replace = notif_data.notification,
-        })
-
-        vim.defer_fn(function()
-            update_spinner(notif_data)
-        end, 100)
-    end
-end
-
 local function format_title(title, client_name)
     return "[" .. client_name .. "]" .. (#title > 0 and ": " .. title or "")
 end
@@ -74,68 +43,54 @@ local function format_message(message, percentage)
     return (percentage and percentage .. "%\t" or "") .. (message or "")
 end
 
-vim.api.nvim_create_augroup("lsp_notify", { clear = true })
-vim.api.nvim_create_autocmd("User", {
-    pattern = "LspProgressUpdate",
-    group = "lsp_notify",
-    desc = "LSP progress notifications",
-    callback = function()
-        -- TODO: refactor this with proper spinner class etc.
-        local bufnr = vim.api.nvim_get_current_buf()
-        for _, client in ipairs(vim.lsp.get_active_clients({ bufnr = bufnr })) do
-            local name = client.messages.name
-            for token, progress in pairs(client.messages.progress) do
-                local notification_data = get_notif_data(client.id, token)
-                if not progress.done then
-                    local message = format_message(progress.message, progress.percentage) or "Starting up..."
-                    if not notification_data.notification then
-                        -- Create new notification
-                        notification_data.spinner = 1
-                        notification_data.notification = vim.notify(
-                            message,
-                            vim.log.levels.INFO,
-                            {
-                                title = format_title(progress.title, name),
-                                icon = icons.ui.spinner_frames[notification_data.spinner],
-                                hide_from_history = false,
-                                timeout = false,
-                            }
-                        )
-                        update_spinner(notification_data)
-                    else
-                        -- Update notification
-                        notification_data.notification = vim.notify(
-                            message,
-                            vim.log.levels.INFO,
-                            {
-                                replace = notification_data.notification,
-                                hide_from_history = false,
-                            }
-                        )
+local function configure_progress_notifications()
+    local spinners = {}
+    vim.api.nvim_create_augroup("lsp_notify", { clear = true })
+    vim.api.nvim_create_autocmd("User", {
+        pattern = "LspProgressUpdate",
+        group = "lsp_notify",
+        desc = "LSP progress notifications",
+        callback = function()
+            local Spinner = require("helpers.spinner")
+            for _, client in ipairs(vim.lsp.get_active_clients()) do
+                for token, progress in pairs(client.messages.progress) do
+                    if not spinners[client.id] then
+                        spinners[client.id] = {}
                     end
-                else
-                    -- Lsp is done
-                    notification_data.spinner = nil
-                    notification_data.notification = vim.notify(
-                        format_message(progress.message) or "Done",
-                        vim.log.levels.INFO,
-                        {
-                            icon = icons.ui.status.Done,
-                            replace = notification_data.notification,
-                            timeout = 1000,
-                        }
-                    )
+                    local spinner = spinners[client.id][token]
+                    if not progress.done then
+                        local message = format_message(progress.message, progress.percentage) or "Starting up..."
+                        if not spinner then
+                            local opts = { title = format_title(progress.title, client.name) }
+                            spinners[client.id][token] = Spinner(message, vim.log.levels.INFO, opts)
+                        else
+                            spinner:update(message)
+                        end
+                    else
+                        client.messages.progress[token] = nil
+                        if spinner then
+                            local opts = {
+                                icon = icons.ui.status.Done,
+                            }
+                            spinner:done(progress.message or "Done", nil, opts)
+                            spinners[client.id][token] = nil
+                        end
+                    end
                 end
             end
         end
-    end
-})
+    })
+end
+configure_progress_notifications()
 
--- TODO: figure this out
 -- local severity = {
 --     "error", "warn", "info", "info",
 -- }
 
+-- FIXME: probably won't do anything because of default handlers
+-- https://www.reddit.com/r/neovim/comments/sxlkua/comment/hxtedzz/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
 -- vim.lsp.handlers["window/showMessage"] = function(err, method, params, client_id)
+--     -- NOTE: this notification is to figure out when this event occurs
+--     vim.notify("window/showMessage invoked")
 --     vim.notify(method.message, severity[params.type])
 -- end
