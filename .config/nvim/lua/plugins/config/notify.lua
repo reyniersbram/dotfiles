@@ -29,3 +29,11 @@ notify.setup {
     fps = 30,
     top_down = false,
 }
+
+vim.api.nvim_create_user_command(
+    "NotifyDismiss",
+    function()
+        notify.dismiss({ pending = true, silent = true })
+    end,
+    { nargs = 0 }
+)
