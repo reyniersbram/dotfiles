@@ -7,15 +7,15 @@ end
 -- Language Servers
 
 local servers = {
-    "bashls",   -- Shell
-    "clangd",   -- C / C++
-    "cmake",    -- CMake
-    "cssls",    -- CSS
-    "eslint",   -- Eslint
-    "hls",      -- Haskell
-    "html",     -- HTML
-    "jsonls",   -- JSON
-    "lua_ls",   -- Lua
+    "bashls", -- Shell
+    "clangd", -- C / C++
+    "cmake",  -- CMake
+    "cssls",  -- CSS
+    "eslint", -- Eslint
+    "hls",    -- Haskell
+    "html",   -- HTML
+    "jsonls", -- JSON
+    "lua_ls", -- Lua
     -- "tsserver", -- TypeScript/JavaScript, volar is used instead
     --
     -- "jdtls", -- also use nvim-jdtls
@@ -33,15 +33,17 @@ local servers = {
     -- "sparql_ls"
 }
 
+local handlers = require("plugins.config.lsp.handlers")
+handlers.setup()
+
 local default_opts = {
-    on_attach = require("plugins.config.lsp.handlers").on_attach,
-    capabilities = require("plugins.config.lsp.handlers").capabilities,
+    on_attach = handlers.on_attach,
+    capabilities = handlers.capabilities,
     autostart = true,
     single_file_support = true,
 }
 
 local opts = {}
-
 for _, server in pairs(servers) do
     opts = default_opts
     local server_opts_status_ok, server_opts =
