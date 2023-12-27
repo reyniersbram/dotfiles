@@ -35,5 +35,8 @@ vim.api.nvim_create_user_command(
     function()
         notify.dismiss({ pending = true, silent = true })
     end,
-    { nargs = 0 }
+    {
+        nargs = 0,
+        desc = "Dismiss all notifications",
+    }
 )
