@@ -51,7 +51,7 @@ local function configure_progress_notifications()
         group = "lsp_notify",
         desc = "LSP progress notifications",
         callback = function()
-            local Spinner = require("util.spinner")
+            local Spinner = require("util.notify.Spinner")
             for _, client in ipairs(vim.lsp.get_active_clients()) do
                 for token, progress in pairs(client.messages.progress) do
                     if not spinners[client.id] then

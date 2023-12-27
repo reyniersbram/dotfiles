@@ -1,5 +1,3 @@
-local notify = require("notify")
-
 local Spinner = {}
 Spinner.__index = Spinner
 setmetatable(Spinner, {
@@ -26,7 +24,7 @@ function Spinner:_update(msg, lvl, opts)
         opts.hide_from_history = true
     end
     opts.replace = self.id
-    self.id = notify(msg, lvl, opts)
+    self.id = vim.notify(msg, lvl, opts)
 end
 
 function Spinner:update(msg, lvl, opts)

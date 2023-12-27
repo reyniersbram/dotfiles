@@ -32,21 +32,8 @@ function M.cb_require(modname)
     end
 end
 
---- Inform the user a module could not be found, uses vim.notify.
---- @param modname string
-function M.notify_not_found(modname)
-    vim.notify(
-        modname,
-        vim.log.levels.WARN,
-        {
-            title = "Could not find module",
-            render = "compact",
-            timeout = 2500,
-        }
-    )
-end
-
---- Try to execute a given callback with a module.
+--- Try to execute a given callback with a module. Does nothing when module
+--- could not be found
 --- @param modname string
 --- @param callback fun(plugin)
 --- @param opts? table
@@ -58,7 +45,7 @@ function M.try_with_module(modname, callback, opts)
         callback(plugin)
         return true
     end
-    M.notify_not_found(modname)
+    require("util.notify").notify_not_found(modname)
     return false
 end
 
