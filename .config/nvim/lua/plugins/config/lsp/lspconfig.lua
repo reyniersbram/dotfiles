@@ -4,6 +4,8 @@ if not lspconfig_status_ok then
     return
 end
 
+vim.lsp.set_log_level("off")
+
 -- Language Servers
 
 local servers = {
