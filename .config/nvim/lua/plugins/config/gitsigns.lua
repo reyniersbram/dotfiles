@@ -5,54 +5,54 @@ local function on_attach(buffnr)
     local function opts(desc)
         return { noremap = true, silent = true, desc = desc }
     end
-    vim.keymap.set("n", "<leader>gb", gitsigns.blame_line, opts("git blame"))
+    vim.keymap.set("n", "<leader>gb", gitsigns.blame_line, opts("Git Blame"))
 end
 
 gitsigns.setup({
     signs = {
         add = {
-            text = icons.git.add,
-            hl = "gitsignsadd",
-            numhl = "gitsignsaddnr",
-            linehl = "gitsignsaddln",
+            text = icons.git.Add,
+            hl = "GitSignsAdd",
+            numhl = "GitSignsAddNr",
+            linehl = "GitSignsAddLn",
         },
         change = {
-            text = icons.git.mod,
-            hl = "gitsignschange",
-            numhl = "gitsignschangenr",
-            linehl = "gitsignschangeln",
+            text = icons.git.Mod,
+            hl = "GitSignsChange",
+            numhl = "GitSignsChangeNr",
+            linehl = "GitSignsChangeLn",
         },
         delete = {
-            text = icons.git.remove,
-            hl = "gitsignsdelete",
-            numhl = "gitsignsdeletenr",
-            linehl = "gitsignsdeleteln",
+            text = icons.git.Remove,
+            hl = "GitSignsDelete",
+            numhl = "GitSignsDeleteNr",
+            linehl = "GitSignsDeleteLn",
         },
         topdelete = {
-            text = icons.git.remove,
-            hl = "gitsignstopdelete",
-            numhl = "gitsignsdeletenr",
-            linehl = "gitsignsdeleteln",
+            text = icons.git.Remove,
+            hl = "GitSignsTopDelete",
+            numhl = "GitSignsDeleteNr",
+            linehl = "GitSignsDeleteLn",
         },
         changedelete = {
-            text = icons.git.mod,
-            hl = "gitsignschangedelete",
-            numhl = "gitsignschangenr",
-            linehl = "gitsignschangeln",
+            text = icons.git.Mod,
+            hl = "GitSignsChangedelete",
+            numhl = "GitSignsChangeNr",
+            linehl = "GitSignsChangeLn",
         },
         untracked = {
             test = "┆",
-            hl = "gitsignsuntracked",
-            numhl = "gitsignsuntrackednr",
-            linehl = "gitsignsuntrackedln",
+            hl = "GitSignsUntracked",
+            numhl = "GitSignsUntrackedNr",
+            linehl = "GitSignsUntrackedLn",
         },
     },
-    signcolumn = true,          -- toggle with `:gitsigns toggle_signs`
-    numhl = false,              -- toggle with `:gitsigns toggle_numhl`
-    linehl = false,             -- toggle with `:gitsigns toggle_linehl`
-    word_diff = false,          -- toggle with `:gitsigns toggle_word_diff`
-    show_deleted = false,       -- toggle with `:gitsigns toggle_deleted`
-    current_line_blame = false, -- toggle with `:gitsigns toggle_current_line_blame`
+    signcolumn = true,          -- Toggle with `:Gitsigns toggle_signs`
+    numhl = false,              -- Toggle with `:Gitsigns toggle_numhl`
+    linehl = false,             -- Toggle with `:Gitsigns toggle_linehl`
+    word_diff = false,          -- Toggle with `:Gitsigns toggle_word_diff`
+    show_deleted = false,       -- Toggle with `:Gitsigns toggle_deleted`
+    current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
     diff_opts = {
         algorithm = "myers",    -- myers | minimal | patience | histogram
         -- internal = true,
@@ -71,7 +71,7 @@ gitsigns.setup({
         virt_text_priority = 100,
         ignore_whitespace = false,
     },
-    current_line_blame_formatter = "<author>, <author_time:%y-%m-%d> - <summary>",
+    current_line_blame_formatter = "<author>, <author_time:%Y-%m-%d> - <summary>",
     current_line_blame_formatter_nc = "<author>",
     current_line_blame_formatter_opts = {
         relative_time = false,
@@ -90,7 +90,7 @@ gitsigns.setup({
     status_formatter = nil,
     max_file_length = 40000,
     preview_config = {
-        -- options passed to nvim_open_win
+        -- Options passed to nvim_open_win
         border = icons.ui.window.float.border,
         style = "minimal",
         relative = "cursor",
