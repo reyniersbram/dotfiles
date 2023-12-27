@@ -27,10 +27,4 @@ return {
     --     "norcalli/nvim-colorizer.lua",
     --     config = require("config.colorizer")
     -- },
-
-    -- Git
-    {
-        "lewis6991/gitsigns.nvim",
-        config = require("config.gitsigns")
-    },
 }
