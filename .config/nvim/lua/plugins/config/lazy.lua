@@ -1,4 +1,4 @@
-local icons = require("helpers.icons")
+local icons = require("util.icons")
 
 return {
     root = vim.fn.stdpath("data") .. "/lazy",

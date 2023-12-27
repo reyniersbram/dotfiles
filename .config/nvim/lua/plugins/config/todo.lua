@@ -1,10 +1,10 @@
 local status_ok, todo = pcall(require, "todo-comments")
 if not status_ok then
-    require("helpers.utils").notify_not_found("todo-comments")
+    require("util").notify_not_found("todo-comments")
     return
 end
 
-local icons = require("helpers.icons")
+local icons = require("util.icons")
 
 -- TODO: some todo comment
 -- FIXME: some fixme commment

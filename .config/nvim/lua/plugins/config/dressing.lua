@@ -4,7 +4,7 @@ if not dressing_status_ok then
     return
 end
 
-local icons = require("helpers.icons")
+local icons = require("util.icons")
 
 dressing.setup {
     input = {

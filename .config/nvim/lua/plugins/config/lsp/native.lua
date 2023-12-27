@@ -1,6 +1,6 @@
 local M = {}
 
-local icons = require("helpers.icons")
+local icons = require("util.icons")
 
 -- Diagnostics
 local signs = {

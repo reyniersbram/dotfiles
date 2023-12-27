@@ -4,7 +4,7 @@ if not navic_status_ok then
     return
 end
 
-local icons_status_ok, icons = pcall(require, "helpers.icons")
+local icons_status_ok, icons = pcall(require, "util.icons")
 if not icons_status_ok then
     vim.notify("icons not found")
     return

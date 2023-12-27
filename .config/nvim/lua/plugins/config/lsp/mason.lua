@@ -4,7 +4,7 @@ if not mason_status_ok then
     return
 end
 
-local icons_status_ok, icons = pcall(require, "helpers.icons")
+local icons_status_ok, icons = pcall(require, "util.icons")
 
 -- Setup mason
 mason.setup {

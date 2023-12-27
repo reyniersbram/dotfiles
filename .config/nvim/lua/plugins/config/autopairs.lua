@@ -40,7 +40,7 @@ autopairs.setup {
     },
 }
 
-require("helpers.utils").try_with_module("cmp", function(cmp)
+require("util").try_with_module("cmp", function(cmp)
     local cmp_autopairs = require("nvim-autopairs.completion.cmp")
     cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 end)

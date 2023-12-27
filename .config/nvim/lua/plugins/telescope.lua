@@ -1,4 +1,4 @@
-local require = require("helpers.utils").cb_require
+local require = require("util").cb_require
 
 return {
     "nvim-telescope/telescope.nvim",

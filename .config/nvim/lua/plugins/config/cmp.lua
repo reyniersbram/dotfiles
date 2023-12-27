@@ -33,7 +33,7 @@ require("luasnip/loaders/from_vscode").lazy_load()
 --    return false
 -- end
 
-local icons = require("helpers.icons")
+local icons = require("util.icons")
 
 -- vim.g.cmp_active = true
 

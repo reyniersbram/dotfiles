@@ -55,5 +55,5 @@ for _, server in pairs(servers) do
     lspconfig[server].setup(opts)
 end
 
-require("lspconfig.ui.windows").default_options.border = require("helpers.icons").ui.window.float.border
+require("lspconfig.ui.windows").default_options.border = require("util.icons").ui.window.float.border
 vim.api.nvim_set_hl(0, "LspInfoBorder", { link = "FloatBorder" })

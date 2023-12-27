@@ -8,7 +8,7 @@ setmetatable(Spinner, {
     end,
 })
 
-local spinner_frames = require("helpers.icons").ui.spinner_frames
+local spinner_frames = require("util.icons").ui.spinner_frames
 
 function Spinner.new(msg, lvl, opts)
     local self = setmetatable({}, Spinner)

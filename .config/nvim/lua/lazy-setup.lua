@@ -15,6 +15,6 @@ end
 
 bootstrap()
 
-require("helpers.utils").try_with_module("lazy", function(lazy)
+require("util").try_with_module("lazy", function(lazy)
     lazy.setup("plugins", require("plugins.config.lazy"))
 end)

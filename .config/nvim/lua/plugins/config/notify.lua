@@ -4,11 +4,11 @@ if not status_ok then
     return
 end
 
-local icons = require("helpers.icons")
+local icons = require("util.icons")
 
 vim.notify = notify
 
-require("helpers.utils").try_with_module("telescope", function(telescope)
+require("util").try_with_module("telescope", function(telescope)
     telescope.load_extension("notify")
 end)
 
@@ -51,7 +51,7 @@ local function configure_progress_notifications()
         group = "lsp_notify",
         desc = "LSP progress notifications",
         callback = function()
-            local Spinner = require("helpers.spinner")
+            local Spinner = require("util.spinner")
             for _, client in ipairs(vim.lsp.get_active_clients()) do
                 for token, progress in pairs(client.messages.progress) do
                     if not spinners[client.id] then
