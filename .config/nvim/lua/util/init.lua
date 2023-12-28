@@ -49,4 +49,15 @@ function M.try_with_module(modname, callback, opts)
     return false
 end
 
+--- Remove an augroup, if it exists. Returns false if augroup didn't exist.
+--- @param name string
+--- @return boolean
+function M.remove_augroup(name)
+    if vim.fn.exists("#" .. name) == 1 then
+        vim.api.nvim_clear_autocmds({ group = name })
+        return true
+    end
+    return false
+end
+
 return M

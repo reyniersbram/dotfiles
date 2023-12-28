@@ -1,35 +1,10 @@
 local M = {}
-
 local icons = require("util.icons")
 
-vim.lsp.set_log_level("off")
+vim.lsp.set_log_level(vim.lsp.log_levels.OFF)
 
--- Diagnostics
-local signs = {
-    { name = "DiagnosticSignError", text = icons.diagnostics.ERROR },
-    { name = "DiagnosticSignWarn",  text = icons.diagnostics.WARN },
-    { name = "DiagnosticSignInfo",  text = icons.diagnostics.INFO },
-    { name = "DiagnosticSignHint",  text = icons.diagnostics.HINT },
-}
-
-for _, sign in ipairs(signs) do
-    vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
-end
-
-vim.diagnostic.config {
-    virtual_text = true,
-    signs = {
-        priority = 10,
-    },
-    update_in_insert = true,
-    severity_sort = true,
-    float = {
-        focusable = true,
-        style = "minimal",
-        border = icons.ui.window.float.border,
-        source = true,
-    },
-}
+require("core.lsp.autoformatting")
+require("core.lsp.highlight")
 
 -- LSP
 vim.lsp.handlers["textDocument/hover"] =
@@ -47,7 +22,6 @@ vim.lsp.handlers["textDocument/signatureHelp"] =
             border = icons.ui.window.float.border,
         }
     )
-
 
 M.server_capabilities = function()
     local active_clients = vim.lsp.get_active_clients()
@@ -72,10 +46,10 @@ M.server_capabilities = function()
                 .server_capabilities
                 .executeCommandProvider
             ))
-            vim.pretty_print(
-                vim.lsp.get_active_clients()[active_client_map[choice]]
-                .server_capabilities
-            )
+            -- vim.print(
+            --     vim.lsp.get_active_clients()[active_client_map[choice]]
+            --     .server_capabilities
+            -- )
         end
     )
 end

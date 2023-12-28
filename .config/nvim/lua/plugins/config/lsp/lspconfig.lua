@@ -49,7 +49,7 @@ for _, server in pairs(servers) do
     local server_opts_status_ok, server_opts =
         pcall(
             require,
-            "plugins.config.lsp.settings." .. server
+            "util.lsp.servers." .. server
         )
     if server_opts_status_ok then
         opts = vim.tbl_deep_extend("force", opts, server_opts)

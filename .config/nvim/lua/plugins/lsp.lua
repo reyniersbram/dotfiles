@@ -29,7 +29,6 @@ return {
     -- "jose-elias-alvarez/null-ls.nvim",
     -- "ray-x/lsp_signature.nvim"
     -- "RRethy/vim-illuminate"
-    -- "lvimuser/lsp-inlayhints.nvim"
     "fladson/vim-kitty",
     {
         "hinell/lsp-timeout.nvim",
