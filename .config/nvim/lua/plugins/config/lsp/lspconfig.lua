@@ -33,8 +33,6 @@ local servers = {
     -- "sparql_ls"
 }
 
-require("plugins.config.lsp.native")
-
 local handlers = require("plugins.config.lsp.handlers")
 handlers.setup()
 
