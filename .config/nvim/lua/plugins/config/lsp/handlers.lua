@@ -16,10 +16,10 @@ end
 
 local function configure_progress_notifications()
     local spinners = {}
-    vim.api.nvim_create_augroup("lsp_notify", { clear = true })
+    local group = vim.api.nvim_create_augroup("LspNotify", { clear = true })
     vim.api.nvim_create_autocmd("User", {
         pattern = "LspProgressUpdate",
-        group = "lsp_notify",
+        group = group,
         desc = "LSP progress notifications",
         callback = function()
             local Spinner = require("util.notify.Spinner")
