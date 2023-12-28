@@ -4,8 +4,6 @@ if not lspconfig_status_ok then
     return
 end
 
-vim.lsp.set_log_level("off")
-
 -- Language Servers
 
 local servers = {
@@ -34,6 +32,8 @@ local servers = {
     -- "turtle_ls", -- (RDF syntax)
     -- "sparql_ls"
 }
+
+require("plugins.config.lsp.native")
 
 local handlers = require("plugins.config.lsp.handlers")
 handlers.setup()

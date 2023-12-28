@@ -151,10 +151,10 @@ M = {
 }
 
 M.diagnostics = {
-    ERROR = " ", -- TODO: find proper icon
-    WARN = " ", -- TODO: find proper icon
-    INFO = " ", -- TODO: find proper icon
-    HINT = " ", -- TODO: find proper icon
+    ERROR = "", -- TODO: find proper icon
+    WARN = "", -- TODO: find proper icon
+    INFO = "", -- TODO: find proper icon
+    HINT = "", -- TODO: find proper icon
 }
 M.log_level = {
     TRACE = "✎", -- TODO: find proper icon

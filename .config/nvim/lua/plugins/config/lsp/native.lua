@@ -2,12 +2,14 @@ local M = {}
 
 local icons = require("util.icons")
 
+vim.lsp.set_log_level("off")
+
 -- Diagnostics
 local signs = {
-    { name = "DiagnosticSignError", text = icons.diagnostics.Error },
-    { name = "DiagnosticSignWarn",  text = icons.diagnostics.Warning },
-    { name = "DiagnosticSignHint",  text = icons.diagnostics.Hint },
-    { name = "DiagnosticSignInfo",  text = icons.diagnostics.Information },
+    { name = "DiagnosticSignError", text = icons.diagnostics.ERROR },
+    { name = "DiagnosticSignWarn",  text = icons.diagnostics.WARN },
+    { name = "DiagnosticSignInfo",  text = icons.diagnostics.INFO },
+    { name = "DiagnosticSignHint",  text = icons.diagnostics.HINT },
 }
 
 for _, sign in ipairs(signs) do
@@ -16,13 +18,15 @@ end
 
 vim.diagnostic.config {
     virtual_text = true,
-    signs = true,
+    signs = {
+        priority = 10,
+    },
     update_in_insert = true,
     severity_sort = true,
     float = {
         focusable = true,
         style = "minimal",
-        border = "rounded",
+        border = icons.ui.window.float.border,
         source = true,
     },
 }
@@ -32,7 +36,7 @@ vim.lsp.handlers["textDocument/hover"] =
     vim.lsp.with(
         vim.lsp.handlers.hover,
         {
-            border = "rounded",
+            border = icons.ui.window.float.border,
         }
     )
 
@@ -40,7 +44,7 @@ vim.lsp.handlers["textDocument/signatureHelp"] =
     vim.lsp.with(
         vim.lsp.handlers.signature_help,
         {
-            border = "rounded",
+            border = icons.ui.window.float.border,
         }
     )
 
