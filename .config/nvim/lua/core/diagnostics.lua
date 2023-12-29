@@ -1,29 +1,27 @@
 local icons = require("util.icons")
 
--- Diagnostics
-local signs = {
-    { name = "DiagnosticSignError", text = icons.diagnostics.ERROR },
-    { name = "DiagnosticSignWarn",  text = icons.diagnostics.WARN },
-    { name = "DiagnosticSignInfo",  text = icons.diagnostics.INFO },
-    { name = "DiagnosticSignHint",  text = icons.diagnostics.HINT },
-}
-
--- NOTE: use vim.diagnostic.config starting from v0.10
-for _, sign in ipairs(signs) do
-    vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
+if vim.fn.has("nvim-0.10.0") ~= 1 then
+    local signs = {
+        { hl = "DiagnosticSignError", text = icons.diagnostics.ERROR },
+        { hl = "DiagnosticSignWarn",  text = icons.diagnostics.WARN },
+        { hl = "DiagnosticSignInfo",  text = icons.diagnostics.INFO },
+        { hl = "DiagnosticSignHint",  text = icons.diagnostics.HINT },
+    }
+    for _, sign in ipairs(signs) do
+        vim.fn.sign_define(sign.hl, { texthl = sign.hl, text = sign.text, numhl = "" })
+    end
 end
 
 vim.diagnostic.config {
     virtual_text = true,
     signs = {
         priority = 10,
-        -- NOTE: use this starting from v0.10
-        -- text = {
-        --     [vim.diagnostic.severity.ERROR] = icons.diagnostics.ERROR,
-        --     [vim.diagnostic.severity.WARN] = icons.diagnostics.WARN,
-        --     [vim.diagnostic.severity.INFO] = icons.diagnostics.INFO,
-        --     [vim.diagnostic.severity.HINT] = icons.diagnostics.HINT,
-        -- },
+        text = {
+            [vim.diagnostic.severity.ERROR] = icons.diagnostics.ERROR,
+            [vim.diagnostic.severity.WARN] = icons.diagnostics.WARN,
+            [vim.diagnostic.severity.INFO] = icons.diagnostics.INFO,
+            [vim.diagnostic.severity.HINT] = icons.diagnostics.HINT,
+        },
     },
     update_in_insert = true,
     severity_sort = true,
