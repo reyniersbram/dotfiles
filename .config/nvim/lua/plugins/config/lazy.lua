@@ -8,7 +8,7 @@ return {
         cond = nil,
     },
     spec = nil,
-    lockfile = vim.fn.stdpath("config") .. "/package-lock.json",
+    lockfile = vim.fn.stdpath("config") .. "/lazy-lock.json",
     -- concurrency = jit.os:find("Windows") and (vim.loop.available_parallelism() * 2) or nil,
     git = {
         log = { "-8" }, -- show commits from the last 3 days
