@@ -9,7 +9,10 @@ return {
             "nvim-telescope/telescope-fzf-native.nvim", -- Better telescope sorting
             build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build"
         },
--- "nvim-telescope/telescope-media-files.nvim",
+        {
+            "nvim-telescope/telescope-media-files.nvim",
+            cond = false,
+        },
     },
     config = require("plugins.config.telescope"),
 }

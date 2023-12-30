@@ -5,14 +5,15 @@ local require = require("util").cb_require
 
 return {
     -- Social
-    -- {
-    --     "andweeb/presence.nvim",
-    --     config = require("plugins.config.presence"),
-    -- },
+    {
+        "andweeb/presence.nvim",
+        config = require("plugins.config.presence"),
+        cond = false,
+    },
     "wakatime/vim-wakatime",
 
     -- Misc
-    "nvim-lua/popup.nvim", -- An implementation of the Popup API from vim in Neovim
+    "nvim-lua/popup.nvim",   -- An implementation of the Popup API from vim in Neovim
     "nvim-lua/plenary.nvim", -- Useful lua functions used by lots of plugins
 
     -- Markdown preview plugin
@@ -23,8 +24,9 @@ return {
     },
 
     -- Color Highlighting
-    -- {
-    --     "norcalli/nvim-colorizer.lua",
-    --     config = require("config.colorizer")
-    -- },
+    {
+        "norcalli/nvim-colorizer.lua",
+        config = require("config.colorizer"),
+        cond = false,
+    },
 }

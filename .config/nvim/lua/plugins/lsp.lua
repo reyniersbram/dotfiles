@@ -29,7 +29,10 @@ return {
     -- "jose-elias-alvarez/null-ls.nvim",
     -- "ray-x/lsp_signature.nvim"
     -- "RRethy/vim-illuminate"
-    "fladson/vim-kitty",
+    {
+        "fladson/vim-kitty",
+        ft = "kitty",
+    },
     {
         "hinell/lsp-timeout.nvim",
         dependencies = {

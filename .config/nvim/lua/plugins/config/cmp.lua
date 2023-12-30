@@ -85,7 +85,7 @@ cmp.setup {
                     nvim_lua = "[Nvim]",
                     -- spell       = "[Spell]",
                     -- calc        = "[Calc]",
-                    -- emoji       = "[Emoji]",
+                    emoji       = "[Emoji]",
                 })[entry.source.name]
                 return vim_item
             end,
