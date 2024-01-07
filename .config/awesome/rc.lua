@@ -340,7 +340,13 @@ local globalkeys = gears.table.join(
     awful.key({ modkey }, "r", function()
             awful.util.spawn("rofi-launcher run")
         end,
-        { description = "run prompt", group = "launcher" })
+        { description = "run prompt", group = "launcher" }),
+
+    -- Other
+    awful.key({ modkey, "Shift" }, "s", function()
+            awful.util.spawn("scrot $HOME/Pictures/Screenshots/%Y-%m-%d.png -s -f")
+        end,
+        { description = "Take an interactive screenshot", group = "other" })
 )
 
 local clientkeys = gears.table.join(
