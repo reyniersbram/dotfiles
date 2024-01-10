@@ -325,6 +325,14 @@ local globalkeys = gears.table.join(
             awful.util.spawn("rofi-launcher drun")
         end,
         { description = "application launcher", group = "launcher" }),
+    awful.key(
+        { modkey, "Shift" },
+        "p",
+        function()
+            awful.util.spawn("rofi-pass")
+        end,
+        { description = "Quick find password", group = "other" }
+    ),
 
     awful.key({ modkey }, "x",
         function()
