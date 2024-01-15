@@ -8,7 +8,7 @@ local icons_status_ok, icons = pcall(require, "util.icons")
 
 -- Setup mason
 mason.setup {
-    -- install_root_dir = require("mason-core.path").concat { vim.fn.stdpath "data", "mason" },
+    install_root_dir = require("mason-core.path").concat { vim.fn.stdpath("data"), "mason" },
     PATH = "append",
     log_level = vim.log.levels.INFO,
     max_concurrent_installers = 5,
