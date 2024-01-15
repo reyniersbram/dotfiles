@@ -1,5 +1,18 @@
 local icons = require("util.icons")
 
+vim.api.nvim_create_autocmd("User", {
+    pattern = "LazyUpdate",
+    desc = "Test job",
+    callback = function()
+        local job = vim.fn.jobstart(
+            "git add lazy-lock.json && git commit -m '[lazy.nvim] plugin(s) updated'",
+            {
+                cwd = vim.fn.stdpath("config"),
+            }
+        )
+    end,
+})
+
 return {
     root = vim.fn.stdpath("data") .. "/lazy",
     defaults = {
