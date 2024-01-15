@@ -19,7 +19,7 @@ return {
     -- Markdown preview plugin
     {
         "iamcco/markdown-preview.nvim",
-        build = "cd app && npm install",
+        build = "cd app && yarn install",
         ft = "markdown",
     },
 
