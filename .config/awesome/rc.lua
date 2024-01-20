@@ -352,7 +352,8 @@ local globalkeys = gears.table.join(
 
     -- Other
     awful.key({ modkey, "Shift" }, "s", function()
-            awful.util.spawn("scrot $HOME/Pictures/Screenshots/%Y-%m-%d.png -s -f")
+            local path = os.getenv("HOME") .. "/Pictures/Screenshots/%Y-%m-%d.png"
+            awful.util.spawn("scrot " .. path .. " -s -f")
         end,
         { description = "Take an interactive screenshot", group = "other" })
 )
