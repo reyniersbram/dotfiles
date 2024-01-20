@@ -1,8 +1,28 @@
 local M = {}
 
+local plugin_name = "FormatOnSave"
+local auto_format_group_name = "LspFormatOnSave"
+
 local function setup_auto_format(event)
-    local auto_format_group_name = "LspAutoFormat"
     function M.enable_auto_format()
+        local client_id = vim.tbl_get(event, "data", "client_id")
+        local client = client_id and vim.lsp.get_client_by_id(client_id)
+        if client == nil then
+            vim.notify(
+                "Could not setup format-on-save, no client found",
+                vim.log.levels.WARN,
+                { title = plugin_name }
+            )
+            return
+        elseif not client.supports_method("textDocument/formatting") then
+            vim.notify(
+                "Could not setup format-on-save, "
+                .. client.name .. " does not support formatting",
+                vim.log.levels.WARN,
+                { title = plugin_name }
+            )
+            return
+        end
         local group = vim.api.nvim_create_augroup(
             auto_format_group_name,
             { clear = true }
@@ -19,12 +39,20 @@ local function setup_auto_format(event)
                 }
             end
         })
-        vim.notify "Automatic formatting enabled"
+        vim.notify(
+            "Formatting on save enabled",
+            vim.log.levels.INFO,
+            { title = plugin_name }
+        )
     end
 
     function M.disable_auto_format()
         require("util").remove_augroup(auto_format_group_name)
-        vim.notify "Automatic formatting disabled"
+        vim.notify(
+            "Formatting on save disabled",
+            vim.log.levels.INFO,
+            { title = plugin_name }
+        )
     end
 
     function M.toggle_auto_format()
@@ -36,44 +64,42 @@ local function setup_auto_format(event)
     end
 
     vim.api.nvim_create_user_command(
-        "LspToggleAutoFormat",
+        "LspToggleFormatOnSave",
         function()
             M.toggle_auto_format()
         end,
         {
             nargs = 0,
-            desc = "Toggle automatic formatting on save",
+            desc = "Toggle formatting on save",
         }
     )
 
     vim.api.nvim_create_user_command(
-        "LspEnableAutoFormat",
+        "LspEnableFormatOnSave",
         function()
             M.enable_auto_format()
         end,
         {
             nargs = 0,
-            desc = "Enable automatic formatting on save",
+            desc = "Enable formatting on save",
         }
     )
 
     vim.api.nvim_create_user_command(
-        "LspDisableAutoFormat",
+        "LspDisableFormatOnSave",
         function()
             M.disable_auto_format()
         end,
         {
             nargs = 0,
-            desc = "Disable automatic formatting on save",
+            desc = "Disable formatting on save",
         }
     )
 end
 
 vim.api.nvim_create_autocmd("LspAttach", {
-    desc = "Setup automatic formatting",
+    desc = "Setup formatting on save",
     callback = function(event) setup_auto_format(event) end,
 })
-
-vim.notify("autoformatting")
 
 return M

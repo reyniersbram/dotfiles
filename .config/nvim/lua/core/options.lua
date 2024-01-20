@@ -84,7 +84,7 @@ for option, value in pairs(options) do
     vim.opt[option] = value
 end
 
-vim.opt.fillchars:append({ eob = " " })
+vim.opt.fillchars:append { eob = " " }
 
 vim.opt.formatoptions:remove("t")
 vim.opt.formatoptions:append("c")

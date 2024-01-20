@@ -3,7 +3,7 @@ local icons = require("util.icons")
 
 vim.lsp.set_log_level(vim.lsp.log_levels.OFF)
 
-require("core.lsp.autoformatting")
+require("core.lsp.format_on_save")
 require("core.lsp.highlight")
 
 -- LSP
@@ -40,16 +40,10 @@ M.server_capabilities = function()
             end,
         },
         function(choice)
-            -- print(active_client_map[choice])
             print(vim.inspect(
                 vim.lsp.get_active_clients()[active_client_map[choice]]
                 .server_capabilities
-                .executeCommandProvider
             ))
-            -- vim.print(
-            --     vim.lsp.get_active_clients()[active_client_map[choice]]
-            --     .server_capabilities
-            -- )
         end
     )
 end
