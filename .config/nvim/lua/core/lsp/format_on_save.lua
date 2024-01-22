@@ -28,7 +28,6 @@ local function setup_auto_format(event)
             { clear = true }
         )
         vim.api.nvim_create_autocmd("BufWritePre", {
-            buffer = event.buf,
             group = group,
             desc = "Format on Save",
             callback = function(e)
