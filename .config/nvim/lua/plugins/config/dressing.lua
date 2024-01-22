@@ -12,7 +12,7 @@ dressing.setup {
         default_prompt = "Input:",
         title_pos = "left",
         insert_only = false,
-        start_in_insert = false,
+        start_in_insert = true,
         border = icons.ui.window.float.border,
         relative = "editor",
         prefer_width = 0.2,
@@ -73,7 +73,7 @@ dressing.setup {
             override = function(conf)
                 return conf
             end,
-            forman_item_override = {},
+            format_item_override = {},
             get_config = nil,
         },
         nui = nil,
