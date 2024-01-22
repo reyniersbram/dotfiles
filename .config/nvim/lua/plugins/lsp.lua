@@ -1,4 +1,5 @@
 local require = require("util").cb_require
+vim.api.nvim_create_augroup("", {})
 return {
     {
         "williamboman/mason.nvim",
@@ -21,6 +22,7 @@ return {
         dependencies = {
             "williamboman/mason.nvim",
             "williamboman/mason-lspconfig.nvim",
+            "folke/neodev.nvim",
         },
         config = require("plugins.config.lsp.lspconfig"),
         event = { "BufReadPre", "BufNewFile" },
@@ -28,7 +30,6 @@ return {
     },
     -- "jose-elias-alvarez/null-ls.nvim",
     -- "ray-x/lsp_signature.nvim"
-    -- "RRethy/vim-illuminate"
     {
         "fladson/vim-kitty",
         ft = "kitty",

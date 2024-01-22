@@ -33,6 +33,24 @@ local servers = {
     -- "sparql_ls"
 }
 
+require("util").try_with_module(
+    "neodev",
+    function(neodev)
+        neodev.setup {
+            library = {
+                enabled = true,
+                runtime = true,
+                types = true,
+                plugins = true,
+            },
+            setup_jsonls = true,
+            override = function(root_dir, options) end,
+            lspconfig = true,
+            pathStrict = true,
+        }
+    end
+)
+
 local handlers = require("plugins.config.lsp.handlers")
 handlers.setup()
 
