@@ -4,7 +4,7 @@ return {
     {
         "nvim-treesitter/nvim-treesitter",
         dependencies = {
-            "JoosepAlviste/nvim-ts-context-commentstring",
+            "nvim-treesitter/nvim-treesitter-textobjects",
             "windwp/nvim-ts-autotag",
         },
         build = ":TSUpdate",
@@ -17,6 +17,15 @@ return {
         opts = {
             enable_autocmd = false,
         },
+        lazy = true,
+    },
+    {
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter",
+        },
+        config = require("plugins.config.treesitter-textobjects"),
+        lazy = true,
     },
     {
         "windwp/nvim-autopairs",
