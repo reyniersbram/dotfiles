@@ -7,4 +7,3 @@ return {
     },
     config = require("plugins.config.nvim-tree"),
 }
-

@@ -13,7 +13,7 @@ local options = {
     belloff = { "all" },
     clipboard = "unnamedplus",
     cmdheight = 2,
-    colorcolumn = "+1",
+    colorcolumn = "",
     completeopt = {
         "menuone",
         "noselect",
@@ -55,7 +55,7 @@ local options = {
     shiftround = true,
     shiftwidth = 4,
     showmode = false,
-    showtabline = 2,
+    showtabline = 0,
     sidescrolloff = 8,
     signcolumn = "yes",
     smartcase = true,

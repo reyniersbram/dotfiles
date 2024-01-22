@@ -35,5 +35,5 @@ vim.diagnostic.config {
 
 local opts = { noremap = true, silent = true }
 vim.keymap.set("n", "gl", vim.diagnostic.open_float, opts)
-vim.keymap.set("n", "ge", vim.diagnostic.goto_next, opts)
-vim.keymap.set("n", "gE", vim.diagnostic.goto_prev, opts)
+vim.keymap.set("n", "gdn", vim.diagnostic.goto_next, opts)
+vim.keymap.set("n", "gdp", vim.diagnostic.goto_prev, opts)

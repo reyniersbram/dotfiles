@@ -4,6 +4,10 @@ local require = require("util").cb_require
 -- try neodev.nvim
 
 return {
+    -- Buffer management
+    {
+        "moll/vim-bbye",
+    },
     -- Social
     {
         "andweeb/presence.nvim",
@@ -13,8 +17,14 @@ return {
     "wakatime/vim-wakatime",
 
     -- Misc
-    "nvim-lua/popup.nvim",   -- An implementation of the Popup API from vim in Neovim
-    "nvim-lua/plenary.nvim", -- Useful lua functions used by lots of plugins
+    {
+        "nvim-lua/popup.nvim", -- An implementation of the Popup API from vim in Neovim
+        lazy = true,
+    },
+    {
+        "nvim-lua/plenary.nvim", -- Useful lua functions used by lots of plugins
+        lazy = true,
+    },
 
     -- Markdown preview plugin
     {

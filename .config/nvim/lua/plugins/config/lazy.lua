@@ -1,17 +1,25 @@
 local icons = require("util.icons")
 
-vim.api.nvim_create_autocmd("User", {
-    pattern = "LazyUpdate",
-    desc = "Test job",
-    callback = function()
-        local job = vim.fn.jobstart(
-            "git add lazy-lock.json && git commit -m '[lazy.nvim] plugin(s) updated'",
-            {
-                cwd = vim.fn.stdpath("config"),
-            }
-        )
-    end,
-})
+local autocmd_group = vim.api.nvim_create_augroup("LazyAutocommit", { clear = true })
+local function attach_autocommit(event, message)
+    vim.api.nvim_create_autocmd("User", {
+        group = autocmd_group,
+        pattern = event,
+        desc = "Commit lazy-lock.json after " .. event,
+        callback = function()
+            vim.fn.jobstart(
+                "git add lazy-lock.json && git commit -m '[lazy.nvim] " .. message .. "'",
+                {
+                    cwd = vim.fn.stdpath("config"),
+                }
+            )
+        end,
+    })
+end
+
+attach_autocommit("LazyUpdate", "plugin(s) updated")
+attach_autocommit("LazyInstall", "new plugin(s) installed")
+attach_autocommit("LazyClean", "unused plugin(s) removed")
 
 return {
     root = vim.fn.stdpath("data") .. "/lazy",
@@ -25,7 +33,7 @@ return {
     -- concurrency = jit.os:find("Windows") and (vim.loop.available_parallelism() * 2) or nil,
     git = {
         log = { "-8" }, -- show commits from the last 3 days
-        timeout = 120, -- kill processes that take more than 2 minutes
+        timeout = 120,  -- kill processes that take more than 2 minutes
         url_format = "https://github.com/%s.git",
         filter = true,
     },
@@ -90,12 +98,12 @@ return {
         },
     },
     diff = {
-    -- diff command <d> can be one of:
-    -- * browser: opens the github compare view. Note that this is always mapped to <K> as well,
-    --   so you can have a different command for diff <d>
-    -- * git: will run git diff and open a buffer with filetype git
-    -- * terminal_git: will open a pseudo terminal with git diff
-    -- * diffview.nvim: will open Diffview to show the diff
+        -- diff command <d> can be one of:
+        -- * browser: opens the github compare view. Note that this is always mapped to <K> as well,
+        --   so you can have a different command for diff <d>
+        -- * git: will run git diff and open a buffer with filetype git
+        -- * terminal_git: will open a pseudo terminal with git diff
+        -- * diffview.nvim: will open Diffview to show the diff
         cmd = "git",
     },
     checker = {

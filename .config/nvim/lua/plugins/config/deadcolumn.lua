@@ -1,11 +1,10 @@
-vim.opt.colorcolumn = "+1"
-vim.opt.textwidth = 80
-
 local colorcolumn_status_ok, colorcolumn = pcall(require, "deadcolumn")
 if not colorcolumn_status_ok then
     vim.notify("deadcolumn not found")
     return
 end
+
+vim.opt.colorcolumn = "+1"
 
 colorcolumn.setup {
     scope = 'line',
