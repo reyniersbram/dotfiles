@@ -7,8 +7,12 @@ local function setup_higlight_symbol(event)
 
     local group = vim.api.nvim_create_augroup(
         "HighlightSymbol",
-        { clear = true }
+        { clear = false }
     )
+    vim.api.nvim_clear_autocmds {
+        buffer = event.buf,
+        group = group,
+    }
     vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
         group = group,
         buffer = event.buf,
