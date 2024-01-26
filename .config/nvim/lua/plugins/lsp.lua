@@ -42,4 +42,7 @@ return {
         event = { "LspAttach" },
         config = require("plugins.config.lsp.timeout"),
     },
+
+    -- TODO:
+    -- b0o/schemastore.nvim
 }

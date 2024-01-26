@@ -70,4 +70,4 @@ treesitter.setup {
         enable_close = true,
         enable_close_on_slash = true,
     },
- }
+}

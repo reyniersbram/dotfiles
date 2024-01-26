@@ -36,4 +36,4 @@ keymap("n", "<C-w>", ":Bdelete<CR>", opts)
 
 -- Toggle Telescope
 keymap("n", "<leader>ff", ":Telescope find_files hidden=true<CR>", opts)
-
+keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)

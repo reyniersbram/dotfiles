@@ -12,7 +12,7 @@ telescope.setup {
         selection_caret = " ",
         path_display = { "smart" },
         file_ignore_patterns = {
-            ".git",
+            ".git/",
             "node_modules",
             "__pycache__",
         },
