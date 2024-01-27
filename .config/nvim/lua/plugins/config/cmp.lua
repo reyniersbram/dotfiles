@@ -262,3 +262,12 @@ cmp.setup {
 --         { name = "buffer", },
 --     }),
 -- })
+
+vim.api.nvim_create_autocmd({ "CursorHold" }, {
+    callback = function()
+        if luasnip.expand_or_jumpable() then
+            -- luasnip.unlink_current()
+            vim.cmd [[silent! lua require("luasnip").unlink_current()]]
+        end
+    end
+})
