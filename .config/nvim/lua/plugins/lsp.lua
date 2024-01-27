@@ -1,5 +1,5 @@
 local require = require("util").cb_require
-vim.api.nvim_create_augroup("", {})
+
 return {
     {
         "williamboman/mason.nvim",
@@ -14,8 +14,12 @@ return {
         dependencies = {
             "williamboman/mason.nvim",
         },
-        config = require("plugins.config.lsp.mason-lspconfig"),
         event = { "LspAttach" },
+        opts = {
+            ensure_installed = {},
+            automatic_installation = { exclude = { "hls", "clangd" } },
+            handlers = nil,
+        },
     },
     {
         "neovim/nvim-lspconfig",

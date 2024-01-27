@@ -44,7 +44,7 @@ return {
     },
     install = {
         missing = true,
-        colorscheme = { "habamax" },
+        colorscheme = { "default" },
     },
     ui = {
         size = { width = 0.7, height = 0.7 },
