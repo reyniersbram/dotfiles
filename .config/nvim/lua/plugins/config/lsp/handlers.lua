@@ -114,10 +114,28 @@ M.on_attach = function(client, bufnr)
 end
 
 
+local function code_action_listener()
+    local context = { diagnostics = vim.lsp.diagnostic.get_line_diagnostics() }
+    local params = vim.lsp.util.make_range_params()
+    params.context = context
+    vim.lsp.buf_request(
+        0, "textDocument/codeAction", params,
+        function(err, result, ctx, config)
+            -- TODO: do something, e.g. set sign
+        end
+    )
 end
 
 function M.setup()
     configure_progress_notifications()
+
+    -- Check for code actions on CursorHold
+    vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+        group = vim.api.nvim_create_augroup("code_action_sign", { clear = true }),
+        callback = function()
+            code_action_listener()
+        end
+    })
 end
 
 return M
