@@ -48,4 +48,21 @@ M.server_capabilities = function()
     )
 end
 
+local function preview_location_callback(_, result)
+    if result == nil or vim.tbl_isempty(result) then
+        return
+    end
+    vim.lsp.util.preview_location(result[1], {
+        border = icons.ui.window.float.border,
+    })
+end
+
+local function peek_definition()
+    local params = vim.lsp.util.make_position_params()
+    return vim.lsp.buf_request(0, "textDocument/definition", params, preview_location_callback)
+end
+
+vim.api.nvim_create_user_command("PeekDefinition", peek_definition,
+    { nargs = 0, desc = "Preview definition of a function in floating window" })
+
 return M

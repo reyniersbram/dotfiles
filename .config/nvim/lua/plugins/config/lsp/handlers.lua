@@ -32,7 +32,7 @@ local function configure_progress_notifications()
                     if not progress.done then
                         local message = format_message(progress.message, progress.percentage) or "Starting up..."
                         if not spinner then
-                            local opts = { title = format_title(progress.title, client.name) }
+                            local opts = { title = format_title(progress.title, client.name), render = "compact" }
                             spinners[client.id][token] = Spinner(message, vim.log.levels.INFO, opts)
                         else
                             spinner:update(message)
