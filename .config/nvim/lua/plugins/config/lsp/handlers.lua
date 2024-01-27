@@ -71,12 +71,12 @@ M.capabilities = vim.lsp.protocol.make_client_capabilities()
 M.capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 -- CMP integration
-local cmp_nvim_lsp_status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-if not cmp_nvim_lsp_status_ok then
-    vim.notify("cmp_nvim_lsp not found")
-    return
-end
-M.capabilities = cmp_nvim_lsp.default_capabilities(M.capabilities)
+require("util").try_with_module(
+    "cmp_nvim_lsp",
+    function(cmp_lsp)
+        M.capabilities = cmp_lsp.default_capabilities(M.capabilities)
+    end
+)
 
 -- On Attach
 local function set_keymaps(bufnr)
@@ -111,25 +111,9 @@ end
 
 M.on_attach = function(client, bufnr)
     set_keymaps(bufnr)
-    -- lsp_highlight_document(client)
 end
 
 
--- TODO uitzoeken wat dit doet
-local function lsp_highlight_document(client)
-    -- Set autocommands conditional on server_capabilities
-    if client.resolved_capabilities.document_highlight then
-        vim.api.nvim_exec(
-            [[
-                augroup lsp_document_highlight
-                autocmd! * <buffer>
-                autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-                autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-                augroup END
-            ]],
-            false
-        )
-    end
 end
 
 function M.setup()

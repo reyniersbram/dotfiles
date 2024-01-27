@@ -48,10 +48,9 @@ cmp.setup {
     -- enabled = true,
     preselect = cmp.PreselectMode.None,
     snippet = {
-        expand =
-            function(args)
-                luasnip.lsp_expand(args.body) -- set luasnip as snippet engine
-            end,
+        expand = function(args)
+            luasnip.lsp_expand(args.body) -- set luasnip as snippet engine
+        end,
     },
     completion = {
         keyword_length = 2,
@@ -85,7 +84,7 @@ cmp.setup {
                     nvim_lua = "[Nvim]",
                     -- spell       = "[Spell]",
                     -- calc        = "[Calc]",
-                    emoji       = "[Emoji]",
+                    emoji    = "[Emoji]",
                 })[entry.source.name]
                 return vim_item
             end,
@@ -217,7 +216,7 @@ cmp.setup {
                     luasnip.expand()
                 elseif luasnip.expand_or_jumpable() then
                     luasnip.expand_or_jump()
-                -- TODO understand why this is here
+                    -- TODO understand why this is here
                 elseif check_backspace() then
                     fallback()
                 else
