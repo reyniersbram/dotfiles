@@ -14,6 +14,36 @@ local function format_message(message, percentage)
     return (percentage and percentage .. "%\t" or "") .. (message or "")
 end
 
+local function progress_notification_callback(spinners)
+    local Spinner = require("util.notify.Spinner")
+    for _, client in ipairs(vim.lsp.get_active_clients()) do
+        for token, progress in pairs(client.messages.progress) do
+            if not spinners[client.id] then
+                spinners[client.id] = {}
+            end
+            local spinner = spinners[client.id][token]
+            if not progress.done then
+                local message = format_message(progress.message, progress.percentage) or "Starting up..."
+                if not spinner then
+                    local opts = { title = format_title(progress.title, client.name), render = "compact" }
+                    spinners[client.id][token] = Spinner(message, vim.log.levels.INFO, opts)
+                else
+                    spinner:update(message)
+                end
+            else
+                client.messages.progress[token] = nil
+                if spinner then
+                    local opts = {
+                        icon = icons.ui.status.Done,
+                    }
+                    spinner:done(progress.message or "Done", nil, opts)
+                    spinners[client.id][token] = nil
+                end
+            end
+        end
+    end
+end
+
 local function configure_progress_notifications()
     local spinners = {}
     local group = vim.api.nvim_create_augroup("LspNotify", { clear = true })
@@ -22,33 +52,7 @@ local function configure_progress_notifications()
         group = group,
         desc = "LSP progress notifications",
         callback = function()
-            local Spinner = require("util.notify.Spinner")
-            for _, client in ipairs(vim.lsp.get_active_clients()) do
-                for token, progress in pairs(client.messages.progress) do
-                    if not spinners[client.id] then
-                        spinners[client.id] = {}
-                    end
-                    local spinner = spinners[client.id][token]
-                    if not progress.done then
-                        local message = format_message(progress.message, progress.percentage) or "Starting up..."
-                        if not spinner then
-                            local opts = { title = format_title(progress.title, client.name), render = "compact" }
-                            spinners[client.id][token] = Spinner(message, vim.log.levels.INFO, opts)
-                        else
-                            spinner:update(message)
-                        end
-                    else
-                        client.messages.progress[token] = nil
-                        if spinner then
-                            local opts = {
-                                icon = icons.ui.status.Done,
-                            }
-                            spinner:done(progress.message or "Done", nil, opts)
-                            spinners[client.id][token] = nil
-                        end
-                    end
-                end
-            end
+            progress_notification_callback(spinners)
         end
     })
 end

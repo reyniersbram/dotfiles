@@ -11,7 +11,7 @@ local servers = {
     "clangd", -- C / C++
     "cmake",  -- CMake
     "cssls",  -- CSS
-    "eslint", -- Eslint
+    "eslint", -- Eslint -> change to eslint_d linter (with nune-ls, efm or diagnosticls?)
     "hls",    -- Haskell
     "html",   -- HTML
     "jsonls", -- JSON
@@ -51,7 +51,7 @@ require("util").try_with_module(
     end
 )
 
-local handlers = require("plugins.config.lsp.handlers")
+local handlers = require("core.lsp.handlers")
 handlers.setup()
 
 local default_opts = {
