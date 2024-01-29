@@ -26,18 +26,19 @@ keymap("n", "<C-Down>", "<cmd>resize -2<CR>", { desc = "Decrease window height" 
 keymap("n", "<C-Left>", "<cmd>vertical resize -2<CR>", { desc = "Decrease window width" })
 keymap("n", "<C-Right>", "<cmd>vertical resize +2<CR>", { desc = "Increase window width" })
 
-keymap("n", "<leader>w", "<cmd>w<CR>", { desc = "Save buffer" })
-keymap("n", "<leader>q", "<cmd>q<CR>", { desc = "Close window" })
-keymap("n", "<leader>Q", "<cmd>wqa<CR>", { desc = "Save all buffers and quit Neovim" })
+keymap("n", "<leader>w", "<cmd>write<CR>", { desc = "Save buffer" })
+keymap("n", "<leader>q", "<cmd>quit<CR>", { desc = "Close window" })
+keymap("n", "<leader>Q", "<cmd>wqall<CR>", { desc = "Save all buffers and quit Neovim" })
 
-keymap("n", "<leader>y", "<cmd>%y+<CR>", { desc = "Copy whole buffer" })
+keymap("n", "<leader>y", "<cmd>%yank+<CR>", { desc = "Copy whole buffer" })
 
-keymap("v", "<", "<gv", { desc = "Keep selection selected after indenting" })
-keymap("v", ">", ">gv", { desc = "Keep selection selected after indenting" })
+keymap("v", "<", "<gv", { desc = "Keep selected selection after indenting" })
+keymap("v", ">", ">gv", { desc = "Keep selected selection after indenting" })
 
-keymap("v", "J", "<cmd>move '>+1<CR>gv=gv", { desc = "Move line down, fix indentation" })
-keymap("v", "K", "<cmd>move '>-2<CR>gv=gv", { desc = "Move line up, fix indentation" })
-keymap("v", "<A-j>", "<cmd>move '>+1<CR>gv-gv", { desc = "Move line down, don't fix indentation" })
-keymap("v", "<A-k>", "<cmd>move '<-2<CR>gv-gv", { desc = "Move line up, don't fix indentation" })
+-- For some reason using '<cmd>' gives unexpected behavior here
+keymap("v", "J", ":move '>+1<CR>gv=gv", { desc = "Move line down, fix indentation" })
+keymap("v", "K", ":move '>-2<CR>gv=gv", { desc = "Move line up, fix indentation" })
+keymap("v", "<A-j>", ":move '>+1<CR>gv-gv", { desc = "Move line down, don't fix indentation" })
+keymap("v", "<A-k>", ":move '<-2<CR>gv-gv", { desc = "Move line up, don't fix indentation" })
 
 keymap("v", "p", '"_dP', { desc = "Paste and keep in register" })
