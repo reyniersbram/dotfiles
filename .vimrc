@@ -16,7 +16,6 @@ set fileencoding=utf-8
 set helplang=en
 set nohlsearch
 set ignorecase
-set inccommand=nosplit
 set incsearch
 set infercase
 set number
@@ -39,6 +38,7 @@ set undofile
 set virtualedit=block
 set nowrap
 set wrapscan
+set t_ut= " fixes issue with colorscheme while scrolling
 
 " KEYMAPS
 " Remap space as leader key
