@@ -1,12 +1,3 @@
-[submodule ".config/xmonad/xmonad"]
-	path = src/xmonad
-	url = https://github.com/xmonad/xmonad
-[submodule ".config/xmonad/xmonad-contrib"]
-	path = src/xmonad-contrib
-	url = https://github.com/xmonad/xmonad-contrib
 [submodule ".config/spicetify/Themes"]
 	path = .config/spicetify/Themes
 	url = https://github.com/reyniersbram/spicetify-themes
-[submodule ".config/xmobar/xmobar"]
-	path = src/xmobar
-	url = https://codeberg.org/xmobar/xmobar.git
