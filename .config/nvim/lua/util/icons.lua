@@ -142,6 +142,7 @@ M = {
         },
         technology = {
             Vim = "\u{e7c5}", -- 
+            Neovim = "\u{f36f}", -- 
         },
         keyboard = {
             Space = "󱁐 ",
