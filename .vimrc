@@ -1,3 +1,46 @@
+" OPTIONS
+set noautochdir
+set autoindent
+set autoread
+set noautowrite
+set backspace=indent,eol,start
+set nobackup
+set clipboard=unnamedplus
+set cmdheight=2
+set colorcolumn=+1
+set confirm
+set nocursorcolumn
+set nocursorline
+set expandtab
+set fileencoding=utf-8
+set helplang=en
+set nohlsearch
+set ignorecase
+set inccommand=nosplit
+set incsearch
+set infercase
+set number
+set numberwidth=4
+set relativenumber
+set scrolloff=8
+set shiftround
+set shiftwidth=8
+set sidescrolloff=8
+set signcolumn=yes
+set smartcase
+set smartindent
+set smarttab
+set splitbelow
+set splitright
+set tabstop=4
+set title
+set titlestring=\ Vim:\ %t
+set undofile
+set virtualedit=block
+set nowrap
+set wrapscan
+
+" KEYMAPS
 " Remap space as leader key
 noremap <Space> <Nop>
 let mapleader = " "
@@ -40,3 +83,5 @@ vnoremap p '"_dP'
 " Cycle buffers
 nnoremap <A-l> :bnext<CR>
 nnoremap <A-h> :bprevious<CR>
+
+colorscheme habamax
