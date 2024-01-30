@@ -5,6 +5,27 @@
 
 packages:
 - completed:
+    hackage: xmonad-0.17.2@sha256:083f43183bdc5dbb70f65cbd287f95c8199c0ed01f524a41747f645843734829,5385
+    pantry-tree:
+      sha256: 58777df300c413744fa265f6b7216c2ded1652b65b3062e40ff429f07c8e062f
+      size: 2486
+  original:
+    hackage: xmonad-0.17.2
+- completed:
+    hackage: xmonad-contrib-0.17.1@sha256:df50cc15569c0bb4bc79cd031f7283f20760ae453887785f4689ab09ecb28935,21951
+    pantry-tree:
+      sha256: e5c991ae33c3a09cf40d09cc18ebf42dd6b0992fd5d6acca94650926f7984377
+      size: 22735
+  original:
+    hackage: xmonad-contrib-0.17.1
+- completed:
+    hackage: xmobar-0.47@sha256:349f9838ffeaca306de6930edc8a0f8695a5bf5b679b7d815129074a37fe96d1,14932
+    pantry-tree:
+      sha256: 80546994840ad23f3089532dd14044b05d2c151baf137c0a60d1c0617e7dee02
+      size: 9769
+  original:
+    hackage: xmobar-0.47
+- completed:
     hackage: netlink-1.1.1.0@sha256:d83424b5ba9921191449e4b1f53c7cba7f4375f2c55a9b737c77e982e1f40d00,3689
     pantry-tree:
       sha256: 42a57a2db0d8b44e04a04905ed56994b7293d2f244595bf3e65480c36d114ac3

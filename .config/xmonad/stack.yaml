@@ -30,7 +30,6 @@ resolver: lts-21.14
 #   - wai
 packages:
   - .
-  - ../../src/xmobar
 # Dependency packages to be pulled from upstream that are not in the resolver.
 # These entries can reference officially published versions as well as
 # forks / in-progress versions pinned to a git hash. For example:
@@ -41,8 +40,9 @@ packages:
 #   commit: e7b331f14bcffb8367cd58fbfc8b40ec7642100a
 #
 extra-deps:
-  - ../../src/xmonad
-  - ../../src/xmonad-contrib
+  - xmonad-0.17.2
+  - xmonad-contrib-0.17.1
+  - xmobar-0.47
   - netlink-1.1.1.0
   - X11-xft-0.3.4
 
