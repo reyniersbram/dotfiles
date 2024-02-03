@@ -37,7 +37,7 @@ keymap("v", ">", ">gv", { desc = "Keep selected selection after indenting" })
 
 -- For some reason using '<cmd>' gives unexpected behavior here
 keymap("v", "J", ":move '>+1<CR>gv=gv", { desc = "Move line down, fix indentation" })
-keymap("v", "K", ":move '>-2<CR>gv=gv", { desc = "Move line up, fix indentation" })
+keymap("v", "K", ":move '<-2<CR>gv=gv", { desc = "Move line up, fix indentation" })
 keymap("v", "<A-j>", ":move '>+1<CR>gv-gv", { desc = "Move line down, don't fix indentation" })
 keymap("v", "<A-k>", ":move '<-2<CR>gv-gv", { desc = "Move line up, don't fix indentation" })
 

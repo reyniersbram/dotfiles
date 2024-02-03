@@ -1,39 +1,3 @@
-local select_keymaps = {
-    ["="] = { query = "assignment" },
-    a = { query = "parameter", desc = "parameter/argument" },
-    i = { query = "conditional" },
-    l = { query = "loop" },
-    fc = { query = "call", desc = "function/method call" },
-    fd = { query = "function", desc = "function/method declaration" },
-    c = { query = "class" },
-}
-
-local select_litteral_keymaps = {
-    ["l="] = {
-        query = "@assignment.lhs",
-        desc = "Select left hand side of assignment",
-    },
-    ["r="] = {
-        query = "@assignment.rhs",
-        desc = "Select right hand side of assignment",
-    },
-}
-
-local function convert_keymaps(keymaps, litteral_keymaps)
-    local converted = {}
-    for key, value in pairs(keymaps) do
-        converted["a" .. key] = {
-            query = "@" .. value.query .. ".outer",
-            desc = "Select around " .. (value.desc or value.query),
-        }
-        converted["i" .. key] = {
-            query = "@" .. value.query .. ".inner",
-            desc = "Select inside " .. (value.desc or value.query),
-        }
-    end
-    return vim.tbl_deep_extend("force", converted, litteral_keymaps)
-end
-
 require("util").try_with_module(
     "nvim-treesitter.configs",
     function(treesitter)
@@ -44,7 +8,24 @@ require("util").try_with_module(
                     lookahead = true,
                     include_surrounding_whitespace = true,
                     selection_modes = "v",
-                    keymaps = convert_keymaps(select_keymaps, select_litteral_keymaps),
+                    keymaps = {
+                        ["a="] = { query = "@assignment.outer", desc = "Select around assignment" },
+                        ["i="] = { query = "@assignment.inner", desc = "Select inside assignment" },
+                        ["l="] = { query = "@assignment.lhs", desc = "Select left hand side of assignment" },
+                        ["r="] = { query = "@assignment.rhs", desc = "Select right hand side of assignment" },
+                        aa = { query = "@parameter.outer", desc = "Select around parameter/argument" },
+                        ia = { query = "@parameter.inner", desc = "Select inside parameter/argument" },
+                        ai = { query = "@conditional.outer", desc = "Select around conditional" },
+                        ii = { query = "@conditional.inner", desc = "Select inside conditional" },
+                        al = { query = "@loop.outer", desc = "Select around loop" },
+                        il = { query = "@loop.inner", desc = "Select inside loop" },
+                        afc = { query = "@call.outer", desc = "Select around function/method call" },
+                        ifc = { query = "@call.inner", desc = "Select inside function/method call" },
+                        afd = { query = "@function.outer", desc = "Select around function/method declaration" },
+                        ifd = { query = "@function.inner", desc = "Select inside function/method declaration" },
+                        ac = { query = "@class.outer", desc = "Select around class" },
+                        ic = { query = "@class.inner", desc = "Select inside class" },
+                    },
                 },
                 -- TODO:
                 swap = {
@@ -56,22 +37,39 @@ require("util").try_with_module(
 
                     },
                 },
-                -- TODO:
                 move = {
                     enable = true,
                     set_jumps = true,
                     goto_next_start = {
+                        ["]="] = { query = "@assignment.outer", desc = "Next assignment" },
+                        ["]a"] = { query = "@parameter.outer", desc = "Next parameter/argument" },
+                        ["]i"] = { query = "@conditional.outer", desc = "Next conditional" },
+                        ["]l"] = { query = "@loop.outer", desc = "Next loop" },
+                        ["]fc"] = { query = "@call.outer", desc = "Next function/method call" },
+                        ["]fd"] = { query = "@function.outer", desc = "Next function/method declaration" },
+                        ["]c"] = { query = "@class.outer", desc = "Next class" },
                     },
                     goto_next_end = {
+                        ["]I"] = { query = "@conditional.outer", desc = "Next end of conditional" },
+                        ["]Fd"] = { query = "@function.outer", desc = "Next end of function/method declaration" },
+                        ["]c"] = { query = "@class.outer", desc = "Next end of class" },
                     },
                     goto_previous_start = {
+                        ["[="] = { query = "@assignment.outer", desc = "Previous assignment" },
+                        ["[a"] = { query = "@parameter.outer", desc = "Previous parameter/argument" },
+                        ["[i"] = { query = "@conditional.outer", desc = "Previous conditional" },
+                        ["[l"] = { query = "@loop.outer", desc = "Previous loop" },
+                        ["[fc"] = { query = "@call.outer", desc = "Previous function/method call" },
+                        ["[fd"] = { query = "@function.outer", desc = "Previous function/method declaration" },
+                        ["[c"] = { query = "@class.outer", desc = "Previous class" },
                     },
                     goto_previous_end = {
+                        ["[I"] = { query = "@conditional.outer", desc = "Previous end of conditional" },
+                        ["[Fd"] = { query = "@function.outer", desc = "Previous end of function/method declaration" },
+                        ["[c"] = { query = "@class.outer", desc = "Previous end of class" },
                     },
-                    goto_next = {
-                    },
-                    goto_previous = {
-                    },
+                    goto_next = {},
+                    goto_previous = {},
                 },
                 -- TODO:
                 lsp_interop = {
