@@ -71,9 +71,16 @@ require("util").try_with_module(
                     goto_next = {},
                     goto_previous = {},
                 },
-                -- TODO:
                 lsp_interop = {
-                }
+                    enable = true,
+                    floating_preview_opts = {
+                        border = require("util.icons").ui.window.float.border,
+                    },
+                    peek_definition_code = {
+                        ["<leader>pf"] = { query = "@function.outer", desc = "Peak function/method definition" },
+                        ["<leader>pc"] = { query = "@class.outer", desc = "Peak class definition" },
+                    },
+                },
             },
         }
     end
