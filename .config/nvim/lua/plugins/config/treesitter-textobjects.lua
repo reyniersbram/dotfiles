@@ -27,14 +27,17 @@ require("util").try_with_module(
                         ic = { query = "@class.inner", desc = "Select inside class" },
                     },
                 },
-                -- TODO:
                 swap = {
                     enable = true,
                     swap_next = {
-
+                        ["<leader>sa"] = { query = "@parameter.inner", desc = "Swap with next parameter/argument" },
+                        ["<leader>sfd"] = { query = "@function.outer", desc = "Swap with next function/method declaration" },
+                        ["<leader>sfc"] = { query = "@call.outer", desc = "Swap with next function/method call" },
                     },
                     swap_previous = {
-
+                        ["<leader>sA"] = { query = "@parameter.inner", desc = "Swap with previous parameter/argument" },
+                        ["<leader>sFd"] = { query = "@function.outer", desc = "Swap with previous function/method declaration" },
+                        ["<leader>sFc"] = { query = "@call.outer", desc = "Swap with previous function/method call" },
                     },
                 },
                 move = {
