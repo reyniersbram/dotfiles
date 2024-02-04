@@ -39,13 +39,17 @@ end
 --- @param opts? table
 --- @return boolean # true if the function was executed, else false
 function M.try_with_module(modname, callback, opts)
-    -- TODO: use opts to set verbose
+    opts = vim.tbl_deep_extend("keep", opts or {}, {
+        verbose = true,
+    })
     local plugin_installed, plugin = pcall(require, modname)
     if plugin_installed then
         callback(plugin)
         return true
     end
-    require("util.notify").notify_not_found(modname)
+    if opts.verbose then
+        require("util.notify").notify_not_found(modname)
+    end
     return false
 end
 

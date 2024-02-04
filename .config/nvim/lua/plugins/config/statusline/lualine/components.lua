@@ -1,5 +1,9 @@
 local M = {}
 
+local function get_color(group, attr)
+    return vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID(group)), attr)
+end
+
 local icons_status_ok, icons = pcall(require, "util.icons")
 if not icons_status_ok then
     vim.notify("icons not found")
@@ -7,23 +11,15 @@ if not icons_status_ok then
 end
 
 M.branch = {
-    'branch',
+    "b:gitsigns_head",
     icon = icons.git.Branch,
+    separator = "",
 }
-M.diff = {
-    'diff',
-    icon = icons.git.Diff,
-    symbols = {
-        added = icons.git.Add .. " ",
-        modified = icons.git.Mod .. " ",
-        removed = icons.git.Remove .. " ",
-    },
-    colored = true,
-}
+
 M.diagnostics = {
     'diagnostics',
     sources = { 'nvim_lsp' },
-    M = { 'error', 'warn', 'info', 'hint'},
+    sections = { 'error', 'warn', 'info', 'hint' },
     symbols = {
         error = icons.diagnostics.ERROR .. " ",
         warn = icons.diagnostics.WARN .. " ",
@@ -34,6 +30,32 @@ M.diagnostics = {
     update_in_insert = false,
     always_visible = true,
 }
+
+M.diff = {
+    'diff',
+    colored = true,
+    symbols = {
+        added = icons.git.Add .. " ",
+        modified = icons.git.Mod .. " ",
+        removed = icons.git.Remove .. " ",
+    },
+    source = function()
+        local gitsigns = vim.b.gitsigns_status_dict
+        if gitsigns then
+            return {
+                added = gitsigns.added,
+                modified = gitsigns.changed,
+                removed = gitsigns.removed,
+            }
+        end
+    end,
+    padding = { left = 0, right = 1 },
+}
+
+M.encoding = {
+    "encoding",
+}
+
 M.fileformat = {
     'fileformat',
     symbols = {
@@ -46,25 +68,35 @@ M.fileformat = {
 }
 M.filename = {
     'filename',
-    path = 4,
-    -- TODO
+    file_status = true,
+    newfile_status = false,
+    path = 0,
+    shorting_target = 40,
+    symbols = {
+        modified = icons.git.Mod,
+        readonly = icons.documents.LockedFile,
+        unnamed = "[No Name]", -- TODO: hide, e.g. for Alpha
+        newfile = "[New]",
+    }
 }
 M.filetype = {
     'filetype',
     colored = true,
-    icon = { align = 'left', },
+    icon = { align = 'left' },
 }
 
-local function get_color(group, attr)
-    return vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID(group)), attr)
-end
-M.whitespace = {
-    function ()
-        local space = vim.fn.search([[\s\+$]], 'nwc')
-        return space ~= 0 and icons.misc.keyboard.Space .. " " .. space or ""
-    end,
-    color = { fg = get_color('DiagnosticInfo', "fg#") },
+M.filetype_icon = {
+    "filetype",
+    colored = true,
+    icon_only = true,
+    separator = "",
+    padding = { left = 1, right = 0 },
 }
+
+M.location = {
+    "location",
+}
+
 M.mixed_indent = {
     function()
         local space_pattern = [[\v^ +]]
@@ -82,13 +114,71 @@ M.mixed_indent = {
         if mixed_same_line ~= nil and mixed_same_line > 0 then
             return tab_icon .. mixed_same_line
         end
-        local space_indent_cnt = vim.fn.searchcount({pattern=space_pattern, max_count=1e3}).total
-        local tab_indent_cnt =  vim.fn.searchcount({pattern=tab_pattern, max_count=1e3}).total
+        local space_indent_cnt = vim.fn.searchcount({ pattern = space_pattern, max_count = 1e3 }).total
+        local tab_indent_cnt = vim.fn.searchcount({ pattern = tab_pattern, max_count = 1e3 }).total
         if space_indent_cnt > tab_indent_cnt then
             return tab_icon .. tab_indent
         else
             return tab_icon .. space_indent
         end
+    end,
+    color = { fg = get_color('DiagnosticInfo', "fg#") },
+}
+
+M.mode = {
+    "mode",
+}
+
+M.navic = {
+    function()
+        return require("nvim-navic").get_location()
+    end,
+    cond = function()
+        return package.loaded["nvim-navic"] and require("nvim-navic").is_available()
+    end,
+}
+
+M.neovim = {
+    function()
+        return icons.misc.technology.Neovim
+    end,
+    draw_empty = true,
+    separator = "",
+}
+
+M.progress = {
+    "progress",
+    separator = "",
+    padding = { left = 1, right = 0 },
+}
+
+-- NOIMP:
+function M.searchcount()
+    local results = vim.fn.searchcount()
+    return "[0/0]"
+end
+
+M.tabs = {
+    "tabs",
+    tab_max_lenght = 40,
+    max_length = vim.o.columns / 3,
+    mode = 0,
+    path = 0,
+    use_mode_colors = false,
+    tabs_color = {
+        active = "lualine_b_normal",
+        inactive = "lualine_b_inactive",
+    },
+    show_modified_status = false,
+    symbols = {
+        modified = icons.git.Mod .. " ",
+    },
+}
+
+M.whitespace = {
+    function()
+        local space = vim.fn.search([[\s\+$]], 'nwc')
+        return space ~= 0 and icons.misc.keyboard.Space .. " " .. space or ""
     end,
     color = { fg = get_color('DiagnosticInfo', "fg#") },
 }

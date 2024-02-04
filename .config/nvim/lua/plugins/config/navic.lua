@@ -15,16 +15,17 @@ for k, v in pairs(icons.kind) do
     kind_icons[k] = v .. " "
 end
 
-navic.setup({
+navic.setup {
     icons = kind_icons,
+    higlight = true,
+    separator = " " .. ">" .. " ",
+    depth_limit = 4,
+    depth_limit_indicator = icons.misc.Ellipsis,
+    safe_output = true,
+    click = true,
+    lazy_update_context = false,
     lsp = {
         auto_attach = true,
         preference = {},
     },
-    higlight = true,
-    separator = " " .. ">" .. " ",
-    depth_limit = 0,
-    depth_limit_indicator = "..",
-    safe_output = true,
-    click = true,
-})
+}
