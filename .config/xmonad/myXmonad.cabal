@@ -2,6 +2,7 @@ cabal-version: 2.4
 name:          myXmonad
 version:       0.1.0.0
 build-type:    Simple
+author:        Bram Reyniers
 
 library
     hs-source-dirs:     lib

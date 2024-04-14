@@ -5,43 +5,29 @@
 
 packages:
 - completed:
-    hackage: xmonad-0.17.2@sha256:083f43183bdc5dbb70f65cbd287f95c8199c0ed01f524a41747f645843734829,5385
+    hackage: xmonad-0.18.0@sha256:22300a2626ba5b00dcf0e5071d56ccb42140fb849ee6ea7bf1337ed07de33642,5453
     pantry-tree:
-      sha256: 58777df300c413744fa265f6b7216c2ded1652b65b3062e40ff429f07c8e062f
+      sha256: 475b273803119d4b6f3f0ad496d93092ad53bb7b2306182603531093899b26d1
       size: 2486
   original:
-    hackage: xmonad-0.17.2
+    hackage: xmonad-0.18.0
 - completed:
-    hackage: xmonad-contrib-0.17.1@sha256:df50cc15569c0bb4bc79cd031f7283f20760ae453887785f4689ab09ecb28935,21951
+    hackage: xmonad-contrib-0.18.0@sha256:aae129651391ec65e4c7cf4c23b280cc5e69f709d86668502426a41eebab9d3c,22370
     pantry-tree:
-      sha256: e5c991ae33c3a09cf40d09cc18ebf42dd6b0992fd5d6acca94650926f7984377
-      size: 22735
+      sha256: d2987f3843f1c5ca11bf63d22630679a34b7578f432a96f0dec97b98c4984e72
+      size: 23806
   original:
-    hackage: xmonad-contrib-0.17.1
+    hackage: xmonad-contrib-0.18.0
 - completed:
-    hackage: xmobar-0.47@sha256:349f9838ffeaca306de6930edc8a0f8695a5bf5b679b7d815129074a37fe96d1,14932
+    hackage: xmobar-0.48@sha256:39134ead57560f6f576816233cd7194cfd6ea7639f5ae3a96dd8b4e19292e263,15152
     pantry-tree:
-      sha256: 80546994840ad23f3089532dd14044b05d2c151baf137c0a60d1c0617e7dee02
+      sha256: 523a50e763b2a575c9912ea21d6c90fd529078eb816968fc0006b9ff01962c51
       size: 9769
   original:
-    hackage: xmobar-0.47
-- completed:
-    hackage: netlink-1.1.1.0@sha256:d83424b5ba9921191449e4b1f53c7cba7f4375f2c55a9b737c77e982e1f40d00,3689
-    pantry-tree:
-      sha256: 42a57a2db0d8b44e04a04905ed56994b7293d2f244595bf3e65480c36d114ac3
-      size: 1598
-  original:
-    hackage: netlink-1.1.1.0
-- completed:
-    hackage: X11-xft-0.3.4@sha256:e08bd69d24c40f1a33e6c87964f200656da77ad6a1fbdf6a4073dcb967e65599,1380
-    pantry-tree:
-      sha256: 0dad74fea9135433d0f4ca7a65dba6c8ac99136bb6cacf901d2ddf795846d0f1
-      size: 330
-  original:
-    hackage: X11-xft-0.3.4
+    hackage: xmobar-0.48
 snapshots:
 - completed:
-    sha256: 60e54c1ba3c1e7163acf6dafa9d56b2d3b23f88a31ad53a1c9d888f32561f8da
-    size: 639819
-    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/21/14.yaml
-  original: lts-21.14
+    sha256: 0cd905bf3f615a7f52d52fb6aadda182f695bd1cab10ef892095d974676f0911
+    size: 713334
+    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/22/16.yaml
+  original: lts-22.16

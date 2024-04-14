@@ -27,9 +27,8 @@ import Graphics.X11.Types
 import XMonad (Layout, XConfig (keys, mouseBindings))
 import XMonad.Core (X, spawn)
 import XMonad.Hooks.ManageDocks (ToggleStruts (ToggleStruts))
-import XMonad.Operations (sendMessage)
+import XMonad.Operations (sendMessage, unGrab)
 import XMonad.Prompt.Pass (passPrompt)
-import XMonad.Util.Ungrab (unGrab)
 import XPConfig (myXPConfig)
 
 -- mod4Mask: Super-key
