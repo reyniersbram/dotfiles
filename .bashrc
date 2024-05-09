@@ -74,3 +74,11 @@ bind "set completion-ignore-case on"
 
 # TODO: figure out what this does
 xhost +local:root > /dev/null 2>&1
+
+### SSH with OpenPGP
+GPG_TTY=$(tty)
+export GPG_TTY
+SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+export SSH_AUTH_SOCK
+gpgconf --launch gpg-agent
+gpg-connect-agent updatestartuptty /bye > /dev/null
