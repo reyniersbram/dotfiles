@@ -4,7 +4,7 @@ path="/sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode"
 status=$(cat $path)
 
 toggle() {
-    echo $((!status)) > $path
+    echo $((!status)) | sudo tee $path > /dev/null 2>&1
 
     # shellcheck disable=2320
     failed=$?

@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 echo "Finding path to this repo..."
-current_directory=$(cd -- "$( dirname -- "$0")" > /dev/null 2>&1 && pwd)
+current_directory=$(cd -- "$(dirname -- "$0")" > /dev/null 2>&1 && pwd)
 echo "Repo detected at ${current_directory}"
 
 echo "Doing a full system upgrade before starting the installation..."
@@ -35,9 +35,8 @@ mkdir -vp "${HOME}/Pictures/Screenshots"
 echo "Symlinking files with stow..."
 stow --verbose=2 --dir "${current_directory}" --target "${HOME}" .
 
-# sudo ln -sf $current_directory/etc/unlock-conservation-mode.service /etc/systemd/system/
-# sudo systemctl enable unlock-conservation-mode
 
+# Install additional packages
 echo "Installing additional packages..."
 
 if ! (which paru > /dev/null 2>&1); then
@@ -70,3 +69,8 @@ fi
 # Finishing up
 echo "Setting up crontab"
 crontab "${current_directory}/etc/crontab.txt"
+
+echo "Setting up sudoers files"
+for file in "${current_directory}/etc/sudoers/"*; do
+    sudo cp --verbose "${file}" "/etc/sudoers.d/$(basename "${file}")"
+done
