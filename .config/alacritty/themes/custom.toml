@@ -1,0 +1,40 @@
+[colors]
+primary = { background = "#0c0c0c", foreground = "#eeeeec" }
+cursor = { text = "CellBackground", cursor = "CellForeground" }
+vi_mode_cursor = { text = "CellBackground", cursor = "CellForeground" }
+# line_indicator = { text = "CellBackground", cursor = "CellForeground" }
+# footer_bar = { text = "CellBackground", cursor = "CellForeground" }
+# selection = { text = "CellBackground", cursor = "CellForeground" }
+# indexed_colors = [{ index = <integer>, color = <string> },]
+transparent_background_colors = false
+draw_bold_text_with_bright_colors = false
+
+[colors.search]
+# matches = { text = "CellBackground", cursor = "CellForeground" }
+# focused_match = { text = "CellBackground", cursor = "CellForeground" }
+
+[colors.hints]
+# start = { text = "CellBackground", cursor = "CellForeground" }
+# end = { text = "CellBackground", cursor = "CellForeground" }
+
+[colors.normal]
+black = '#2f3437'
+red = '#cc0101'
+green = '#4e9a06'
+yellow = '#c5a100'
+blue = '#3565a5'
+magenta = '#74517b'
+cyan = '#06989a'
+white = '#d2d7ce'
+
+[colors.bright]
+black = '#545752'
+red = '#ee2829'
+green = '#8be334'
+yellow = '#fde84f'
+blue = '#739ecf'
+magenta = '#ad7ea9'
+cyan = '#35e3e2'
+white = '#eeeeec'
+
+[colors.dim]

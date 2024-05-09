@@ -1,0 +1,76 @@
+import = ["~/.config/alacritty/themes/custom.toml"]
+# shell = "$SHELL"
+working_directory = "None"
+live_config_reload = true
+# ipc_socket = true
+
+[env]
+TERM = "xterm-256color"
+WINIT_X11_SCALE_FACTOR = "1.0833333333333333"
+
+[window]
+dimensions = { columns = 0, lines = 0 }
+position = "None"
+padding = { x = 0, y = 0 }
+dynamic_padding = false
+decorations = "None"
+opacity = 0.95
+blur = false
+startup_mode = "Windowed"
+title = "Alacritty"
+dynamic_title = false
+class = { instance = "Alacritty", general = "Alacritty" }
+decorations_theme_variant = "None"
+resize_increments = false
+
+[scrolling]
+history = 10000
+multiplier = 6
+
+[font]
+normal = { family = "Hack Nerd Font", style = "Regular" }
+bold = { family = "Hack Nerd Font", style = "Bold" }
+italic = { family = "Hack Nerd Font", style = "Italic" }
+bold_italic = { family = "Hack Nerd Font", style = "Bold Italic" }
+size = 13
+offset = { x = 0, y = 0 }
+glyph_offset = { x = 0, y = 0 }
+builtin_box_drawing = false
+
+[bell]
+animation = "EaseOutExpo"
+duration = 0
+color = "#ffffff"
+command = "None"
+
+[selection]
+semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"
+save_to_clipboard = true
+
+[cursor.style]
+shape = "Block"
+blinking = "Off"
+
+[cursor.vi_mode_style]
+shape = "Block"
+blinking = "Off"
+
+[cursor]
+blink_interval = 750
+blink_timeout = 5
+unfocused_hollow = true
+thickness = 0.15
+
+[terminal]
+osc52 = "OnlyCopy"
+
+[mouse]
+hide_when_typing = true
+bindings = []
+
+[hints]
+alphabet = "jfkdls;ahgurieowpq"
+enabled = [] # TODO: figure out what I can do with this
+
+[keyboard]
+bindings = [] # TODO: check if there are things I want in here
