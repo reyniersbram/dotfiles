@@ -21,6 +21,7 @@ import Graphics.X11.Types
     xK_Return,
     xK_b,
     xK_p,
+    xK_r,
     xK_s,
     xK_z,
   )
@@ -28,8 +29,6 @@ import XMonad (Layout, XConfig (keys, mouseBindings))
 import XMonad.Core (X, spawn)
 import XMonad.Hooks.ManageDocks (ToggleStruts (ToggleStruts))
 import XMonad.Operations (sendMessage, unGrab)
-import XMonad.Prompt.Pass (passPrompt)
-import XPConfig (myXPConfig)
 
 -- mod4Mask: Super-key
 modKey :: KeyMask
@@ -44,8 +43,9 @@ keyBinds conf =
       ((modKey, xK_s), sendMessage ToggleStruts),
       ((modKey .|. shiftMask, xK_Return), return ()),
       ((modKey, xK_Return), spawn defaultTerminal),
-      ((modKey .|. shiftMask, xK_p), passPrompt myXPConfig),
-      ((modKey, xK_p), spawn "rofi -show drun")
+      ((modKey .|. shiftMask, xK_p), spawn "rofi-pass"),
+      ((modKey, xK_p), spawn "rofi-launcher drun"),
+      ((modKey, xK_r), spawn "rofi-launcher run")
     ]
     `Map.union` keys def conf
 
