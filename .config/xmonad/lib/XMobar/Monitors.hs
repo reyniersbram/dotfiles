@@ -185,3 +185,10 @@ networkIO =
       "--width",
       "7"
     ]
+
+traypadding :: Int -> Command
+traypadding =
+  Com
+    "tray-padding-icon.sh"
+    ["panel"]
+    "traypadding"

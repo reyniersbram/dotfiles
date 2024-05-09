@@ -5,7 +5,8 @@ where
 
 import XMobar.PrettyPrinter (xmobarPP)
 import XMonad.Core (X)
-import XMonad.Hooks.DynamicLog (dynamicLogString, xmonadPropLog)
+import XMonad.Hooks.DynamicLog (dynamicLogWithPP)
+import GHC.IO.Handle (Handle)
 
-logHook :: X ()
-logHook = dynamicLogString xmobarPP >>= xmonadPropLog
+logHook :: [Handle] -> X ()
+logHook = dynamicLogWithPP . xmobarPP

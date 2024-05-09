@@ -4,6 +4,8 @@ module XMobar.PrettyPrinter
 where
 
 import Colors qualified
+import GHC.IO.Handle (Handle)
+import System.IO (hPutStrLn)
 import XMonad.Hooks.DynamicLog
   ( PP (..),
     def,
@@ -19,8 +21,8 @@ import XMonad.Util.Loggers (logTitles)
 
 type ColorWrapper = String -> String
 
-xmobarPP :: PP
-xmobarPP =
+xmobarPP :: [Handle] -> PP
+xmobarPP handles =
   def
     { ppCurrent =
         highlight
@@ -40,10 +42,17 @@ xmobarPP =
       ppLayout = id,
       ppOrder = order,
       -- , ppSort = def
-      ppExtras = [logTitles formatFocused formatUnfocused]
-      -- , ppOutput = def -- useless when working with dynamicLogString
+      ppExtras = [logTitles formatFocused formatUnfocused],
+      ppOutput = concatHandles handles
       -- , ppPrinters = def
     }
+
+-- | Same as
+--   \x -> hPutStrLn xmproc1 x
+--     >> hPutStrLn xmproc2 x
+--     ...
+concatHandles :: [Handle] -> String -> IO ()
+concatHandles handles s = mapM_ (`hPutStrLn` s) handles
 
 wrapWorkspaceName :: String -> String
 wrapWorkspaceName = wrap "" ""
@@ -62,7 +71,7 @@ order :: [String] -> [String]
 order (ws : l : _ : wins : _) = [ws, l, wins]
 order sections = sections
 
-cyan, lowWhite, magenta, red, white, yellow, highlight :: String -> String
+cyan, lowWhite, magenta, red, white, yellow, highlight :: ColorWrapper
 magenta = xmobarColor Colors.magenta ""
 cyan = xmobarColor Colors.cyan ""
 white = xmobarColor Colors.white ""

@@ -13,6 +13,7 @@ import XMonad.Hooks.EwmhDesktops (ewmh)
 import XMonad.Hooks.ManageDocks (docks)
 import XMonad.Main (xmonad)
 import XMonad.Util.Hacks qualified as Hacks (javaHack)
+import XMonad.Util.Run (spawnPipe)
 
 -- Workspaces
 myWorkspaces :: [String]
@@ -24,6 +25,8 @@ myWorkspaces =
 -- Main
 main :: IO ()
 main = do
+  xmprc0 <- spawnPipe "xmobar -x 0"
+  xmprc1 <- spawnPipe "xmobar -x 1"
   xmonad
     . ewmh
     . docks
@@ -40,7 +43,7 @@ main = do
         keys = keyBinds,
         mouseBindings = mouseBinds,
         borderWidth = 1,
-        logHook = Hooks.Log.logHook,
+        logHook = Hooks.Log.logHook [xmprc0, xmprc1],
         startupHook = Hooks.Startup.startupHook,
         focusFollowsMouse = False,
         clickJustFocuses = False

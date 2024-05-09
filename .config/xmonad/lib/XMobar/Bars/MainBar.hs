@@ -3,13 +3,15 @@ module XMobar.Bars.MainBar where
 import XMobar.Bars.Default (myDefaultConfig)
 import XMobar.Monitors
   ( battery,
+    brightness,
     conservationStatus,
-    sound, brightness,
+    sound,
+    traypadding,
   )
 import Xmobar
-  ( Config (commands, position, template, wmClass, wmName, sepChar),
+  ( Config (commands, position, sepChar, template, wmClass, wmName),
     Runnable (Run),
-    XMonadLog (XMonadLog, XPropertyLog),
+    StdinReader (UnsafeStdinReader),
     XPosition,
   )
 
@@ -20,17 +22,17 @@ mainBar position =
       wmClass = "xmobar",
       wmName = "xmobar-main",
       commands =
-        [ Run XMonadLog,
+        [ Run UnsafeStdinReader,
           Run sound,
-          Run $ brightness 1,
-          Run $ battery 50,
-          Run $ conservationStatus 10,
-          Run $ XPropertyLog "_XMONAD_TRAYPAD"
+          Run . brightness $ 1,
+          Run . battery $ 50,
+          Run . conservationStatus $ 10,
+          Run . traypadding $ 1
         ],
       sepChar = "%",
       template =
         "\
-        \ \xf31a  %XMonadLog%\
+        \\xf31a %UnsafeStdinReader%\
         \ }{ \
         \\xf00e0 %bright%\
         \ · \
@@ -39,6 +41,6 @@ mainBar position =
         \%battery%\
         \ · \
         \<action=`conservation_mode toggle`>%conservation_status%</action>\
-        \%_XMONAD_TRAYPAD%\
+        \%traypadding%\
         \"
     }

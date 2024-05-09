@@ -86,6 +86,26 @@ executable xmobar
         XMobar.Monitors
         Utils.Font
 
+executable xmobar-system
+    main-is: xmobar-system.hs
+    hs-source-dirs: . lib
+    ghc-options:
+        -O2 -Wall -Wcompat -Wincomplete-record-updates
+        -Wredundant-constraints -rtsopts -threaded -with-rtsopts=-N
+    default-language: GHC2021
+    default-extensions: ImportQualifiedPost
+    build-depends:
+        , base
+        , xmobar
+    other-modules:
+        Colors
+        Defaults
+        XMobar.Bars.Default
+        XMobar.Bars.MainBar
+        XMobar.Bars.SystemStatus
+        XMobar.Monitors
+        Utils.Font
+
 test-suite myXmonad-test
     type:             exitcode-stdio-1.0
     main-is:          Test.hs
