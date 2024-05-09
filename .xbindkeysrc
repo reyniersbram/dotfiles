@@ -6,6 +6,14 @@
 "amixer sset Master toggle"
     XF86AudioMute
 
+# manage media player
+"playerctl next"
+    XF86AudioNext
+"playerctl previous"
+    XF86AudioPrev
+"playerctl play-pause"
+    XF86AudioPlay
+
 # manage monitor brightness
 "xbacklight -inc 5"
     XF86MonBrightnessUp
@@ -15,3 +23,6 @@
 # set keyboard layout
 "select_keyboard.sh"
     Mod4 + Shift + l
+
+"rofi -show calc"
+    XF86Calculator
