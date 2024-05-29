@@ -8,7 +8,7 @@ M = {
         Variable = "\u{ea88}",      -- 
         Class = "\u{eb5b}",         -- 
         Interface = "\u{f0e8}",     -- 
-        -- Module = "\u{eb29}", --  -- TODO
+        -- Module = "\u{eb29}", --  -- TODO:
         Module = "\u{ea8c}",        -- 
         Property = "\u{eb65}",      -- 
         Unit = "\u{e21f}",          -- 
@@ -20,8 +20,8 @@ M = {
         File = "\u{eae9}",          -- 
         Reference = "\u{eb36}",     -- 
         Folder = "\u{ea83}",        -- 
-        EnumMember = "\u{eb5e}",    --  -- TODO
-        Constant = "\u{eb5d}",      --  -- TODO
+        EnumMember = "\u{eb5e}",    --  -- TODO:
+        Constant = "\u{eb5d}",      --  -- TODO:
         Struct = "\u{ea91}",        -- 
         Event = "\u{ea86}",         -- 
         Operator = "\u{eb64}",      -- 
@@ -187,6 +187,13 @@ M.ui.separator = {
         left = "\u{e0b1}",  -- 
         right = "\u{e0b3}", -- 
     },
+}
+M.misc.copilot = {
+    enabled = "\u{f4b8}",  -- 
+    disabled = "\u{f4b9}", -- 
+    sleep = "\u{f4b9}",    -- 
+    warning = "\u{f4ba}",  -- 
+    unknown = "\u{f05e}",  -- 
 }
 
 return M
