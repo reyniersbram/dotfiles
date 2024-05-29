@@ -7,30 +7,33 @@ end
 -- Language Servers
 
 local servers = {
-    "bashls", -- Shell
-    "clangd", -- C / C++
-    "cmake",  -- CMake
-    "cssls",  -- CSS
-    "eslint", -- Eslint -> change to eslint_d linter (with nune-ls, efm or diagnosticls?)
-    "hls",    -- Haskell
-    "html",   -- HTML
-    "jsonls", -- JSON
-    "lua_ls", -- Lua
-    -- "tsserver", -- TypeScript/JavaScript, volar is used instead
+    "bashls",   -- Shell
+    "clangd",   -- C / C++
+    "cmake",    -- CMake
+    "cssls",    -- CSS
+    "eslint",   -- Eslint -> change to eslint_d linter (with nune-ls, efm or diagnosticls?)
+    "hls",      -- Haskell
+    "html",     -- HTML
+    "jsonls",   -- JSON
+    "lua_ls",   -- Lua
+    "tsserver", -- TypeScript/JavaScript, TODO: should be changed to work with vue hybrid mode
     --
     -- "jdtls", -- also use nvim-jdtls
     -- "r_language_server",
     "pyright", -- or jedi_language-server
+    "ruff",
     -- "arduino_language_server",
     -- "asm_lsp",
     -- "kotlin_language_server",
     -- "sqlls",
-    "volar", --  or vuels
+    "volar", -- Vue
     -- yamlls
     --
     -- https://github.com/stardog-union/stardog-language-servers/tree/master/packages/sparql-language-server
     -- "turtle_ls", -- (RDF syntax)
     -- "sparql_ls"
+    "taplo",
+    -- "kotlin_language_server",
 }
 
 require("util").try_with_module(
@@ -51,14 +54,16 @@ require("util").try_with_module(
     end
 )
 
+local lsp = require("core.lsp")
 local handlers = require("core.lsp.handlers")
 handlers.setup()
 
 local default_opts = {
-    on_attach = handlers.on_attach,
+    on_attach = lsp.on_attach,
     capabilities = handlers.capabilities,
     autostart = true,
-    single_file_support = true,
+    single_file_support = true, -- TODO: necessary?
+    handlers = {}, -- TODO: add handlers
 }
 
 local opts = {}

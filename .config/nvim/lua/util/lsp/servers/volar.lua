@@ -1,10 +1,10 @@
 return {
     cmd = { "vue-language-server", "--stdio" },
     filetypes = {
-        'typescript',
-        'javascript',
-        'javascriptreact',
-        'typescriptreact',
+        -- 'typescript',
+        -- 'javascript',
+        -- 'javascriptreact',
+        -- 'typescriptreact',
         'vue',
         'json'
     },
@@ -12,5 +12,8 @@ return {
         typescript = {
             tsdk = "",
         },
+        vue = {
+            hybridMode = true,
+        }
     },
 }
