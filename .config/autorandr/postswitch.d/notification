@@ -1,0 +1,17 @@
+#! /usr/bin/env sh
+
+APP_NAME="autorandr"
+AUTORANDR_CURRENT_PROFILE=${AUTORANDR_CURRENT_PROFILE:-$(autorandr --current)}
+
+ICON="video-joined-displays-symbolic"
+
+if [ "$AUTORANDR_CURRENT_PROFILE" = "laptop" ]; then
+    ICON="laptop-symbolic"
+fi
+
+notify-send \
+    --icon=$ICON \
+    --app-name=$APP_NAME \
+    --urgency=low \
+    "Monitor configuration detected" \
+    "Switched to <b><big>$AUTORANDR_CURRENT_PROFILE</big></b>" \

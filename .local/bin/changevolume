@@ -1,0 +1,35 @@
+#! /usr/bin/env sh
+
+APP_NAME="changevolume"
+TAG="string:x-canonical-private-synchronous:volume"
+
+volume_diff=$1
+
+amixer set Master "$volume_diff" > /dev/null
+volume=$(amixer get Master | awk -F"[][]" '/Left:/ { print $2 }' | sed 's/%//')
+mute=$(amixer get Master | awk -F"[][]" '/Left:/ { print $4 }')
+
+if [ "$volume" -eq 0 ] || [ "$mute" = "off" ]; then
+    dunstify \
+        --appname "$APP_NAME" \
+        --urgency low \
+        --icon audio-volume-muted \
+        --hints int:value:"$volume" \
+        --hints "$TAG" \
+        "Muted"
+    exit 0
+fi
+
+if [ "$volume" -lt 33 ]; then intensity="low"
+elif [ "$volume" -lt 66 ]; then intensity="medium"
+else intensity="high"
+fi
+
+dunstify \
+    --appname "$APP_NAME" \
+    --urgency low \
+    --timeout 1000 \
+    --icon audio-volume-$intensity \
+    --hints int:value:"$volume" \
+    --hints "$TAG" \
+    "Volume: $volume%"

@@ -1,9 +1,9 @@
 # manage volume
-"amixer sset Master 2%+"
+"changevolume 2%+"
     XF86AudioRaiseVolume
-"amixer sset Master 2%-"
+"changevolume 2%-"
     XF86AudioLowerVolume
-"amixer sset Master toggle"
+"changevolume toggle"
     XF86AudioMute
 
 # manage media player
@@ -15,9 +15,9 @@
     XF86AudioPlay
 
 # manage monitor brightness
-"xbacklight -inc 5"
+"changebrightness 5%+"
     XF86MonBrightnessUp
-"xbacklight -dec 5"
+"changebrightness 5%-"
     XF86MonBrightnessDown
 
 # set keyboard layout

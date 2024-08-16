@@ -19,12 +19,14 @@
     # will be ignored.
     follow = none
 
+    enable_posix_regex = true
+
     ### Geometry ###
 
     # dynamic width from 0 to 300
     # width = (0, 300)
     # constant width of 300
-    width = 300
+    width = 400
 
     # The maximum height of a single notification, excluding the frame.
     height = 300
@@ -33,7 +35,7 @@
     origin = top-right
 
     # Offset from the origin
-    offset = 10x50
+    offset = 10x32
 
     # Scale factor. It is auto-detected if value is 0.
     scale = 0
@@ -61,7 +63,7 @@
     progress_bar_max_width = 300
 
     # Corner radius for the progress bar. 0 disables rounded corners.
-    progress_bar_corner_radius = 0
+    progress_bar_corner_radius = 5
 
     # Corner radius for the icon image.
     icon_corner_radius = 0
@@ -73,13 +75,13 @@
     # The transparency of the window.  Range: [0; 100].
     # This option will only work if a compositing window manager is
     # present (e.g. xcompmgr, compiz, etc.). (X11 only)
-    transparency = 0
+    transparency = 5
 
     # Draw a line of "separator_height" pixel height between two
     # notifications.
     # Set to 0 to disable.
     # If gap_size is greater than 0, this setting will be ignored.
-    separator_height = 2
+    # separator_height = 2
 
     # Padding between text and separator.
     padding = 8
@@ -94,14 +96,11 @@
     # Set to 0 to disable.
     frame_width = 3
 
-    # Defines color of the frame around the notification window.
-    frame_color = "#aaaaaa"
-
     # Size of gap to display between notifications - requires a compositor.
     # If value is greater than 0, separator_height will be ignored and a border
     # of size frame_width will be drawn around each notification instead.
     # Click events on gaps do not currently propagate to applications below.
-    gap_size = 0
+    gap_size = 3
 
     # Define a color for the separator.
     # possible values are:
@@ -109,7 +108,7 @@
     #  * foreground: use the same color as the foreground;
     #  * frame: use the same color as the frame;
     #  * anything else will be interpreted as a X color.
-    separator_color = frame
+    # separator_color = frame
 
     # Sort messages by urgency.
     sort = yes
@@ -119,15 +118,15 @@
     # Set to 0 to disable.
     # A client can set the 'transient' hint to bypass this. See the rules
     # section for how to disable this if necessary
-    # idle_threshold = 120
+    idle_threshold = 120
 
     ### Text ###
 
-    font = Monospace 8
+    font = Hack Nerd Font Mono 10
 
     # The spacing between lines.  If the height is smaller than the
     # font height, it will get raised to the font height.
-    line_height = 0
+    line_height = 3
 
     # Possible values are:
     # full: Allow a small subset of html markup in notifications:
@@ -163,7 +162,7 @@
     #   %n  progress value if set without any extra characters
     #   %%  Literal %
     # Markup is allowed
-    format = "<big><u><b>%a</b></u></big>\n<b>%s</b>\n%b"
+    format = "<big><u><b>%a</b></u></big>\n<big><b>%s</b></big>\n%b"
 
     # Alignment of message text.
     # Possible values are "left", "center" and "right".
@@ -180,7 +179,7 @@
 
     # Specify where to make an ellipsis in long lines.
     # Possible values are "start", "middle" and "end".
-    ellipsize = middle
+    ellipsize = end
 
     # Ignore newlines '\n' in notifications.
     ignore_newline = no
@@ -189,7 +188,7 @@
     stack_duplicates = true
 
     # Hide the count of stacked notifications with the same content
-    hide_duplicate_count = false
+    hide_duplicate_count = true
 
     # Display indicators for URLs (U) and actions (A).
     show_indicators = yes
@@ -201,7 +200,7 @@
     enable_recursive_icon_lookup = true
 
     # Set icon theme (only used for recursive icon lookup)
-    icon_theme = Adwaita
+    icon_theme = Papirus-Dark, Papirus
     # You can also set multiple icon themes, with the leftmost one being used first.
     # icon_theme = "Adwaita, breeze"
 
@@ -231,7 +230,8 @@
     ### Misc/Advanced ###
 
     # dmenu path.
-    dmenu = /usr/bin/dmenu -p dunst:
+    # dmenu = /usr/bin/dmenu -p dunst:
+    dmenu = /usr/bin/rofi -dmenu -i -p dunst
 
     # Browser for opening urls in context menu.
     browser = /usr/bin/xdg-open
@@ -250,7 +250,7 @@
     # corners.
     # The radius will be automatically lowered if it exceeds half of the
     # notification height to avoid clipping text and/or icons.
-    corner_radius = 0
+    corner_radius = 10
 
     # Ignore the dbus closeNotification message.
     # Useful to enforce the timeout set by dunst configuration. Without this
@@ -295,7 +295,7 @@
     # * context_all: Open context menu for all notifications.
     # These values can be strung together for each mouse event, and
     # will be executed in sequence.
-    mouse_left_click = close_current
+    mouse_left_click = open_url, close_current
     mouse_middle_click = do_action, close_current
     mouse_right_click = close_all
 
@@ -313,23 +313,28 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#222222"
-    foreground = "#888888"
+    background = "#1e1e2e"
+    foreground = "#74c7ec"
+    frame_color = "#74c7ec"
+    highlight = "#74c7ec"
     timeout = 10
     # Icon for notifications with low urgency, uncomment to enable
     #default_icon = /path/to/icon
 
 [urgency_normal]
-    background = "#285577"
-    foreground = "#ffffff"
+    background = "#1e1e2e"
+    foreground = "#94e2d5"
+    frame_color = "#94e2d5"
+    highlight = "#94e2d5"
     timeout = 10
     # Icon for notifications with normal urgency, uncomment to enable
     #default_icon = /path/to/icon
 
 [urgency_critical]
-    background = "#900000"
-    foreground = "#ffffff"
-    frame_color = "#ff0000"
+    background = "#1e1e2e"
+    foreground = "#f38ba8"
+    frame_color = "#f38ba8"
+    highlight = "#f38ba8"
     timeout = 0
     # Icon for notifications with critical urgency, uncomment to enable
     #default_icon = /path/to/icon
@@ -456,4 +461,26 @@
 #    appname = "some_volume_notifiers"
 #    set_stack_tag = "volume"
 #
+
+[Spotify]
+    appname = Spotify
+    format = "<big>Now Playing: \n<b>%s</b></big>\n%b"
+    timeout = 5
+    default_icon = spotify-client
+    max_icon_size = 64
+
+[Volume]
+    appname = changevolume
+    format = "<big><b>%s</b></big>"
+    timeout = 1
+    default_icon = audio-volume-high
+    history_ignore = true
+
+[Backlight]
+    appname = changebrightness
+    format = "<big><b>%s</b></big>"
+    timeout = 1
+    default_icon = display-brightness-symbolic 
+    history_ignore = true
+
 # vim: ft=cfg

@@ -1,0 +1,27 @@
+#! /usr/bin/env sh
+
+APP_NAME="changebrightness"
+TAG="string:x-canonical-private-synchronous:backlight"
+
+EXPONENT=3
+
+brightness_diff=$1
+
+brightnessctl set --exponent=$EXPONENT "$brightness_diff" > /dev/null
+brightness=$(brightnessctl --machine-readable --exponent=$EXPONENT | awk -F, '{print $4}' | sed 's/%//')
+
+if [ "$brightness" -lt 15 ]; then exit 1; fi
+
+if [ "$brightness" -lt 33 ]; then intensity="low"
+elif [ "$brightness" -lt 66 ]; then intensity="medium"
+else intensity="high"
+fi
+
+dunstify \
+    --appname "$APP_NAME" \
+    --urgency low \
+    --timeout 1000 \
+    --icon display-brightness-$intensity-symbolic \
+    --hints int:value:"$brightness" \
+    --hints "$TAG" \
+    "Backlight: $brightness%"
