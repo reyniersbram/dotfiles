@@ -7,7 +7,6 @@
 # https://shreevatsa.wordpress.com/2008/03/30/zshbash-startup-files-loading-order-bashrc-zshrc-etc/
 
 ### ENV VARS
-export TERM='xterm-256color'
 export TERMINAL="kitty"
 export HISTCONTROL="ignoredups:erasedups"
 export EDITOR=nvim
