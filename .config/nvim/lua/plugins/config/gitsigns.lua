@@ -33,49 +33,57 @@ gitsigns.setup({
     signs = {
         add = {
             text = icons.git.Add,
-            hl = "GitSignsAdd",
-            numhl = "GitSignsAddNr",
-            linehl = "GitSignsAddLn",
         },
         change = {
             text = icons.git.Mod,
-            hl = "GitSignsChange",
-            numhl = "GitSignsChangeNr",
-            linehl = "GitSignsChangeLn",
         },
         delete = {
             text = icons.git.Remove,
-            hl = "GitSignsDelete",
-            numhl = "GitSignsDeleteNr",
-            linehl = "GitSignsDeleteLn",
         },
         topdelete = {
             text = icons.git.Remove,
-            hl = "GitSignsTopDelete",
-            numhl = "GitSignsDeleteNr",
-            linehl = "GitSignsDeleteLn",
         },
         changedelete = {
             text = icons.git.Mod,
-            hl = "GitSignsChangedelete",
-            numhl = "GitSignsChangeNr",
-            linehl = "GitSignsChangeLn",
         },
         untracked = {
-            test = "┆",
-            hl = "GitSignsUntracked",
-            numhl = "GitSignsUntrackedNr",
-            linehl = "GitSignsUntrackedLn",
+            text = icons.git.Untracked,
         },
     },
-    signcolumn = true,          -- Toggle with `:Gitsigns toggle_signs`
-    numhl = false,              -- Toggle with `:Gitsigns toggle_numhl`
-    linehl = false,             -- Toggle with `:Gitsigns toggle_linehl`
-    word_diff = false,          -- Toggle with `:Gitsigns toggle_word_diff`
-    show_deleted = false,       -- Toggle with `:Gitsigns toggle_deleted`
-    current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
+    signs_staged = {
+        add = {
+            text = icons.git.Add,
+        },
+        change = {
+            text = icons.git.Mod,
+        },
+        delete = {
+            text = icons.git.Remove,
+        },
+        topdelete = {
+            text = icons.git.Remove,
+        },
+        changedelete = {
+            text = icons.git.Mod,
+        },
+        untracked = {
+            text = icons.git.Untracked,
+        },
+    },
+    signs_staged_enable = true,
+    on_attach = on_attach,
+    watch_gitdir = {
+        enable = true,
+        follow_files = true,
+    },
+    sign_priority = 6,
+    signcolumn = true,       -- Toggle with `:Gitsigns toggle_signs`
+    numhl = false,           -- Toggle with `:Gitsigns toggle_numhl`
+    linehl = false,          -- Toggle with `:Gitsigns toggle_linehl`
+    culhl = false,           -- Toggle with `:Gitsigns toggle_culhl`
+    show_deleted = false,    -- Toggle with `:Gitsigns toggle_deleted`
     diff_opts = {
-        algorithm = "myers",    -- myers | minimal | patience | histogram
+        algorithm = "myers", -- myers | minimal | patience | histogram
         -- internal = true,
         -- indent_heuristic = true,
         vertical = true,
@@ -85,29 +93,10 @@ gitsigns.setup({
         ignore_whitespace = false,
         ignore_whitespace_change_at_eol = false,
     },
-    current_line_blame_opts = {
-        delay = 1000,
-        virt_text = true,
-        virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'
-        virt_text_priority = 100,
-        ignore_whitespace = false,
-    },
-    current_line_blame_formatter = "<author>, <author_time:%Y-%m-%d> - <summary>",
-    current_line_blame_formatter_nc = "<author>",
-    current_line_blame_formatter_opts = {
-        relative_time = false,
-    },
     base = "@",
     count_chars = {
         "1", "2", "3", "4", "5", "6", "7", "8", "9", ["+"] = ">",
     },
-    watch_gitdir = {
-        enable = true,
-        follow_files = true,
-    },
-    attach_to_untracked = true,
-    sign_priority = 6,
-    update_debounce = 100,
     status_formatter = nil,
     max_file_length = 40000,
     preview_config = {
@@ -118,10 +107,21 @@ gitsigns.setup({
         row = 0,
         col = 1,
     },
-    yadm = {
-        enable = false,
+    auto_attach = true,
+    attach_to_untracked = true,
+    update_debounce = 100,
+    current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
+    current_line_blame_opts = {
+        delay = 1000,
+        virt_text = true,
+        virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'
+        virt_text_priority = 100,
+        ignore_whitespace = false,
+        use_focus = false,
     },
+    current_line_blame_formatter = "<author>, <author_time:%Y-%m-%d> - <summary>",
+    current_line_blame_formatter_nc = "<author>",
     trouble = false,
-    on_attach = on_attach,
+    word_diff = false, -- Toggle with `:Gitsigns toggle_word_diff`
     debug_mode = false,
 })
