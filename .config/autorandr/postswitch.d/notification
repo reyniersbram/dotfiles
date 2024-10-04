@@ -1,5 +1,7 @@
 #! /usr/bin/env sh
 
+# Send a notification when the monitor configuration changes
+
 APP_NAME="autorandr"
 AUTORANDR_CURRENT_PROFILE=${AUTORANDR_CURRENT_PROFILE:-$(autorandr --current)}
 
