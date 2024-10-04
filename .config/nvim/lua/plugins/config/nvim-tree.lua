@@ -225,7 +225,7 @@ nvim_tree.setup {
                     staged = icons.git.Commit,
                     unmerged = icons.git.Branch,
                     renamed = icons.git.Rename,
-                    untracked = icons.git.Add,
+                    untracked = icons.git.Untracked,
                     deleted = icons.git.Remove,
                     ignored = icons.git.Ignore,
                 },
@@ -302,9 +302,6 @@ nvim_tree.setup {
         },
     },
     experimental = {
-        git = {
-            async = true,
-        },
     },
     log = {
         enable = false,
