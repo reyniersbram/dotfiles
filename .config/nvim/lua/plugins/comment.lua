@@ -17,5 +17,6 @@ return {
         },
         config = require("plugins.config.todo"),
         event = { "BufReadPre", "BufNewFile" },
+        cmd = { "TodoTelescope" },
     },
 }
