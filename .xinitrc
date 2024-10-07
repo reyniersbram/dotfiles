@@ -40,7 +40,7 @@ numlockx on
 
 if [ -x "$(command -v trayer)" ] ; then
     trayer --edge top --align right --width 7 --height 22 --iconspacing 10 \
-        --tint 0x0c0c0c --transparent true --alpha 0 --expand true --padding 10 \
+        --tint 0x11111b --transparent true --alpha 0 --expand true --padding 10 \
         --SetDockType true --SetPartialStrut true -l --monitor primary &
 fi
 
