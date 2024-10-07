@@ -60,10 +60,6 @@ fi
 #     picom -b
 # fi
 
-if [ -x "$(command -v dunst)" ] ; then
-    dunst &
-fi
-
 if [ -x "$(command -v xscreensaver)" ] ; then
     xscreensaver --no-splash &
 fi
