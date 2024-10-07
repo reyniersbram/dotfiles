@@ -7,32 +7,33 @@ end
 -- Language Servers
 
 local servers = {
-    "bashls",   -- Shell
-    "clangd",   -- C / C++
-    "cmake",    -- CMake
-    "cssls",    -- CSS
-    "eslint",   -- Eslint -> change to eslint_d linter (with nune-ls, efm or diagnosticls?)
-    "hls",      -- Haskell
-    "html",     -- HTML
-    "jsonls",   -- JSON
-    "lua_ls",   -- Lua
-    "tsserver", -- TypeScript/JavaScript, TODO: should be changed to work with vue hybrid mode
+    "bashls", -- Shell
+    "clangd", -- C / C++
+    "cmake",  -- CMake
+    "cssls",  -- CSS
+    "eslint", -- Eslint -> change to eslint_d linter (with none-ls, efm or diagnosticls?)
+    "hls",    -- Haskell
+    "html",   -- HTML
+    "jsonls", -- JSON
+    "lua_ls", -- Lua
+    "ruff",   -- Python Linter/Formatter
+    "taplo",  -- TOML
+    "ts_ls",  -- TypeScript/JavaScript
+    "volar",  -- Vue
+
     --
     -- "jdtls", -- also use nvim-jdtls
     -- "r_language_server",
     "pyright", -- or jedi_language-server
-    "ruff",
     -- "arduino_language_server",
     -- "asm_lsp",
     -- "kotlin_language_server",
     -- "sqlls",
-    "volar", -- Vue
     -- yamlls
     --
     -- https://github.com/stardog-union/stardog-language-servers/tree/master/packages/sparql-language-server
     -- "turtle_ls", -- (RDF syntax)
     -- "sparql_ls"
-    "taplo",
     -- "kotlin_language_server",
 }
 
@@ -63,7 +64,7 @@ local default_opts = {
     capabilities = handlers.capabilities,
     autostart = true,
     single_file_support = true, -- TODO: necessary?
-    handlers = {}, -- TODO: add handlers
+    handlers = {},              -- TODO: add handlers
 }
 
 local opts = {}
