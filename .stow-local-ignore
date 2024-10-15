@@ -9,13 +9,14 @@
 
 # Git files
 /.git
+.gitattributes
 .gitignore
 .gitmodules
 LICENSE
 README.md
 
-# The setup scrip
-setup
+# The install script
+install
 
 # Other
 TODO.txt
