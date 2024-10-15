@@ -37,6 +37,17 @@ local icons = require("util.icons")
 
 -- vim.g.cmp_active = true
 
+--- https://github.com/vuejs/language-tools/discussions/4495
+local function is_in_start_tag()
+    local ts_utils = require("nvim-treesitter.ts_utils")
+    local node = ts_utils.get_node_at_cursor()
+    if not node then
+        return false
+    end
+    local node_to_check = { "start_tag", "self_closing_tag", "directive_attribute" }
+    return vim.tbl_contains(node_to_check, node:type())
+end
+
 cmp.setup {
     --[[ enabled = function()
         local buftype = vim.api.nvim_buf_get_option(0, "buftype")
@@ -128,16 +139,39 @@ cmp.setup {
         {
             name = "nvim_lsp",
             group_index = 1,
-            --[[ entry_filter = function(entry, ctx)
-                local kind = require("cmp.types.lsp").CompletionItemKind[entry:get_kind()]
-                if kind == "Snippet" and ctx.prev_context.filetype == "java" then
-                    return false
+            entry_filter = function(entry, ctx)
+                -- local kind = require("cmp.types.lsp").CompletionItemKind[entry:get_kind()]
+                -- if kind == "Snippet" and ctx.prev_context.filetype == "java" then
+                --     return false
+                -- end
+                -- if kind == "Text" then
+                --     return false
+                -- end
+                -- return true
+
+
+
+                --- https://github.com/vuejs/language-tools/discussions/4495
+                if ctx.filetype ~= "vue" then
+                    return true
                 end
-                if kind == "Text" then
-                    return false
+                local bufnr = ctx.bufnr
+                local cached_is_in_start_tag = vim.b[bufnr]._vue_ts_cached_is_in_start_tag
+                if cached_is_in_start_tag == nil then
+                    vim.b[bufnr]._vue_ts_cached_is_in_start_tag = is_in_start_tag()
                 end
-                return true
-            end, ]]
+                if vim.b[bufnr]._vue_ts_cached_is_in_start_tag == false then
+                    return true
+                end
+                local cursor_before_line = ctx.cursor_before_line
+                if cursor_before_line:sub(-1) == "@" then
+                    return entry.completion_item.label:match("^@")
+                elseif cursor_before_line:sub(-1) == ":" then
+                    return entry.completion_item.label:match("^:") and not entry.completion_item.label:match("^:on%-")
+                else
+                    return true
+                end
+            end,
         },
         { name = "nvim_lua", group_index = 2 },
         { name = "luasnip", },
@@ -242,9 +276,15 @@ cmp.setup {
         behavior = cmp.ConfirmBehavior.Replace,
     },
     experimental = {
-        ghost_text = true,
+        ghost_text = false,
     },
 }
+
+--- https://github.com/vuejs/language-tools/discussions/4495
+cmp.event:on("menu_closed", function()
+    local bufnr = vim.api.nvim_get_current_buf()
+    vim.b[bufnr]._vue_ts_cached_is_in_start_tag = nil
+end)
 
 -- TODO figure out how I want this
 -- cmp.setup.cmdline("/", {
