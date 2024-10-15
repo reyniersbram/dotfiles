@@ -31,6 +31,10 @@ mkdir -vp "${HOME}/.local/bin"
 mkdir -vp "${HOME}/Pictures"
 mkdir -vp "${HOME}/Pictures/Screenshots"
 
+# Unlock encrypted files
+echo "Unlocking encrypted files..."
+git-crypt unlock
+
 # Use stow to do most of this work
 echo "Symlinking files with stow..."
 stow --verbose=2 --dir "${current_directory}" --target "${HOME}" .
