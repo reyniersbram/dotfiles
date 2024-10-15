@@ -1,6 +1,6 @@
-local function setup_higlight_symbol(event)
-    local id = vim.tbl_get(event, "data", "client_id")
-    local client = id and vim.lsp.get_client_by_id(id)
+---@param client vim.lsp.Client
+---@param bufnr integer
+local function setup_higlight_symbol(client, bufnr)
     if client == nil or not client.supports_method("textDocument/documentHighlight") then
         return
     end
@@ -10,25 +10,30 @@ local function setup_higlight_symbol(event)
         { clear = false }
     )
     vim.api.nvim_clear_autocmds {
-        buffer = event.buf,
+        buffer = bufnr,
         group = group,
     }
     vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
         group = group,
-        buffer = event.buf,
+        buffer = bufnr,
         callback = function() vim.lsp.buf.document_highlight() end,
         desc = "Highlight symbol under cursor",
     })
 
     vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
         group = group,
-        buffer = event.buf,
+        buffer = bufnr,
         callback = function() vim.lsp.buf.clear_references() end,
         desc = "Clear highlight symbol under cursor",
     })
 end
 
-vim.api.nvim_create_autocmd("LspAttach", {
-    desc = "Setup symbol highlighting",
-    callback = setup_higlight_symbol,
-})
+local M = {}
+
+---@param client vim.lsp.Client
+---@param bufnr integer
+function M.on_attach(client, bufnr)
+    setup_higlight_symbol(client, bufnr)
+end
+
+return M

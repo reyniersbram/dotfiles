@@ -13,6 +13,7 @@ if vim.fn.has("nvim-0.10.0") ~= 1 then
 end
 
 vim.diagnostic.config {
+    underline = true,
     virtual_text = true,
     signs = {
         priority = 10,
@@ -23,14 +24,16 @@ vim.diagnostic.config {
             [vim.diagnostic.severity.HINT] = icons.diagnostics.HINT,
         },
     },
+    float = {
+        scope = "line",
+        severity_sort = true,
+        header = "Diagnostics:",
+        source = true,
+        focusable = true,
+        border = icons.ui.window.float.border,
+    },
     update_in_insert = true,
     severity_sort = true,
-    float = {
-        focusable = true,
-        style = "minimal",
-        border = icons.ui.window.float.border,
-        source = true,
-    },
 }
 
 local opts = { noremap = true, silent = true }

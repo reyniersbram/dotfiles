@@ -1,9 +1,16 @@
 local M = {}
 
 local icons = require("util.icons")
+local Spinner = require("util.notify.Spinner")
 
 -- LSP Progress Updates
+
+---@param title string
+---@param client_name string | nil
 local function format_title(title, client_name)
+    if not client_name then
+        return "[lsp]" .. (#title > 0 and ": " .. title or "")
+    end
     return "[" .. client_name .. "]" .. (#title > 0 and ": " .. title or "")
 end
 
@@ -14,10 +21,10 @@ local function format_message(message, percentage)
     return (percentage and percentage .. "%\t" or "") .. (message or "")
 end
 
-local function progress_notification_callback(spinners)
-    local Spinner = require("util.notify.Spinner")
+---@deprecated Use `progress_notification_callback` instead
+local function progress_notification_callback_legacy(spinners)
     for _, client in ipairs(vim.lsp.get_active_clients()) do
-        for token, progress in pairs(client.messages.progress) do
+        for token, progress in ipairs(client.messages.progress) do
             if not spinners[client.id] then
                 spinners[client.id] = {}
             end
@@ -31,7 +38,7 @@ local function progress_notification_callback(spinners)
                     spinner:update(message)
                 end
             else
-                client.messages.progress[token] = nil
+                client.messages.pending[token] = nil
                 if spinner then
                     local opts = {
                         icon = icons.ui.status.Done,
@@ -44,17 +51,57 @@ local function progress_notification_callback(spinners)
     end
 end
 
+
+local function progress_notification_callback(event, spinners)
+    local client_id = event.data.client_id --[[@as integer]]
+    local client = vim.lsp.get_client_by_id(client_id)
+    local params = event.data.params --[[@as lsp.ProgressParams]]
+    local progress = params.value
+    local token = params.token
+    if not progress then
+        return
+    end
+    if not spinners[client_id] then
+        spinners[client_id] = {}
+    end
+    if progress.kind == "begin" then
+        local message = format_message(progress.message, progress.percentage) or "Starting up..."
+        local opts = { title = format_title(progress.title, client and client.name or nil), render = "compact" }
+        spinners[client_id][token] = Spinner(message, vim.log.levels.INFO, opts)
+    elseif progress.kind == "report" then
+        local spinner = spinners[client_id][token]
+        spinner:update(format_message(progress.message, progress.percentage))
+    elseif progress.kind == "end" then
+        local spinner = spinners[client_id][token]
+        local opts = {
+            icon = icons.ui.status.Done,
+        }
+        spinner:done(progress.message or "Done", nil, opts)
+        spinners[client_id][token] = nil
+    end
+end
+
+local NVIM_V_010 = vim.fn.has("nvim-0.10.0") > 0
+
 local function configure_progress_notifications()
     local spinners = {}
-    local group = vim.api.nvim_create_augroup("LspNotify", { clear = true })
-    vim.api.nvim_create_autocmd("User", {
-        pattern = "LspProgressUpdate",
-        group = group,
-        desc = "LSP progress notifications",
-        callback = function()
-            progress_notification_callback(spinners)
-        end
-    })
+    if NVIM_V_010 then
+        vim.api.nvim_create_autocmd("LspProgress", {
+            callback = function(event)
+                progress_notification_callback(event, spinners)
+            end
+        })
+    else
+        local group = vim.api.nvim_create_augroup("LspNotify", { clear = true })
+        vim.api.nvim_create_autocmd("User", {
+            pattern = "LspProgressUpdate",
+            group = group,
+            desc = "LSP progress notifications",
+            callback = function()
+                progress_notification_callback_legacy(spinners)
+            end,
+        })
+    end
 end
 
 -- local severity = {
@@ -82,52 +129,16 @@ require("util").try_with_module(
     end
 )
 
--- On Attach
-local function set_keymaps(bufnr)
-    local opts = { noremap = true, silent = true, buffer = bufnr }
-
-    vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, opts)
-    vim.keymap.set("n", "gd",
-        function()
-            vim.lsp.buf.definition { reuse_win = true }
-        end, opts)
-    vim.keymap.set("n", "gD",
-        function()
-            vim.lsp.buf.declaration { reuse_win = true }
-        end, opts)
-    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-    vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
-    vim.keymap.set("n", "gs", vim.lsp.buf.signature_help, opts)
-
-    vim.keymap.set("n", "gf", vim.lsp.buf.format, opts)
-    vim.keymap.set("n", "ga", vim.lsp.buf.code_action, opts)
-
-    -- Using Telescope
-    -- vim.api.nvim_buf_set_keymap(bufnr, "n", "gD", "<cmd>Telescope lsp_declarations<<CR>", opts)
-    -- vim.api.nvim_buf_set_keymap(bufnr, "n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
-    -- vim.api.nvim_buf_set_keymap(bufnr, "n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts)
-
-    -- TODO check if I want these
-    -- vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", "<cmd>Telescope lsp_references<CR>", opts)
-    -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
-    -- vim.cmd([[ command! Format execute 'lua vim.lsp.buf.format()' ]])
-end
-
-M.on_attach = function(client, bufnr)
-    set_keymaps(bufnr)
-end
-
-
 local function code_action_listener()
     local context = { diagnostics = vim.lsp.diagnostic.get_line_diagnostics() }
     local params = vim.lsp.util.make_range_params()
     params.context = context
-    vim.lsp.buf_request(
-        0, "textDocument/codeAction", params,
-        function(err, result, ctx, config)
-            -- TODO: do something, e.g. set sign
-        end
-    )
+    -- vim.lsp.buf_request(
+    --     0, "textDocument/codeAction", params,
+    --     function(err, result, ctx, config)
+    --         -- TODO: do something, e.g. set sign 󰁨  or 
+    --     end
+    -- )
 end
 
 function M.setup()

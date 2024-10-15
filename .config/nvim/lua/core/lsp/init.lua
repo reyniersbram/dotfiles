@@ -1,51 +1,60 @@
 local M = {}
 local icons = require("util.icons")
 
-vim.lsp.set_log_level(vim.lsp.log_levels.OFF)
+function M.setup()
+    vim.lsp.set_log_level(vim.lsp.log_levels.ERROR)
 
-require("core.lsp.format_on_save")
-require("core.lsp.highlight")
+    -- UI --
+    vim.lsp.handlers["textDocument/hover"] =
+        vim.lsp.with(
+            vim.lsp.handlers.hover,
+            {
+                border = icons.ui.window.float.border,
+                -- title = "Hover Information",
+                -- title_pos = "right",
+            }
+        )
+    vim.lsp.handlers["textDocument/signatureHelp"] =
+        vim.lsp.with(
+            vim.lsp.handlers.signature_help,
+            {
+                border = icons.ui.window.float.border,
+                -- title = "Signature Help",
+                -- title_pos = "right",
+            }
+        )
+end
 
--- LSP
-vim.lsp.handlers["textDocument/hover"] =
-    vim.lsp.with(
-        vim.lsp.handlers.hover,
-        {
-            border = icons.ui.window.float.border,
-        }
-    )
-
-vim.lsp.handlers["textDocument/signatureHelp"] =
-    vim.lsp.with(
-        vim.lsp.handlers.signature_help,
-        {
-            border = icons.ui.window.float.border,
-        }
-    )
-
+-- TODO: e.g. make this work with Telescope
 M.server_capabilities = function()
-    local active_clients = vim.lsp.get_active_clients()
-    local active_client_map = {}
-
-    for index, value in ipairs(active_clients) do
-        active_client_map[value.name] = index
-    end
-
     vim.ui.select(
-        vim.tbl_keys(active_client_map),
+        vim.lsp.get_clients(),
         {
             prompt = "Select client:",
+            ---@param item vim.lsp.Client
             format_item = function(item)
-                return "capabilites for: " .. item
+                return item.name
             end,
         },
+        ---@param choice? vim.lsp.Client
         function(choice)
-            print(vim.inspect(
-                vim.lsp.get_active_clients()[active_client_map[choice]]
-                .server_capabilities
-            ))
+            if not choice then
+                return
+            end
+            vim.print(vim.inspect(choice.server_capabilities))
         end
     )
 end
+
+function M.on_attach(client, bufnr)
+    require("core.lsp.keymaps").on_attach(client, bufnr)
+    require("core.lsp.highlight").on_attach(client, bufnr)
+    -- TODO:
+    -- require("core.lsp.format_on_save")
+    -- require("core.lsp.inlay_hints")
+end
+
+-- TODO: look at codelens, inlay_hints, semantic_tokens and client_capabilities (protocol), and some keymaps (buf)
+-- https://neovim.io/doc/user/lsp.html
 
 return M
