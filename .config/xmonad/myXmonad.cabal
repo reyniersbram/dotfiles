@@ -19,6 +19,7 @@ library
     default-extensions: ImportQualifiedPost
     exposed-modules:
         Colors
+        ColorTheme.CatpuccinMocha
         Defaults
         Hooks.Event
         Hooks.Layout
@@ -52,6 +53,7 @@ executable xmonad
     default-extensions: ImportQualifiedPost
     other-modules:
         Colors
+        ColorTheme.CatpuccinMocha
         Defaults
         Hooks.Event
         Hooks.Layout
@@ -78,6 +80,7 @@ executable xmobar
         , xmobar
 
     other-modules:
+        ColorTheme.CatpuccinMocha
         Colors
         Defaults
         XMobar.Bars.Default
@@ -98,6 +101,7 @@ executable xmobar-system
         , base
         , xmobar
     other-modules:
+        ColorTheme.CatpuccinMocha
         Colors
         Defaults
         XMobar.Bars.Default

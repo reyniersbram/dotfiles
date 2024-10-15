@@ -3,10 +3,8 @@ module XMobar.Bars.MainBar where
 import XMobar.Bars.Default (myDefaultConfig)
 import XMobar.Monitors
   ( battery,
-    brightness,
     conservationStatus,
-    sound,
-    traypadding,
+    traypadding, pacmanUpdates,
   )
 import Xmobar
   ( Config (commands, position, sepChar, template, wmClass, wmName),
@@ -14,6 +12,7 @@ import Xmobar
     StdinReader (UnsafeStdinReader),
     XPosition,
   )
+import ColorTheme.CatpuccinMocha (flamingo)
 
 mainBar :: XPosition -> Config
 mainBar position =
@@ -23,24 +22,24 @@ mainBar position =
       wmName = "xmobar-main",
       commands =
         [ Run UnsafeStdinReader,
-          Run sound,
-          Run . brightness $ 1,
           Run . battery $ 50,
           Run . conservationStatus $ 10,
-          Run . traypadding $ 1
+          Run . traypadding $ 1,
+          Run . pacmanUpdates $ 3600
         ],
       sepChar = "%",
       template =
         "\
         \\xf31a %UnsafeStdinReader%\
         \ }{ \
-        \\xf00e0 %bright%\
-        \ · \
-        \<action=`amixer sset Master toggle`>%alsa:default:Master%</action>\
-        \ | \
-        \%battery%\
-        \ · \
+        \" ++
+        "<action=`kitty --hold sudo pacman -Syyu`><fc=" ++ flamingo ++ ">\xf06b0 %pacUpdates%</fc></action>" ++
+        "<hspace=40/>" ++
+        "\
         \<action=`conservation_mode toggle`>%conservation_status%</action>\
+        \· \
+        \%battery%\
+        \ | \
         \%traypadding%\
         \"
     }

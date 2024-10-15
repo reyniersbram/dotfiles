@@ -80,10 +80,8 @@ battery =
 conservationStatus :: Int -> Command
 conservationStatus =
   Com
-    "/bin/bash"
-    [ "-c",
-      "conservation_mode icon"
-    ]
+    "conservation_mode"
+    ["icon"]
     "conservation_status"
 
 date :: Int -> Date
@@ -185,6 +183,13 @@ networkIO =
       "--width",
       "7"
     ]
+
+pacmanUpdates :: Int -> Command
+pacmanUpdates =
+  Com
+    "pacupdates"
+    [""]
+    "pacUpdates"
 
 traypadding :: Int -> Command
 traypadding =

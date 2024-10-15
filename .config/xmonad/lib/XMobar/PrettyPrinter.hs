@@ -3,6 +3,7 @@ module XMobar.PrettyPrinter
   )
 where
 
+import ColorTheme.CatpuccinMocha (lavender)
 import Colors qualified
 import GHC.IO.Handle (Handle)
 import System.IO (hPutStrLn)
@@ -28,7 +29,7 @@ xmobarPP handles =
         highlight
           . wrapWorkspaceName
           . xmobarFont 1
-          . xmobarBorder "Bottom" Colors.blue 3,
+          . xmobarBorder "Bottom" lavender 3,
       ppVisible = wrapWorkspaceName . xmobarBorder "Bottom" Colors.blue 3,
       ppHidden = wrapWorkspaceName . xmobarFont 1 . white,
       ppHiddenNoWindows = lowWhite . wrapWorkspaceName,
