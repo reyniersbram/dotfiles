@@ -1,3 +1,11 @@
+-- Modes
+--   normal_mode = "n",
+--   insert_mode = "i",
+--   visual_mode = "v",
+--   visual_block_mode = "x",
+--   term_mode = "t",
+--   command_mode = "c",
+
 local default_opts = { noremap = true, silent = true }
 
 ---@param mode string|table<string> See :help modes for available modes
@@ -42,3 +50,5 @@ keymap("v", "<A-j>", ":move '>+1<CR>gv-gv", { desc = "Move line down, don't fix 
 keymap("v", "<A-k>", ":move '<-2<CR>gv-gv", { desc = "Move line up, don't fix indentation" })
 
 keymap("v", "p", '"_dP', { desc = "Paste and keep in register" })
+
+return keymap

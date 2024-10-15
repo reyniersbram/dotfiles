@@ -4,10 +4,6 @@ local require = require("util").cb_require
 -- try neodev.nvim
 
 return {
-    -- Buffer management
-    {
-        "moll/vim-bbye",
-    },
     -- Social
     {
         "andweeb/presence.nvim",

@@ -318,3 +318,6 @@ nvim_tree.setup {
         },
     },
 }
+
+local keymap = require("core.keymap")
+keymap("n", "<leader>e", ":NvimTreeToggle<CR>", { desc = "Toggle NvimTree" })

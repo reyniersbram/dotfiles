@@ -92,5 +92,5 @@ todo.setup {
 }
 
 -- TODO: should not be here
-vim.keymap.set("n", "gtn", todo.jump_next, { desc = "Next todo comment" })
-vim.keymap.set("n", "gtp", todo.jump_prev, { desc = "Previous todo comment" })
+vim.keymap.set("n", "]t", todo.jump_next, { desc = "Next todo comment" })
+vim.keymap.set("n", "[t", todo.jump_prev, { desc = "Previous todo comment" })

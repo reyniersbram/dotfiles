@@ -1,3 +1,4 @@
+local keymap = require("core.keymap")
 local status_ok, telescope = pcall(require, "telescope")
 if not status_ok then
     vim.notify("telescope not found")
@@ -120,3 +121,7 @@ telescope.setup {
 
 telescope.load_extension('fzf')
 -- telescope.load_extension('media_files')
+
+keymap("n", "<leader>ff", ":Telescope find_files hidden=true<CR>", { desc = "Search files" })
+keymap("n", "<leader>fb", ":Telescope buffers<CR>", { desc = "Search open buffers" })
+keymap("n", "<leader>fg", ":Telescope live_grep<CR>", { desc = "Search word" })
