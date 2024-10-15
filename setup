@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
 
+set -e
+
 echo "Finding path to this repo..."
 current_directory=$(cd -- "$(dirname -- "$0")" > /dev/null 2>&1 && pwd)
 echo "Repo detected at ${current_directory}"
@@ -7,7 +9,7 @@ echo "Repo detected at ${current_directory}"
 echo "Doing a full system upgrade before starting the installation..."
 sudo pacman -Syyu
 
-echo "Installing packages required to run the install script..."
+echo "Installing packages required to run this install script..."
 packages="${current_directory}/etc/required.txt"
 if [ -s "$packages" ]; then
     # shellcheck disable=SC2024
@@ -26,7 +28,7 @@ mkdir -vp "${XDG_CACHE_HOME}"
 mkdir -vp "${XDG_DATA_HOME}"
 mkdir -vp "${XDG_STATE_HOME}"
 
-echo "Creating directories necessary for the installation..."
+echo "Creating directories to avoid them being symlinked..."
 mkdir -vp "${HOME}/.local/bin"
 mkdir -vp "${HOME}/Pictures"
 mkdir -vp "${HOME}/Pictures/Screenshots"
@@ -35,15 +37,14 @@ mkdir -vp "${HOME}/Pictures/Screenshots"
 echo "Unlocking encrypted files..."
 git-crypt unlock
 
-# Use stow to do most of this work
+# Use stow to symlink all configuration files, scripts, etc.
 echo "Symlinking files with stow..."
 stow --verbose=2 --dir "${current_directory}" --target "${HOME}" .
-
 
 # Install additional packages
 echo "Installing additional packages..."
 
-if ! (which paru > /dev/null 2>&1); then
+if ! [ -x "$(command -v paru)" ]; then
     echo "Installing paru from AUR..."
     if (
         git clone https://aur.archlinux.org/paru.git
