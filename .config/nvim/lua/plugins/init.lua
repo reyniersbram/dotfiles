@@ -46,4 +46,11 @@ return {
             base_url = "https://dodona.be",
         },
     },
+    {
+        "zbirenbaum/copilot.lua",
+        -- try copilot-cmp
+        config = require("plugins.config.copilot"),
+        cmd = { "Copilot" },
+        event = { "BufEnter" },
+    },
 }
