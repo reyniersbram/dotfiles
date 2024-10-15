@@ -1,5 +1,11 @@
 [user]
-	email = 55666730+reyniersbram@users.noreply.github.com
-	name = reyniersbram
+	email = reyniersbram@gmail.com
+	name = Bram Reyniers
+	signingkey = 8D48D91DF85CFB2C
 [init]
 	defaultBranch = main
+[commit]
+	gpgSign = true
+
+[includeIf "gitdir:~/ugent/"]
+    path = "~/.config/git/ugent"
