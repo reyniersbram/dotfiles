@@ -16,6 +16,20 @@ M.branch = {
     separator = "",
 }
 
+M.copilot = {
+    "copilot",
+    symbols = {
+        status = {
+            icons = require("util.icons").misc.copilot,
+        },
+        spinners = require("util.icons").spinners,
+        -- spinner_color =
+    },
+    show_colors = true,
+    show_loading = true,
+    padding = { right = 2 },
+}
+
 M.diagnostics = {
     'diagnostics',
     sources = { 'nvim_lsp' },
@@ -63,8 +77,8 @@ M.fileformat = {
         dos = icons.misc.OS.Windows,
         mac = icons.misc.OS.Apple,
     },
-    separator = { right = '' },
-    padding = { right = 0, left = 1 },
+    padding = { left = 0, right = 0 },
+    separator = "",
 }
 M.filename = {
     'filename',

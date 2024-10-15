@@ -15,7 +15,7 @@ extensions.nvim_tree = {
             end
         },
         lualine_b = {
-            components.branch
+            "branch",
         },
     },
     winbar = {},
@@ -47,10 +47,10 @@ lualine.setup {
     },
     sections = {
         lualine_a = { components.neovim, components.mode },
-        lualine_b = { components.diagnostics },
-        lualine_c = {},
-        lualine_x = { components.fileformat, components.encoding, components.filetype },
-        lualine_y = { components.branch, components.diff },
+        lualine_b = { components.branch, components.diff },
+        lualine_c = { require("lsp-progress").progress },
+        lualine_x = {},
+        lualine_y = { components.fileformat, components.encoding, components.filetype },
         lualine_z = { components.progress, components.location },
     },
     inactive_sections = {},
@@ -61,9 +61,18 @@ lualine.setup {
     winbar = {
         lualine_b = { components.filetype_icon, components.filename },
         lualine_c = { components.navic },
+        lualine_x = { components.copilot, components.diagnostics },
     },
     inactive_winbar = {
         lualine_b = { components.filetype_icon, components.filename },
+        lualine_x = { components.copilot, components.diagnostics },
     },
     extensions = extensions,
 }
+
+local lualine_group = vim.api.nvim_create_augroup("lualine_augroup", { clear = true })
+vim.api.nvim_create_autocmd("User", {
+    group = lualine_group,
+    pattern = "LspProgressUpdate",
+    callback = lualine.refresh,
+})
