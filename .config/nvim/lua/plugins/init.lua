@@ -32,7 +32,18 @@ return {
     -- Color Highlighting
     {
         "norcalli/nvim-colorizer.lua",
-        config = require("config.colorizer"),
-        cond = false,
+        config = require("plugins.config.colorizer"),
+    },
+
+    {
+        "xerbalind/dodona.nvim",
+        dependencies = {
+            "rcarriga/nvim-notify",
+            "nvim-telescope/telescope.nvim",
+            "nvim-lua/plenary.nvim",
+        },
+        opts = {
+            base_url = "https://dodona.be",
+        },
     },
 }

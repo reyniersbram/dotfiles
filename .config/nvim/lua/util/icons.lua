@@ -71,16 +71,17 @@ M = {
         SymLinkArrow = ""
     },
     git = {
-        Add = "\u{f457}",    -- 
-        Mod = "\u{f459}",    -- 
-        Remove = "\u{f458}", -- 
-        Ignore = "\u{f474}", -- 
-        Rename = "\u{f45a}", -- 
-        Diff = "\u{f440}",   -- 
-        Repo = "\u{f401}",   -- 
-        Merge = "\u{e727}",  -- 
-        Branch = "\u{e725}", -- 
-        Commit = "\u{e729}", -- 
+        Add = "\u{f457}",        -- 
+        Mod = "\u{f459}",        -- 
+        Remove = "\u{f458}",     -- 
+        Ignore = "\u{f474}",     -- 
+        Rename = "\u{f45a}",     -- 
+        Diff = "\u{f440}",       -- 
+        Untracked = "\u{f15e3}", -- 󱗣
+        Repo = "\u{f401}",       -- 
+        Merge = "\u{e727}",      -- 
+        Branch = "\u{e725}",     -- 
+        Commit = "\u{e729}",     -- 
     },
     ui = {
         Lock = " ",

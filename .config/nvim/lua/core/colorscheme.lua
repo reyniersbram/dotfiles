@@ -30,7 +30,3 @@ if defined_colors == 16 then
         vim.g["terminal_color_" .. (index - 1)] = value
     end
 end
-
--- Make floating windows appear transparent
-vim.cmd.highlight({ "link" , "NormalFloat", "NormalNC" })
-vim.cmd.highlight({ "link" , "FloatBorder", "NormalNC" })
