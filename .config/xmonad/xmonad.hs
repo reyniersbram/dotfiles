@@ -26,7 +26,7 @@ myWorkspaces =
 main :: IO ()
 main = do
   xmprc0 <- spawnPipe "xmobar -x 0"
-  xmprc1 <- spawnPipe "xmobar -x 1"
+  -- xmprc1 <- spawnPipe "xmobar-system -x 1"
   xmonad
     . ewmh
     . docks
@@ -43,7 +43,8 @@ main = do
         keys = keyBinds,
         mouseBindings = mouseBinds,
         borderWidth = 1,
-        logHook = Hooks.Log.logHook [xmprc0, xmprc1],
+        -- logHook = Hooks.Log.logHook [xmprc0, xmprc1],
+        logHook = Hooks.Log.logHook [xmprc0],
         startupHook = Hooks.Startup.startupHook,
         focusFollowsMouse = False,
         clickJustFocuses = False
