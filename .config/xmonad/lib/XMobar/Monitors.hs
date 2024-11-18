@@ -1,5 +1,6 @@
 module XMobar.Monitors
   ( sound,
+    archUpdates,
     brightness,
     battery,
     conservationStatus,
@@ -15,10 +16,12 @@ module XMobar.Monitors
     networkIO,
     pacmanUpdates,
     traypadding,
+    module XMobar.Monitors.ArchUpdates,
   )
 where
 
 import Colors (fgColor, green, red)
+import XMobar.Monitors.ArchUpdates
 import Xmobar
   ( Command (Com),
     Date (Date),
@@ -63,6 +66,18 @@ sound =
       "--highs",
       "\xf057e "
     ]
+
+archUpdates :: Int -> ArchUpdates
+archUpdates =
+  ArchUpdates
+    ArchUpdatesOptions
+      { none = "<fc=" ++ green ++ ">\xebb1</fc>",
+        one = "1",
+        many = "%",
+        err = "<fc=red>\xea87</fc>",
+        icon = "\xf0baf"
+      }
+    "pacupdates"
 
 brightness :: Int -> Monitors
 brightness =
