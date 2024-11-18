@@ -1,10 +1,12 @@
 module XMobar.Bars.MainBar where
 
+import ColorTheme.CatpuccinMocha (yellow)
 import XMobar.Bars.Default (myDefaultConfig)
 import XMobar.Monitors
   ( battery,
     conservationStatus,
     traypadding, pacmanUpdates,
+    date,
   )
 import Xmobar
   ( Config (commands, position, sepChar, template, wmClass, wmName),
@@ -26,6 +28,7 @@ mainBar position =
           Run . conservationStatus $ 10,
           Run . traypadding $ 1,
           Run . pacmanUpdates $ 3600
+          Run . date $ 100,
         ],
       sepChar = "%",
       template =
@@ -36,10 +39,14 @@ mainBar position =
         "<action=`kitty --hold sudo pacman -Syyu`><fc=" ++ flamingo ++ ">\xf06b0 %pacUpdates%</fc></action>" ++
         "<hspace=40/>" ++
         "\
-        \<action=`conservation_mode toggle`>%conservation_status%</action>\
-        \· \
-        \%battery%\
-        \ | \
-        \%traypadding%\
         \"
+          ++ "<fn=1>%date%</fn>"
+          ++ "<hspace=40/>"
+          ++ "\
+             \<action=`conservation_mode toggle`>%conservation_status%</action>\
+             \· \
+             \%battery%\
+             \ | \
+             \%traypadding%\
+             \"
     }

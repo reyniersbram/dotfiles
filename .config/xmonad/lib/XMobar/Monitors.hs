@@ -1,11 +1,41 @@
-module XMobar.Monitors where
+module XMobar.Monitors
+  ( sound,
+    brightness,
+    battery,
+    conservationStatus,
+    date,
+    keyboardLayout,
+    memory,
+    swap,
+    cpuUsage,
+    cpuFrequency,
+    cpuTemperature,
+    diskIO,
+    diskUsage,
+    networkIO,
+    pacmanUpdates,
+    traypadding,
+  )
+where
 
 import Colors (fgColor, green, red)
 import Xmobar
   ( Command (Com),
     Date (Date),
     Kbd (Kbd),
-    Monitors (Alsa, Battery, Brightness, CpuFreq, DiskIO, DiskU, DynNetwork, Memory, MultiCoreTemp, MultiCpu, Swap),
+    Monitors
+      ( Alsa,
+        Battery,
+        Brightness,
+        CpuFreq,
+        DiskIO,
+        DiskU,
+        DynNetwork,
+        Memory,
+        MultiCoreTemp,
+        MultiCpu,
+        Swap
+      ),
   )
 
 sound :: Monitors
@@ -85,7 +115,7 @@ conservationStatus =
     "conservation_status"
 
 date :: Int -> Date
-date = Date "%H:%M · %a %Y-%m-%d" "date"
+date = Date "%a %Y-%m-%d·%H:%M" "date"
 
 keyboardLayout :: Kbd
 keyboardLayout = Kbd [("us", "us")]
