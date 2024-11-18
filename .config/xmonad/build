@@ -1,6 +1,14 @@
 #! /usr/bin/env sh
 
-cd "${XDG_CONFIG_HOME}/xmonad" || exit
+# See https://github.com/xmonad/xmonad-contrib/blob/c5032a43fbb95592d6aac4f906878a9abd744cf0/scripts/build/build-with-stack.sh
+
+set -e
+set -u
+
+SRC_DIR="${XDG_CONFIG_HOME}/xmonad"
+unset STACK_YAML
+
+cd "${SRC_DIR}"
 
 stack install
 
