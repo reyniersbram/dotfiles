@@ -6,8 +6,8 @@ TAG="string:x-canonical-private-synchronous:volume"
 volume_diff=$1
 
 amixer set Master "$volume_diff" > /dev/null
-volume=$(amixer get Master | awk -F"[][]" '/Left:/ { print $2 }' | sed 's/%//')
-mute=$(amixer get Master | awk -F"[][]" '/Left:/ { print $4 }')
+volume=$(amixer get Master | awk -F"[][]" '/Mono:/ { print $2 }' | sed 's/%//')
+mute=$(amixer get Master | awk -F"[][]" '/Mono:/ { print $6 }')
 
 if [ "$volume" -eq 0 ] || [ "$mute" = "off" ]; then
     dunstify \
