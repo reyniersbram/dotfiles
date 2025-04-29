@@ -18,7 +18,11 @@ import Graphics.X11.Types
     Window,
     mod4Mask,
     shiftMask,
+    xK_Down,
+    xK_Left,
     xK_Return,
+    xK_Right,
+    xK_Up,
     xK_b,
     xK_p,
     xK_r,
@@ -28,6 +32,7 @@ import Graphics.X11.Types
 import XMonad (Layout, XConfig (keys, mouseBindings))
 import XMonad.Core (X, spawn)
 import XMonad.Hooks.ManageDocks (ToggleStruts (ToggleStruts))
+import XMonad.Layout.Spacing (decScreenSpacing, decWindowSpacing, incScreenSpacing, incWindowSpacing)
 import XMonad.Operations (sendMessage, unGrab)
 
 -- mod4Mask: Super-key
@@ -45,7 +50,11 @@ keyBinds conf =
       ((modKey, xK_Return), spawn defaultTerminal),
       ((modKey .|. shiftMask, xK_p), spawn "rofi-pass"),
       ((modKey, xK_p), spawn "rofi-launcher drun"),
-      ((modKey, xK_r), spawn "rofi-launcher run")
+      ((modKey, xK_r), spawn "rofi-launcher run"),
+      ((modKey, xK_Right), incWindowSpacing 2),
+      ((modKey, xK_Left), decWindowSpacing 2),
+      ((modKey, xK_Up), incScreenSpacing 2),
+      ((modKey, xK_Down), decScreenSpacing 2)
     ]
     `Map.union` keys def conf
 
