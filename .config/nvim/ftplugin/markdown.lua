@@ -1,2 +1,2 @@
 vim.opt.formatoptions:append("t")
--- vim.opt.spell = true
+vim.opt.spell = true
