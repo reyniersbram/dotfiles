@@ -12,6 +12,7 @@
 .gitattributes
 .gitignore
 .gitmodules
+/.git-crypt
 LICENSE
 README.md
 
