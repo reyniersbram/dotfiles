@@ -21,7 +21,6 @@ configuration {
         "{name} [<span weight='light' size='small'><i>({generic})</i></span>]";
     drun-show-actions: false;
     window-match-fields: "all";
-    matching-negate-char: '-';
 
     // Layout
     location: 0;
@@ -50,7 +49,7 @@ configuration {
         parse-user: true;
         parse-system: true;
     }
-    
+
     // Window switcher
     window-format: "{c}    {t}";
     window-command: "wmctrl -i -R {window}";
