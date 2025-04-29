@@ -6,12 +6,13 @@
 --   term_mode = "t",
 --   command_mode = "c",
 
+---@type vim.keymap.set.Opts
 local default_opts = { noremap = true, silent = true }
 
 ---@param mode string|table<string> See :help modes for available modes
 ---@param lhs string
 ---@param rhs string|fun()
----@param custom_opts? table Optional, if not specified default values are used
+---@param custom_opts? vim.keymap.set.Opts Optional, if not specified default values are used
 ---     See :help vim.keymap.set for possible values
 ---     Default values: { noremap = true, silent = true }
 local function keymap(mode, lhs, rhs, custom_opts)

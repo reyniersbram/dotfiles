@@ -38,5 +38,6 @@ vim.diagnostic.config {
 
 local opts = { noremap = true, silent = true }
 vim.keymap.set("n", "gl", vim.diagnostic.open_float, opts)
+-- TODO: remove, this is the default mapping
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
