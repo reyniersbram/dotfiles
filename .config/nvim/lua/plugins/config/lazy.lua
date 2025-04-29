@@ -109,7 +109,7 @@ return {
     checker = {
         enabled = true,
         concurrency = nil,
-        notify = true,
+        notify = false,
         frequency = 3600,
     },
     change_detection = {

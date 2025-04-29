@@ -94,10 +94,10 @@ require("util").try_with_module(
         local modes = { "n", "x", "o" }
         vim.keymap.set(modes, ";", ts_repeat_move.repeat_last_move)
         vim.keymap.set(modes, ",", ts_repeat_move.repeat_last_move_opposite)
-        vim.keymap.set(modes, "f", ts_repeat_move.builtin_f)
-        vim.keymap.set(modes, "F", ts_repeat_move.builtin_F)
-        vim.keymap.set(modes, "t", ts_repeat_move.builtin_t)
-        vim.keymap.set(modes, "T", ts_repeat_move.builtin_T)
+        vim.keymap.set(modes, "f", ts_repeat_move.builtin_f_expr, { expr = true })
+        vim.keymap.set(modes, "F", ts_repeat_move.builtin_F_expr, { expr = true })
+        vim.keymap.set(modes, "t", ts_repeat_move.builtin_t_expr, { expr = true })
+        vim.keymap.set(modes, "T", ts_repeat_move.builtin_T_expr, { expr = true })
         require("util").try_with_module(
             "gitsigns",
             function(gitsigns)
