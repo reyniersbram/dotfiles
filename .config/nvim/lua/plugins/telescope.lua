@@ -7,11 +7,11 @@ return {
         "nvim-lua/plenary.nvim",
         {
             "nvim-telescope/telescope-fzf-native.nvim", -- Better telescope sorting
-            build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build"
+            build = "make"
         },
         {
             "nvim-telescope/telescope-media-files.nvim",
-            cond = false,
+            enabled = false,
         },
     },
     config = require("plugins.config.telescope"),

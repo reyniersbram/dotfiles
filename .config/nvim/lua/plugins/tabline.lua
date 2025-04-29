@@ -10,7 +10,7 @@ return {
     },
     {
         "akinsho/bufferline.nvim",
-        cond = false,
+        enabled = false,
         dependencies = {
             "nvim-tree/nvim-web-devicons",
         },

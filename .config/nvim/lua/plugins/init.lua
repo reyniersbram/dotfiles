@@ -8,9 +8,12 @@ return {
     {
         "andweeb/presence.nvim",
         config = require("plugins.config.presence"),
-        cond = false,
+        enabled = false,
     },
-    "wakatime/vim-wakatime",
+    -- {
+    --     "wakatime/vim-wakatime",
+    --     cond = false,
+    -- },
 
     -- Misc
     {

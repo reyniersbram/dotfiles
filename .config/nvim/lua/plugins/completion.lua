@@ -14,11 +14,11 @@ return {
         "hrsh7th/cmp-nvim-lua",         -- extra nvim lua completion
         {
             "hrsh7th/cmp-emoji",        -- emojiiis🙂
-            cond = false,
+            enabled = false,
         },
         {
             "f3fora/cmp-spell",     -- spell checker
-            cond = false,
+            enabled = false,
         },
 
         -- snippets
