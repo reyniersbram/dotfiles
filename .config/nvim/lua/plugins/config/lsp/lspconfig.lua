@@ -56,12 +56,21 @@ require("util").try_with_module(
 )
 
 local lsp = require("core.lsp")
-local handlers = require("core.lsp.handlers")
-handlers.setup()
+local core_handlers = require("core.lsp.handlers")
+core_handlers.setup()
+
+-- TODO: don't put this function randomly here
+local function on_attach(client, bufnr)
+    lsp.on_attach(client, bufnr)
+    -- Disable hover for ruff (should be provided by language server)
+    if client.name == "ruff" then
+        client.server_capabilities.hoverProvider = false
+    end
+end
 
 local default_opts = {
-    on_attach = lsp.on_attach,
-    capabilities = handlers.capabilities,
+    on_attach = on_attach,
+    capabilities = core_handlers.capabilities,
     autostart = true,
     single_file_support = true, -- TODO: necessary?
     handlers = {},              -- TODO: add handlers
