@@ -227,6 +227,7 @@ options.window_opts = {
     -- TODO: switchbuf
     -- TODO: set winwidth and winheight
     winblend = 15,
+    winborder = require("util.icons").ui.border
 }
 
 for _, option_map in pairs(options) do

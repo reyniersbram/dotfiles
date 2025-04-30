@@ -5,4 +5,9 @@ M.misc = {
         Neovim = "\u{f36f}",
     },
 }
+
+M.ui = {
+    border = "rounded",
+}
+
 return M
