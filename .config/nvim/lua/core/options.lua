@@ -243,11 +243,14 @@ end
 -- vim.opt.matchpairs:append("<:>")
 
 -- TODO: should this be here?
-vim.api.nvim_create_autocmd("TermOpen", {
-    callback = function()
-        vim.opt_local.number = false
-        vim.opt_local.relativenumber = false
-        vim.opt.signcolumn = "no"
-    end
-})
+if not vim.fn.has("0.11") then
+    vim.api.nvim_create_autocmd("TermOpen", {
+        desc = {"Set specific terminal options"},
+        callback = function()
+            vim.opt_local.number = false
+            vim.opt_local.relativenumber = false
+            vim.opt.signcolumn = "no"
+        end
+    })
+end
 
