@@ -244,6 +244,7 @@ end
 -- vim.opt.matchpairs:append("<:>")
 
 -- TODO: should this be here?
+-- Not required any more from 0.11
 if not vim.fn.has("0.11") then
     vim.api.nvim_create_autocmd("TermOpen", {
         desc = {"Set specific terminal options"},
