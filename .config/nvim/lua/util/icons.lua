@@ -27,6 +27,7 @@ M.misc = {
         Neovim = "\u{f36f}", -- 
         Vim = "\u{e7c5}", -- 
     },
+    telescope = "\u{f46b}", -- 
 }
 
 M.programming = {
@@ -76,6 +77,7 @@ M.programming = {
 
 M.ui = {
     border = "rounded",
+    select = "\u{f0da}", -- 
     settings = M.misc.gear,
 }
 
