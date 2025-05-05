@@ -182,6 +182,7 @@ lazy.setup {
             paths = {},
             disabled_plugins = {
                 -- TODO:
+                "netrwPlugin",
             },
         },
     },
