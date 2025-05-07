@@ -15,7 +15,7 @@ local function bootstrap(install_path)
     if vim.v.shell_error ~= 0 then
         vim.api.nvim_echo({
             { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-            { out, "WarningMsg" },
+            { output, "WarningMsg" },
             { "\nPress any key to exit..." },
         }, true, {})
         vim.fn.getchar()
@@ -31,7 +31,7 @@ vim.opt.rtp:prepend(install_path)
 
 
 local lazy = require "lazy"
-local Util = require "lazy.core.util"
+local util = require "lazy.core.util"
 local icons = require "util.icons"
 
 lazy.setup {
@@ -75,7 +75,7 @@ lazy.setup {
         hererocks = nil,
     },
     dev = {
-        path = "~/Projects",
+        path = "~/repos/nvim",
         patterns = {},
         fallback = false,
     },
@@ -134,7 +134,7 @@ lazy.setup {
 
             ["<localleader>i"] = {
                 function(plugin)
-                    Util.notify(vim.inspect(plugin), {
+                    util.notify(vim.inspect(plugin), {
                         title = "Inspect " .. plugin.name,
                         lang = "lua",
                     })
