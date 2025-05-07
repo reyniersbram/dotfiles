@@ -3,6 +3,7 @@ return {
     dependencies = {
         "rafamadriz/friendly-snippets",
         "nvim-tree/nvim-web-devicons",
+        "folke/lazydev.nvim",
     },
     event = { "InsertEnter", "CmdlineEnter" },
     version = "*",
@@ -73,7 +74,14 @@ return {
                 ghost_text = { enabled = true, },
             },
             sources = {
-                default = { "lsp", "path", "snippets", "buffer" },
+                default = { "lazydev", "lsp", "path", "snippets", "buffer" },
+                providers = {
+                    lazydev = {
+                        name = "LazyDev",
+                        module = "lazydev.integrations.blink",
+                        score_offset = 100,
+                    },
+                },
             },
             fuzzy = { implementation = "prefer_rust_with_warning" },
             signature = {
