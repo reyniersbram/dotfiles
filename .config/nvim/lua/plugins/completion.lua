@@ -1,3 +1,31 @@
+local kind_icons_fallback = {
+    __index = function(_, _)
+        ---@param ctx blink.cmp.DrawItemContext
+        ---@return string, string
+        local function geticon(ctx)
+            return ctx.kind_icon, ctx.kind_hl
+        end
+        return geticon
+    end
+}
+
+---@alias KindIconProvider fun(ctx: blink.cmp.DrawItemContext): string, string
+---@type table<string, KindIconProvider>
+local kind_icon_providers = {
+    -- TODO: Cmdline...
+    Path = function(ctx)
+        if ctx.item.data.type == "directory" then
+            return require("util.icons").files.folder.folder, ctx.kind_hl
+        end
+        local dev_icon, dev_hl = require("nvim-web-devicons").get_icon(ctx.label)
+        if dev_icon then
+            return dev_icon, dev_hl
+        end
+        return require("util.icons").files.file, ctx.kind_hl
+    end,
+}
+kind_icon_providers = setmetatable(kind_icon_providers, kind_icons_fallback)
+
 return {
     "saghen/blink.cmp",
     dependencies = {
@@ -12,10 +40,11 @@ return {
             keymap = { preset = "default" },
             appearance = {
                 nerd_font_variant = "mono",
+                kind_icons = require("util.icons").programming.completion_item_kind,
             },
             completion = {
                 keyword = { range = "prefix" },
-                accept = { auto_brackets = { enabled = false } },
+                accept = { auto_brackets = { enabled = true } },
                 list = {
                     selection = {
                         preselect = true,
@@ -41,39 +70,37 @@ return {
                     draw = {
                         columns = {
                             { "kind_icon" },
-                            { "label", "label_description", gap = 1 },
+                            { "label",      "label_description", gap = 1 },
                             { "source_name" },
                         },
                         components = {
                             kind_icon = {
                                 text = function(ctx)
-                                    if vim.tbl_contains({ "Path" }, ctx.source_name) then
-                                        if ctx.item.data.type == "directory" then
-                                            return require("util.icons").files.folder.folder
-                                        end
-                                        local dev_icon, _ = require("nvim-web-devicons").get_icon(ctx.label)
-                                        return dev_icon or require("util.icons").files.file
-                                    end
-                                    -- TODO: LSP kinds, snippets, buffer...
-                                    return ctx.kind_icon
+                                    local kind_icon, _ = kind_icon_providers
+                                        [ctx.source_name](ctx)
+                                    return kind_icon
                                 end,
                                 highlight = function(ctx)
-                                    if vim.tbl_contains({ "Path" }, ctx.source_name) then
-                                        local dev_icon, dev_hl = require("nvim-web-devicons").get_icon(ctx.label)
-                                        if dev_icon then
-                                            return dev_hl
-                                        end
-                                    end
-                                    return { ctx.kind_hl }
+                                    local _, kind_hl = kind_icon_providers
+                                        [ctx.source_name](ctx)
+                                    return kind_hl
                                 end
                             },
                         },
+                        treesitter = { "lsp" },
                     },
                 },
                 ghost_text = { enabled = true, },
             },
             sources = {
                 default = { "lsp", "path", "snippets", "buffer" },
+                providers = {
+                    path = {
+                        opts = {
+                            get_cwd = function(_) return vim.fn.getcwd() end
+                        },
+                    },
+                },
             },
             fuzzy = { implementation = "prefer_rust_with_warning" },
             signature = {
@@ -82,23 +109,12 @@ return {
             cmdline = {
                 enabled = true,
                 keymap = {
-                    ['<Tab>'] = {
-                        function(cmp)
-                            if cmp.is_ghost_text_visible() and not cmp.is_menu_visible() then return cmp.accept() end
-                        end,
-                        'show_and_insert',
-                        'select_next',
-                    },
-                    ['<S-Tab>'] = { 'show_and_insert', 'select_prev' },
-
-                    ['<C-n>'] = { 'select_next', 'fallback' },
-                    ['<C-p>'] = { 'select_prev', 'fallback' },
-
-                    ['<C-y>'] = { 'select_and_accept' },
-                    ['<C-e>'] = { 'cancel' },
+                    preset = "cmdline",
                 },
                 completion = {
-                    menu = { auto_show = true },
+                    menu = {
+                        auto_show = true,
+                    },
                 },
             },
         }

@@ -5,6 +5,5 @@
         "$VIMRUNTIME/lua",
         "${3rd}/luv/library",
         "$XDG_DATA_HOME/nvim/lazy",
-        "$XDG_CONFIG_HOME/nvim/lua"
     ]
 }
