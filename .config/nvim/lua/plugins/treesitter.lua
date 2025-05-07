@@ -34,6 +34,7 @@ local default_parsers = {
 }
 
 local parsers = {
+    "json",
     "luadoc",
 }
 

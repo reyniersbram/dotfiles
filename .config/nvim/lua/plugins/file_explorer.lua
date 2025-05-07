@@ -18,7 +18,7 @@ return {
         oil.setup {
             default_file_explorer = true,
             columns = {
-                "icon",
+                { "icon", default_file = require("util.icons").files.file, directory = require("util.icons").files.folder.folder },
             },
             buf_options = {
                 buflisted = false,
