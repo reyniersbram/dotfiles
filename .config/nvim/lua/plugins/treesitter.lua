@@ -34,8 +34,10 @@ local default_parsers = {
 }
 
 local parsers = {
+    "go",
     "json",
     "luadoc",
+    "python",
 }
 
 return {
