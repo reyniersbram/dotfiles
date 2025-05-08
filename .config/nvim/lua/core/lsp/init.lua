@@ -3,3 +3,4 @@ vim.lsp.config("*", {
 })
 
 vim.lsp.enable("lua_ls")
+require("core.lsp.document_highlight").setup({enable = true})
