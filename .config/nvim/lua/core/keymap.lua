@@ -13,7 +13,8 @@ map("", "<Space>", "<Nop>", { desc = "Unmap <Space>" })
 map("n", "<leader>w", "<cmd>write<CR>", { desc = "Write the current file" })
 map("n", "<leader>y", "<cmd>%yank<CR>", { desc = "Yank the current file" })
 
-map({ "n", "t" }, "<localleader>t", "<Plug>FloatTermToggle", { desc = "Toggle the floating terminal" })
+map({ "n", "t" }, "<localleader>t", "<Plug>FloatTermToggle",
+    { desc = "Toggle the floating terminal" })
 
 -- TODO: do I want this?
 -- very basic auto-pairs

@@ -12,7 +12,8 @@ local function notify_missing_parser(ft)
     local has_parser = ts_parsers.has_parser(ft)
     if not has_parser and vim.tbl_contains(all_parsers, ft) then
         vim.notify(
-            ("No tree-sitter parser installed for %s, install the parser with `:TSInstall %s`."):format(ft, ft),
+            ("No tree-sitter parser installed for %s, install the parser with `:TSInstall %s`.")
+            :format(ft, ft),
             vim.log.levels.INFO
         )
     end
@@ -34,9 +35,11 @@ local default_parsers = {
 }
 
 local parsers = {
-    "go",
+    "editorconfig",
+    "go", "gomod", "gosum",
     "json",
     "luadoc",
+    "prolog",
     "python",
 }
 

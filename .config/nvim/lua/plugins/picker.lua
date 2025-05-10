@@ -15,18 +15,18 @@ end
 
 return {
     {
-        'nvim-telescope/telescope.nvim',
-        tag = '0.1.8',
+        "nvim-telescope/telescope.nvim",
+        tag = "0.1.8",
         dependencies = {
-            'nvim-lua/plenary.nvim',
+            "nvim-lua/plenary.nvim",
             "nvim-tree/nvim-web-devicons",
-            { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' }
+            { "nvim-telescope/telescope-fzf-native.nvim", build = "make" }
         },
         cmd = { "Telescope" },
         keys = {
-            {"<leader>ff", find_files, "n", desc = "Find file"},
-            {"<leader>fb", buffers, "n", desc = "Find open buffer"},
-            {"<leader>fg", live_grep, "n", desc = "Find text in files"},
+            { "<leader>ff", find_files, "n", desc = "Find file" },
+            { "<leader>fb", buffers,    "n", desc = "Find open buffer" },
+            { "<leader>fg", live_grep,  "n", desc = "Find text in files" },
         },
         config = function()
             local telescope = require("telescope")
@@ -40,15 +40,15 @@ return {
                     prompt_prefix = require("util.icons").misc.telescope .. " ",
                     selection_caret = require("util.icons").ui.select .. " ",
                     entry_prefix = "  ",
-                    multi_icon = '+', -- TODO:
+                    multi_icon = "+", -- TODO:
                     path_display = {
                         shorten = { len = 2, exclude = { 1, -1 } },
                     },
                     dynamic_preview_title = true,
                     mappings = {},
                     file_ignore_patterns = { -- respects gitignore
-                        "%~", -- vim backup files
-                        ".git/", -- git directory
+                        "%~",                -- vim backup files
+                        ".git/",             -- git directory
                     },
                 },
                 pickers = {
@@ -66,4 +66,3 @@ return {
         end,
     },
 }
-

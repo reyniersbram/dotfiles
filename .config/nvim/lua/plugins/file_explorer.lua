@@ -78,7 +78,8 @@ return {
                 sort = {
                     { "name", "asc" },
                 },
-                highlight_filename = function(entry, is_hidden, is_link_target, is_link_orphan)
+                highlight_filename = function(entry, is_hidden, is_link_target,
+                                              is_link_orphan)
                     return nil
                 end,
             },

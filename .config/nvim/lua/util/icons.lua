@@ -1,22 +1,29 @@
 local M = {}
 
+M.diagnostics = {
+    [vim.diagnostic.severity.ERROR] = "\u{ea87}", -- 
+    [vim.diagnostic.severity.WARN] = "\u{ea6c}",  -- 
+    [vim.diagnostic.severity.INFO] = "\u{ea74}",  -- 
+    [vim.diagnostic.severity.HINT] = "\u{eb32}",  -- 
+}
+
 M.files = {
-    file = "\u{f0214}",          -- 󰈔
-    files = "\u{f0222}",         -- 󰈢
+    file = "\u{f0214}",           -- 󰈔
+    files = "\u{f0222}",          -- 󰈢
     file_import = "\u{f0220}",    -- 󰈠
-    file_code = "\u{f022e}", -- 󰈮
-    symlink = "\u{f1031}", -- 󱀱
+    file_code = "\u{f022e}",      -- 󰈮
+    symlink = "\u{f1031}",        -- 󱀱
     folder = {
-        folder = "\u{f024b}",    -- 󰉋
-        open = "\u{f0770}",      -- 󰝰
-        empty = "\u{f0256}",     -- 󰉖
+        folder = "\u{f024b}",     -- 󰉋
+        open = "\u{f0770}",       -- 󰝰
+        empty = "\u{f0256}",      -- 󰉖
         empty_open = "\u{f0dcf}", -- 󰷏
-        symlink = "\u{f19ef}",   -- 󱧯
+        symlink = "\u{f19ef}",    -- 󱧯
     },
 }
 
 M.misc = {
-    gear = "\u{f013}", -- 
+    gear = "\u{f013}",     -- 
     keyboard = "\u{f11c}", -- 
     programming = {
         language = {
@@ -25,9 +32,9 @@ M.misc = {
     },
     tech = {
         Neovim = "\u{f36f}", -- 
-        Vim = "\u{e7c5}", -- 
+        Vim = "\u{e7c5}",    -- 
     },
-    telescope = "\u{f46b}", -- 
+    telescope = "\u{f46b}",  -- 
 }
 
 M.programming = {

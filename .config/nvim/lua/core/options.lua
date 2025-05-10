@@ -247,7 +247,7 @@ end
 -- Not required any more from 0.11
 if not vim.fn.has("0.11") then
     vim.api.nvim_create_autocmd("TermOpen", {
-        desc = {"Set specific terminal options"},
+        desc = { "Set specific terminal options" },
         callback = function()
             vim.opt_local.number = false
             vim.opt_local.relativenumber = false
@@ -255,4 +255,3 @@ if not vim.fn.has("0.11") then
         end
     })
 end
-

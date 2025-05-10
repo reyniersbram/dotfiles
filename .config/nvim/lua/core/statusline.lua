@@ -1,14 +1,14 @@
 local M = {}
 
 local function progress()
-    local cur = vim.fn.line('.')
-    local total = vim.fn.line('$')
+    local cur = vim.fn.line(".")
+    local total = vim.fn.line("$")
     if cur == 1 then
-        return 'Top'
+        return "Top"
     elseif cur == total then
-        return 'Bot'
+        return "Bot"
     else
-        return string.format('%2d%%%%', math.floor(cur / total * 100))
+        return string.format("%2d%%%%", math.floor(cur / total * 100))
     end
 end
 
@@ -17,9 +17,9 @@ local function lsp_progress()
 end
 
 function M.render()
-    return '%<%f %h%m%r%=' .. lsp_progress() .. '%=%-14.(%l,%v%V%) ' .. progress()
+    return "%<%f %h%m%r%=" ..
+    lsp_progress() .. "%=%-14.(%l,%v%V%) " .. progress()
 end
-
 
 local create_autocmd = require("core.autocmd").create_autocmd
 create_autocmd("LspProgress", {

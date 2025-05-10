@@ -7,4 +7,4 @@ vim.lsp.enable({
     "pyright",
 })
 
-require("core.lsp.document_highlight").setup({enable = true})
+require("core.lsp.document_highlight").setup({ enable = true })
