@@ -19,13 +19,6 @@ local function notify_missing_parser(ft)
     end
 end
 
-require("core.autocmd").create_autocmd("FileType", {
-    desc = "Notify missing tree-sitter parser",
-    callback = function(ev)
-        notify_missing_parser(ev.match)
-    end,
-})
-
 local default_parsers = {
     "c",
     "lua",
@@ -53,6 +46,9 @@ return {
         "TSEnable", "TSDisable", "TSToggle",
         "TSModuleInfo", "TSEditQuery", "TSEditQueryUserAfter",
     },
+    dependencies = {
+        "nvim-treesitter/nvim-treesitter-textobjects",
+    },
     event = {
         "BufReadPost", "BufNewFile",
     },
@@ -67,21 +63,26 @@ return {
             modules = {},
             incremental_selection = {
                 enable = false,
-            }
-
-        }
-        treesitter.setup {
+            },
             highlight = {
                 enable = true,
                 disable = {},
                 additional_vim_regex_highlighting = false,
             },
-        }
-        treesitter.setup {
             indent = {
                 enable = true,
                 disable = {},
-            }
+            },
+            textobjects = require("lua.plugins.treesitter-modules.textobjects")
         }
+        require("core.autocmd").create_autocmd("FileType", {
+            desc = "Notify missing tree-sitter parser",
+            callback = function(ev)
+                notify_missing_parser(ev.match)
+            end,
+        })
+
+        -- TODO:
+        -- https://github.com/nvim-treesitter/nvim-treesitter?tab=readme-ov-file#folding
     end,
 }
