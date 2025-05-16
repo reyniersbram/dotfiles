@@ -3,8 +3,10 @@ vim.lsp.config("*", {
 })
 vim.lsp.enable({
     "gopls",
+    "hls",
     "lua_ls",
     "pyright",
+    "ruff",
 })
 
 require("core.lsp.document_highlight").setup({ enable = true })

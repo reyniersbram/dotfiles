@@ -37,6 +37,7 @@ local default_parsers = {
 local parsers = {
     "editorconfig",
     "go", "gomod", "gosum",
+    "haskell",
     "json",
     "luadoc",
     "prolog",
