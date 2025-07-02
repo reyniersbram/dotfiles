@@ -1,3 +1,15 @@
 [*]
-quote_style = double
+indent_size = 4
+indent_style = space
+tab_width = 4
+
+end_of_line = lf
+charset = utf-8
+spelling_language = en
+
+trim_trailing_whitespace = true
+insert_final_newline = true
 max_line_length = 80
+
+[*.lua]
+quote_style = double
