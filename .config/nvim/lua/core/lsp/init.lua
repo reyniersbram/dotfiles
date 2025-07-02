@@ -8,6 +8,8 @@ vim.lsp.enable({
     "html", -- html
     "lua_ls", -- lua
     "pyright", "ruff", --python
+    "ts_ls", -- typescript
+    "vue_ls", -- vue
 })
 
 require("core.lsp.document_highlight").setup({ enable = true })
