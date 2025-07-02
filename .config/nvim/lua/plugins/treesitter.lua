@@ -28,13 +28,19 @@ local default_parsers = {
 }
 
 local parsers = {
+    "css",
     "editorconfig",
+    "gitignore",
     "go", "gomod", "gosum",
     "haskell",
+    "html",
+    "javascript", "typescript",
     "json",
     "luadoc",
     "prolog",
     "python",
+    "toml",
+    "vue",
 }
 
 return {
@@ -73,7 +79,7 @@ return {
                 enable = true,
                 disable = {},
             },
-            textobjects = require("lua.plugins.treesitter-modules.textobjects")
+            textobjects = require("plugins.treesitter-modules.textobjects")
         }
         require("core.autocmd").create_autocmd("FileType", {
             desc = "Notify missing tree-sitter parser",
