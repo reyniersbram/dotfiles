@@ -8,4 +8,18 @@ return {
         ".git"
     },
     filetypes = { "lua" },
+    settings = {
+        Lua = {
+            hint = {
+                enable = true,
+                arrayIndex = "Disable",
+                await = true,
+                awaitPropagate = true,
+                paramName = "All",
+                paramType = true,
+                semicolon = "Disable",
+                setType = true,
+            },
+        },
+    },
 }
