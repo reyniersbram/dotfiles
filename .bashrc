@@ -7,7 +7,7 @@
 # https://shreevatsa.wordpress.com/2008/03/30/zshbash-startup-files-loading-order-bashrc-zshrc-etc/
 
 ### ENV VARS
-export TERMINAL="kitty"
+export TERMINAL="st"
 export HISTCONTROL="ignoredups:erasedups"
 export EDITOR=nvim
 export VISUAL=nvim
@@ -44,6 +44,7 @@ append_to_path "${HOME}/.local/bin"
 append_to_path "${HOME}/.local/bin/rofi"
 append_to_path "${HOME}/.ghcup/bin"
 append_to_path "${HOME}/.cabal/bin"
+append_to_path "${HOME}/go/bin"
 
 export PATH
 unset -f append_to_path
