@@ -2,11 +2,12 @@ vim.lsp.config("*", {
     root_markers = { ".git" },
 })
 vim.lsp.enable({
-    "gopls",
-    "hls",
-    "lua_ls",
-    "pyright",
-    "ruff",
+    "cssls", -- css
+    "gopls", -- go
+    "hls", -- haskell
+    "html", -- html
+    "lua_ls", -- lua
+    "pyright", "ruff", --python
 })
 
 require("core.lsp.document_highlight").setup({ enable = true })
