@@ -8,6 +8,7 @@ vim.lsp.enable({
     "html", -- html
     "lua_ls", -- lua
     "pyright", "ruff", --python
+    "taplo", -- toml
     "ts_ls", -- typescript
     "vue_ls", -- vue
 })
