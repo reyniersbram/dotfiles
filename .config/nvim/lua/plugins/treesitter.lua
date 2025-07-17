@@ -1,24 +1,6 @@
 local parser_dir = vim.fn.stdpath("data") .. "/treesitter"
 vim.opt.runtimepath:append(parser_dir)
 
----Notify the user when the parser for a file is not installed.
----@param ft string Filetype of the buffer
-local function notify_missing_parser(ft)
-    local ok, ts_parsers = pcall(require, "nvim-treesitter.parsers")
-    if not ok then
-        return
-    end
-    local all_parsers = ts_parsers.available_parsers()
-    local has_parser = ts_parsers.has_parser(ft)
-    if not has_parser and vim.tbl_contains(all_parsers, ft) then
-        vim.notify(
-            ("No tree-sitter parser installed for %s, install the parser with `:TSInstall %s`.")
-            :format(ft, ft),
-            vim.log.levels.INFO
-        )
-    end
-end
-
 local default_parsers = {
     "c",
     "lua",
@@ -45,50 +27,70 @@ local parsers = {
 
 return {
     "nvim-treesitter/nvim-treesitter",
+    branch = "main",
     build = ":TSUpdate",
-    cmd = {
-        "TSInstall", "TSInstallSync", "TSInstallInfo", "TSUninstall",
-        "TSUpdate", "TSUpdateSync",
-        "TSEnable", "TSDisable", "TSToggle",
-        "TSModuleInfo", "TSEditQuery", "TSEditQueryUserAfter",
-    },
-    dependencies = {
-        "nvim-treesitter/nvim-treesitter-textobjects",
-    },
-    event = {
-        "BufReadPost", "BufNewFile",
-    },
+    lazy = false,
+    -- dependencies = {
+    --     "nvim-treesitter/nvim-treesitter-textobjects",
+    -- },
     config = function()
-        local treesitter = require("nvim-treesitter.configs")
-        treesitter.setup {
-            parser_install_dir = parser_dir,
-            ensure_installed = vim.list_extend(parsers, default_parsers),
-            ignore_install = {},
-            sync_install = false,
-            auto_install = false,
-            modules = {},
-            incremental_selection = {
-                enable = false,
-            },
-            highlight = {
-                enable = true,
-                disable = {},
-                additional_vim_regex_highlighting = false,
-            },
-            indent = {
-                enable = true,
-                disable = {},
-            },
-            textobjects = require("plugins.treesitter-modules.textobjects")
+        local ts_config = require("nvim-treesitter.config")
+        ts_config.setup {
+            install_dir = parser_dir,
         }
-        require("core.autocmd").create_autocmd("FileType", {
-            desc = "Notify missing tree-sitter parser",
-            callback = function(ev)
-                notify_missing_parser(ev.match)
-            end,
+        local ts_install = require("nvim-treesitter.install")
+        ts_install.install(vim.list_extend(parsers, default_parsers))
+
+        vim.api.nvim_create_autocmd("FileType", {
+            callback = function(event)
+                local bufnr = event.buf
+                local filetype = event.match
+
+                if filetype == "" then
+                    return
+                end
+
+                -- Get parser name from filetype
+                local parser_name = vim.treesitter.language.get_lang(filetype)
+                if not parser_name then
+                    vim.notify(
+                        ("No treesitter parser found for %s"):format(filetype),
+                        vim.log.levels.DEBUG)
+                    return
+                end
+
+                -- Start treesitter if the parser is installed
+                if vim.tbl_contains(ts_config.get_installed(), parser_name) then
+                    vim.bo[bufnr].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+                    vim.treesitter.start(bufnr, parser_name)
+                    return
+                end
+
+                -- Notify the user a parser is available
+                if vim.tbl_contains(ts_config.get_available(), parser_name) then
+                    vim.notify(
+                        ("Parser available for %s, install the parser with `:TSInstall %s`.")
+                        :format(filetype, parser_name),
+                        vim.log.levels.INFO
+                    )
+                    return
+                else
+                    vim.notify(
+                        ("No treesitter parser found for %s"):format(filetype),
+                        vim.log.levels.DEBUG)
+                    return
+                end
+            end
         })
 
-        -- TODO:
-        -- https://github.com/nvim-treesitter/nvim-treesitter?tab=readme-ov-file#folding
+        -- TODO: port these to the treesitter main branch
+        --         incremental_selection = {
+        --             enable = false,
+        --         },
+        --         textobjects = require("plugins.treesitter-modules.textobjects")
+        --     }
+        --
+        --     -- TODO:
+        --     -- https://github.com/nvim-treesitter/nvim-treesitter?tab=readme-ov-file#folding
     end,
 }
