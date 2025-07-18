@@ -110,11 +110,8 @@ return {
                 end
             })
 
-            -- TODO: port these to the treesitter main branch
-            --         textobjects = require("plugins.treesitter-modules.textobjects")
-            --
-            --     -- TODO:
-            --     -- https://github.com/nvim-treesitter/nvim-treesitter?tab=readme-ov-file#folding
+            -- TODO: folding
+            -- https://github.com/nvim-treesitter/nvim-treesitter?tab=readme-ov-file#folding
         end,
     },
     {
