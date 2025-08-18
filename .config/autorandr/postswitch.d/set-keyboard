@@ -1,5 +1,0 @@
-#! /usr/bin/env sh
-
-# Set keyboard layout
-
-setxkbmap -option caps:escape
