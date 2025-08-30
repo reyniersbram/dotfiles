@@ -11,8 +11,8 @@ alias ls='ls --color=auto -h'
 alias ll='ls -lF'
 alias la='ll -AF'
 
-# Show hidden files with tree command
-alias tree='tree -a'
+# Show hidden files with tree command, ignore .git directory
+alias tree="tree -a -I '.git'"
 
 # cd
 alias cdd='cd ..'
@@ -41,6 +41,9 @@ alias man=batman
 
 # Use neovim instead of vim
 alias vim='nvim'
+
+# Git
+alias gs='git status --short'
 
 # Print $PATH entries on newlines
 path () {

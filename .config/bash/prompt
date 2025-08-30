@@ -9,7 +9,6 @@
 # - https://wiki.archlinux.org/title/Bash/Prompt_customization#Colors
 # - https://en.wikipedia.org/wiki/ANSI_escape_code#3-bit_and_4-bit
 # - https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit
-# - https://bashrcgenerator.com/
 
 # Markup
 _clearAll="\[\e[0m\]"
