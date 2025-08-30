@@ -9,13 +9,7 @@ log "Running a full system upgrade before starting the installation..." info
 system_upgrade
 
 log "Installing packages required to run this install script..." info
-packages="${current_directory}/etc/required.txt"
-if [ -s "$packages" ]; then
-    # shellcheck disable=SC2046
-    install_packages $(xargs < "$packages")
-else
-    log "Nothing to do" hint
-fi
+install_packages base-devel make git stow
 
 # Create directories I want
 XDG_CONFIG_HOME="${HOME}/.config"
