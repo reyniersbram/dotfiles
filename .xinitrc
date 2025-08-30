@@ -36,7 +36,7 @@ fi
 
 start_wm() {
     if [ -x "$(command -v nm-applet)" ] ; then
-        nm-applet --indicator &
+        nm-applet &
     fi
 
     if [ -x "$(command -v feh)" ] ; then
@@ -80,7 +80,7 @@ setxkbmap -option caps:escape
 xbindkeys
 numlockx on
 
-session=${1:-xmonad}
+session=${1:-dwm}
 case $session in
     xmonad)
         start_xmonad
