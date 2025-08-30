@@ -86,6 +86,15 @@ M.ui = {
     border = "rounded",
     select = "\u{f0da}", -- 
     settings = M.misc.gear,
+    debug = {
+        breakpoint = {
+            breakpoint = "\u{ea71}", -- 
+            condition = "\u{eaa7}", -- 
+            log = "\u{eaab}", -- 
+            stopped = "\u{eb89}", -- 
+            rejected = "\u{eabd}" -- 
+        },
+    },
 }
 
 return M
