@@ -5,17 +5,22 @@ set -eu
 current_directory=$(cd -- "$(dirname -- "$0")" > /dev/null 2>&1 && pwd)
 . "${current_directory}/lib.sh"
 
+if [ $# -gt 0 ]; then
+    script="${current_directory}/install.d/$1.sh"
+    if [ -x "$script" ]; then
+        "$script"
+        exit 0
+    else
+        log "No install script for $1" error
+        exit 1
+    fi
+fi
+
 log "Running a full system upgrade before starting the installation..." info
 system_upgrade
 
 log "Installing packages required to run this install script..." info
 install_packages base-devel make git stow
-
-# Create directories I want
-XDG_CONFIG_HOME="${HOME}/.config"
-XDG_CACHE_HOME="${HOME}/.cache"
-XDG_DATA_HOME="${HOME}/.local/share"
-XDG_STATE_HOME="${HOME}/.local/state"
 
 log "Creating XDG Base Directories..." info
 mkdir -vp "${XDG_CONFIG_HOME}"

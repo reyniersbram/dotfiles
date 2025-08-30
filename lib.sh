@@ -1,3 +1,8 @@
+XDG_CONFIG_HOME="${HOME}/.config"
+XDG_CACHE_HOME="${HOME}/.cache"
+XDG_DATA_HOME="${HOME}/.local/share"
+XDG_STATE_HOME="${HOME}/.local/state"
+
 color_red="\033[0;31m"
 color_green="\033[0;32m"
 color_yellow="\033[0;33m"
