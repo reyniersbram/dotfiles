@@ -20,6 +20,11 @@ return {
                 semicolon = "Disable",
                 setType = true,
             },
+            diagnostics = {
+                neededFileStatus = {
+                    ["codestyle-check"] = "Any",
+                },
+            },
         },
     },
 }

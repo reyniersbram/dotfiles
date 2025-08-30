@@ -1,5 +1,13 @@
 return {
-    cmd = { "pyright-langserver", "--stdio" },
+    cmd          = { "pyright-langserver", "--stdio" },
+    capabilities = {
+        workspace = {
+            didChangeWatchedFiles = {
+                dynamicRegistration = false,
+                relativePatternSupport = true
+            },
+        }
+    },
     root_markers = {
         "pyproject.toml",
         "requirements.txt",
@@ -9,8 +17,8 @@ return {
         "pyrightconfig.json",
         ".git",
     },
-    filetypes = { "python" },
-    settings = {
+    filetypes    = { "python" },
+    settings     = {
         python = {
             analysis = {
                 autoSearchPaths = true,
