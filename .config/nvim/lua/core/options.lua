@@ -56,7 +56,6 @@ vim.opt.wildoptions:append("pum")
 options.color_opts = {
     background = "dark", -- TODO: do this somewhere else
     colorcolumn = { "+1" },
-    hlsearch = false,
     termguicolors = true,
 }
 
@@ -189,6 +188,7 @@ options.mouse_opts = {
 }
 
 options.search_opts = {
+    hlsearch = false,
     ignorecase = true,
     incsearch = true,
     smartcase = true,
@@ -242,16 +242,3 @@ end
 
 -- TODO: matchpairs for html, vue,...
 -- vim.opt.matchpairs:append("<:>")
-
--- TODO: should this be here?
--- Not required any more from 0.11
-if not vim.fn.has("0.11") then
-    vim.api.nvim_create_autocmd("TermOpen", {
-        desc = "Set specific terminal options",
-        callback = function()
-            vim.opt_local.number = false
-            vim.opt_local.relativenumber = false
-            vim.opt.signcolumn = "no"
-        end
-    })
-end

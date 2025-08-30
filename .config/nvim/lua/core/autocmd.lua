@@ -18,7 +18,7 @@ end
 M.create_autocmd("TextYankPost", {
     desc = "Shortly highlight yanked text",
     callback = function()
-        vim.highlight.on_yank {
+        vim.hl.on_yank {
             timeout = 100,
             on_macro = false,
             on_visual = true,

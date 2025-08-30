@@ -10,7 +10,9 @@ local default_parsers = {
 }
 
 local parsers = {
+    "bash",
     "css",
+    "diff",
     "editorconfig",
     "gitignore",
     "go", "gomod", "gosum",
@@ -23,6 +25,7 @@ local parsers = {
     "python",
     "toml", "yaml",
     "vue",
+    "xresources",
 }
 
 ---@class TextobjectKeymap
@@ -52,9 +55,6 @@ return {
         branch = "main",
         build = ":TSUpdate",
         lazy = false,
-        -- dependencies = {
-        --     "nvim-treesitter/nvim-treesitter-textobjects",
-        -- },
         config = function()
             local ts_config = require("nvim-treesitter.config")
             ts_config.setup {

@@ -3,6 +3,13 @@ vim.g.maplocalleader = "\\"
 
 local default_opts = { noremap = true }
 
+---Create a keymap.
+---
+---Uses `{ noremap = true }` as default options.
+---@param mode string | string[]
+---@param lhs string
+---@param rhs string|fun()
+---@param custom_opts vim.keymap.set.Opts?
 local function map(mode, lhs, rhs, custom_opts)
     local opts = vim.tbl_deep_extend("force", default_opts, custom_opts or {})
     vim.keymap.set(mode, lhs, rhs, opts)
@@ -10,7 +17,7 @@ end
 
 map("", "<Space>", "<Nop>", { desc = "Unmap <Space>" })
 
-map("n", "<leader>w", "<cmd>write<CR>", { desc = "Write the current file" })
+map("n", "<leader>w", "<cmd>update<CR>", { desc = "Write the current file" })
 map("n", "<leader>y", "<cmd>%yank<CR>", { desc = "Yank the current file" })
 
 map({ "n", "t" }, "<localleader>t", "<Plug>FloatTermToggle",
