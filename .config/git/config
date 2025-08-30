@@ -1,11 +1,28 @@
 [user]
-	email = reyniersbram@gmail.com
-	name = Bram Reyniers
-	signingkey = 8D48D91DF85CFB2C
+    name = Bram Reyniers
+    email = reyniersbram@gmail.com
+    signingkey = 8D48D91DF85CFB2C
+
+[core]
+    compression = 9
+    whitespace = error
+    preloadindex = true
+
 [init]
-	defaultBranch = main
+    defaultBranch = main
 [commit]
-	gpgSign = true
+    gpgSign = true
+[status]
+    branch = true
+    showStash = true
+    showUntrackedFiles = all
+
+[color "diff"]
+    meta = black bold
+    frag = magenta
+    context = white
+    whitespace = yellow reverse
+    old = red
 
 [includeIf "gitdir:~/ugent/"]
     path = "~/.config/git/ugent"
