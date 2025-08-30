@@ -1,0 +1,33 @@
+#!/usr/bin/env sh
+
+set -euo pipefail
+
+_off() {
+    xset s off -dpms
+    echo "Disabled auto-dim"
+}
+
+_on() {
+    xset s on +dpms
+    echo "Enabled auto-dim"
+}
+
+_toggle() {
+    if xset q | grep -q "DPMS is Enabled"; then
+        _off
+    else
+        _on
+    fi
+}
+
+case ${1:-toggle} in
+    on)
+        _on
+        ;;
+    off)
+        _off
+        ;;
+    toggle)
+        _toggle
+        ;;
+esac
