@@ -3,6 +3,7 @@ local function toggle_float()
     return oil.toggle_float()
 end
 
+---@type LazySpec
 return {
     "stevearc/oil.nvim",
     dependencies = {

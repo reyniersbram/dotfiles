@@ -1,6 +1,3 @@
-local parser_dir = vim.fn.stdpath("data") .. "/treesitter"
-vim.opt.runtimepath:append(parser_dir)
-
 local default_parsers = {
     "c",
     "lua",
@@ -57,6 +54,8 @@ return {
         lazy = false,
         config = function()
             local ts_config = require("nvim-treesitter.config")
+            local parser_dir = vim.fn.stdpath("data") .. "/site"
+
             ts_config.setup {
                 install_dir = parser_dir,
             }

@@ -33,4 +33,7 @@ ln --symbolic --force --no-target-directory \
     "${current_directory}/../.config/nvim" \
     "$config_target"
 
+log "Installing plugins..." info
+nvim --headless "+Lazy! sync" +qa
+
 log "Done." info

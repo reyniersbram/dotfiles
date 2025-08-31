@@ -4,10 +4,10 @@ This is my dotfiles repo.
 
 | My Environment |   |
 |---|---|
-| **Distro** | Arch Linux |
-| **Window Manager** | dwm |
+| **Operating System** | Arch Linux |
+| **Window Manager** | [dwm](https://github.com/reyniersbram/dwm) |
 | **Shell** | Bash |
-| **Terminal Emulator** | st |
+| **Terminal Emulator** | [st](https://github.com/reyniersbram/st) |
 | **Text Editor** | Neovim |
 
 ## Installation
@@ -20,7 +20,7 @@ cd dotfiles
 ./install.sh
 ```
 
-> ![WARN]
+> [!WARNING]
 > This script is primarily intended for setting up a fresh system with my
 > preferred configurations and programs.  
 > It may not behave correctly on existing setups, and there is no guarantee that
