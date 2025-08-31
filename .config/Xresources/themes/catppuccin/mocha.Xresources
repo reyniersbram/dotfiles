@@ -1,0 +1,47 @@
+! Catppuccin Mocha
+
+! Colors
+#define rosewater   #f5e0dc
+#define flamingo    #f2cdcd
+#define pink        #f5c2e7
+#define mauve       #cba6f7
+#define red         #f38ba8
+#define maroon      #eba0ac
+#define peach       #fab387
+#define yellow      #f9e2af
+#define green       #a6e3a1
+#define teal        #94e2d5
+#define sky         #89dceb
+#define sapphire    #74c7ec
+#define blue        #89b4fa
+#define lavender    #b4befe
+
+! Bright colors
+#define rosewaterBright #f5e0dc
+#define flamingoBright  #f2cdcd
+#define pinkBright      #f2aede
+#define mauveBright     #cba6f7
+#define redBright       #f37799
+#define maroonBright    #eba0ac
+#define peachBright     #fab387
+#define yellowBright    #ebd391
+#define greenBright     #89d88b
+#define tealBright      #6bd7ca
+#define skyBright       #89dceb
+#define sapphireBright  #74c7ec
+#define blueBright      #74a8fc
+#define lavenderBright  #b4befe
+
+! UI colors
+#define text        #cdd6f4
+#define subtext1    #bac2de
+#define subtext0    #a6adc8
+#define overlay2    #9399b2
+#define overlay1    #7f849c
+#define overlay0    #6c7086
+#define surface2    #585b70
+#define surface1    #45475a
+#define surface0    #313244
+#define base        #1e1e2e
+#define mantle      #181825
+#define crust       #11111b

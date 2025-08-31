@@ -1,4 +1,22 @@
-#include ".config/Xresources/theme.Xresources"
+#include ".config/Xresources/themes/catppuccin/mocha.Xresources"
+
+*.color.color0: surface1
+*.color.color1: red
+*.color.color2: green
+*.color.color3: yellow
+*.color.color4: blue
+*.color.color5: pink
+*.color.color6: teal
+*.color.color7: subtext0
+
+*.color.color8: surface2
+*.color.color9: redBright
+*.color.color10: greenBright
+*.color.color11: yellowBright
+*.color.color12: blueBright
+*.color.color13: pinkBright
+*.color.color14: tealBright
+*.color.color15: subtext1
 
 St.font: monospace:pixelsize=17:antialias=true:autohint=true
 St.color.foreground: text
