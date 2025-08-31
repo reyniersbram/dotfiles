@@ -31,8 +31,8 @@ The script will:
 - Install the required packages needed for the script itself (requires root)
 - Create XDG-compliant directories
 - Symlink configuration files using `stow`
-- Install packages listed in [packages.txt](./etc/packages.txt) (requires root)
 - Apply some system-level configurations (requires root)
+- Run additional scripts
 
 It can be extended by placing additional scripts in [install.d](./install.d).
 The helper library [lib.sh](./lib.sh) provides common functions and variables

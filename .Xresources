@@ -1,0 +1,12 @@
+#include ".config/Xresources/theme.Xresources"
+
+St.font: monospace:pixelsize=17:antialias=true:autohint=true
+St.color.foreground: text
+St.color.background: mantle
+St.color.cursorColor: rosewater
+St.color.cursorColor.reverse: peach
+
+Slock.color.init: black
+Slock.color.input: blue
+Slock.color.failed: red
+Slock.color.pam: yellow

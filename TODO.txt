@@ -3,16 +3,12 @@ TODO:
 - desktop files
 - OneDrive
     rclone --vfs-cache-mode writes mount onedrive: ~/OneDrive
-- look into https://flameshot.org/ for screenshots
 
 NVim Plugins to try:
 - abecodes/tabout.nvim
 - ahmedkhalf/project.nvim
 - artempyanykh/marksman
-- Telescope:
-    - BurntSushi/ripgrep
-    - sharkdp/fd
 
-
-- NVIM:
-  - skip trailing spaces error in MD-files
+- Dir structure:
+    - `man hier`, `man file-hierarchy`
+    - https://en.wikipedia.org/wiki/Unix_filesystem#Conventional_directory_layout

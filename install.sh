@@ -38,23 +38,13 @@ mkdir -vp "${HOME}/Pictures/Screenshots"
 log "Symlinking files with stow..." info
 stow --verbose=2 --restow --dir "${current_directory}" --target "${HOME}" .
 
-# Install additional packages
-log "Installing additional packages..." info
-packages="${current_directory}/etc/packages.txt"
-if [ -s "$packages" ]; then
-    # shellcheck disable=SC2046
-    install_packages $(xargs < "$packages")
-else
-    log "Nothing to do" hint
-fi
-
-log "Installing custom programs..." info
-for script in "${current_directory}/install.d/"*; do
-    [ -x "$script" ] && "$script"
-done
-
 # Setup system files
 log "Setting up sudoers files..." info
 for file in "${current_directory}/etc/sudoers/"*; do
     sudo cp --verbose "${file}" "/etc/sudoers.d/$(basename "${file}")"
+done
+
+log "Installing custom programs..." info
+for script in "${current_directory}/install.d/"*; do
+    [ -x "$script" ] && "$script"
 done
