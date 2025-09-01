@@ -23,6 +23,9 @@ lib.sh
 # Configs managed by install scripts
 /.config/nvim
 /.config/paru
+/.config/autorandr
+.bashrc
+/.config/bash
 
 # Other
 TODO.txt
