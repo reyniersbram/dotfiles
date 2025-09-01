@@ -1,3 +1,7 @@
+# lib.sh - shared functions and variables for used in install scripts
+# This file should be sourced at the beginning of the script
+
+# shellcheck disable=SC2034
 XDG_CONFIG_HOME="${HOME}/.config"
 XDG_CACHE_HOME="${HOME}/.cache"
 XDG_DATA_HOME="${HOME}/.local/share"

@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
 
+# Main install script.
+
 set -eu
 
 current_directory=$(cd -- "$(dirname -- "$0")" > /dev/null 2>&1 && pwd)
