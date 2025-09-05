@@ -13,7 +13,7 @@ if [ "$volume" -eq 0 ] || [ "$mute" = "off" ]; then
     dunstify \
         --appname "$APP_NAME" \
         --urgency low \
-        --icon audio-volume-muted \
+        --icon audio-volume-muted-symbolic \
         --hints int:value:"$volume" \
         --hints "$TAG" \
         "Muted"
@@ -29,7 +29,7 @@ dunstify \
     --appname "$APP_NAME" \
     --urgency low \
     --timeout 1000 \
-    --icon audio-volume-$intensity \
+    --icon audio-volume-$intensity-symbolic \
     --hints int:value:"$volume" \
     --hints "$TAG" \
     "Volume: $volume%"

@@ -216,7 +216,7 @@
     max_icon_size = 128
 
     # Paths to default icons (only neccesary when not using recursive icon lookup)
-    icon_path = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
+    # icon_path = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
 
     ### History ###
 
@@ -473,14 +473,14 @@
     appname = changevolume
     format = "<big><b>%s</b></big>"
     timeout = 1
-    default_icon = audio-volume-high
+    default_icon = audio-volume-high-symbolic
     history_ignore = true
 
 [Backlight]
     appname = changebrightness
     format = "<big><b>%s</b></big>"
     timeout = 1
-    default_icon = display-brightness-symbolic 
+    default_icon = display-brightness-symbolic
     history_ignore = true
 
 # vim: ft=cfg
