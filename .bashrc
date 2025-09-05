@@ -23,14 +23,12 @@ export XDG_STATE_HOME="${HOME}/.local/state"
 export XDG_DATA_DIRS="/usr/local/share:/usr/share"
 export XDG_CONFIG_DIRS="/etc/xdg"
 
-export PYTHON_VENV_DIR="${XDG_DATA_HOME}/python/virtual_environments"
-source "${HOME}/.local/bin/pyvenv"
-
-### If not running interactively, don't do anything
+# if not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-### PATH
+xhost +local:root > /dev/null 2>&1
 
+### PATH
 append_to_path() {
     case ":${PATH}:" in
         *:$1:*)
@@ -58,19 +56,16 @@ shopt -s expand_aliases
 shopt -s histappend
 shopt -s no_empty_cmd_completion
 
-### Enable completion
+# Enable completion
 [ -r /usr/share/bash-completion/bash_completion ] && source "/usr/share/bash-completion/bash_completion"
 [ -r /usr/share/bash-completion/completions/git ] && source "/usr/share/bash-completion/completions/git"
 bind "set completion-ignore-case on"
 
-### source alias definitions
+# source alias definitions
 [ -f "${XDG_CONFIG_HOME}/bash/alias" ] && source "${XDG_CONFIG_HOME}/bash/alias"
 
-### prompt configuration
+# prompt configuration
 [ -f "${XDG_CONFIG_HOME}/bash/prompt" ] && source "${XDG_CONFIG_HOME}/bash/prompt"
-
-# TODO: figure out what this does
-xhost +local:root > /dev/null 2>&1
 
 ### SSH with OpenPGP
 GPG_TTY=$(tty)

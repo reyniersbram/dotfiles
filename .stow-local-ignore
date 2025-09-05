@@ -26,6 +26,7 @@ lib.sh
 /.config/autorandr
 .bashrc
 /.config/bash
+/.config/git
 
 # Other
 TODO.txt

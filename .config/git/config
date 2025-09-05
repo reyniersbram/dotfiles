@@ -26,3 +26,6 @@
 
 [includeIf "gitdir:~/ugent/"]
     path = "~/.config/git/ugent"
+
+[alias]
+graph = log --oneline --all --graph
