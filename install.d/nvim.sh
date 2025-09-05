@@ -33,6 +33,8 @@ ln --symbolic --force --no-target-directory \
     "$config_target"
 
 log "Installing plugins..." info
-nvim --headless "+Lazy! sync" +qa
+nvim --headless "+Lazy! restore" +qa
+nvim --headless -c "Lazy! clean" -c "qa"
+nvim --headless -c "TSUpdateSync" -c "qa"; echo
 
 log "Done." info

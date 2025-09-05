@@ -53,14 +53,36 @@ return {
         build = ":TSUpdate",
         lazy = false,
         config = function()
+            local nvim_treesitter = require("nvim-treesitter")
             local ts_config = require("nvim-treesitter.config")
-            local parser_dir = vim.fn.stdpath("data") .. "/site"
+            local parser_dir = vim.fs.joinpath(vim.fn.stdpath("data"), "site")
+
+            local parsers_to_install = vim.list_extend(parsers, default_parsers)
+
+            vim.api.nvim_create_user_command(
+                "TSUpdateSync",
+                function()
+                    ---@type async.Task
+                    local task = nvim_treesitter.update(parsers_to_install,
+                        { summary = true })
+                    task:wait(120000)
+                end,
+                {}
+            )
+            vim.api.nvim_create_user_command(
+                "TSInstallSync",
+                function()
+                    local task = nvim_treesitter.install(parsers_to_install,
+                        { summary = true })
+                    task:wait(120000)
+                end,
+                {}
+            )
 
             ts_config.setup {
                 install_dir = parser_dir,
             }
-            local ts_install = require("nvim-treesitter.install")
-            ts_install.install(vim.list_extend(parsers, default_parsers))
+            nvim_treesitter.install(parsers_to_install)
 
             vim.api.nvim_create_autocmd("FileType", {
                 callback = function(event)

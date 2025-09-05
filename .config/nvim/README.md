@@ -5,7 +5,9 @@
 First time using:
 
 ```sh
-nvim --headless "+Lazy! sync" +qa
+nvim --headless -c "Lazy! restore" -c "qa"
+nvim --headless -c "Lazy! clean" -c "qa"
+nvim --headless -c "TSUpdateSync" -c "qa"
 ```
 
 ## Install spell files
