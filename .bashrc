@@ -49,9 +49,6 @@ append_to_path "${HOME}/go/bin"
 export PATH
 unset -f append_to_path
 
-### CHANGE TITLE OF TERMINALS
-PROMPT_COMMAND='echo -ne "\033]0;\uf489 : $(echo ${PWD/#$HOME/\~} | sed "s/.*\/\([^\/]\)/\1/")\007"'
-
 ### SHOPT
 shopt -s cdable_vars
 shopt -s cdspell
@@ -69,7 +66,7 @@ bind "set completion-ignore-case on"
 ### source alias definitions
 [ -f "${XDG_CONFIG_HOME}/bash/alias" ] && source "${XDG_CONFIG_HOME}/bash/alias"
 
-### source prompt configuration
+### prompt configuration
 [ -f "${XDG_CONFIG_HOME}/bash/prompt" ] && source "${XDG_CONFIG_HOME}/bash/prompt"
 
 # TODO: figure out what this does

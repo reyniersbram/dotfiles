@@ -9,6 +9,7 @@
 # - https://wiki.archlinux.org/title/Bash/Prompt_customization#Colors
 # - https://en.wikipedia.org/wiki/ANSI_escape_code#3-bit_and_4-bit
 # - https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit
+# - https://bash-prompt-generator.org/
 
 # Markup
 _clearAll="\[\e[0m\]"
@@ -17,17 +18,17 @@ _bold="\[\e[1m\]"
 
 # Colors
 _purple="$_clearAll\[\e[0;35m\]"
-_brightGreen="$_clearAll\[\e[1;32m\]"
-_brightBlue="$_clearAll\[\e[1;34m\]"
-_brightYellow="$_clearAll\[\e[1;33m\]"
-_brightRed="$_clearAll\[\e[1;31m\]"
+_green="$_clearAll\[\e[0;32m\]"
+_blue="$_clearAll\[\e[0;34m\]"
+_yellow="$_clearAll\[\e[0;33m\]"
+_red="$_clearAll\[\e[0;31m\]"
 
 # Used Markup Values
 _defaultColor="$_clearAll"
-_mainPromptColor="$_brightGreen"
-_directoryColor="$_brightBlue"
+_mainPromptColor="$_green$_bold"
+_directoryColor="$_blue$_bold"
 _branchColor="$_purple$_italic"
-_ps2PromptColor="$_brightYellow"
+_ps2PromptColor="$_yellow$_bold"
 
 # Possible escape sequences
 _bell="\a"
@@ -58,19 +59,42 @@ _nonPrintBegin="\["
 _nonPrintEnd="\]"
 # __ascii="\nnn"      # Character with ASCII code as octal value nnn
 
-_gitBranch="\$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/$_mainPromptColor[$_branchColor$(echo -e '\ue725') \1$_mainPromptColor] /')"
-_npmProject="\$(while [[ ! -f package.json && $(pwd) != $HOME ]]; do cd ..; done; [[ -f package.json ]] && echo $(echo -e '\ue71e') )"
+get_branch() {
+    _return_value=$1
+    _branch=""
+    _branch_icon=$'\xee\001\x9c\xa5\002' # same as \ue725 bash thinks this is 3 characters, \001...\002 indicates none printable characters
+    if command -v git > /dev/null; then
+        _branch="$(git branch 2> /dev/null | grep '\*' | sed -e 's/* //')"
+    else
+        _branch="(git not installed)"
+    fi
 
-export PS1="\
-$_mainPromptColor$_user@$_hostLong: \
-$_directoryColor$_directory \
-$_gitBranch\
-$_mainPromptColor$_prompt \
+    if [ -n "$_branch" ]; then
+        printf "\001\e[1;32m\002[\001\e[0;35m\002%s%s\001\e[1;32m\002] " "${_branch_icon}" "${_branch}"
+    fi
+}
+
+### terminal title
+terminal_title() {
+    icon=$'\uf489'
+    directory=$(echo "${PWD/#$HOME/\~}" | sed "s/.*\/\([^\/]\)/\1/")
+    title="$icon $directory"
+    printf "\033]2;%s\007" "$title"
+}
+
+PROMPT_COMMAND="terminal_title"
+
+PS1="\
+$_mainPromptColor\u@\H: \
+$_directoryColor\W \
+\$(get_branch)\
+$_mainPromptColor\$ \
+$_clearAll\
+"
+
+PS2="\
+$_ps2PromptColor\> \
 $_defaultColor\
 "
 
-export PS2="\
-$_ps2PromptColor> \
-$_defaultColor\
-"
-
+# vim: ft=bash
