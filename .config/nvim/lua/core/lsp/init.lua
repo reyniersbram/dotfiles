@@ -50,7 +50,7 @@ vim.api.nvim_create_user_command("LspRestart", function(args)
 end, {
     desc = "Restart the LSP client",
     complete = lsp_util.complete_client,
-    nargs = "?",
+    nargs = "*",
 })
 
 require("core.lsp.document_highlight").setup({ enable = true })
