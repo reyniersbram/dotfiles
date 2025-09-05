@@ -27,6 +27,7 @@ lib.sh
 .bashrc
 /.config/bash
 /.config/git
+/.config/dunst
 
 # Other
 TODO.txt
