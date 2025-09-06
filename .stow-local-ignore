@@ -27,6 +27,9 @@ lib.sh
 .bashrc
 /.config/bash
 /.config/git
+.Xresources
+/.config/Xresources
+.xinitrc
 
 # Other
 TODO.txt

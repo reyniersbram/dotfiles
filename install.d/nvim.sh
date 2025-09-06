@@ -28,7 +28,7 @@ esac
 
 log "Linking configuration..." info
 mkdir --parents --verbose "$XDG_CONFIG_HOME"
-ln --symbolic --force --no-target-directory \
+ln --symbolic --force --no-target-directory --verbose \
     "${current_directory}/../.config/nvim" \
     "$config_target"
 
