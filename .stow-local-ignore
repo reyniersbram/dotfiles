@@ -31,6 +31,7 @@ lib.sh
 /.config/Xresources
 .xinitrc
 /.config/dircolors
+/.gnupg
 
 # Other
 TODO.txt
