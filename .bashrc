@@ -67,6 +67,11 @@ bind "set completion-ignore-case on"
 # prompt configuration
 [ -f "${XDG_CONFIG_HOME}/bash/prompt" ] && source "${XDG_CONFIG_HOME}/bash/prompt"
 
+# colors used by `ls`
+if command -v dircolors > /dev/null && [ -f "${XDG_CONFIG_HOME}/dircolors/dir_colors" ]; then
+    eval "$(dircolors "${XDG_CONFIG_HOME}/dircolors/dir_colors")"
+fi
+
 ### SSH with OpenPGP
 GPG_TTY=$(tty)
 export GPG_TTY

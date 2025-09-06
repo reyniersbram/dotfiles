@@ -13,30 +13,34 @@ config_target="${XDG_CONFIG_HOME}/${name}"
 log "Installing Bash..." info
 install_packages bash
 
-link_bashrc=1
+log "Linking configuration..." info
+
+link_bashrc=0
 if [ -f "$HOME/.bashrc" ]; then
     printf "A .bashrc is already present, are you sure you want to overwrite it? [y/N] "
     read -r answer
     case "$answer" in
         [yY][eE][sS]|[yY])
+            link_bashrc=1
             ;;
         *)
-            link_bashrc=0
             ;;
     esac
 fi
 
 if [ $link_bashrc -gt 0 ]; then
-    log "Linking .bashrc" info
     ln --symbolic --force --no-target-directory --verbose \
         "${current_directory}/../.bashrc" \
-        "$HOME/.bashrc"
+        "${HOME}/.bashrc"
 fi
 
-log "Linking configuration..." info
 mkdir --parents --verbose "$XDG_CONFIG_HOME"
 ln --symbolic --force --no-target-directory --verbose \
     "${current_directory}/../.config/${name}" \
     "$config_target"
+
+ln --symbolic --force --no-target-directory --verbose \
+    "${current_directory}/../.config/dircolors" \
+    "${XDG_CONFIG_HOME}/dircolors"
 
 log "Done." info
