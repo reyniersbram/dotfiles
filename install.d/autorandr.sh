@@ -17,7 +17,7 @@ install_packages autorandr
 log "Linking configuration..." info
 mkdir --parents --verbose "$XDG_CONFIG_HOME"
 ln --symbolic --force --no-target-directory --verbose \
-    "${current_directory}/../.config/$name" \
+    "$(realpath "${current_directory}/../.config/$name")" \
     "$config_target"
 
 log "It might be necessary to change setup files to have more accurate monitor matches" hint

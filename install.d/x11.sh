@@ -10,12 +10,12 @@ install_packages xorg-server xorg-xinit xorg-xrdb xorg-xrandr
 
 log "Linking configuration..." info
 ln --symbolic --force --no-target-directory --verbose \
-    "${current_directory}/../.xinitrc" \
+    "$(realpath "${current_directory}/../.xinitrc")" \
     "$HOME/.xinitrc"
 ln --symbolic --force --no-target-directory --verbose \
-    "${current_directory}/../.Xresources" \
+    "$(realpath "${current_directory}/../.Xresources")" \
     "$HOME/.Xresources"
 mkdir --parents --verbose "$XDG_CONFIG_HOME"
 ln --symbolic --force --no-target-directory --verbose \
-    "${current_directory}/../.config/Xresources" \
+    "$(realpath "${current_directory}/../.config/Xresources")" \
     "${XDG_CONFIG_HOME}/Xresources"

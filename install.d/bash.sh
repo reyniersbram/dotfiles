@@ -30,17 +30,17 @@ fi
 
 if [ $link_bashrc -gt 0 ]; then
     ln --symbolic --force --no-target-directory --verbose \
-        "${current_directory}/../.bashrc" \
+        "$(realpath "${current_directory}/../.bashrc")" \
         "${HOME}/.bashrc"
 fi
 
 mkdir --parents --verbose "$XDG_CONFIG_HOME"
 ln --symbolic --force --no-target-directory --verbose \
-    "${current_directory}/../.config/${name}" \
+    "$(realpath "${current_directory}/../.config/${name}")" \
     "$config_target"
 
 ln --symbolic --force --no-target-directory --verbose \
-    "${current_directory}/../.config/dircolors" \
+    "$(realpath "${current_directory}/../.config/dircolors")" \
     "${XDG_CONFIG_HOME}/dircolors"
 
 log "Done." info

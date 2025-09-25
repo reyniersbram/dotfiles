@@ -10,7 +10,7 @@ install_packages gnupg
 
 log "Linking configuration..." info
 ln --symbolic --force --no-target-directory --verbose \
-    "${current_directory}/../.gnupg/gpg-agent.conf" \
+    "$(realpath "${current_directory}/../.gnupg/gpg-agent.conf")" \
     "${HOME}/.gnupg/gpg-agent.conf"
 
 log "Done." info

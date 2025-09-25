@@ -16,7 +16,7 @@ install_packages libnotify dunst
 log "Linking configuration..." info
 mkdir --parents --verbose "$XDG_CONFIG_HOME"
 ln --symbolic --force --no-target-directory --verbose \
-    "${current_directory}/../.config/${name}" \
+    "$(realpath "${current_directory}/../.config/${name}")" \
     "$config_target"
 
 log "Done." info
