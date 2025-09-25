@@ -28,6 +28,9 @@ lib.sh
 /.config/bash
 /.config/git
 /.config/dunst
+.Xresources
+/.config/Xresources
+.xinitrc
 
 # Other
 TODO.txt

@@ -28,7 +28,7 @@ fi
 
 if [ $link_bashrc -gt 0 ]; then
     log "Linking .bashrc" info
-    ln --symbolic --force --no-target-directory \
+    ln --symbolic --force --no-target-directory --verbose \
         "${current_directory}/../.bashrc" \
         "$HOME/.bashrc"
 fi
