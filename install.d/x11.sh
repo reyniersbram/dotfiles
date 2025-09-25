@@ -13,7 +13,7 @@ ln --symbolic --force --no-target-directory --verbose \
     "${current_directory}/../.xinitrc" \
     "$HOME/.xinitrc"
 ln --symbolic --force --no-target-directory --verbose \
-    "${current_directory}/../.xinitrc" \
+    "${current_directory}/../.Xresources" \
     "$HOME/.Xresources"
 mkdir --parents --verbose "$XDG_CONFIG_HOME"
 ln --symbolic --force --no-target-directory --verbose \
