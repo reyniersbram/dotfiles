@@ -8,7 +8,7 @@
 
 ```sh
 sudo pacman -S cifs-utils
-sudo mount //install.ugent.be/software -o username=username # change username
+sudo mount //install.ugent.be/software -o username=username /mnt # change username
 sudo /mnt/Maple/2023/Maple2023.1LinuxX64Installer.run
 # or download installer first and run it locally
 # choose 'Network License', 'licmaple.ugent.be'
