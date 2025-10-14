@@ -2,7 +2,7 @@
 
 set -eu
 
-current_directory=$(cd -- "$(dirname -- "$0")" > /dev/null 2>&1 && pwd)
+current_directory=$(cd -- "$(dirname -- "$0")" >/dev/null 2>&1 && pwd)
 . "${current_directory}/../lib.sh"
 
 name=bash
@@ -20,11 +20,10 @@ if [ -f "$HOME/.bashrc" ]; then
     printf "A .bashrc is already present, are you sure you want to overwrite it? [y/N] "
     read -r answer
     case "$answer" in
-        [yY][eE][sS]|[yY])
-            link_bashrc=1
-            ;;
-        *)
-            ;;
+    [yY][eE][sS] | [yY])
+        link_bashrc=1
+        ;;
+    *) ;;
     esac
 fi
 
