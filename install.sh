@@ -22,7 +22,7 @@ log "Running a full system upgrade before starting the installation..." info
 system_upgrade
 
 log "Installing packages required to run this install script..." info
-install_packages base-devel make git stow
+install_packages base-devel make git
 
 log "Creating XDG Base Directories..." info
 mkdir -vp "${XDG_CONFIG_HOME}"
@@ -33,10 +33,6 @@ mkdir -vp "${XDG_STATE_HOME}"
 # Directories that should not be symlinked
 log "Creating extra directories..." info
 mkdir -vp "${HOME}/.local/bin"
-
-# Use stow to symlink all configuration files, scripts, etc.
-log "Symlinking files with stow..." info
-stow --verbose=2 --restow --dir "${current_directory}" --target "${HOME}" .
 
 # Setup system files
 log "Setting up sudoers files..." info

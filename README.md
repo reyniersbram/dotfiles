@@ -30,7 +30,6 @@ cd dotfiles
 The script will:
 - Install the required packages needed for the script itself (requires root)
 - Create XDG-compliant directories
-- Symlink configuration files using `stow`
 - Apply some system-level configurations (requires root)
 - Run additional scripts
 
