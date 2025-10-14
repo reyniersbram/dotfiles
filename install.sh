@@ -33,8 +33,6 @@ mkdir -vp "${XDG_STATE_HOME}"
 # Directories that should not be symlinked
 log "Creating extra directories..." info
 mkdir -vp "${HOME}/.local/bin"
-mkdir -vp "${HOME}/Pictures"
-mkdir -vp "${HOME}/Pictures/Screenshots"
 
 # Use stow to symlink all configuration files, scripts, etc.
 log "Symlinking files with stow..." info
