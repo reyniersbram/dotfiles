@@ -1,11 +1,11 @@
 local M = {}
 
----@class documentHighlight.Opts
----@field enable? boolean
-
----@type documentHighlight.Opts
-local default_opts = {
+---@class lsp.documentHighlight.Config
+---@field enable boolean
+---@field log_level vim.log.levels
+local config = {
     enable = true,
+    log_level = vim.log.levels.INFO
 }
 
 --- Track which buffers are enabled
@@ -38,8 +38,10 @@ function M.create_highlighting_autocmds(bufnr)
 
     -- Skip if already enabled
     if enabled_buffers[bufnr] then
-        vim.notify("Buffer already enabled", vim.log.levels.DEBUG)
-        return
+        if config.log_level <= vim.log.levels.DEBUG then
+            vim.notify("Buffer already enabled", vim.log.levels.DEBUG)
+            return
+        end
     end
 
     -- Check if a supporting client is attached to the buffer
@@ -130,11 +132,11 @@ function M.toggle()
 end
 
 --- Setup LSP document highlighting
----@param user_opts? documentHighlight.Opts
-function M.setup(user_opts)
-    local opts = vim.tbl_deep_extend("force", default_opts, user_opts or {})
+---@param user_config? lsp.documentHighlight.Config
+function M.setup(user_config)
+    config = vim.tbl_deep_extend("force", config, user_config or {})
 
-    if opts.enable then
+    if config.enable then
         M.enable()
     end
 

@@ -5,6 +5,7 @@ vim.lsp.config("*", {
 })
 vim.lsp.enable({
     "bashls",          -- shell
+    "clangd",          -- clangd
     "cssls",           -- css
     "gopls",           -- go
     "hls",             -- haskell
