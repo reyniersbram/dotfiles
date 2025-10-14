@@ -1,0 +1,2 @@
+#!/bin/sh
+feh --no-fehbg --bg-fill '/home/reyniersbram/dotfiles/pictures/wallpapers/arch-black-4k.png' 

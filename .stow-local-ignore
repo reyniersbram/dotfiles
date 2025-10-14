@@ -34,6 +34,10 @@ lib.sh
 .xbindkeysrc
 /.config/dircolors
 /.gnupg
+/.config/kitty
+/.config/ideavim
+.fehbg
+/pictures/wallpapers
 
 # Other
 TODO.txt
