@@ -74,6 +74,14 @@ get_branch() {
     fi
 }
 
+get_exit_code() {
+    RET=$?
+    if [ $RET -gt 0 ] ; then
+        printf "\001\e[1;31m\002"
+        printf "\001\e[1;31m\002(%s)\001\e[0m\002 " "$RET"
+    fi
+}
+
 ### terminal title
 terminal_title() {
     icon=$'\uf489'
@@ -85,7 +93,9 @@ terminal_title() {
 PROMPT_COMMAND="terminal_title"
 
 PS1="\
-$_mainPromptColor\u@\H: \
+\$(get_exit_code)\
+$_mainPromptColor\
+\u@\H: \
 $_directoryColor\W \
 \$(get_branch)\
 $_mainPromptColor\$ \
@@ -93,7 +103,7 @@ $_clearAll\
 "
 
 PS2="\
-$_ps2PromptColor\> \
+$_ps2PromptColor> \
 $_defaultColor\
 "
 
