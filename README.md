@@ -1,10 +1,13 @@
 # My dotfiles
 
+> [!NOTE]
+> This branch is not fully adapted to Void Linux yet.
+
 This is my dotfiles repo.
 
 | My Environment |   |
 |---|---|
-| **Operating System** | Arch Linux |
+| **Operating System** | Void Linux |
 | **Window Manager** | [dwm](https://github.com/reyniersbram/dwm) |
 | **Shell** | Bash |
 | **Terminal Emulator** | [st](https://github.com/reyniersbram/st) |
