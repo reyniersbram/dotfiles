@@ -17,6 +17,7 @@ return {
                 upgrade_dependency = true,
                 vendor = true,
             },
+            completeUnimported = true,
             semanticTokens = true,
             usePlaceholders = true,
             matcher = "Fuzzy",

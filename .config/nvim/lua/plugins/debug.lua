@@ -1,26 +1,3 @@
----Get input from the user
----@param prompt string
----@param default string
----@param format? fun(choice: string): any
----@return fun(): thread
-local function get_input_callback(prompt, default, format)
-    if format == nil then
-        format = function(c)
-            return c
-        end
-    end
-    return function()
-        return coroutine.create(function(dap_run)
-            vim.ui.input({
-                prompt = prompt,
-                default = default,
-            }, function(choice)
-                coroutine.resume(dap_run, format(choice))
-            end)
-        end)
-    end
-end
-
 return {
     "mfussenegger/nvim-dap",
     config = function()
@@ -82,97 +59,9 @@ return {
             switchbuf = "usevisible," .. vim.o.switchbuf,
         }
 
-        ---@class dap.Configuration
-        ---@field port? integer|fun(): thread
-        ---@field host? string
-
-        dap.adapters.delve = function(
-            callback,
-            config,
-            parent
-        )
-            local host = config.host
-            if host == nil then
-                host = "127.0.0.1"
-            end
-            local port = config.port
-            if port == nil then
-                port = require("util.tcp").get_free_port(host)
-            end
-            local addr = host .. ":" .. port
-            vim.print(addr)
-
-            callback {
-                type = "server",
-                port = port,
-                host = host,
-                executable = {
-                    command = "dlv",
-                    args = { "dap", "-l", addr, "--log", "--log-output=dap" },
-                    detached = vim.fn.has("win32") == 0,
-                    cwd = nil,
-                },
-                options = {
-                    max_retries = 14,
-                    initialize_timeout_sec = 4,
-                    disconnect_timeout_sec = 3,
-                },
-            }
-        end
-
-        dap.configurations.go = {
-            {
-                name = "Debug file",
-                type = "delve",
-                request = "launch",
-                mode = "debug",
-                program = "${file}",
-                outputMode = "remote",
-            },
-            {
-                type = "delve",
-                name = "Debug (with args)",
-                request = "launch",
-                program = "${file}",
-                outputMode = "remote",
-                args = get_input_callback("Args: ", "", function(choice)
-                    return vim.split(choice or "", "%s+", { trimempty = true })
-                end)
-            },
-            -- TODO(https://github.com/go-delve/delve/issues/4093)
-            -- {
-            --     type = "delve",
-            --     name = "Debug (with input)",
-            --     request = "launch",
-            --     program = "${file}",
-            --     outputMode = "remote",
-            --     dlvFlags = { "-r", "stdin:in.txt" },
-            -- },
-            {
-                type = "delve",
-                name = "Debug test (go.mod)",
-                request = "launch",
-                mode = "test",
-                program = "./${relativeFileDirname}",
-                outputMode = "remote",
-            },
-            -- Attaches to a running go program
-            {
-                type = "delve",
-                name = "Debug Attach",
-                request = "attach",
-                processId = function()
-                    local opts = {}
-                    vim.ui.input(
-                        { prompt = "Filter process name: " },
-                        function(choice)
-                            opts.filter = choice or ""
-                        end
-                    )
-                    return require("dap.utils").pick_process(opts)
-                end
-            },
-        }
+        local dap_go = require("plugins.dap.go")
+        dap.adapters.delve = dap_go.adapter
+        dap.configurations.go = dap_go.configurations
 
         dap.adapters.python = {
             type = "executable",
