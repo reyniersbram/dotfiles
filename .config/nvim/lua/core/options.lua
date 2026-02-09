@@ -14,8 +14,7 @@ options.general_opts = {
         "nostop",
     },
     clipboard = { "unnamedplus" },
-    exrc = false, -- TODO: look into usage
-    inccommand = "nosplit",
+    inccommand = "split",
     -- TODO: jumpoptions
     nrformats = {
         "alpha",
@@ -25,6 +24,10 @@ options.general_opts = {
     timeout = true,
     timeoutlen = 500,
 }
+
+
+-- Session options
+vim.opt.exrc = false -- TODO: look into usage
 vim.opt.sessionoptions:append("blank")
 vim.opt.sessionoptions:append("buffers")
 vim.opt.sessionoptions:append("folds")
@@ -89,7 +92,6 @@ options.display_opts = {
     breakindent = true,
     cmdheight = 2,
     linebreak = true,
-    list = true,
     number = true,
     numberwidth = 4,
     relativenumber = true,
@@ -99,18 +101,21 @@ options.display_opts = {
     signcolumn = "yes:1",
     smoothscroll = true,
     wrap = false,
+
+    list = true,
+    listchars = vim.tbl_extend(
+        "force",
+        vim.opt.listchars:get(), {
+            tab = "  ",
+            trail = "~",
+        }
+    )
 }
 vim.opt.fillchars = vim.tbl_extend(
     "force",
     vim.opt.fillchars:get(), {
         eob = " ",
-    }
-)
-vim.opt.listchars = vim.tbl_extend(
-    "force",
-    vim.opt.listchars:get(), {
-        tab = "  ",
-        trail = "~",
+        vert = "│"
     }
 )
 
@@ -130,23 +135,30 @@ options.fold_opts = {
 }
 
 options.format_opts = {
-    -- TODO: cindent, cinkeys, cinoptions, cinscopedecls, cinwords
-    -- TODO: copyindent
-    autoindent = true,
     bomb = false,
-    expandtab = true,
     encoding = "utf-8",
     fileencoding = "utf-8",
     fileformat = "unix",
     fixendofline = true,
-    shiftround = true,
-    shiftwidth = 4,
-    smartindent = true,
-    smarttab = true,
-    softtabstop = -1,
-    tabstop = 8,
     textwidth = 80,
+
+    tabstop = 8, -- display \t as 8 spaces
+    expandtab = true, -- spaces instead of tabs
+    shiftwidth = 4, -- size of indents
+    shiftround = true, -- round indents to multiple of shiftwidth
+    softtabstop = -1, -- <Tab> aligns to shiftwidth
+    smarttab = true, -- <Tab> at start of line uses shiftwidth
+
+
+    autoindent = true, -- copy indent on starting new line
+    smartindent = true, -- auto indenting for C-like languages
+    -- cindent = false, -- configurable smart indenting for C/C++
+    -- indentexpr = "", -- will be set by e.g. Treesitter or LSP
+    -- TODO: test these out
+    copyindent = true,
+    preserveindent = true,
 }
+
 -- TODO: formatoptions
 
 -- TODO:
@@ -202,6 +214,7 @@ options.spell_opts = {
 
 -- TODO:
 options.tab_opts = {
+    tabclose = "uselast",
 }
 
 -- TODO:
