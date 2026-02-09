@@ -10,9 +10,10 @@ local parsers = {
     "bash",
     "css",
     "diff",
+    "dockerfile",
     "editorconfig",
     "gitignore",
-    "go", "gomod", "gosum",
+    "go", "gomod", "gosum", "gotmpl",
     "haskell",
     "html",
     "javascript", "typescript",
@@ -56,6 +57,9 @@ return {
             local nvim_treesitter = require("nvim-treesitter")
             local ts_config = require("nvim-treesitter.config")
             local parser_dir = vim.fs.joinpath(vim.fn.stdpath("data"), "site")
+
+            -- Parse header files as C
+            vim.g.c_syntax_for_h = 1
 
             local parsers_to_install = vim.list_extend(parsers, default_parsers)
 
