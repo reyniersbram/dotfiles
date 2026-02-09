@@ -12,7 +12,9 @@ unencrypted partition.
 
 > [!NOTE]
 > This guide does not cover Secure Boot or other additional security techniques
-> yet.
+> (yet).
+> See here to configure:
+> - https://wiki.gentoo.org/wiki/Encrypted_bootable_media_with_SecureBoot/GRUB/LUKS
 
 ### Disk preparation
 
@@ -21,12 +23,12 @@ partition layout used in this guide will be the following:
 
 ```
 nvme0n1             259:0    0   200G  0 disk
-├─nvme0n1p1         259:1    0     1G  0 part  /boot/efi
-├─nvme0n1p2         259:2    0     1G  0 part  /mnt
+├─nvme0n1p1         259:1    0     1G  0 part   /boot/efi
+├─nvme0n1p2         259:2    0     1G  0 part   /mnt
 └─nvme0n1p3         259:3    0    98G  0 part
   └─root            253:0    0    98G  0 crypt
-    ├─void-swap 253:1    0    24G  0 lvm
-    └─void-root 253:2    0   174G  0 lvm
+    ├─void-swap     253:1    0    24G  0 lvm
+    └─void-root     253:2    0   174G  0 lvm    /
 ```
 
 This system has 16GB of RAM, to support hibernation, [1.5 times this
@@ -231,3 +233,16 @@ running:
 ```sh
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
+
+### Resources
+
+- [Void Linux FDE Guide](https://docs.voidlinux.org/installation/guides/fde.html)
+- [Gentoo FDE Guide](https://wiki.gentoo.org/wiki/Full_Disk_Encryption_From_Scratch)
+- [Gentoo dm-crypt Guide](https://wiki.gentoo.org/wiki/Dm-crypt)
+- [Arch Linux dm-crypt/FDE Guide](https://wiki.archlinux.org/title/Dm-crypt/Encrypting_an_entire_system)
+- [Arch Linux dm-crypt detached headers Guide](https://wiki.archlinux.org/title/Dm-crypt/Specialties#Encrypted_system_using_a_detached_LUKS_header)
+- [How To Use LUKS with a detached header](https://linuxconfig.org/how-to-use-luks-with-a-detached-header)
+- [Gentoo LVM Guide](https://wiki.gentoo.org/wiki/LVM)
+- [Arch Linux LVM Guide](https://wiki.archlinux.org/title/LVM)
+- [This Reddit post](https://www.reddit.com/r/archlinux/comments/7np36m/detached_luks_header_full_disk_encryption_with/)
+- [This archived Gist](https://web.archive.org/web/20230611114013/https://gist.github.com/Le0xFF/ff0e3670c06def675bb6920fe8dd64a3)
