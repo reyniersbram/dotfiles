@@ -16,7 +16,7 @@ else intensity="high"
 fi
 
 dunstify \
-    --appname "$APP_NAME" \
+    --app-name "$APP_NAME" \
     --urgency low \
     --timeout 1000 \
     --icon display-brightness-$intensity-symbolic \

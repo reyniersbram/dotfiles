@@ -11,7 +11,7 @@ mute=$(amixer get Master | awk -F"[][]" '/Mono:/ { print $6 }')
 
 if [ "$volume" -eq 0 ] || [ "$mute" = "off" ]; then
     dunstify \
-        --appname "$APP_NAME" \
+        --app-name "$APP_NAME" \
         --urgency low \
         --icon audio-volume-muted-symbolic \
         --hints int:value:"$volume" \
@@ -26,7 +26,7 @@ else intensity="high"
 fi
 
 dunstify \
-    --appname "$APP_NAME" \
+    --app-name "$APP_NAME" \
     --urgency low \
     --timeout 1000 \
     --icon audio-volume-$intensity-symbolic \
