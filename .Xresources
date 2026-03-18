@@ -18,6 +18,14 @@
 *.color.color14: tealBright
 *.color.color15: subtext1
 
+Dwm.font: proportional:size=12
+Dwm.color.normal.foreground: text
+Dwm.color.normal.background: crust
+Dwm.color.normal.border: overlay0
+Dwm.color.selected.foreground: crust
+Dwm.color.selected.background: lavender
+Dwm.color.selected.border: lavender
+
 St.font: monospace:pixelsize=17:antialias=true:autohint=true
 St.color.foreground: text
 St.color.background: mantle
