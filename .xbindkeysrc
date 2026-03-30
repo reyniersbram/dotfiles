@@ -26,3 +26,9 @@
 
 "rofi -show calc"
     XF86Calculator
+
+"scrot -s - | xclip -selection clipboard -target image/png"
+    Print
+
+"scrot - | xclip -selection clipboard -target image/png"
+    Shift + Print
