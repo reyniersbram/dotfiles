@@ -4,17 +4,17 @@ vim.lsp.config("*", {
     root_markers = { ".git" },
 })
 vim.lsp.enable({
-    "bashls",          -- shell
-    "clangd",          -- clangd
-    "cssls",           -- css
-    "gopls",           -- go
-    "hls",             -- haskell
-    "html",            -- html
-    "lua_ls",          -- lua
-    "pyright", "ruff", -- python
-    "taplo",           -- toml
-    "ts_ls",           -- typescript
-    "vue_ls",          -- vue
+    "bashls",                -- shell
+    "clangd",                -- clangd
+    "cssls",                 -- css
+    "gopls",                 -- go
+    "hls",                   -- haskell
+    "html",                  -- html
+    "lua_ls",                -- lua
+    "pyright", "ruff", "ty", -- python
+    "taplo",                 -- toml
+    "ts_ls",                 -- typescript
+    "vue_ls",                -- vue
 })
 
 vim.api.nvim_create_autocmd("LSPAttach", {
@@ -54,4 +54,6 @@ end, {
     nargs = "*",
 })
 
-require("core.lsp.document_highlight").setup({ enable = true })
+require("core.lsp.document_highlight").setup(
+    { enable = true }
+)

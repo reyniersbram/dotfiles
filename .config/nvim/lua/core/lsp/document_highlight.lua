@@ -2,7 +2,7 @@ local M = {}
 
 ---@class lsp.documentHighlight.Config
 ---@field enable boolean
----@field log_level vim.log.levels
+---@field log_level? vim.log.levels
 local config = {
     enable = true,
     log_level = vim.log.levels.INFO
