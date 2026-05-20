@@ -19,6 +19,7 @@ local parsers = {
     "javascript", "typescript",
     "json",
     "luadoc",
+    "make",
     "prolog",
     "python",
     "toml", "yaml",
