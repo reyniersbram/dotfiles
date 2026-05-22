@@ -1,35 +1,129 @@
 #! /usr/bin/env sh
 
+# -----------------------------------------------------------------------------
+# changevolume
+# -----------------------------------------------------------------------------
+#
+# Simple PipeWire volume and mute controller using wpctl.
+#
+# Supports:
+#   - Volume control speakers, headphones and microphones
+#   - Mute toggle for speakers, headphones and microphones
+#   - Desktop notifications via dunstify
+#
+# Usage:
+#   changevolume [command] [target]
+#
+#   command should be 'toggle', a volume level (0.0-1.0 or 0-100%) or a change in
+#   volume level (x%- or x%+). See wpctl documentation for more information.
+#
+#   target should be a node ID or a special identifier. See wpctl documentation
+#   for more information
+#
+# Examples:
+#   changevolume 2%+ @DEFAULT_AUDIO_SINK@       # increase volume
+#   changevolume 2%- @DEFAULT_AUDIO_SINK@       # decrease volume
+#   changevolume toggle @DEFAULT_AUDIO_SINK@    # toggle mute (speakers)
+#   changevolume toggle @DEFAULT_AUDIO_SOURCE@  # toggle mute (microphone)
+#
+# Dependencies:
+#   - wpctl (PipeWire / WirePlumber)
+#   - dunstify (notification daemon client)
+#
+# Implementation Notes:
+#   - Volume is read from wpctl get-volume
+#   - Mute state is detected from wpctl output ("[MUTED]")
+#   - Microphone is detected by checking for @DEFAULT_AUDIO_SOURCE@
+#   - Notification icon is based on volume level:
+#       0% or muted -> muted
+#       <= 33%      -> low
+#       <= 66%      -> medium
+#       > 66%       -> high
+#
+# -----------------------------------------------------------------------------
+
 APP_NAME="changevolume"
 TAG="string:x-canonical-private-synchronous:volume"
 
-volume_diff=$1
+volume_diff="${1:-toggle}"
+target="${2:-"@DEFAULT_AUDIO_SINK@"}"
 
-amixer set Master "$volume_diff" > /dev/null
-volume=$(amixer get Master | awk -F"[][]" '/Mono:/ { print $2 }' | sed 's/%//')
-mute=$(amixer get Master | awk -F"[][]" '/Mono:/ { print $6 }')
+# args:
+#   target: node ID to mute
+toggle_mute() {
+    target="$1"
+    wpctl set-mute "$target" "toggle" >/dev/null
+}
 
-if [ "$volume" -eq 0 ] || [ "$mute" = "off" ]; then
+# args:
+#   volume: current volume to report
+#   muted: current mute state to report
+#   mode: mode to report [mic, sink]
+notify() {
+    volume="$1"
+    muted="$2"
+    mode="$3"
+
+    if [ "$mode" = "mic" ]; then
+        muted_icon="microphone-sensitivity-muted-symbolic"
+        high_icon="microphone-sensitivity-high-symbolic"
+        med_icon="microphone-sensitivity-medium-symbolic"
+        low_icon="microphone-sensitivity-low-symbolic"
+    else
+        muted_icon="audio-volume-muted-symbolic"
+        high_icon="audio-volume-high-symbolic"
+        med_icon="audio-volume-medium-symbolic"
+        low_icon="audio-volume-low-symbolic"
+    fi
+
+    text="Volume: $volume%"
+    if [ "$volume" -eq 0 ] || [ "$muted" -gt 0 ]; then
+        icon="$muted_icon"
+        text="Muted"
+    elif [ "$volume" -le 33 ]; then
+        icon="$low_icon"
+    elif [ "$volume" -le 66 ]; then
+        icon="$med_icon"
+    else
+        icon="$high_icon"
+    fi
+
     dunstify \
         --app-name "$APP_NAME" \
         --urgency low \
-        --icon audio-volume-muted-symbolic \
+        --timeout 1000 \
+        --icon "$icon" \
         --hints int:value:"$volume" \
         --hints "$TAG" \
-        "Muted"
-    exit 0
+        "$text"
+}
+
+# args:
+#   target: node ID to mute
+get_volume() {
+    target="$1"
+
+    output="$(wpctl get-volume "$target")"
+    printf '%s %s\n' \
+        "$(printf '%s\n' "$output" | awk '{printf "%d", $2 * 100}')" \
+        "$(printf '%s\n' "$output" | grep -q '\[MUTED\]' && echo 1 || echo 0)"
+}
+
+# detect mode
+mode="sink"
+if [ "$target" = "@DEFAULT_AUDIO_SOURCE@" ]; then
+    mode="mic"
 fi
 
-if [ "$volume" -lt 33 ]; then intensity="low"
-elif [ "$volume" -lt 66 ]; then intensity="medium"
-else intensity="high"
+# run command
+if [ "$volume_diff" = "toggle" ]; then
+    toggle_mute "$target"
+else
+    wpctl set-volume -l 1 "$target" "$volume_diff" >/dev/null
 fi
 
-dunstify \
-    --app-name "$APP_NAME" \
-    --urgency low \
-    --timeout 1000 \
-    --icon audio-volume-$intensity-symbolic \
-    --hints int:value:"$volume" \
-    --hints "$TAG" \
-    "Volume: $volume%"
+# notification
+output="$(get_volume "$target")"
+volume="${output%% *}"
+muted="${output#* }"
+notify "$volume" "$muted" "$mode"

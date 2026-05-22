@@ -1,10 +1,12 @@
 # manage volume
-"changevolume 2%+"
+"changevolume 2%+ @DEFAULT_AUDIO_SINK@"
     XF86AudioRaiseVolume
-"changevolume 2%-"
+"changevolume 2%- @DEFAULT_AUDIO_SINK@"
     XF86AudioLowerVolume
-"changevolume toggle"
+"changevolume toggle @DEFAULT_AUDIO_SINK@"
     XF86AudioMute
+"changevolume toggle @DEFAULT_AUDIO_SOURCE@"
+    XF86AudioMicMute
 
 # manage media player
 "playerctl next"
