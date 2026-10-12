@@ -49,6 +49,8 @@ system_upgrade() {
 install_packages() {
     if command -v pacman > /dev/null; then
         sudo pacman --sync --needed "$@"
+    elif command -v apt > /dev/null; then
+        sudo apt install "$@"
     else
         log "No supported package manager found." error
         exit 1
